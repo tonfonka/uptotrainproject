@@ -38,9 +38,8 @@ Route::post ( '/searcht', function () {
 } );
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/booking/{id}','UserController@booking');
-Route::get('/bookingsum', function () {
-	return view ('bookingsum');
-});
+Route::post('/bookingsum','OmiseController@bookingstore');
+Route::get('/bookingsum','OmiseController@bookingsum');;
 Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
@@ -50,10 +49,7 @@ Route::post('/charge','OmiseController@checkout');
 Route::get('/card', function () {
 	return view ('card');
 });
-
-Route::get('/bookingsum', function () {
-	return view ('bookingsum');
-});
+Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });

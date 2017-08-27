@@ -33,21 +33,26 @@ class UserController extends Controller
         );
         return view('schedule', $data);
     }
+    
     function booking($id){
         $fk = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
+        $sb = DB::table('booking')->select('number_booking')->where('tripround_id',$id)->pluck('number_booking');
         $count = $booking->count();
+        $sumbook = $booking->sum('number_booking');
+        //dd($sumbook);
         $trip = DB::table('trips')->where('id',$fk)->get();
         $triprounds = tripround::where('id',$id)->first();
-
         $data = array(
             'triprounds' => $triprounds,
             'trip' => $trip,
             'booking' => $booking,
-            'count' => $count
+            'count' => $count,
+            'sumbook' => $sumbook
         );
         return view('booking', $data);
     }
+
     function login(){
         return view('login');
     }

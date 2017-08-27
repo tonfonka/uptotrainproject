@@ -1,8 +1,5 @@
 @extends('layouts.headuser') @section('title', 'Summary Booking') @section('content')
 <style>
-    script button{
-    }
-    
     .invoice-box {
         max-width: 800px;
         margin: auto;
@@ -69,127 +66,138 @@
     }
 </style>
 <div class="welcome about">
-<div class="container" align="center">
-    <div class="invoice-box">
-        <table cellpadding="0" cellspacing="0">
-            <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td class="title">
-                                <img src="/img/thailandworld.jpg" style="width:100%; max-width:300px;">
-                            </td>
+    <div class="container" align="center">
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td class="title">
+                                    <img src="/img/thailandworld.jpg" style="width:100%; max-width:300px;">
+                                </td>
 
-                            <td>
-                                ใบรายการที่ #: 123<br> วันที่ : 20/05/2017<br> เวลา : 20.00
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+                                <td>
+                                    ใบรายการที่ #: 123<br> วันที่ :{{$book->booking_time}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
-            <tr class="information">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                เที่ยวละไมไทยแลนด์เวิร์ด จำกัด<br> 555 ถ.พระรามที่สอง ซอย 55<br> แขวง แสมดำ เขต บางขุนเทียน<br>                                กรุงเทพ 10150
-                            </td>
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
 
-                            <td>
-                                สมชาย<br> รักชาติไทย
-                                <br> somchai@example.com
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+                                <td>
+                                   {{$user[0]->name}}
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>
+                                    {{$user[0]->email}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
-            <tr class="heading">
-                <td>
-                    รายละเอียด
-                </td>
+                <tr class="heading">
+                    <td>
+                        รายละเอียด
+                    </td>
 
-                <td>
-                    รอบวันที่
-                </td>
-            </tr>
+                    <td>
+                        รอบวันที่
+                    </td>
+                </tr>
 
-            <tr class="details">
-                <td>
-                    เที่ยวกาญจนบุรี (4 วัน 3 คืน)
-                </td>
+                <tr class="details">
+                    <td>
+                       {{$trip[0]->trips_name}} ({{$trip[0]->trip_nday}} วัน {{$trip[0]->trip_nnight}} คืน)
+                    </td>
 
-                <td>
-                    15/04/18
-                </td>
-            </tr>
+                    <td>
+                        {{$tripround[0]->start_date}} ถึง <br>
+                        {{$tripround[0]->departure_date}}
+                    </td>
+                </tr>
 
-            <tr class="heading">
-                <td>
-                    รายการ
-                </td>
+                <tr class="heading">
+                    <td>
+                        รายการ
+                    </td>
 
-                <td>
-                    ราคา
-                </td>
-            </tr>
+                    <td>
+                        ราคา
+                    </td>
+                </tr>
 
-            <tr class="item">
-                <td>
-                    ผู้ใหญ่ (จำนวน 1 คน)
-                </td>
+                <tr class="item">
+                    <td>
+                        จำนวนผู้ใหญ่ :{{$book->number_adults }}
+                    </td>
 
-                <td>
-                    300 บาท
-                </td>
-            </tr>
+                    <td>
+                       {{$book->number_adults }} X {{$tripround[0]->price_adult }}
+                    </td>
+                </tr>
 
-            <tr class="item">
-                <td>
-                    เด็ก (จำนวน 1 คน)
-                </td>
+                <tr class="item">
+                    <td>
+                        จำนวนเด็ก : {{$book->number_children }}
+                    </td>
 
-                <td>
-                    100 บาท
-                </td>
-            </tr>
-            <tr class="total">
-                <td></td>
+                    <td>
+                        {{$book->number_children }} X {{$tripround[0]->price_child }}
+                        
+                    </td>
+                </tr>
+                
+                <tr class="total">
+                    <td>
+                        จำนวนคนรวมทั้งหมด : {{$book->number_booking}} 
+                    </td>
 
-                <td>
-                    ราคารวม: 400 บาท
-                </td>
-            </tr>
+                    <td>
+                        ราคารวม: {{$book->total_cost}}
+                    </td>
+                </tr>
 
-        </table>
+            </table>
 
-    </div><br><br>
-    <div style='text-align:center'>
-        
-        
-        <form name="checkoutForm" method="POST" action="/charge">
-        
-    <input type="hidden" name="description" value="Product order ฿3200.00" />
-    <input type="hidden" name="name" value="moiza"/>
-    {{ csrf_field() }}
+        </div><br><br>
+        <div style='text-align:center'>
+            <form name="checkoutForm" method="POST" action="/charge">
+                <input type="hidden" name="description" value="Product order " />
+                <input type="hidden" name="name" value="{{$user[0]->name}}"/>
+                 <input type="hidden"  name="amount" value="{{$book->total_cost *100}}"/>
+                {{ csrf_field() }}
 
     
-    <script type="text/javascript"  src="https://cdn.omise.co/card.js"               
-      data-key="pkey_test_58x5lew98sd34rjio0a"
-      data-image="http://www.mx7.com/view2/A2ElRcLZ5FAr6dEv"
-      data-frame-label="UP to Train" 
-      data-button-label ="ซื้อเลยจ้า" 
-      data-submit-label="Submit" 
-      data-location="yes" 
-      data-amount="350000"
-      data-currency="thb"
-      >
-    </script>
+                <script type="text/javascript"  src="https://cdn.omise.co/card.js"               
+                data-key="pkey_test_58x5lew98sd34rjio0a"
+                data-image="http://www.mx7.com/view2/A2ElRcLZ5FAr6dEv"
+                data-frame-label="UP to Train" 
+                data-button-label ="ซื้อเลยจ้า" 
+                data-submit-label="Submit" 
+                data-location="yes" 
+                data-amount="{{$book->total_cost * 100}}"
+                data-currency="thb"
+                >
+                </script>
     
     <!--the script will render <input type="hidden" name="omiseToken"> for you automatically-->
-  </form>
+             </form>
+             <script>
+                var z = {{$book->total_cost}};
+                 document.getElementsByName("description").value = parsenInt(z)*100;
+                 document.getElementsByName("amount").value = parseInt(z)*100;
+                // //console.log(z*100);
+                
+             </script>
+        </div>
     </div>
-</div>
 </div>
 @endsection('content')

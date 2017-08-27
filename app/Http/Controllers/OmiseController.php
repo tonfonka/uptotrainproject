@@ -2,9 +2,9 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use Response;
 use App\trip;
 use App\schedules;
+use App\booking;
 use App\Payment;
 use App\Http\Controllers\Omise\lib\Omise;
 require_once dirname(__FILE__).'/omise/lib/Omise.php';
@@ -19,27 +19,11 @@ class OmiseController extends Controller
         $trips = DB::table('trips')
         ->orderBy('id', 'desc')
         ->get();
-   
-        // ->join('triprounds','triprounds.trip_id','=','trips.id')
-        // ->join('travelagency','travelagency.id','=','trips.travelagency_id')
-        // ->join('stations',function ($join){
-        //     $join->on('trips.source_id','=','stations.id')
-        //     ->orOn('trips.destination_id','=','stations.id'); 
-        // })
-        // $trips->distinct('trips_name');
-        //->selete(DB::)
-        //รัก
-        //$trip as $trip
-        
-        // ->get();
-        //se
         return view('tripuser',['trips'=>$trips]);
     }
     
     function schedule($id){
-        //$tripr = DB::table('triprounds')-get();
-        //return view("schedule",['tripr'=>$tripr]);
-        //return view('schedule');
+        
         $schedules = schedules::where('trip_id',$id)->get();
         $data = array(
             'schedules' => $schedules,
@@ -57,8 +41,9 @@ class OmiseController extends Controller
     }
     function checkout(Request $request){
         $name = $request->input('name');
+        $amount = $request->input('amount');
         $charge = \OmiseCharge::create(array(
-            'amount' => 320000,
+            'amount' => $amount,
             'currency' => 'thb',
             'card' => $_POST['omiseToken'],
             'metadata' => ['name' => $name]
@@ -84,6 +69,8 @@ class OmiseController extends Controller
             'amount' => $amount,
             'currency' => 'thb',
             'offsite' => $bank,
+          //  'return_uri' => 'http://animal-aid.me/all',
+              'return_uri' => 'http://localhost:8000/all',
             'metadata' => ['name' => $name, 'sname' => $sname, 'tel' => $tel]
           ));
         return Response::json([
@@ -91,7 +78,7 @@ class OmiseController extends Controller
             'url' => $charge['authorize_uri']
             ], 200);
     }
-     function webhook(Request $request){
+    function webhook(Request $request){
         $payload = $request->json()->all();
         if($payload['key'] === 'charge.create'){ //event credit charge
             $amount = $payload['data']['amount'];
@@ -109,6 +96,41 @@ class OmiseController extends Controller
             'data' => $payment
         ], 200);
     }
+    public function bookingstore(Request $request)
+    {
+        DB::table('booking')
+        ->insertGetId([ 
+                "number_adults" =>$request->input('number_adults'),
+                "number_children" => $request->input('number_children'),
+                "number_booking" =>$request->input('number_booking'),
+                "total_cost"=>$request->input('total_cost'),
+                "tripround_id"=>$request->input('book_id'),
+                "user_id"=>$request->input("user_id",'1')
+            ]);
+            return redirect('/bookingsum');
+    }
+    public function bookingsum()
+    {
+        $booking = DB::table('booking')->get();
+        $mbook =$booking->max('id');
+        $book = DB::table('booking')->where('id',$mbook)->first();
+        $nu = DB::table('booking')->select('tripround_id')->where('id',$mbook)->pluck('tripround_id');
+        $u= DB::table('booking')->select('user_id')->where('id',$mbook)->pluck('user_id');
+        $triprounds = DB::table('triprounds')->where('id',$nu)->get();
+        $tr = DB::table('triprounds')->select('trip_id')->where('id',$nu)->pluck('trip_id');
+        $user = DB::table('users')->where('id',$u)->get();
+        $trip = DB::table('trips')->where('id',$tr)->get();
+        $data = array(
+            'booking' => $booking,
+            'mbook' =>$mbook,
+            'book' =>$book,
+            'tripround' =>$triprounds,
+            'user' => $user,
+            'trip'=>$trip
+        );
+        return view('bookingsum', $data);
+    }
+    
     
     
 }
