@@ -1,4 +1,6 @@
-@extends('layouts.headuser') @section('title', 'Summary Booking') @section('content')
+@extends('layouts.headuser') 
+@section('title', 'Summary Booking') 
+@section('content')
 <style>
     .invoice-box {
         max-width: 800px;
