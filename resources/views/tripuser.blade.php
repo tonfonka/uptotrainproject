@@ -42,22 +42,7 @@
                         <li><a href="">Hot Price</a></li>
                     </ul>
                 </div>
-                <div class="tags">
-                    <h4 class="tag_head">Tags Widget</h4>
-                    <ul class="tags_links">
-                        <li><a href="/search?=หัวหิน">หัวหิน</a></li>
-                        <li><a href="#">เชียงใหม่</a></li>
-                        <li><a href="#">กรุงเทพฯ</a></li>
-                        <li><a href="#">กาญจนบุรี</a></li>
-                        <li><a href="#">แพร่</a></li>
-                        <li><a href="#">นครปฐม</a></li>
-                        <li><a href="#">อุดรธานี</a></li>
-                        <li><a href="#">ขอนแก่น</a></li>
-                        <li><a href="#">ชลบุรี</a></li>
-                        <li><a href="#">สุราษฐ์ธานี</a></li>
-                        <li><a href="#">ภูเก็ต</a></li>
-                    </ul>
-                </div>
+                
             </div>
             <div class="new-product">
                 <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">

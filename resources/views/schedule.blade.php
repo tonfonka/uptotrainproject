@@ -13,8 +13,13 @@
 </head>
 
 <body id="page-top" class="index">
-    <div align="left">
-        <a class="btn btn-primary" href={{ url( '/search') }}>Back</a>
+    <div align="right">
+        <a class="btn btn-primary" href={{ url( '/search') }} style="
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    padding-right: 15px;background-color:#fff;border-color:#fff;
+"><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
     </div>
     <!--<div class="container">-->
     <div class="container" id="about" align="center">
@@ -156,7 +161,7 @@
 
         });
     </script>
-    
+
 </body>
 
 </html>

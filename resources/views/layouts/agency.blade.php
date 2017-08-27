@@ -56,7 +56,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       <div class="topnav pull-right">
         <ul class="quick-menu pull-right clearfix">
-          <li><a href="javascript:;">Go Go Company</a></li>
+          <li><a href="javascript:;">Go Travel</a></li>
           <li><a href="/_member/logout.php">ออกจากระบบ</a></li>
         </ul>
       </div>
@@ -66,19 +66,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <nav id="main-menu" role="navigation">
           <ul class="menu">
             <li class="">
-              <a href="/_member/home/th">
+              <a href="agency">
 						หน้าหลัก 					  </a>
             </li>
             <li class="">
-              <a href="/_member/reservation/th">
+              <a href="">
 						ข้อมูลการจอง					  </a>
             </li>
             <li class="">
-              <a href="/_member/report/th">
+              <a href="">
 						รายงาน					  </a>
             </li>
             <li class="">
-              <a href="/_member/setting/th">
+              <a href="">
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -89,9 +89,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </header>
 
   <!-- //header-->
-
-
-
   @yield('agency_banner')
  @yield('content')
   <!-- footer start here -->
@@ -99,7 +96,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="container">
       <div class="footer-agileinfo">
         <div class="copy-right">
-          <p>© UP TO TRAIN . All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank"> Winnie secret</a></p>
+          <p>© UP TO TRAIN . All rights reserved | Design by UP TO TRAIN</a></p>
         </div>
       </div>
     </div>

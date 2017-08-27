@@ -110,7 +110,7 @@
                     }
                     else if($count > 0 ){
                         $amount =  $triprounds->amount_seats;
-                        $nbooking  = $bookings[0]->number_booking;
+                        $nbooking  = $booking[0]->number_booking;
                         $sum = $amount-$nbooking;
                     }      
                     ?>

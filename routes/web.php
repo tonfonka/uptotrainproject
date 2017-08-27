@@ -27,11 +27,10 @@ Route::get('/agreement',function(){
 });
 
 Route::get('/search', 'UserController@search');
-Route::get('/searchtrip', 'UserController@searchtrip');
 Route::post ( '/searcht', function () {
 	$q = Input::get ( 'q' );
 	$user = DB::table('trips')
-	->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(10);;
+	->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);;
 	if (count ( $user ) > 0)
 		return view ( 'tripuser_resultsearch' )->withDetails ( $user )->withQuery ( $q );
 	else
@@ -42,7 +41,7 @@ Route::get('/booking/{id}','UserController@booking');
 Route::get('/bookingsum', function () {
 	return view ('bookingsum');
 });
-
+Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
 	return view ('omisecard');
@@ -54,4 +53,7 @@ Route::get('/card', function () {
 
 Route::get('/bookingsum', function () {
 	return view ('bookingsum');
+});
+Route::get('/profileuser', function () {
+	return view ('profile_user');
 });

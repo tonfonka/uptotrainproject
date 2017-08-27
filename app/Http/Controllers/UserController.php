@@ -18,7 +18,8 @@ class UserController extends Controller
          $trips = Trip::paginate(15);
         return view('tripuser',['trips'=>$trips]);
     }
-    
+
+
     function schedule($id){
   
         $schedules = schedules::where('trip_id',$id)->get();

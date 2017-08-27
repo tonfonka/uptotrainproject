@@ -1,7 +1,6 @@
-@extends('layouts.layout') 
-@section('content')
+@extends('layouts.layout') @section('content')
 <!-- Navigation -->
-<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+<nav id="mainNav" class="navbar  navbar-custom navbar-fixed-top">
     <div class="container">
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -13,7 +12,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-               
+
                 <li>
                     <a class="page-scroll" href="#services">How to Use</a>
                 </li>
@@ -92,94 +91,41 @@
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Search</h2>
                 <h3 class="section-subheading text-muted">" มองหาทริปอยู่ใช่ไหม? "</h3>
+                <a href="search"><button type="submit" class="btn btn-xl">Search Now!</button></a>
             </div>
-        </div>
-        <br><br>
-        
-
-                <!-- search Button -->
-                <div id="success"></div>
-
-                <!--laravel-->
-                <a href="search"><button type="submit" class="btn btn-xl">Search Now!</button></a> <br><br>
-                <br>
-                <p>*This "search function" to next sprint</p>
-
-            </div>
-
-
-
         </div>
     </div>
 </section>
-
-<!-- Portfolio Grid Section -->
-<section id="portfolio">
+<!-- Portfolio Grid -->
+<section class="bg-light" id="portfolio">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Highlight</h2>
-                <h3 class="section-subheading text-muted">ทริปท่องเที่ยวน่าสนใจอันดับต้น</h3>
+            <div class="col-lg-12 text-center" style="padding-bottom:30px;">
+                <h2 class="section-heading">Highlight Trip</h2>
             </div>
         </div>
         <div class="row">
-            @foreach($trips as $t)
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#tripModalUnknow" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
+            <div class="row">
+                @foreach($trips->slice(0,3) as $t)
+                <div class="col-md-4 col-sm-3 portfolio-item">
+                    <a href="#tripModalUnknow" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
                         </div>
+                        <img src="img/portfolio/unknowTrip.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>{{ $t->trips_name }}</h4>
+                        <p class="text-muted">{{$t->trip_province}}</p>
                     </div>
-                    <img src="img/portfolio/unknowTrip.jpg" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>{{ $t->trips_name }}</h4>
-                    <p class="text-muted">{{$t->trip_province}}</p>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
-    </div>
+</div>
 </section>
-<!--<section id="team" class="bg-light-gray">
-        <div class="container">
-            <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">thai railway</h2><br><br>
-                   <iframe src="https://www.google.com/maps/d/embed?mid=1IJmjwx1ndajeDfh-s0QiDqfRwzQ&hl=en_US" width="640" height="480"></iframe> 
-            </div>
-
-           
-        </div>
-    </section>-->
-
-<!-- Clients Aside -->
-<aside class="clients">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <a href="#">
-                    <img src="img/logos/envato.jpg" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="#">
-                    <img src="img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="#">
-                    <img src="img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="#">
-                    <img src="img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-        </div>
-    </div>
-</aside>
 
 <!-- Contact Section -->
 <section id="contact">
@@ -187,8 +133,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Contact Us</h2>
-                <h3 class="section-subheading text-muted">ติดต่อพวกเราได้โดยกรอกแบบฟอร์มด้านล่าง แล้วพวกเราจะรีบตอบกลับอย่างเร่งด่วน *Next Sprint"</h3>
-                
+                <h3 class="section-subheading text-muted">ติดต่อพวกเราได้โดยกรอกแบบฟอร์มด้านล่าง แล้วพวกเราจะรีบตอบกลับอย่างเร่งด่วน</h3>
             </div>
         </div>
         <div class="row">
@@ -227,33 +172,7 @@
     </div>
 </section>
 
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <span class="copyright">Copyright &copy; Up to train</span>
-            </div>
-            <div class="col-md-4">
-                <ul class="list-inline social-buttons">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <ul class="list-inline quicklinks">
-                    <li><a href="#">Privacy Policy</a>
-                    </li>
-                    <li><a href="#">Terms of Use</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
+
 
 <!-- Portfolio Modals -->
 <!-- Use the modals below to showcase details about your portfolio projects! -->
@@ -761,4 +680,4 @@
 <!-- Theme JavaScript -->
 <script src="js/agency.min.js"></script>
 
-@endsection('content')
+@endsection
