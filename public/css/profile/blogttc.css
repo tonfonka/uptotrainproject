@@ -1,0 +1,66 @@
+#booking .booking-info div.date>.month {
+    background: #a98ad0;
+}
+
+#booking .booking-info div.date>.date {
+    color: #6731ac;
+}
+
+.travelo-box {
+    padding: 50px 10px 20px 20px;
+}
+
+.travelo-box.book-with-us-box li,
+.travelo-box.contact-us-box .contact-address li {
+    padding: 25px 0 20px 50px;
+}
+
+.btn-group.today {
+    position: absolute;
+    top: 0;
+    right: 12px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.blog-banner-avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%!important;
+    margin: -55px auto 25px;
+    overflow: hidden;
+    border: 2px solid #fff;
+}
+
+.blog-content-1 .blog-banner>.blog-banner-avatar img {
+    width: 100%;
+}
+
+.blog-content-1 .blog-banner>.blog-banner-title {
+    color: #fff;
+    font-size: 30px;
+    background: rgba(19, 15, 58, 0.5);
+    text-shadow: 2px 2px 1px #607D8B;
+}
+
+.tiles .tile:hover {
+    border-color: #B39DDB!important;
+}
+
+.ttcpro-tiles {
+    padding-left: 11%;
+}
+
+.tiles .tile .tile-object>.name {
+    text-align: center;
+    width: 85%;
+}
+
+@media (max-width: 1200px) {
+    .group-tiles {
+        padding-left: 60px;
+    }
+    .ttcpro-tiles {
+        padding-left: 25px;
+    }
+}

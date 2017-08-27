@@ -1,0 +1,477 @@
+input,
+textarea,
+.selector {
+    font-size: 1.2em;
+}
+
+.item-selected {
+    display: none
+}
+
+.row-odd {
+    background-color: #f7f7f7;
+    padding-top: 15px;
+    padding-bottom: 7px;
+    border: 1px solid #ccc;
+}
+
+.row-odd-2 {
+    background-color: #594283;
+    padding-top: 13px;
+    font-size: 1.1em;
+    border: 1px solid #594283;
+}
+
+.row-even {
+    background-color: #fff;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    border: 1px solid #ccc;
+}
+
+.fontpage {
+    font-size: 1.2em
+}
+
+.travelo-box {
+    padding: 30px;
+}
+
+.thumbnail .caption {
+    text-align: center;
+    padding: 12px 10px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.margin-bottom-none {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.help-block {
+    font-size: 1.2em;
+}
+
+.table-cell .help-block {
+    margin-top: 15px;
+}
+
+.table-cell .control-label {
+    padding-top: 6px;
+}
+
+#main strong {
+    /*font-size: 1.3em;*/
+}
+
+section#content {
+    padding-top: 20px;
+}
+
+button#add_passenger {
+    font-size: 1.2em;
+    padding-top: 0px;
+}
+
+.title-tour {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eeeeee;
+    /*margin-bottom: 10px;*/
+}
+
+#tour-name {
+    line-height: 1em;
+    font-family: fontttc;
+    /*font-weight: 900;*/
+    font-size: 2.22em;
+    padding-left: 12px;
+}
+
+#tour-details dl {
+    font-size: 1.2em;
+    margin-top: 0px;
+    padding-bottom: 0em;
+}
+
+#tour-details dl.term-description dt,
+#tour-details dl.term-description dd {
+    padding-bottom: 0em;
+    padding-top: 0em;
+}
+
+.five-stars-container {
+    margin-left: 0px;
+}
+
+#container_period_status {
+    /*padding: 10px;*/
+}
+
+#container_period_status span {
+    font-family: Kanit;
+    font-weight: bold;
+}
+
+.font-red-thunderbird {
+    font-size: 1.5em;
+    color: #e02222;
+}
+
+.font-green-meadow {
+    font-size: 1.7em;
+    color: #1bbc9b;
+}
+
+#avail-booking {
+    list-style: none;
+    display: -webkit-inline-box;
+}
+
+#avail-booking li {
+    font-size: 0.8em;
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 69px;
+    height: 65px;
+    background: rgb(89, 66, 131);
+    padding: 5px;
+    margin: 5px;
+    border-radius: 4px !important;
+}
+
+.badge {
+    font-weight: bold;
+    height: 28px;
+    width: 35px;
+    color: rgb(89, 66, 131);
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 2px;
+    font-size: 16px;
+    text-shadow: none;
+    padding: 6px;
+    border-radius: 4px !important;
+}
+
+.badge-booking {
+    background-color: rgb(255, 255, 255);
+    background-image: none;
+}
+
+#avail-booking li div {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#price_info,
+#summary_selected {
+    padding-top: 10px;
+}
+
+.price-txt {
+    line-height: 1.2em;
+    font-size: 1.2em !important
+}
+
+input.num-pax[disabled] {
+    font-size: 1em;
+    padding: 0px;
+    background-color: #fff;
+    height: 1.5em;
+}
+
+span.num-pax {
+    padding: 0px 7px;
+    background-color: #409;
+    color: #fff;
+    font-size: 1.2em;
+    border: none;
+}
+
+#price_info .block {
+    font-size: 1.2em;
+}
+
+#price_info dl.term-description {
+    margin-bottom: 0em;
+    font-size: 1em;
+}
+
+#container_prices {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.strong-purple,
+.strong-purple a {
+    color: #671E75;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.travelo-box {
+    margin-bottom: 0px;
+}
+
+dl {
+    /*margin-top: 10px;*/
+    /*margin-bottom: 10px;*/
+}
+
+#container_prices .travelo-box {
+    /*padding: 0px;*/
+}
+
+#container_prices dl.term-description dt.strong-purple {
+    color: #671E75;
+    font-weight: bold;
+}
+
+.required {
+    color: #e02222;
+    /*font-size: 12px;*/
+    padding-left: 2px;
+}
+
+.border-purple-studio {
+    border: 1px solid #440099;
+}
+
+.bg-purple-studio {
+    border-color: #440099 !important;
+    background-image: none !important;
+    background-color: #440099 !important;
+    color: #FFFFFF !important;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#person-information h2 {
+    margin: 0 0 -5px;
+}
+
+#person-information hr {
+    margin-top: 0;
+}
+
+.alert-danger {
+    color: #ffffff;
+    background-color: #f15f5f;
+    border-color: #f15f5f;
+}
+
+.alert:before {
+    font-family: FontAwesome;
+    content: "\f12a";
+}
+
+#passenger-information .form-group.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+@media (max-width: 767px) {
+    .price-txt {
+        line-height: 1.2em;
+        font-size: 1em !important
+    }
+    .travelo-box {
+        padding: 10px !important;
+    }
+    .bg-purple-studio {
+        padding-bottom: 35px;
+    }
+    .form-group.row button {
+        margin-top: 15px;
+    }
+    .font-green-meadow {
+        font-size: 1.2em;
+    }
+}
+
+.textblack {
+    color: #000;
+    font-size: 26px;
+    margin-top: 15px;
+}
+
+.textwhite {
+    color: #fff;
+}
+
+.select-option {
+    height: 100%;
+}
+
+.text-condition {
+    float: right;
+    font-size: 1.1em;
+    line-height: 1.1em;
+    padding-bottom: 20px;
+    padding-left: 34px;
+}
+
+.booking-info {
+    margin-left: 12px;
+    margin-top: 10px;
+    font-size: 2.22em;
+}
+
+.booking-passenger {
+    margin-bottom: 15px;
+}
+
+.row-margin-b {
+    margin-bottom: -15px;
+}
+
+ul.b {
+    list-style-image: url('/images/icon/roundtriangle-right.png');
+    color: #594283;
+}
+
+.font-txt {
+    font-size: 1.2em;
+}
+
+.font-txt-lg {
+    font-size: 2.2em;
+}
+
+.font-txt-booking-lg {
+    font-size: 2.2em;
+    padding-bottom: 10px;
+}
+
+.booking-form label {
+    font-size: 1.2em !important;
+}
+
+.table-cell.action-section.col-md-4.no-float {
+    line-height: 3em;
+}
+
+.row-title {
+    background-color: #409!important;
+    color: #fff;
+    border: 1px solid #409;
+}
+
+.booking {
+    border: none;
+    padding: 15px 15px 0px 70px;
+    color: #fff;
+    font-size: 1.0833em;
+    position: relative;
+}
+
+.booking.booking-success {
+    background: #0ab596;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.booking.booking-m-success {
+    background: #0ab596;
+    border-radius: 4px;
+    height: 70px;
+}
+
+.booking.booking-close {
+    background: #e44049;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.booking.booking-m-close {
+    background: #e44049;
+    border-radius: 4px;
+    height: 70px;
+}
+
+[class^="soap-icon"].circle-book,
+[class*=" soap-icon"].circle-book,
+.glyphicon.circle-book {
+    border: 1px solid;
+    width: 1em;
+    height: 1em;
+    border-radius: 50% 50% 50% 50%;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.5em;
+    float: left;
+    margin-left: -50px;
+    margin-top: 2px;
+}
+
+.badge-b-booking {
+    background-color: rgb(255, 255, 255);
+    background-image: none;
+}
+
+.badge-s {
+    height: 37px;
+    width: 100%;
+    color: #0ab596;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 4px !important;
+}
+
+.badge-c {
+    height: 37px;
+    width: 100%;
+    color: #e44049;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 4px !important;
+}
+
+.book-close {
+    font-size: 1em;
+    color: #a4a4a4;
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 1024px) and (max-width: 1024px) {
+    .booking.booking-success {
+        width: 80%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 800px) {
+    .col-sm-9 {
+        width: 72%!important;
+    }
+    .booking.booking-m-success {
+        width: 143%;
+        margin-left: -15px;
+    }
+    .selector {
+        width: 117%;
+    }
+    #avail-booking {
+        margin-left: -35px;
+    }
+    #container_period_status h4:not(.badge-b-booking) {
+        width: 117%;
+    }
+    .booking-info {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 340px) {
+    .booking-info {
+        font-size: 1.8em;
+    }
+    .container {
+        padding: 0;
+    }
+}
