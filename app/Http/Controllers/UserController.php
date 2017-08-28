@@ -24,16 +24,19 @@ class UserController extends Controller
   
         $schedules = schedules::where('trip_id',$id)->get();
         $triprounds = tripround::where('trip_id',$id)->get();
+        $booking =DB::table('booking')->where('tripround_id',$id)->get();
+        $sumbook = $booking->sum('number_booking');
         $trip = trip::where('id',$id)->first();
         $data = array(
             'schedules' => $schedules,
             'triprounds' => $triprounds,
             'trip' => $trip,
-            'title' => 'Schedules'
+            'title' => 'Schedules',
+            'sumbook' =>$sumbook
         );
         return view('schedule', $data);
     }
-    
+
     function booking($id){
         $fk = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
         $booking =DB::table('booking')->where('tripround_id',$id)->get();

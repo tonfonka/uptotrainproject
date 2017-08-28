@@ -33,13 +33,13 @@
           <p>จังหวัด{{$trips->trip_province}}</p>
           <p>{{$trips->trip_meal}}มื้อ</p>
           <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
-          <p></p>
+          <br>
         </div>
         @endforeach
         <div class="row">
           
-          <div class="col-md-6">
-            <ul class="list-inline">
+          <div class="col-md-12" style ="align:center;">
+            
               <?php
                     if($count == 0){
                         $sum = $triprounds->amount_seats;
@@ -51,36 +51,42 @@
                     }
                       $bookId = $triprounds->id;      
                     ?>
+                  
                 <form action="/bookingsum" method="POST" name="id">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                  {{ csrf_field() }}
                  <input type="hidden" name="book_id" value="{{ $bookId }}">
                   รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}} ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}
                   <br> จำนวนเด็ก
-                  <input type="number" name="number_children" id="number_children" min="0" max={{$sum}} value="0" onchange="myChildren()" onclick="mySummy()">                  ราคา :: {{$triprounds->price_child}} ยอดรวมเด็ก
-                  <p id="pchild"></p>
+                  <input type="number" name="number_children" id="number_children" min="0" max={{$sum}} value="0" onchange="myChildren()" onclick="mySummy()">                  ราคา :: {{$triprounds->price_child}}
+                  <h3 id="pchild"></h3>
 
-                  <br> จำนวนผู้ใหญ่
+                   จำนวนผู้ใหญ่
                   <input type="number" name="number_adults" id="number_adults" min="0" max={{$sum}} value="0" onchange="myAdult()" onclick="mySummy()">                  
                   ราคา :: {{$triprounds->price_adult}} 
-                  ยอดรวมผู้ใหญ่
-                  <p id="padult"></p>
-                  สถานะการจอง
-                  <p id="summary"></p>
-                  ที่นั่งว่าง :: {{$sum}} /จำนวนที่นั่งทั้งหมด :: {{$triprounds->amount_seats}}
 
+                  <h3 id="padult"></h3>
+                  สถานะการจอง : <h3 id="summary"></h3>
+                  <h3>ที่นั่งว่าง :: {{$sum}} /จำนวนที่นั่งทั้งหมด :: {{$triprounds->amount_seats}}</h3>
+                  <h4>
                   จำนวนคนจองทั้งหมด : 
-                  <input type="number" name="number_booking" id="number_booking" >
+                  <!-- //<p id="number_booking"  ></p>  -->
+                  <input type="number"  id="number_booking" name="number_booking" >
+
+                  </h4>
                   <br>
                     
-                  ราคารวมทั้งหมด :
-                  <!-- <p id="total_cost" name="total_cost" ></p> -->
-                   <input type="number" name="total_cost" id="total_cost" >
-                    
+                  <h4>ราคารวมทั้งหมด :
+                  <!-- <p id="total_cost"></p>  -->
+                   <input type="number"  id="total_cost" name="total_cost"  >
+                  </h4>
+                    <br>
                    <button type="submit" class="btn btn-primary">จองตอนนี้</button>
                 </form>
-            </ul>
+               
+            
           </div>
+        
           <div class="col-md-3"></div>
         </div> 
           </div>
@@ -92,13 +98,13 @@
   function myChildren() {
     var x = document.getElementById("number_children").value;
     var y = {{$triprounds->price_child}};
-    document.getElementById("pchild").innerHTML = "ราคารวมเด็กทั้งหมด" + x * y;
+    document.getElementById("pchild").innerHTML = "ราคารวมเด็กทั้งหมด" + x * y+"บาท";
   }
 
   function myAdult() {
     var x = document.getElementById("number_adults").value;
     var y = {{$triprounds->price_adult}};
-    document.getElementById("padult").innerHTML = "ราคารวมผู้ใหญ่ทั้งหมด" + x * y;
+    document.getElementById("padult").innerHTML = "ราคารวมผู้ใหญ่ทั้งหมด" + x * y+"บาท";
   }
 
   function mySummy() {
@@ -107,13 +113,18 @@
     var c = {{$triprounds->price_adult}};
     var d = {{$triprounds->price_child}};
     var nsum = (a * d) + (b * c);
-    var e = {{$triprounds->amount_seats}};
+    var e = {{ $sum}};
     var np = parseInt(a) + parseInt(b);
     if (np > e) {
-      document.getElementById("summary").innerHTML = "กรุณากรอกจำนวนคนเกิน";
-    } else {
+      document.getElementById("summary").innerHTML = "กรุณากรอกจำนวนคนใหม่";
+    }else if(np == e) {
+      document.getElementById("summary").innerHTML = "เต็มแล้ว";
+    }
+    else {
       document.getElementById("summary").innerHTML = "OK";
+      //document.getElementById("number_booking").innerHTML = np; 
       document.getElementById("number_booking").value = np;
+      //document.getElementById("total_cost").innerHTML = nsum;
       document.getElementById("total_cost").value = nsum;
     }
   }

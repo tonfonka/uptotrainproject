@@ -58,10 +58,10 @@
                     <ul>
                         @foreach($trips as $tripuser )
                         <?php
-            $tripagent = DB::table('travelagency')->where('id', $tripuser->travelagency_id)->first();
+                             $tripagent = DB::table('travelagency')->where('id', $tripuser->travelagency_id)->first();
             
-            $tripround = DB::table('triprounds')->where('trip_id', $tripuser->id)->get();
-            ?>
+                            $tripround = DB::table('triprounds')->where('trip_id', $tripuser->id)->get();
+                        ?>
                             <li>
                                 <a class="cbp-vm-image" href="/schedule/{{$tripuser->id}}">
                                     <div class="simpleCart_shelfItem">

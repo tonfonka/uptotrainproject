@@ -190,13 +190,7 @@
     
     <!--the script will render <input type="hidden" name="omiseToken"> for you automatically-->
              </form>
-             <script>
-                var z = {{$book->total_cost}};
-                 document.getElementsByName("description").value = parsenInt(z)*100;
-                 document.getElementsByName("amount").value = parseInt(z)*100;
-                // //console.log(z*100);
-                
-             </script>
+        
         </div>
     </div>
 </div>
