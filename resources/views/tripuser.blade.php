@@ -59,7 +59,6 @@
                         @foreach($trips as $tripuser )
                         <?php
                              $tripagent = DB::table('travelagency')->where('id', $tripuser->travelagency_id)->first();
-            
                             $tripround = DB::table('triprounds')->where('trip_id', $tripuser->id)->get();
                         ?>
                             <li>

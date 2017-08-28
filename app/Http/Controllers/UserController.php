@@ -16,6 +16,7 @@ class UserController extends Controller
 
     function search(){
          $trips = Trip::paginate(15);
+         
         return view('tripuser',['trips'=>$trips]);
     }
 

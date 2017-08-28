@@ -53,3 +53,4 @@ Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
+Route::post('/webhook','OmiseController@webhook');
