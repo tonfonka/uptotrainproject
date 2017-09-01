@@ -59,7 +59,7 @@
             <button type="button" class="navbar-toggle" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Up To Train</a>
+            <a class="navbar-brand page-scroll" href="home">Up To Train</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,19 +67,13 @@
             <ul class="nav navbar-nav navbar-right" style="padding-top:0px;">
 
               <li>
-                <a href="#services">Agreement</a>
+                <a href="agreement">Agreement</a>
               </li>
               <li>
-                <a href="#about">Search</a>
+                <a href="search">Search</a>
               </li>
               <li>
-                <a href="#portfolio">Highlight</a>
-              </li>
-              <li>
-                <a href="#team">Railway</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
+                <a href="profileuser">profile</a>
               </li>
             </ul>
 
@@ -110,38 +104,34 @@
       <div class="footer-agileinfo">
         <div class="col-md-5 col-sm-5 footer-wthree-grid">
           <div class="agileits-w3layouts-tweets">
-            <h5><a href="index.html">Up To Train</a></h5>
-            <div class="social-icon footerw3ls">
-              <a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a>
-            </div>
+            <h5><a href="home">Up To Train</a></h5>
+            
           </div>
           <p>เว็บไซต์ที่รวบรวมทริปท่องเที่ยวโดยรถไฟภายในประเทศไทย เชิญคุณพบกับประสบการณ์ใหม่ๆโดยการท่องเที่ยวโดยรถไฟ</p>
         </div>
         <div class="col-md-3 col-sm-3 footer-wthree-grid">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="index.html"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
-            <li><a href="about.html"><span class="glyphicon glyphicon-menu-right"></span> About</a></li>
-            <li><a href="tours.html"><span class="glyphicon glyphicon-menu-right"></span> Tours</a></li>
-            <li><a href="codes.html"><span class="glyphicon glyphicon-menu-right"></span> Short Codes</a></li>
-            <li><a href="contact.html"><span class="glyphicon glyphicon-menu-right"></span> Contact</a></li>
+            <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
+            <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
+            <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
+            <li><a href="profileuser"><span class="glyphicon glyphicon-menu-right"></span> Profile</a></li>
+            
           </ul>
         </div>
         <div class="col-md-4 col-sm-4 footer-wthree-grid">
-          <h3>Contact Info</h3>
+          <!--<h3>Contact Info</h3>
           <ul>
             <li>123 Broome St,2nd Block</li>
             <li>NY 10002, New York</li>
             <li>Phone: +01 111 222 3333</li>
             <li><a href="mailto:info@example.com"> mail@example.com</a></li>
-          </ul>
+          </ul>-->
         </div>
         <div class="clearfix"> </div>
       </div>
       <div class="copy-right">
-        <p>© 2017 Holiday Spot . All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank"> Winnie Secret.</a></p>
+        <p>© 2017 Holiday Spot . All rights reserved | Design by UP TO TRAIN</a></p>
       </div>
     </div>
   </div>

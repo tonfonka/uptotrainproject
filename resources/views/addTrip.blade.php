@@ -103,12 +103,12 @@
                                 <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;" for="sday">วันเริ่มเดินทาง</label>
                                     <input class="form-control start_day" name="start_date[]" id="sday"type="date" oninvalid="this.setCustomValidity('กรุณากรอกวันเริ่มเดินทาง')"
-                                        placeholder="วันเริ่มเดินทาง" onChange="myStartdate()">
+                                        placeholder="วันเริ่มเดินทาง"  min="2017-08-28" onChange="myStartdate()">
                                 </div>
                                 <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;" for="eday">วันสิ้นสุดการเดินทาง</label>
                                     <input class="form-control Departure_Date" name="departure_date[]" type="date" id="eday" oninvalid="this.setCustomValidity('กรุณากรอกวันสิ้นสุดการเดินทาง')"
-                                        oninput="setCustomValidity('')" placeholder="วันสิ้นสุดการเดินทาง" onChange="myDepardate()">
+                                        oninput="setCustomValidity('')" placeholder="วันสิ้นสุดการเดินทาง" min="2017-08-28" onChange="myDepardate()">
                                 </div>
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;">ราคาของเด็ก</label>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\tripround;
 use App\schedule;
 use App\trip;
+use App\booking;
 class showtripController extends Controller
 {
     /**
@@ -20,10 +21,17 @@ class showtripController extends Controller
         $trips = DB::table('trips')->get();
         $tripround =DB::table('triprounds')->join('trips','trips.id','=','triprounds.trip_id')->get();
         $travelagency =DB::table('travelagency')->get();
+        $booking = DB::table('booking')->join('triprounds','triprounds.id','=','booking.tripround_id')->first();
+        $bookings = DB::table('booking')->select('number_booking')->join('triprounds','triprounds.id','=','booking.tripround_id')->pluck('number_booking');
+        //$sumbooking = $booking->sum('number_booking');
         $data=array(
             'trips' =>$trips,
             'travelagency'=>$travelagency,
-            'tripround' =>$tripround
+            'tripround' =>$tripround,
+            // 'sumbooking' =>$sumbooking,
+            'bookings' => $bookings,
+            'booking' => $booking
+            
             
         );
         return view('TravelAgency_home',$data);

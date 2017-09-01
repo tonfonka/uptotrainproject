@@ -34,7 +34,7 @@
                      <h4><?php 
                      use Carbon\Carbon;
                      $dt     = Carbon::now();
-                     echo $dt->subDays(10)->diffForHumans();  ?>
+                     echo $dt  ?>
                      </h4>
                         <h4>{{$trips->count()}} total trips</h4>
                     </div>
@@ -54,7 +54,7 @@
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0"
                                                     aria-valuemax="100" style="width: 40%">
-                                                    <span class="sr-only">40% Complete (success)</span> 40% BOOKING
+                                                    <span class="sr-only">0% Complete (success)</span> 40% BOOKING
                                                 </div>
                                             </div>
                                             <!-- Table -->
@@ -64,6 +64,8 @@
                                             $tripagent = DB::table('travelagency')->where('id', $tripuser->travelagency_id)->first();
                                             
                                             $tripround = DB::table('triprounds')->where('trip_id', $tripuser->id)->get();
+                                            //$sumbooking = $booking->sum('number_booking');
+                                            
                                             ?>
                                                     <tr style="align:center;font-size:1.3em;">
                                                         <th>รอบการเดินทาง</th>
@@ -71,6 +73,11 @@
                                                         <th>จำนวนที่จองแล้ว</th>
                                                     </tr>
                                                     @foreach($tripround as $tr)
+                                                    <?php
+                                                       
+                                                        $bookingg = DB::table('booking')->where('tripround_id',$tr->id)->get();
+                                                        $sumbookingg = $bookingg->sum('number_booking');
+                                                    ?>
                                                     <tr style="font-size:1.3em;">
                                                         <td>{{date('d-m-Y', strtotime($tr->start_date))}} ถึง {{date('d-m-Y',
                                                             strtotime($tr->departure_date))}}

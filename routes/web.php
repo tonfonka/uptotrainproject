@@ -27,11 +27,10 @@ Route::get('/agreement',function(){
 });
 
 Route::get('/search', 'UserController@search');
-Route::get('/searchtrip', 'UserController@searchtrip');
 Route::post ( '/searcht', function () {
 	$q = Input::get ( 'q' );
 	$user = DB::table('trips')
-	->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(10);;
+	->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);;
 	if (count ( $user ) > 0)
 		return view ( 'tripuser_resultsearch' )->withDetails ( $user )->withQuery ( $q );
 	else
@@ -39,10 +38,9 @@ Route::post ( '/searcht', function () {
 } );
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/booking/{id}','UserController@booking');
-Route::get('/bookingsum', function () {
-	return view ('bookingsum');
-});
-
+Route::post('/bookingsum','OmiseController@bookingstore');
+Route::get('/bookingsum','OmiseController@bookingsum');;
+Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
 	return view ('omisecard');
@@ -51,7 +49,8 @@ Route::post('/charge','OmiseController@checkout');
 Route::get('/card', function () {
 	return view ('card');
 });
-
-Route::get('/bookingsum', function () {
-	return view ('bookingsum');
+Route::post('/card', 'OmiseController@checkout');
+Route::get('/profileuser', function () {
+	return view ('profile_user');
 });
+Route::post('/webhook','OmiseController@webhook');

@@ -51,7 +51,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-        <h1><a href="index.html">Up To Train</a></h1>
+        <h1><a href="home">Up To Train</a></h1>
       </div>
 
       <div class="topnav pull-right">
@@ -66,19 +66,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <nav id="main-menu" role="navigation">
           <ul class="menu">
             <li class="">
-              <a href="/_member/home/th">
+              <a href="">
 						หน้าหลัก 					  </a>
             </li>
             <li class="">
-              <a href="/_member/reservation/th">
+              <a href="">
 						ข้อมูลการจอง					  </a>
             </li>
             <li class="">
-              <a href="/_member/report/th">
+              <a href="">
 						รายงาน					  </a>
             </li>
             <li class="">
-              <a href="/_member/setting/th">
+              <a href="">
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -124,37 +124,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="col-md-5 col-sm-5 footer-wthree-grid">
           <div class="agileits-w3layouts-tweets">
             <h5><a href="index.html">Up To Train</a></h5>
-            <div class="social-icon footerw3ls">
-              <a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a>
-            </div>
+            
           </div>
           <p>เว็บไซต์ที่รวบรวมทริปท่องเที่ยวโดยรถไฟภายในประเทศไทย เชิญคุณพบกับประสบการณ์ใหม่ๆโดยการท่องเที่ยวโดยรถไฟ</p>
         </div>
         <div class="col-md-3 col-sm-3 footer-wthree-grid">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="index.html"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
-            <li><a href="about.html"><span class="glyphicon glyphicon-menu-right"></span> About</a></li>
-            <li><a href="tours.html"><span class="glyphicon glyphicon-menu-right"></span> Tours</a></li>
-            <li><a href="codes.html"><span class="glyphicon glyphicon-menu-right"></span> Short Codes</a></li>
-            <li><a href="contact.html"><span class="glyphicon glyphicon-menu-right"></span> Contact</a></li>
-          </ul>
+          <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
+          <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
+          <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
+          <li><a href="profileuser"><span class="glyphicon glyphicon-menu-right"></span> Profile</a></li>
+          
+        </ul>
         </div>
         <div class="col-md-4 col-sm-4 footer-wthree-grid">
-          <h3>Contact Info</h3>
+          <!--<h3>Contact Info</h3>
           <ul>
             <li>123 Broome St,2nd Block</li>
             <li>NY 10002, New York</li>
             <li>Phone: +01 111 222 3333</li>
             <li><a href="mailto:info@example.com"> mail@example.com</a></li>
-          </ul>
+          </ul>-->
         </div>
         <div class="clearfix"> </div>
       </div>
       <div class="copy-right">
-        <p>© 2017 Holiday Spot . All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank"> Winnie secret</a></p>
+        <p>© 2017 Holiday Spot . All rights reserved | Design by UP TO TRAIN</a></p>
       </div>
     </div>
   </div>
