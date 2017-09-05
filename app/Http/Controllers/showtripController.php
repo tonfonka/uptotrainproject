@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller; 
 use DB;
 use Illuminate\Http\Request;
+use Response;
 use App\tripround;
 use App\schedule;
 use App\trip;
 use App\booking;
+use App\travelagency;
+use Auth;
 class showtripController extends Controller
 {
     /**
@@ -15,26 +18,37 @@ class showtripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // function __construct(){
+    //     //  if(Auth::user()->role !== "travel agency"){
+    //     //      echo "Permission Denied.";
+    //     //  }
+    //         echo 
+    //  }
     public function index()
     {
-
-        $trips = DB::table('trips')->get();
-        $tripround =DB::table('triprounds')->join('trips','trips.id','=','triprounds.trip_id')->get();
-        $travelagency =DB::table('travelagency')->get();
-        $booking = DB::table('booking')->join('triprounds','triprounds.id','=','booking.tripround_id')->first();
-        $bookings = DB::table('booking')->select('number_booking')->join('triprounds','triprounds.id','=','booking.tripround_id')->pluck('number_booking');
+        if(Auth::user()->role != "travel agency"){
+            return Response::json([
+                'statusCode'=> 401,
+                'statusMessage' => 'Autherization Failed'
+            ]);
+        }
+    // $trips = DB::table('trips')->get();
+        // $tripround =DB::table('triprounds')->join('trips','trips.id','=','triprounds.trip_id')->get();
+        // $travelagency =DB::table('travelagency')->get();
+        // $booking = DB::table('booking')->join('triprounds','triprounds.id','=','booking.tripround_id')->first();
+        // $bookings = DB::table('booking')->select('number_booking')->join('triprounds','triprounds.id','=','booking.tripround_id')->pluck('number_booking');
+        $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         //$sumbooking = $booking->sum('number_booking');
         $data=array(
-            'trips' =>$trips,
-            'travelagency'=>$travelagency,
-            'tripround' =>$tripround,
-            // 'sumbooking' =>$sumbooking,
-            'bookings' => $bookings,
-            'booking' => $booking
-            
-            
+            'travelagencies'=>$travelagencies
         );
         return view('TravelAgency_home',$data);
+        // foreach($travelagencies as $travelagency){
+            
+        //      foreach($travelagency->trips as $trip){
+        //          echo $trip->tripRounds.'<br><br>';
+        //      }
+        // }
       //  return view('TravelAgency_home',['data'=> $trips]);
     }
 
@@ -64,7 +78,7 @@ class showtripController extends Controller
            "trip_province" => $request->input('trip_province'),
            "trip_meal" =>$request->input('trip_meal'),
            "trip_description" => $request->input('trip_description'),
-           "travelagency_id"=> $request->input( "travelagency_id", '1'),
+           "travelagency_id"=> $request->input( "travelagency_id", Auth::user()->id),
            "source_id"=>$request->input("source_id", '1'),
            "destination_id"=>$request->input("source_id", '1')
            ]);

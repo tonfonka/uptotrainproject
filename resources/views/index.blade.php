@@ -41,7 +41,19 @@
             <div class="intro-lead-in">Are you looking for some Trip ?</div><br><br>
 
             <!-- laravel <a href="#services" class="page-scroll btn btn-xl">LOG IN</a>-->
+            @if(Auth::guest())
             <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
+            @else
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                        LOG OUT
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @endif
         </div>
     </div>
 </header>

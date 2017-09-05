@@ -37,7 +37,7 @@ Route::post ( '/searcht', function () {
 		return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
 } );
 Route::get('/schedule/{id}','UserController@schedule');
-Route::get('/booking/{id}','UserController@booking');
+Route::get('/booking/{id}','UserController@booking')->middleware('auth');
 Route::post('/bookingsum','OmiseController@bookingstore');
 Route::get('/bookingsum','OmiseController@bookingsum');;
 Route::get('/search/index', 'UserController@index');
@@ -54,3 +54,17 @@ Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
 Route::post('/webhook','OmiseController@webhook');
+
+Route::get('/checkRole', function(){
+	if(Auth::guest()){
+		return redirect('/home');
+	}else{
+		if(Auth::user()->role == "admin"){
+			return redirect('/home');
+		}else if(Auth::user()->role == "travel agency"){
+			return redirect('/agency');
+		}else if(Auth::user()->role == "user"){
+			return redirect('/home');
+		}
+	}
+});

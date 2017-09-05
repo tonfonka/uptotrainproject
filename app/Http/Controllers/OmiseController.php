@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
+use Response;
 use App\trip;
 use App\schedules;
 use App\booking;
@@ -42,11 +43,12 @@ class OmiseController extends Controller
     function checkout(Request $request){
         $name = $request->input('name');
         $amount = $request->input('amount');
+        $booking_id = $request->input('booking_id');
         $charge = \OmiseCharge::create(array(
             'amount' => $amount,
             'currency' => 'thb',
             'card' => $_POST['omiseToken'],
-            'metadata' => ['name' => $name]
+            'metadata' => ['name' => $name, 'booking_id' => $booking_id]
           ));
           echo '<pre>';
           print_r($_POST);
@@ -84,12 +86,16 @@ class OmiseController extends Controller
             $amount = $payload['data']['amount'];
             $status = $payload['data']['paid'];
             $name = $payload['data']['metadata']['name'];
+            $booking_id = $payload['data']['metadata']['booking_id'];
         }
         $payment = new Payment;
         $payment->name = $name;
         $payment->amount = $amount;
         $payment->status = $status;
         $payment->save();
+        $myBook = booking::find($booking_id);
+        $myBook->status = 'success';
+        $myBook->save();
         return Response::json([
             'statusCode' => 200,
             'statusMessage' => 'success add record',
@@ -105,7 +111,8 @@ class OmiseController extends Controller
                 "number_booking" =>$request->input('number_booking'),
                 "total_cost"=>$request->input('total_cost'),
                 "tripround_id"=>$request->input('book_id'),
-                "user_id"=>$request->input("user_id",'1')
+                "user_id"=>$request->input("user_id",'1'),
+                "status"=>"pending"
             ]);
             return redirect('/bookingsum');
     }

@@ -172,6 +172,7 @@
             <form name="checkoutForm" method="POST" action="/charge">
                 <input type="hidden" name="description" value="Product order " />
                 <input type="hidden" name="name" value="{{$user[0]->name}}"/>
+                <input type="hidden" name="booking_id" value="{{$book->id}}"/>
                  <input type="hidden"  name="amount" value="{{$book->total_cost *100}}"/>
                 {{ csrf_field() }}
 

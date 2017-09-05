@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\trip;
 use App\schedules;
 use App\tripround;
+use Auth;
 use Illuminate\Support\Facades\Input;
 class UserController extends Controller
 {
-    
+    function __construct(){
+        
+    }
     function index() {
         return view('index');
     }
@@ -39,11 +42,18 @@ class UserController extends Controller
     }
 
     function booking($id){
+        
         $fk = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
         $sb = DB::table('booking')->select('number_booking')->where('tripround_id',$id)->pluck('number_booking');
         $count = $booking->count();
-        $sumbook = $booking->sum('number_booking');
+        $sumbook = 0;
+        foreach($booking as $book){
+            if($book->status != "pending"){
+                $sumbook += $book->number_booking;
+            }
+        }
+        // $sumbook = $booking->sum('number_booking');
         //dd($sumbook);
         $trip = DB::table('trips')->where('id',$fk)->get();
         $triprounds = tripround::where('id',$id)->first();
