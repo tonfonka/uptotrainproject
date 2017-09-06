@@ -93,15 +93,15 @@
     <i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
   </div>
 
-  <div class="welcome about" style="padding-top:90px;">
+  <div class="welcome about" >
     <div class="container" align="center">
       <div class="row">
         @foreach($trip as $trips)
         <div>
           <h1>{{$trips->trips_name}}</h1>
-          <p>{{$trips->trip_nday}}วัน {{$trips->trip_nnight}}คืน</p>
+          <p>{{$trips->trip_nday}}  วัน {{$trips->trip_nnight}}  คืน</p>
           <p>จังหวัด{{$trips->trip_province}}</p>
-          <p>{{$trips->trip_meal}}มื้อ</p>
+          <p>{{$trips->trip_meal}}  มื้อ</p>
           <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
           <br>
         </div>
