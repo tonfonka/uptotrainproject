@@ -18,40 +18,86 @@
       <div class="logo">register for new travel agency </div>
       <!-- Main Form -->
       <div class="login-form-1">
-        <form id="register-form" class="text-left">
+        <form action="/agency" method="POST" >
+        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                 {{ csrf_field() }}
           <div class="login-form-main-message"></div>
           <div class="main-login-form">
             <div class="login-group">
               <div class="form-group">
-                <label for="reg_username" class="sr-only">Email address</label>
-                <input type="text" class="form-control" id="reg_username" name="reg_username" placeholder="agency name">
-              </div>
-              <div class="form-group">
-                <label for="reg_password" class="sr-only">Password</label>
-                <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password">
-              </div>
-              <div class="form-group">
-                <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
-                <input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">
+                <label for="reg_username" class="sr-only">ชื่อบริษัทภาษาไทย</label>
+                <input type="text" class="form-control" id="agency_name_th" name="agency_name_th" placeholder="agency_name_th	">
               </div>
 
               <div class="form-group">
-                <label for="reg_email" class="sr-only">Email</label>
-                <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
+                <label for="reg_password" class="sr-only">ชื่อบริษัทภาษาอังกฤษ</label>
+                <input type="text" class="form-control" id="agency_name_en" name="agency_name_en" placeholder="agency_name_en">
               </div>
+
+              <div class="form-group">
+                <label for="reg_password_confirm" class="sr-only">License</label>
+                <input type="text" class="form-control" id="agency_license" name="agency_license" placeholder="agency_license">
+              </div>
+
               <div class="form-group">
                 <label for="reg_fullname" class="sr-only">IATA No</label>
-                <input type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="IATA No">
+                <input type="text" class="form-control" id="agency_iata_no" name="agency_iata_no" placeholder="IATA No">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_tax_id</label>
+                <input type="text" class="form-control" id="agency_tax_id" name="agency_tax_id" placeholder="agency_tax_id">
+              </div>
+
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_address</label>
+                <input type="text" class="form-control" id="agency_address" name="agency_address" placeholder="agency_address">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">	agency_province</label>
+                <input type="text" class="form-control" id="agency_province" name="agency_province" placeholder="agency_province">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_zipcode</label>
+                <input type="text" class="form-control" id="agency_zipcode" name="agency_zipcode" placeholder="agency_zipcode">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_tel1</label>
+                <input type="text" class="form-control" id="agency_tel1" name="agency_tel1" placeholder="agency_tel1">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_tel2</label>
+                <input type="text" class="form-control" id="agency_tel2" name="agency_tel2" placeholder="agency_tel2">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_fax</label>
+                <input type="text" class="form-control" id="agency_fax" name="agency_fax" placeholder="agency_fax">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_email</label>
+                <input type="text" class="form-control" id="agency_email" name="agency_email" placeholder="agency_email">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_web</label>
+                <input type="text" class="form-control" id="agency_web" name="agency_web" placeholder="agency_web">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_fb</label>
+                <input type="text" class="form-control" id="agency_fb" name="agency_fb" placeholder="agency_fb">
+              </div>
+              <div class="form-group">
+                <label for="reg_email" class="sr-only">agency_description	</label>
+                <input type="text" class="form-control" id="agency_description	" name="agency_description" placeholder="agency_description	">
               </div>
               <div class="form-group login-group-checkbox">
                 <input type="checkbox" class="" id="reg_agree" name="reg_agree">
                 <label for="reg_agree">i agree with <a href="#">terms</a></label>
               </div>
             </div>
-            <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+            <input type="hidden" name="user_id" value="{{ $userId }}">
+            <button type="submit" class="login-button">สมัครสมาชิก</button>
           </div>
           <div class="etc-login-form">
-            <p>already have an account? <a href="#">login here</a></p>
+            <p>already have an account? <a href="/login">login here</a></p>
           </div>
         </form>
       </div>

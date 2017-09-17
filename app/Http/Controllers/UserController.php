@@ -82,4 +82,32 @@ class UserController extends Controller
     function register(){
         return view('register');
     }
+    function res()
+    {
+        $userId = Auth::user()->id;
+        
+        return view('regis_agency',['userId'=> $userId]);
+    }
+    function regisagency(Request $request){
+        DB::table('travelagency')
+        ->insertGetId([ 
+            "agency_name_th" => $request->input('agency_name_th'),
+            "agency_name_en" => $request->input('agency_name_en'),
+            "agency_license" => $request->input('agency_license'),
+            "agency_iata_no" => $request->input('agency_iata_no'),
+            "agency_tax_id" =>$request->input('agency_tax_id'),
+            "agency_address" => $request->input('agency_address'),
+            "agency_province"=> $request->input("agency_province"),
+            "agency_zipcode"=>$request->input("agency_zipcode"),
+            "agency_tel1"=>$request->input("agency_tel1"),
+            "agency_tel2"=>$request->input("agency_tel2"),
+            "agency_fax"=>$request->input("agency_fax"),
+            "agency_email"=>$request->input("agency_email"),
+            "agency_web"=>$request->input("agency_web"),
+            "agency_fb"=>$request->input("agency_fb"),
+            "agency_description"=>$request->input("agency_description"),
+            "user_id"=>$request->input('user_id')
+            ]);
+            return redirect('/agency');
+    }
 }

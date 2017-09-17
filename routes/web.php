@@ -23,7 +23,9 @@ Route::post('/addtrip','tripAgencyController@tripstore');
 // });
 //Route::post('/addtripround','addtriproundController@store');
 
-Route::resource('/agency', 'showtripController'); 
+Route::get('/agency', 'showtripController@index');
+Route::post('/agency', 'UserController@regisagency');
+Route::post('/agency','tripAgencyController@tripstore');
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
@@ -55,6 +57,8 @@ Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
+Route::get('/regisagency','UserController@res');
+Route::post('/regisagency','UserController@regisagency');
 Route::post('/webhook','OmiseController@webhook');
 
 Route::get('/checkRole', function(){
@@ -67,6 +71,19 @@ Route::get('/checkRole', function(){
 			return redirect('/agency');
 		}else if(Auth::user()->role == "user"){
 			return redirect('/home');
+		}
+	}
+});
+Route::get('/checkregis', function(){
+	if(Auth::guest()){
+		return redirect('/home');
+	}else{
+		if(Auth::user()->role == "admin"){
+			return redirect('/home');
+		}else if(Auth::user()->role == "travel agency"){
+			return redirect ('/regisagency');
+		}else if(Auth::user()->role == "user"){
+			return redirect('/profileuser');
 		}
 	}
 });

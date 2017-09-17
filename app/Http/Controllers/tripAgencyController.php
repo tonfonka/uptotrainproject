@@ -18,6 +18,8 @@ class tripAgencyController extends Controller
             ]);
         }
 
+        $userId = Auth::user()->id;
+        $agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
 
         return view('addTrip');
 
@@ -34,18 +36,28 @@ class tripAgencyController extends Controller
     }
     public function tripstore(Request $request)
     {
-     DB::table('trips')
-       ->insertGetId([ 
-           "trips_name" => $request->input('trips_name'),
-           "trip_nday" => $request->input('trip_nday'),
-           "trip_nnight" => $request->input('trip_nnight'),
-           "trip_province" => $request->input('trip_province'),
-           "trip_meal" =>$request->input('trip_meal'),
-           "trip_description" => $request->input('trip_description'),
-           "travelagency_id"=> $request->input( "travelagency_id", Auth::user()->id),
-           "source_id"=>$request->input("source_id", '1'),
-           "destination_id"=>$request->input("source_id", '1')
-           ]);
+        $userId = Auth::user()->id;
+        $agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->pluck('id');
+       // dd($agen);
+       $a = Array();
+       for($i=0;$i<sizeOf($agen);$i++){
+           $data = array($agen[$i]);
+           array_push($a, $data);
+       }
+       foreach($a as $rs) {
+        DB::table('trips')
+            ->insertGetId([
+                "trips_name" => $request->input('trips_name'),
+                "trip_nday" => $request->input('trip_nday'),
+                "trip_nnight" => $request->input('trip_nnight'),
+                "trip_province" => $request->input('trip_province'),
+                "trip_meal" =>$request->input('trip_meal'),
+                "trip_description" => $request->input('trip_description'),
+                "travelagency_id" => $rs[0],
+                "source_id"=>$request->input("source_id", '1'),
+                "destination_id"=>$request->input("source_id", '1')
+            ]);
+    }
       $tripId = DB::table('trips')->where('trips_name', $request->input('trips_name'))->first()->id;
     
    
