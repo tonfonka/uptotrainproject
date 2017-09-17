@@ -87,3 +87,4 @@ Route::get('/checkregis', function(){
 		}
 	}
 });
+Route::get('/profileuser','UserController@profileuser');

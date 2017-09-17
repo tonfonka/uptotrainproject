@@ -17,7 +17,12 @@
 							<div class="image-box style14">
 								<article class="box" style="padding-top: 50px; padding-left:50px;">
 									<div class="details">
-										<h5 class="box-title"><a href="#"> ไม่มีรายการ </a></h5>
+										<h5 class="box-title">
+										@foreach($usertrip as $ut)
+											{{$ut->number_adults}}
+										
+										@endforeach
+										</h5>
 										<label class="price-wrapper"><span class="price-per-unit">  </span></label>
 									</div>
 								</article>

@@ -110,4 +110,20 @@ class UserController extends Controller
             ]);
             return redirect('/agency');
     }
+    function profileuser(){
+        $userId = Auth::user()->id;
+        $user = DB::table('users')->where('id',$userId)->first();
+        $usertrip = DB::table('booking')->where('user_id',$userId)->get();
+        
+        // $triprounds = tripround::where('trip_id',$id)->get();
+        // $booking =DB::table('booking')->where('tripround_id',$id)->get();
+        // $sumbook = $booking->sum('number_booking');
+        // $trip = trip::where('id',$id)->first();
+        $data = array(
+            'user' => $user,
+            'usertrip' => $usertrip,
+            
+        );
+        return view('profile_user',$data);
+    }
 }
