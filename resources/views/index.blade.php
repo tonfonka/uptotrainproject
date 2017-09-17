@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li>
-                    <a class="page-scroll" href="#services">How to Use</a>
+                    <a class="page-scroll" href= "#services">How to Use</a>
                 </li>
 
                 <li>
@@ -63,14 +63,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">How to Use</h2>
+            <a href="/agreement">    <h2 class="section-heading">How to Use</h2>
                 <h3 class="section-subheading text-muted">แนะนำวิธีการใช้เบื้องต้น</h3>
             </div>
         </div>
         <div class="row text-center">
             <div class="col-md-4">
                 <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                      <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-book fa-stack-1x fa-inverse"></i>
                     </span>
                 <h4 class="service-heading">Booking</h4>
@@ -91,6 +91,7 @@
                     </span>
                 <h4 class="service-heading">Refund</h4>
                 <p class="text-muted">รับประกันการคืนเงิน</p>
+                </a>
             </div>
         </div>
     </div>

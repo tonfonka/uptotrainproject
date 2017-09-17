@@ -91,12 +91,12 @@
                             <tr>
 
                                 <td>
-                                   {{$user[0]->name}}
+                                   {{$user[1]->name}}
                                 </td>
                                 </tr>
                                 <tr>
                                 <td>
-                                    {{$user[0]->email}}
+                                    {{$user[1]->email}}
                                 </td>
                             </tr>
                         </table>

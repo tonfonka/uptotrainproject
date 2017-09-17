@@ -7,6 +7,7 @@ use App\trip;
 use App\schedules;
 use App\tripround;
 use Auth;
+use Response;
 use Illuminate\Support\Facades\Input;
 class UserController extends Controller
 {
@@ -42,7 +43,13 @@ class UserController extends Controller
     }
 
     function booking($id){
-        
+        if(Auth::user()->role != "user"){
+            return Response::json([
+                'statusCode'=> 401,
+                'statusMessage' => 'Autherization Failed'
+            ]);
+        }
+
         $fk = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
         $sb = DB::table('booking')->select('number_booking')->where('tripround_id',$id)->pluck('number_booking');
