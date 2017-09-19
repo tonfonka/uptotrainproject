@@ -111,17 +111,32 @@ class UserController extends Controller
             return redirect('/agency');
     }
     function profileuser(){
-        $userId = Auth::user()->id;
-        $user = DB::table('users')->where('id',$userId)->first();
-        $usertrip = DB::table('booking')->where('user_id',$userId)->get();
+        $userId = Auth::user()->id; 
+        //dd($userId);
+        $userbook = DB::table('booking')->where('user_id',$userId)->get();
+        $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+        $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+            // $tripname = DB::table('trips')
+            // ->join('triprounds','trips.id','=','triprounds.trip_id')
+            // ->where('triprounds.id',$triproundbook[1])
+            // ->get();
         
-        // $triprounds = tripround::where('trip_id',$id)->get();
-        // $booking =DB::table('booking')->where('tripround_id',$id)->get();
-        // $sumbook = $booking->sum('number_booking');
-        // $trip = trip::where('id',$id)->first();
+        
+       //ข้อมูลการจอง
+       // 
+        // dd($tripname);
+         
+        // $tripbooking = DB::table('triprounds')->where('id',$userbook)->get();//รอบที่จอง
+        // $tripbookings = DB::table('triprounds')->select('trip_id')->where('id',$triproundbook)->pluck('trip_id');
+        // $tripname = DB::table('trips')->where('id',$tripbookings)->get();//ทริปที่จอง
+        //dd($tripname);
+        //dd($user);
+        //dd($userbook);
         $data = array(
-            'user' => $user,
-            'usertrip' => $usertrip,
+            //'user' => $user,
+            'userbook' => $userbook,
+            // 'tripname' => $tripname,
+             ' triproundbook' => $triproundbook
             
         );
         return view('profile_user',$data);

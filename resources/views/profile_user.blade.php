@@ -5,6 +5,7 @@
 
 <link href="css/profile/blogttc.css" rel="stylesheet" type="text/css">
 <link href="css/profile/profile.css" rel="stylesheet" type="text/css">
+
 <div class="container">
 	<div class="blog-page blog-content-1">
 		<div class="row">
@@ -17,12 +18,43 @@
 							<div class="image-box style14">
 								<article class="box" style="padding-top: 50px; padding-left:50px;">
 									<div class="details">
-										<h5 class="box-title">
-										@foreach($usertrip as $ut)
-											{{$ut->number_adults}}
 										
-										@endforeach
-										</h5>
+										
+										<h4>
+										<?php
+										$triproundbook = DB::table('booking')
+																				->select('tripround_id')
+																				->where('user_id',Auth::user()->id)
+																				->pluck('tripround_id');
+										$tripbook = DB::table('booking')->where('user_id',Auth::user()->id)->get();
+										$user = DB::table('users')->where('id',Auth::user()->id)->first(); //ข้อมูล userคนนั้น 
+										$count = $triproundbook->count();	
+										$today = date("Y-m-d");  
+										//dd($today);
+									if($count>0){
+										for($i=0;$i<$count;$i++){
+													$tripname = DB::table('trips')
+																									->select(['trips_name','triprounds.start_date'])
+																									->join('triprounds','trips.id','=','triprounds.trip_id')
+																									->where('triprounds.id',$triproundbook[$i])
+																									->get();
+													if(($tripname[0]->start_date)<=$today){
+
+																									
+													echo "ชื่อทริป :".($tripname[0]->trips_name)."<br>";
+													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
+													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
+													echo "<hr>";
+												}
+																								
+										}
+									}
+									else
+										echo "ไม่มีรายการ";
+
+										?></h4>
+										<!-- {{$triproundbook}}<br> -->
+									
 										<label class="price-wrapper"><span class="price-per-unit">  </span></label>
 									</div>
 								</article>
@@ -33,7 +65,31 @@
 							<div class="image-box style14">
 								<article class="box" style="padding-top: 50px; padding-left:50px;">
 									<div class="details">
-										<h5 class="box-title"><a href="#"> ไม่มีรายการ </a></h5>
+										<h4 >	
+										<?php
+									
+									if($count>0){
+										for($i=0;$i<$count;$i++){
+													$tripname = DB::table('trips')
+																									->select(['trips_name','triprounds.start_date'])
+																									->join('triprounds','trips.id','=','triprounds.trip_id')
+																									->where('triprounds.id',$triproundbook[$i])
+																									->get();
+													if(($tripname[0]->start_date)>=$today){
+
+																									
+													echo "ชื่อทริป :".($tripname[0]->trips_name)."<br>";
+													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
+													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
+													echo "<hr>";
+												}
+																								
+										}
+									}
+									else
+										echo "ไม่มีรายการ";
+
+										?></h4>
 										<label class="price-wrapper"><span class="price-per-unit">  </span></label>
 									</div>
 								</article>
@@ -47,24 +103,24 @@
 					<h4>ค้นหาการเดินทางครั้งใหม่</h4>
 					<ul>
 						<li>
-							<!--<i class="soap-icon-hotel-1 circle blue-color"></i>-->
+							<i class="soap-icon-hotel-1 circle blue-color"></i>-->
 							<h5 class="title"><a href="/hotel" target="_blank">
 									ค้นหาโรงแรมที่ดีที่สุด</a></h5>
 						</li>
 						<li>
-							<!--<i class="icon soap-icon-plane-right takeoff-effect yellow-color circle"></i>-->
+							<i class="icon soap-icon-plane-right takeoff-effect yellow-color circle"></i>-->
 							<h5 class="title"><a href="/restuarant" target="_blank">
 									ค้นหาร้านอาหารสุดคุ้ม</a></h5>
 						</li>
 						<li>
-						<!--<i class="icon soap-icon-plane circle red-color"></i>-->
-							<!--<i class="soap-icon-places circle red-color"></i>-->
-							<h5 class="title"><a href="/trips" target="_blank">
+						<i class="icon soap-icon-plane circle red-color"></i>-->
+							<i class="soap-icon-places circle red-color"></i>
+							 <h5 class="title"><a href="/trips" target="_blank">
 									ทริปยอดนิยม</a></h5>
 						</li>
 						<li>
-							<!--<i class="soap-icon-beach circle green-color"></i>-->
-							<h5 class="title"><a href="/thailandtrips" target="_blank">
+							<i class="soap-icon-beach circle green-color"></i>
+							 <h5 class="title"><a href="/thailandtrips" target="_blank">
 									ทริปในประเทศสุดชิล</a></h5>
 						</li>
 					</ul>
