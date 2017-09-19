@@ -36,9 +36,13 @@
                     </div>
                     <div class="clearfix"></div>
                     <!-- Show trip here-->
-                        <ul>
+                    <?php
+                            $today =date("d-m-y");
+
+                    ?>
+                        <ul><h4>ทริปที่กำลังจะถึง</h4>
                             @foreach($travelagencies->trips as $trip)
-                                @if(count($trip->tripRounds) > 0)
+                                @if(count($trip->tripRounds) > 0 )
                                 <li>
                                     <div class="simpleCart_shelfItem">
                                         <div class="view view-first">
@@ -61,6 +65,7 @@
                                                         <th>จำนวนที่จองแล้ว</th>
                                                     </tr>
                                                     @foreach($trip->tripRounds as $tripRound)
+                                                        @if($tripRound->start_date>=$today)
                                                     <tr>
                                                         <td>
                                                             {{$tripRound->start_date}}
@@ -69,9 +74,10 @@
                                                             {{$tripRound->amount_seats}}
                                                         </td>
                                                         <td>
-                                                            10
+                                                            10 
                                                         </td>
                                                     </tr>
+                                                    @endif
                                                     @endforeach
                                                 </table>
                                                 </div>
@@ -79,10 +85,63 @@
                                         </div>
                                     </div>
                                 </li>
+                                 
+                                @endif
+                            @endforeach
+                           
+                        </ul>
+                    <!-- Show trip here-->
+                    <ul>
+                    <h4>ทริปที่ผ่านไปแล้ว</h4>
+                            @foreach($travelagencies->trips as $trip)
+                                @if(count($trip->tripRounds) > 0 )
+                                <li>
+                                    <div class="simpleCart_shelfItem">
+                                        <div class="view view-first">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3>{{$trip->trips_name}}</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                <img class="img-responsive img-portfolio img-hover" src=""/>
+                                                <div class="progress">
+                                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"           aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100" style="width: 40%">
+                                                    <span class="sr-only">0% Complete (success)</span> 40% BOOKING
+                                                </div>
+                                                </div>
+                                                <table class="table">
+                                                    <tr style="align:center;font-size:1.3em;">
+                                                        <th>รอบการเดินทาง</th>
+                                                        <th>จำนวนที่นั่งทั้งหมด</th>
+                                                        <th>จำนวนที่จองแล้ว</th>
+                                                    </tr>
+                                                    @foreach($trip->tripRounds as $tripRound)
+                                                        @if($tripRound->start_date<$today)
+                                                    <tr>
+                                                        <td>
+                                                            {{$tripRound->start_date}}
+                                                        </td>
+                                                        <td>
+                                                            {{$tripRound->amount_seats}}
+                                                        </td>
+                                                        <td>
+                                                            10 
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    @endif
+                                                    @endforeach
+                                                </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                               
                                 @endif
                             @endforeach
                         </ul>
-                    <!-- Show trip here-->
                 </div>
 
             </div>
