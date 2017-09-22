@@ -68,3 +68,12 @@ Route::get('/checkRole', function(){
 		}
 	}
 });
+Route::get('/map','mapController@station');
+Route::get('/mapLAT',function () {
+		$s = Input::get( 'station' );
+		$data = array(
+			's' => $s
+	);
+	return view('map',$data);
+	} 
+);
