@@ -53,7 +53,7 @@
             <script>
             
             </script>
-            <form role="form" action="/agency" method="POST" name="id">
+            <form role="form" action="/imagegallery" method="POST" name="id">
             
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="tab-content">
@@ -249,7 +249,7 @@
 
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="submit" class="btn btn-primary">Save</button></li>
+                            <li><button type="submit" class="btn btn-primary">เพิ่มรูปภาพกิจกรรม</button></li>
 
                         </ul>
                     </div>

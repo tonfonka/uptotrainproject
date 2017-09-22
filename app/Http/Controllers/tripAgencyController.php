@@ -7,6 +7,8 @@ use DB;
 use App\Http\Controllers\Controller; 
 use Auth;
 use Response;
+use App\ImageGallery;
+
 class tripAgencyController extends Controller
 {
     function index() {
@@ -59,6 +61,7 @@ class tripAgencyController extends Controller
             ]);
     }
       $tripId = DB::table('trips')->where('trips_name', $request->input('trips_name'))->first()->id;
+      $tripID = DB::table('trips')->where('trips_name', $request->input('trips_name'))->first();
     
    
     
@@ -101,8 +104,6 @@ class tripAgencyController extends Controller
         array_push($schedule, $data);
      }
     $i=1;
-  //$i=count($schedule_day);
- // dd($i);
         foreach($schedule as $sd){
             if ($i <= count($schedule_day)){
                     DB::table('schedules')
@@ -116,8 +117,50 @@ class tripAgencyController extends Controller
                 } 
 
    }
-            return redirect('/agency');
+            return view('/imagegallery',['tripID'=>$tripID->id]);
     
+    }
+    public function imageindex()
+    {
+      //$images = DB::table('imagegallery')->get();
+        $images = ImageGallery::get();
+       // dd($images);
+    	return view('/imagegallery',$images);
+    }
+
+    /**
+     * Upload image function
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function imageupload(Request $request)
+    {
+    	$this->validate($request, [
+    		'title' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $input['image'] = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('images'), $input['image']);
+
+        $input['title'] = $request->title;
+        $input['trip_id'] =$request->trip_id;
+        ImageGallery::create($input);
+        return redirect('/agency');
+    	// return back()
+    	// 	->with('success','Image Uploaded successfully.');
+    }
+
+    /**
+     * Remove Image function
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function imagedestroy($id)
+    {
+    	ImageGallery::find($id)->delete();
+    	return back()
+    		->with('success','Image removed successfully.');	
     }
     
 }
