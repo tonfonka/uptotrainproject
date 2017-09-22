@@ -115,7 +115,7 @@
                     
                     <h4>ทริปที่ผ่านไปแล้ว</h4>
                             @foreach($travelagencies->trips as $trip)
-                                @if(count($trip->tripRounds) > 0)
+                                @if(count($trip->tripRounds) < 0)
                                 <li>
                                     <div class="simpleCart_shelfItem">
                                         <div class="view view-first">
