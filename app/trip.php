@@ -19,6 +19,7 @@ class trip extends Model
      public function ImageGallery(){
         return $this->hasMany('App\ImageGallery','trip_id');
      }
+     
 
     //  public function stations(){
     //      return $this->belongsTo('App\station','source_id','destination_id');

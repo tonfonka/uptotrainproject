@@ -32,7 +32,7 @@
 
 <div class="container">
 
-    <h3>Laravel - Image Gallery CRUD Example</h3>
+    <h3>รูปภาพของ TRIP  </h3>
     <form action="/agency" class="form-image-upload" method="POST" enctype="multipart/form-data">
 
         {!! csrf_field() !!}

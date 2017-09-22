@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Response;
 use App\ImageGallery;
+use Illuminate\Http\UploadedFile;
 
 class tripAgencyController extends Controller
 {
@@ -41,6 +42,7 @@ class tripAgencyController extends Controller
         $userId = Auth::user()->id;
         $agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->pluck('id');
        // dd($agen);
+      
        $a = Array();
        for($i=0;$i<sizeOf($agen);$i++){
            $data = array($agen[$i]);
@@ -55,11 +57,18 @@ class tripAgencyController extends Controller
                 "trip_province" => $request->input('trip_province'),
                 "trip_meal" =>$request->input('trip_meal'),
                 "trip_description" => $request->input('trip_description'),
+                //"image" =>$request->input('image'),
+            //    $input['image'] = time().'.'.$request->image->getClientOriginalExtension(),
+               // 
+               
+               //$request->image->move(public_path('images')),
                 "travelagency_id" => $rs[0],
                 "source_id"=>$request->input("source_id", '1'),
                 "destination_id"=>$request->input("source_id", '1')
             ]);
     }
+               
+    
       $tripId = DB::table('trips')->where('trips_name', $request->input('trips_name'))->first()->id;
       $tripID = DB::table('trips')->where('trips_name', $request->input('trips_name'))->first();
     

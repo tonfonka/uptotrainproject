@@ -12,4 +12,9 @@ class tripround extends Model
     public function trips(){
         return $this->belongsTo('App\trip','id');
     }
+
+    public function booking(){
+        return $this->hasMany('App\booking','tripround_id');
+    }
+
 }
