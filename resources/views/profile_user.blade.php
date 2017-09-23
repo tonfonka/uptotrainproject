@@ -27,10 +27,9 @@
 																				->where('user_id',Auth::user()->id)
 																				->pluck('tripround_id');
 										$tripbook = DB::table('booking')->where('user_id',Auth::user()->id)->get();
-										$user = DB::table('users')->where('id',Auth::user()->id)->first(); //ข้อมูล userคนนั้น 
+										$user = DB::table('users')->where('id',Auth::user()->id)->first(); 
 										$count = $triproundbook->count();	
 										$today = date("Y-m-d");  
-										//dd($today);
 									if($count>0){
 										for($i=0;$i<$count;$i++){
 													$tripname = DB::table('trips')
@@ -61,6 +60,7 @@
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-6">
+					
 							<h4>กำลังไปเร็วๆนี้</h4>
 							<div class="image-box style14">
 								<article class="box" style="padding-top: 50px; padding-left:50px;">
@@ -71,16 +71,31 @@
 									if($count>0){
 										for($i=0;$i<$count;$i++){
 													$tripname = DB::table('trips')
-																									->select(['trips_name','triprounds.start_date'])
+																									->select(['trips_name','triprounds.start_date','triprounds.departure_date','trips.id','booking.status'])
 																									->join('triprounds','trips.id','=','triprounds.trip_id')
+																									->join('booking','triprounds.id','=','booking.tripround_id')
 																									->where('triprounds.id',$triproundbook[$i])
 																									->get();
+													
 													if(($tripname[0]->start_date)>=$today){
-
-																									
-													echo "ชื่อทริป :".($tripname[0]->trips_name)."<br>";
+														
+														
+														echo "ชื่อทริป :";
+														
+														echo '<a href="/schedules/'.$tripname[0]->id.'">'.($tripname[0]->trips_name).'</a><br>';												
+													//echo " :".($tripname[0]->trips_name)."<br>";
 													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
+												echo "วันสิ้นสุดการเดินทาง".($tripname[0]->departure_date)."<br>";
 													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
+
+													echo "สถานะการจอง :";
+													if($tripname[$i]->status != 'success'){
+														echo "กรุณาจ่ายเงิน";
+													}else{
+															echo "จ่ายเงินสำเร็จแล้ว";
+													}
+												
+													echo "<br>";
 													echo "<hr>";
 												}
 																								

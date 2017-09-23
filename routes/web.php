@@ -47,6 +47,7 @@ Route::post ( '/searcht', function () {
 		return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
 } );
 Route::get('/schedule/{id}','UserController@schedule');
+Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
 Route::post('/bookingsum','OmiseController@bookingstore');
 Route::get('/bookingsum','OmiseController@bookingsum');;

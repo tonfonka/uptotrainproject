@@ -93,6 +93,7 @@ class OmiseController extends Controller
         $payment->name = $name;
         $payment->amount = $amount;
         $payment->status = $status;
+        $payment->booking = $booking_id;
         $payment->save();
         $myBook = booking::find($booking_id);
         $myBook->status = 'success';

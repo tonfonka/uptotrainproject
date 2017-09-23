@@ -66,10 +66,10 @@
                                     <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Trip Name</label>
                                     <input type="text" class="form-control" name="trips_name" id="tripName" placeholder="Trip Name" onChange="myTripname()" required>
                                 </div>
-                                <!-- <div class="col-md-5">
-                <strong>Image:</strong>
-                <input type="file" name="image" class="form-control">
-            </div> -->
+                                 <div class="col-md-5">
+                                        <strong>Image:</strong>
+                                        <input type="file" name="image" class="form-control">
+                                    </div> 
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
                                     <input type="text" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>

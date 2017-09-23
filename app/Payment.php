@@ -5,5 +5,5 @@ class Payment extends Model
 {
     protected $table ="payments";
     protected $primarykey ='id';
-    protected $fillale = ['name','amount','status'];
+    protected $fillale = ['name','amount','status','booking'];
 }

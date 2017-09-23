@@ -63,7 +63,7 @@
                                                     @foreach($trip->tripRounds as $tripRound)
                                                     <tr>
                                                     <td>
-                                                            {{$tripRound->start_date}}
+                                                            {{$tripRound->start_date}} -  {{$tripRound->departure_date}}
                                                         </td>
                                                         <td>
                                                             {{$tripRound->amount_seats}}
