@@ -14,18 +14,24 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::resource('/addtrip','addtripController');
-Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
-Route::post('/addtrip','tripAgencyController@tripstore');
-// Route::get('/addTrip', function()
-// {
-// 	return View::make('/addtrip');
-// });
-//Route::post('/addtripround','addtriproundController@store');
 
-Route::get('/agency', 'showtripController@index');
+Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
+//Route::post('/addtrip','tripAgencyController@tripstore');
+Route::post('/imagegallery','tripAgencyController@tripstore');
+Route::get('/imagegallery', 'tripAgencyController@imageindex');
+Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::post('/imagegallery', 'ImageGalleryController@imageupload');
+Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
+
+
+Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/agency', 'UserController@regisagency');
-Route::post('/agency','tripAgencyController@tripstore');
+Route::post('/agency','tripAgencyController@imageupload');
+
+
+
+
+
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
@@ -87,9 +93,13 @@ Route::get('/checkregis', function(){
 		}
 	}
 });
+<<<<<<< HEAD
 Route::get('/profileuser','UserController@profileuser');
 
 
 Route::get('/usererror', function () {
 	return view ('usererror');
 });
+=======
+Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+>>>>>>> 04a898d9d010782ffd5a496dd2a9afcfc657eca4
