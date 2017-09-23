@@ -42,7 +42,7 @@
 
                     ?>
                         <ul><h4>ทริปที่กำลังจะถึง</h4>
-                            @forgiteach($travelagencies->trips as $trip)
+                            @foreach($travelagencies->trips as $trip)
                                 @if(count($trip->tripRounds) > 0 )
                                 <li>
                                     <div class="simpleCart_shelfItem">
@@ -59,38 +59,25 @@
                                                         <th>จำนวนที่จองแล้ว</th>
                                                     </tr>
                                                     @foreach($trip->tripRounds as $tripRound)
-                                                        
-                                                   
-                                                        @if($tripRound->start_date<=$today)
-                                                       
                                                     <tr>
                                                         <td>
                                                             {{$tripRound->start_date}}
                                                         </td>
                                                         <td>
                                                             {{$tripRound->amount_seats}}
-                                                        </td> 
-                                                        
-                                                       
-                                                       <?php
-                                                        //$trId = $tripRound->id;
-                                                        $sumbook = DB::table('booking')
-                                                    ->where('tripround_id',$tripRound->id)->get();
-                                                    $sumnumber = $sumbook->sum('number_booking');
-                                                    //    $sumbook = DB::table('booking')->join('triprounds', $trId,'=','booking.tripround_id')
-                                                    //    ->sum('number_booking');
-                                                    ?> 
-                                                        <td> 
-                                                       
-                                                            {{$sumnumber}}
-                                                           
-                                                            
+                                                        </td>
+                                                        <?php
+                                                         //$trId = $tripRound->id;
+                                                         $sumbook = DB::table('booking')
+                                                     ->where('tripround_id',$tripRound->id)->get();
+                                                     $sumnumber = $sumbook->sum('number_booking');
+                                                     //    $sumbook = DB::table('booking')->join('triprounds', $trId,'=','booking.tripround_id')
+                                                     //    ->sum('number_booking');
+                                                     ?> 
+                                                         <td> 
+                                                             {{$sumnumber}}
                                                         </td>
                                                     </tr>
-                                                   
-                                                   
-                                                    
-                                                    @endif
                                                     @endforeach
                                                 </table>
                                                 </div>
@@ -98,34 +85,10 @@
                                         </div>
                                     </div>
                                 </li>
-                                 
                                 @endif
                             @endforeach
-                           
                         </ul>
                     <!-- Show trip here-->
-                    <ul>
-                    
-                    <h4>ทริปที่ผ่านไปแล้ว</h4>
-                            @foreach($travelagencies->trips as $trip)
-                                @if(count($trip->tripRounds) < 0)
-                                <li>
-                                    <div class="simpleCart_shelfItem">
-                                        <div class="view view-first">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3>{{$trip->trips_name}}</h3>
-                                                </div>
-                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                               
-                                @endif
-                            @endforeach
-                        </ul>
                 </div>
 
             </div>
