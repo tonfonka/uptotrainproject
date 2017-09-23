@@ -14,14 +14,24 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/addtrip','addtripController');
-Route::get('/addTrip', function()
-{
-	return View::make('/addtrip');
-});
-Route::post('/addtripround','addtriproundController@store');
-Route::resource('/edittrip','addtripController');
-Route::resource('/agency', 'showtripController'); 
+
+Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
+//Route::post('/addtrip','tripAgencyController@tripstore');
+Route::post('/imagegallery','tripAgencyController@tripstore');
+Route::get('/imagegallery', 'tripAgencyController@imageindex');
+Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::post('/imagegallery', 'ImageGalleryController@imageupload');
+Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
+
+
+Route::get('/agency', 'showtripController@index')->middleware('auth');
+Route::post('/agency', 'UserController@regisagency');
+Route::post('/agency','tripAgencyController@imageupload');
+
+
+
+
+
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
@@ -53,6 +63,8 @@ Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
+Route::get('/regisagency','UserController@res');
+Route::post('/regisagency','UserController@regisagency');
 Route::post('/webhook','OmiseController@webhook');
 
 Route::get('/checkRole', function(){
@@ -68,12 +80,23 @@ Route::get('/checkRole', function(){
 		}
 	}
 });
-Route::get('/map','mapController@station');
-Route::get('/mapLAT',function () {
-		$s = Input::get( 'station' );
-		$data = array(
-			's' => $s
-	);
-	return view('map',$data);
-	} 
-);
+Route::get('/checkregis', function(){
+	if(Auth::guest()){
+		return redirect('/home');
+	}else{
+		if(Auth::user()->role == "admin"){
+			return redirect('/home');
+		}else if(Auth::user()->role == "travel agency"){
+			return redirect ('/regisagency');
+		}else if(Auth::user()->role == "user"){
+			return redirect('/profileuser');
+		}
+	}
+});
+Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+
+
+Route::get('/usererror', function () {
+	return view ('usererror');
+});
+

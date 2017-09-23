@@ -36,9 +36,14 @@
                     </div>
                     <div class="clearfix"></div>
                     <!-- Show trip here-->
-                        <ul>
+                    <?php
+                            $today =date("d-m-y");
+                            
+
+                    ?>
+                        <ul><h4>ทริปที่กำลังจะถึง</h4>
                             @foreach($travelagencies->trips as $trip)
-                                @if(count($trip->tripRounds) > 0)
+                                @if(count($trip->tripRounds) > 0 )
                                 <li>
                                     <div class="simpleCart_shelfItem">
                                         <div class="view view-first">
@@ -46,14 +51,7 @@
                                                 <div class="panel-heading">
                                                     <h3>{{$trip->trips_name}}</h3>
                                                 </div>
-                                                <div class="panel-body">
-                                                <img class="img-responsive img-portfolio img-hover" src=""/>
-                                                <div class="progress">
-                                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"           aria-valuenow="40" aria-valuemin="0"
-                                                    aria-valuemax="100" style="width: 40%">
-                                                    <span class="sr-only">0% Complete (success)</span> 40% BOOKING
-                                                </div>
-                                                </div>
+                                                
                                                 <table class="table">
                                                     <tr style="align:center;font-size:1.3em;">
                                                         <th>รอบการเดินทาง</th>

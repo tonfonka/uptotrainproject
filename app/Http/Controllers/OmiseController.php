@@ -6,6 +6,7 @@ use Response;
 use App\trip;
 use App\schedules;
 use App\booking;
+use Auth;
 use App\Payment;
 use App\Http\Controllers\Omise\lib\Omise;
 require_once dirname(__FILE__).'/omise/lib/Omise.php';
@@ -111,7 +112,7 @@ class OmiseController extends Controller
                 "number_booking" =>$request->input('number_booking'),
                 "total_cost"=>$request->input('total_cost'),
                 "tripround_id"=>$request->input('book_id'),
-                "user_id"=>$request->input("user_id",'1'),
+                "user_id"=>$request->input("user_id",Auth::user()->id),
                 "status"=>"pending"
             ]);
             return redirect('/bookingsum');

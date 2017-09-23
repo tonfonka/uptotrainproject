@@ -6,7 +6,15 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use DB;
+use Illuminate\Http\Request;
+use Response;
+use App\tripround;
+use App\schedule;
+use App\trip;
+use App\booking;
+use App\travelagency;
+use Auth;
 class RegisterController extends Controller
 {
     /*
@@ -27,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/checkregis';
 
     /**
      * Create a new controller instance.
@@ -38,7 +46,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+    
     /**
      * Get a validator for an incoming registration request.
      *
@@ -50,6 +58,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'role'=>'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -65,7 +74,30 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => $data['role'],
             'password' => bcrypt($data['password']),
         ]);
+       // $userId = DB::table('users')->where('role', $data['role'])->first();
+        //return view('regis_agen', ['userId'=> $userId->id]);
+        
+    }
+    function regisAgency(Request $request)
+    {
+        $agency =  DB::table('travelagency')
+        ->insertGetId([ 
+            "trip_name" => $request->input('trip_name'),
+            "trip_nday" => $request->input('trip_nday'),
+            "trip_nnight" => $request->input('trip_nnight'),
+            "trip_province" => $request->input('trip_province'),
+            "trip_meal" =>$request->input('trip_meal'),
+            "trip_description" => $request->input('trip_description')
+            ]);
+             return view('add_tripround', ['trips' => $trips]);
+    }
+    function index()
+    {
+        $userId = Auth::user()->id;
+        dd($userId);
+        return view('regis_agency',['userId'=> $userId]);
     }
 }
