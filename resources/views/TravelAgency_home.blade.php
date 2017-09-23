@@ -68,8 +68,16 @@
                                                         <td>
                                                             {{$tripRound->amount_seats}}
                                                         </td>
-                                                        <td>
-                                                            10
+                                                        <?php
+                                                         //$trId = $tripRound->id;
+                                                         $sumbook = DB::table('booking')
+                                                     ->where('tripround_id',$tripRound->id)->get();
+                                                     $sumnumber = $sumbook->sum('number_booking');
+                                                     //    $sumbook = DB::table('booking')->join('triprounds', $trId,'=','booking.tripround_id')
+                                                     //    ->sum('number_booking');
+                                                     ?> 
+                                                         <td> 
+                                                             {{$sumnumber}}
                                                         </td>
                                                     </tr>
                                                     @endforeach

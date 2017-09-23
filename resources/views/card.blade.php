@@ -13,7 +13,7 @@
 
     <script type="text/javascript" src="https://cdn.omise.co/card.js"               data-key="pkey_test_58x5lew98sd34rjio0a"
       data-image="http://www.mx7.com/view2/A2ElRcLZ5FAr6dEv"
-      data-frame-label="UP to Train" data-button-label="ซื้อเลยจ้า" data-submit-label="Submit" 
+      data-frame-label="UP to Train" data-button-label="จ่ายเงิน" data-submit-label="Submit" 
       data-location="yes" 
       data-amount="320000"
       data-currency="thb"
