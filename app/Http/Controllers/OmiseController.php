@@ -4,6 +4,7 @@ use DB;
 use Illuminate\Http\Request;
 use Response;
 use App\trip;
+use App\tripround;
 use App\schedules;
 use App\booking;
 use Auth;
