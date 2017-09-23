@@ -93,13 +93,10 @@ Route::get('/checkregis', function(){
 		}
 	}
 });
-<<<<<<< HEAD
-Route::get('/profileuser','UserController@profileuser');
+Route::get('/profileuser','UserController@profileuser')->middleware('auth');
 
 
 Route::get('/usererror', function () {
 	return view ('usererror');
 });
-=======
-Route::get('/profileuser','UserController@profileuser')->middleware('auth');
->>>>>>> 04a898d9d010782ffd5a496dd2a9afcfc657eca4
+
