@@ -4,10 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">HELLO {{$travelagency[0]->agency_name_en}} !!!!</h1>
+            <h1 class="page-header">HELLO {{$travelagencies->agency_name_en}} !!!!</h1>
         </div>
         <div class="col-md-12" style="font-size:1.3em;">
-            {{$travelagency[0]->agency_description}}
         </div>
     </div>
 </div>
@@ -31,62 +30,65 @@
             <div class="new-product">
                 <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-list">
                     <div class="pages">
-                     <h4><?php 
-                     use Carbon\Carbon;
-                     $dt     = Carbon::now();
-                     echo $dt->subDays(10)->diffForHumans();  ?>
+                     <h4>
                      </h4>
-                        <h4>{{$trips->count()}} total trips</h4>
+                       
                     </div>
                     <div class="clearfix"></div>
-                    <ul>
-                        @foreach($trips as $tripuser )
-                        <li>
-                            <div class="simpleCart_shelfItem">
-                                <div class="view view-first">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3>{{$tripuser->trips_name}}</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <img class="img-responsive img-portfolio img-hover" src="">
-                                            </a>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                                    aria-valuemax="100" style="width: 40%">
-                                                    <span class="sr-only">40% Complete (success)</span> 40% BOOKING
+                    <!-- Show trip here-->
+                    <?php
+                            $today =date("d-m-y");
+                            
+
+                    ?>
+                        <ul><h4>ทริปที่กำลังจะถึง</h4>
+                            @foreach($travelagencies->trips as $trip)
+                                @if(count($trip->tripRounds) > 0 )
+                                <li>
+                                    <div class="simpleCart_shelfItem">
+                                        <div class="view view-first">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3>{{$trip->trips_name}}</h3>
                                                 </div>
-                                            </div>
-                                            <!-- Table -->
-                                            <table class="table">
-                                                <!--problem ตรงนี้ไม่รัน -->
-                                                <?php
-                                            $tripagent = DB::table('travelagency')->where('id', $tripuser->travelagency_id)->first();
-                                            
-                                            $tripround = DB::table('triprounds')->where('trip_id', $tripuser->id)->get();
-                                            ?>
+                                                
+                                                <table class="table">
                                                     <tr style="align:center;font-size:1.3em;">
                                                         <th>รอบการเดินทาง</th>
                                                         <th>จำนวนที่นั่งทั้งหมด</th>
                                                         <th>จำนวนที่จองแล้ว</th>
                                                     </tr>
-                                                    @foreach($tripround as $tr)
-                                                    <tr style="font-size:1.3em;">
-                                                        <td>{{date('d-m-Y', strtotime($tr->start_date))}} ถึง {{date('d-m-Y',
-                                                            strtotime($tr->departure_date))}}
+                                                    @foreach($trip->tripRounds as $tripRound)
+                                                    <tr>
+                                                        <td>
+                                                            {{$tripRound->start_date}}
                                                         </td>
-                                                        <td>{{$tr->amount_seats}}</td>
-                                                        <td>{{$tr->amount_seats}}</td>
+                                                        <td>
+                                                            {{$tripRound->amount_seats}}
+                                                        </td>
+                                                        <?php
+                                                         //$trId = $tripRound->id;
+                                                         $sumbook = DB::table('booking')
+                                                     ->where('tripround_id',$tripRound->id)->get();
+                                                     $sumnumber = $sumbook->sum('number_booking');
+                                                     //    $sumbook = DB::table('booking')->join('triprounds', $trId,'=','booking.tripround_id')
+                                                     //    ->sum('number_booking');
+                                                     ?> 
+                                                         <td> 
+                                                             {{$sumnumber}}
+                                                        </td>
                                                     </tr>
                                                     @endforeach
-                                            </table>
+                                                </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </li>
-                    </ul>
+                                </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    <!-- Show trip here-->
                 </div>
 
             </div>

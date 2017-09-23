@@ -19,7 +19,7 @@ class tripController extends Controller
         ->join('stations','stations.id','=','trips.source_id')
        // ->join('stations','stations.id','=','trips.destination_id')
         ->join('travelagency','travelagency.id','=','trips.travelagency_id')
-        ->orderBy('triprounds.start_date','asc')
+        ->orderBy('trips.id','ASC')
         ->get();
 
         return view('TravelAgency_home', ['trips' => $trips]);

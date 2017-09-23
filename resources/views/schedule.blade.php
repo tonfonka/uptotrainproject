@@ -13,12 +13,18 @@
 </head>
 
 <body id="page-top" class="index">
-    <div align="left">
-        <a class="btn btn-primary" href={{ url( '/search') }}>Back</a>
+    <div align="right">
+        <a class="btn btn-primary" href={{ url( '/search') }} style="
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    padding-right: 15px;background-color:#fff;border-color:#fff;
+"><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
     </div>
     <!--<div class="container">-->
     <div class="container" id="about" align="center">
         <div class="row">
+       
             <!-- Project Details Go Here -->
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
@@ -85,16 +91,21 @@
                                     <th>วันที่เดินทาง</th>
                                     <th>ราคาผู้ใหญ่</th>
                                     <th>ราคาเด็ก</th>
-                                    <th>จำนวนที่ว่าง</th>
+                                    <th>จำนวนที่นั่ง</th>
                                     <th></th>
                                 </tr>
                                 <!-- edit add loop select for db -->
                                 @foreach($triprounds as $tripround)
+                                <?php
+                                    $amount =  $tripround->amount_seats;
+                        
+                                    $sum = $amount-$sumbook;   
+                                ?>
                                 <tr align="center">
                                     <td>{{ $tripround->start_date }}</td>
                                     <td>{{$tripround->price_adult}}</td>
                                     <td>{{$tripround->price_child}}</td>
-                                    <td>{{$tripround->amount_seats}}</td>
+                                    <td>{{$sum}}</td>
                                     <?php
                                     $tid="{{$tripround->id}}"
                                     ?>
@@ -156,7 +167,7 @@
 
         });
     </script>
-    
+
 </body>
 
 </html>

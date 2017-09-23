@@ -53,7 +53,7 @@
             <script>
             
             </script>
-            <form role="form" action="/agency" method="POST" name="id">
+            <form role="form" action="/imagegallery" method="POST" name="id">
             
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="tab-content">
@@ -66,6 +66,10 @@
                                     <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Trip Name</label>
                                     <input type="text" class="form-control" name="trips_name" id="tripName" placeholder="Trip Name" onChange="myTripname()" required>
                                 </div>
+                                <!-- <div class="col-md-5">
+                <strong>Image:</strong>
+                <input type="file" name="image" class="form-control">
+            </div> -->
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
                                     <input type="text" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>
@@ -103,12 +107,12 @@
                                 <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;" for="sday">วันเริ่มเดินทาง</label>
                                     <input class="form-control start_day" name="start_date[]" id="sday"type="date" oninvalid="this.setCustomValidity('กรุณากรอกวันเริ่มเดินทาง')"
-                                        placeholder="วันเริ่มเดินทาง" onChange="myStartdate()">
+                                        placeholder="วันเริ่มเดินทาง"  min="2017-08-28" onChange="myStartdate()">
                                 </div>
                                 <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;" for="eday">วันสิ้นสุดการเดินทาง</label>
                                     <input class="form-control Departure_Date" name="departure_date[]" type="date" id="eday" oninvalid="this.setCustomValidity('กรุณากรอกวันสิ้นสุดการเดินทาง')"
-                                        oninput="setCustomValidity('')" placeholder="วันสิ้นสุดการเดินทาง" onChange="myDepardate()">
+                                        oninput="setCustomValidity('')" placeholder="วันสิ้นสุดการเดินทาง" min="2017-08-28" onChange="myDepardate()">
                                 </div>
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;">ราคาของเด็ก</label>
@@ -177,6 +181,7 @@
                                 <td style="margin-bottom:13px;font-size:1.3em;"> ชื่อทริป : </td>
                                 <td id="name"></td>
                             </tr>
+                            
                             <tr>
                                 <td style="margin-bottom:13px;font-size:1.3em;"> วัน : </td>
                                 <td id="day"></td>
@@ -249,7 +254,7 @@
 
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="submit" class="btn btn-primary">Save</button></li>
+                            <li><button type="submit" class="btn btn-primary">เพิ่มรูปภาพกิจกรรม</button></li>
 
                         </ul>
                     </div>
