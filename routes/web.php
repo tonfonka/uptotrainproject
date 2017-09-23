@@ -88,3 +88,8 @@ Route::get('/checkregis', function(){
 	}
 });
 Route::get('/profileuser','UserController@profileuser');
+
+
+Route::get('/usererror', function () {
+	return view ('usererror');
+});
