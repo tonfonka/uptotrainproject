@@ -11,97 +11,26 @@
   <link href="/css/uptotrain2.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
-<style>
-    .invoice-box {
-        max-width: 800px;
-        margin: auto;
-        padding: 30px;
-        border: 1px solid #eee;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-        font-size: 16px;
-        line-height: 24px;
-        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
-    }
-    .invoice-box table {
-        width: 100%;
-        line-height: inherit;
-        text-align: left;
-    }
-    .invoice-box table td {
-        padding: 5px;
-        vertical-align: top;
-    }
-    .invoice-box table tr td:nth-child(2) {
-        text-align: right;
-    }
-    .invoice-box table tr.top table td {
-        padding-bottom: 20px;
-    }
-    .invoice-box table tr.top table td.title {
-        font-size: 45px;
-        line-height: 45px;
-        color: #333;
-    }
-    .invoice-box table tr.information table td {
-        padding-bottom: 40px;
-    }
-    .invoice-box table tr.heading td {
-        background: #eee;
-        border-bottom: 1px solid #ddd;
-        font-weight: bold;
-    }
-    .invoice-box table tr.details td {
-        padding-bottom: 20px;
-    }
-    .invoice-box table tr.item td {
-        border-bottom: 1px solid #eee;
-    }
-    .invoice-box table tr.item.last td {
-        border-bottom: none;
-    }
-    .invoice-box table tr.total td:nth-child(2) {
-        border-top: 2px solid #eee;
-        font-weight: bold;
-    }
-    @media only screen and (max-width: 600px) {
-        .invoice-box table tr.top table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-        .invoice-box table tr.information table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-    }
-    #selectBooking{
-      display: block;
-    }
-</style>
 
 <body id="page-top" class="index">
-  <div id="selectBooking">
   <div align="right">
-    <a class="btn btn-primary" href={{ url( '/search') }} 
-    style="
+    <a class="btn btn-primary" href={{ url( '/search') }} style="
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 15px;
-    padding-right: 15px;background-color:#fff;border-color:#fff;">
-    <i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
+    padding-right: 15px;background-color:#fff;border-color:#fff;
+"><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
   </div>
 
-  <div class="welcome about" >
+  <div class="welcome about">
     <div class="container" align="center">
       <div class="row">
         @foreach($trip as $trips)
         <div>
           <h1>{{$trips->trips_name}}</h1>
-          <p>{{$trips->trip_nday}}  วัน {{$trips->trip_nnight}}  คืน</p>
+          <p>{{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
           <p>จังหวัด{{$trips->trip_province}}</p>
-          <p>{{$trips->trip_meal}}  มื้อ</p>
+          <p>{{$trips->trip_meal}} มื้อ</p>
           <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
           <br>
         </div>
@@ -201,7 +130,6 @@
       $('#summary').html('กรุณากรอกจำนวนคนใหม่')
     }
   })
-
   $('#number_adults').bind('click keyup', function() {
     const value = $(this).val()
     const multiple = {{$triprounds->price_adult}} 
@@ -216,15 +144,14 @@
       $('#summary').html('กรุณากรอกจำนวนคนใหม่')
     }
   })
-
   function isEnough(){
     const allChild = $('#number_children').val()*1
     const allAdult = $('#number_adults').val()*1
     return (allChild+allAdult) <= {{$sum}}
   }
-
 </script>
 </body>
 
 
 </html>
+        
