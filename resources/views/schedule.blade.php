@@ -30,7 +30,7 @@
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
             <p>ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน</p>
             <p>บริษัท {{ $trip->trip_nday }}</p>
-            <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
+            <img class="img-responsive img-centered" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
             <div class="container">
