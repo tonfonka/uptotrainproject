@@ -4,6 +4,7 @@ use DB;
 use Illuminate\Http\Request;
 use Response;
 use App\trip;
+use App\tripround;
 use App\schedules;
 use App\booking;
 use Auth;
@@ -51,15 +52,8 @@ class OmiseController extends Controller
             'card' => $_POST['omiseToken'],
             'metadata' => ['name' => $name, 'booking_id' => $booking_id]
           ));
-          echo '<pre>';
-          print_r($_POST);
-          echo '</pre>';
           
-          echo '<hr>';
-          
-          echo '<pre>';
-          print_r($charge);
-          echo '</pre>';
+          return redirect('/profileuser');
      }
      function charge(Request $request){
         $data = $request->json()->all();
@@ -93,6 +87,7 @@ class OmiseController extends Controller
         $payment->name = $name;
         $payment->amount = $amount;
         $payment->status = $status;
+        $payment->booking = $booking_id;
         $payment->save();
         $myBook = booking::find($booking_id);
         $myBook->status = 'success';

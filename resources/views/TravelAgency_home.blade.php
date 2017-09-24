@@ -38,8 +38,6 @@
                     <!-- Show trip here-->
                     <?php
                             $today =date("d-m-y");
-                            
-
                     ?>
                         <ul><h4>ทริปที่กำลังจะถึง</h4>
                             @foreach($travelagencies->trips as $trip)
@@ -49,7 +47,9 @@
                                         <div class="view view-first">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h3>{{$trip->trips_name}}</h3>
+                                                <a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"><h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3>
+                                                
+                                                </a>
                                                 </div>
                                                 
                                                 <table class="table">
@@ -57,25 +57,39 @@
                                                         <th>รอบการเดินทาง</th>
                                                         <th>จำนวนที่นั่งทั้งหมด</th>
                                                         <th>จำนวนที่จองแล้ว</th>
+                                                        <th>ยอดเงินรวม</th>
+                                                        
                                                     </tr>
                                                     @foreach($trip->tripRounds as $tripRound)
+                                                    <?php
+                                                         
+                                                         $order = $tripRound->orderBy('start_date')->get();
+
+                                                     ?> 
                                                     <tr>
-                                                        <td>
-                                                            {{$tripRound->start_date}}
+                                                    <td>
+                                                            {{$tripRound->start_date}} -  {{$tripRound->departure_date}}
                                                         </td>
                                                         <td>
                                                             {{$tripRound->amount_seats}}
-                                                        </td>
+                                                        </td> 
+                                                        
                                                         <?php
-                                                         //$trId = $tripRound->id;
+                                                         
                                                          $sumbook = DB::table('booking')
-                                                     ->where('tripround_id',$tripRound->id)->get();
-                                                     $sumnumber = $sumbook->sum('number_booking');
-                                                     //    $sumbook = DB::table('booking')->join('triprounds', $trId,'=','booking.tripround_id')
-                                                     //    ->sum('number_booking');
+                                                         ->where([['tripround_id',$tripRound->id],['status','=','success']])->get();
+                                                        $sumnumber = $sumbook->sum('number_booking');
+                                                        $total = $sumbook->sum('total_cost');
+                                                        $id=$tripRound->id;
+
                                                      ?> 
                                                          <td> 
-                                                             {{$sumnumber}}
+                                                         
+                                                         {{$sumnumber}}
+                                                        </td>
+                                                        <td>
+                                                            {{$total}}
+                                                            <!-- ยอดเงินรวม -->
                                                         </td>
                                                     </tr>
                                                     @endforeach

@@ -57,7 +57,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <div class="topnav pull-right">
         <ul class="quick-menu pull-right clearfix">
           <li><a href="javascript:;">{{$user->name}}</a></li>
-          <li><a href="/logout">ออกจากระบบ</a></li>
+          <li><a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        LOG OUT
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                {{ csrf_field() }}
+            </form></li>
         </ul>
       </div>
     </div>
