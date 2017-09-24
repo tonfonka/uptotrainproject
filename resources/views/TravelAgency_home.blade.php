@@ -81,7 +81,7 @@
                                                         $total = $sumbook->sum('total_cost');
                                                         $id=$tripRound->id;
 
-                                                     ?> 
+                                                        ?> 
                                                          <td> 
                                                          
                                                          {{$sumnumber}}
