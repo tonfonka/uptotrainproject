@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use DB;
 use App\Http\Controllers\Controller; 
-use Auth;
+use DB;
+use Illuminate\Http\Request;
 use Response;
+use App\tripround;
+use App\schedule;
+use App\trip;
+use App\booking;
+use App\travelagency;
+use Auth;
 use App\ImageGallery;
 use Illuminate\Http\UploadedFile;
+
+
+
+
 
 class tripAgencyController extends Controller
 {
@@ -129,27 +137,30 @@ class tripAgencyController extends Controller
             return view('/imagegallery',['tripID'=>$tripID->id]);
     
     }
-   function showdetailtrip($id){
-        $schedules = schedules::where('trip_id',$id)->get();
-        $triprounds = tripround::where('trip_id',$id)->get();
-        $booking =DB::table('booking')->where('tripround_id',$id)->get();
-        $sumbook = $booking->sum('number_booking');
-        $trip = trip::where('id',$id)->first();
-        $data = array(
-            'schedules' => $schedules,
-            'triprounds' => $triprounds,
-            'trip' => $trip,
-            'title' => 'Schedules',
-            'sumbook' =>$sumbook
-        );
-        return view('agency_tripdetail');
+
+   function showdetailtrip($id) {
+            if(Auth::user()->role != "travel agency"){
+                return Response::json([
+                    'statusCode'=> 401,
+                    'statusMessage' => 'Autherization Failed'
+                ]);
+            }
+            $userId = Auth::user()->id;
+            //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
+            $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+                    $data = array(
+                        'travelagencies' => $travelagencies
+                        
+                    );
+    
+        return view('agency_tripdetail',$data);
 
     }
+
     public function imageindex()
     {
-      //$images = DB::table('imagegallery')->get();
+      
         $images = ImageGallery::get();
-       // dd($images);
     	return view('/imagegallery',$images);
     }
 

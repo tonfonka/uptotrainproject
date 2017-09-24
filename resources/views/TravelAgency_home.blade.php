@@ -38,8 +38,6 @@
                     <!-- Show trip here-->
                     <?php
                             $today =date("d-m-y");
-                            
-
                     ?>
                         <ul><h4>ทริปที่กำลังจะถึง</h4>
                             @foreach($travelagencies->trips as $trip)
@@ -49,7 +47,7 @@
                                         <div class="view view-first">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                  <a href="#">  <h3>{{$trip->trips_name}}</h3></a>
+                                                <a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"><h3>{{$trip->trips_name}}</h3></a>
                                                 </div>
                                                 
                                                 <table class="table">
@@ -75,12 +73,14 @@
                                                      ->where('tripround_id',$tripRound->id)->get();
                                                      $sumnumber = $sumbook->sum('number_booking');
                                                      $total = $sumbook->sum('total_cost');
+                                                        $id=$tripRound->id;
                                                      ?> 
                                                          <td> 
-                                                         <a href="#"> {{$sumnumber}}</a>
+                                                         <a  href="/tripdetail/{{$tripRound->id}}" name="{{$id}}"> 
+                                                         {{$sumnumber}}</a>
                                                         </td>
                                                         <td>
-                                                            <a href="#"> {{$total}}</a>
+                                                            {{$total}}
                                                             <!-- ยอดเงินรวม -->
                                                         </td>
                                                     </tr>

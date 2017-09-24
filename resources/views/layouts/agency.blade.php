@@ -22,17 +22,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     }
   </script>
   <!--Custom Theme files-->
-  <link href="css/bootstrap2.css" type="text/css" rel="stylesheet">
-  <link href="css/style.css" type="text/css" rel="stylesheet">
-  <link href="css/profile/member-style.css" type="text/css" rel="stylesheet">
+  <link href=" {{ URL::asset('css/bootstrap2.css') }}" rel="stylesheet">
+  <link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet">
+  <link href=" {{ URL::asset('css/profile/member-style.css') }}" rel="stylesheet">
 
   <!-- font-awesome icons -->
-  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href=" {{ URL::asset('css/font-awesome.css') }}" rel="stylesheet">
   <!-- //font-awesome icons -->
   <!-- js -->
   <script src="js/jquery-2.2.3.min.js"></script>
   <!-- //js -->
   <!-- web-fonts -->
+  
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
     rel='stylesheet' type='text/css'>
   <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
@@ -91,6 +92,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <!-- //header-->
   @yield('agency_banner')
  @yield('content')
+ 
   <!-- footer start here -->
   <div class="footer-agile" style="padding-top:20px;padding-bottom:20px;">
     <div class="container">

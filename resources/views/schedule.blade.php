@@ -103,7 +103,6 @@
                                     
                                     $tid=$tripround->id;
                                     $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
-                                    //([    ['status', '=', '1'],    ['subscribed', '<>', '1'],])
                                     $sum = $amount-$seat;
                                 ?>
                                 <tr align="center">

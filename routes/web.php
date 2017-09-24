@@ -28,10 +28,6 @@ Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/agency', 'UserController@regisagency');
 Route::post('/agency','tripAgencyController@imageupload');
 
-
-
-
-
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
@@ -95,4 +91,5 @@ Route::get('/checkregis', function(){
 	}
 });
 Route::get('/profileuser','UserController@profileuser')->middleware('auth');
-Route::get('/showdetailtrip','tripAgencyController@showdetailtrip');
+
+Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
