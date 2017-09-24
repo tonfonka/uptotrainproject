@@ -72,8 +72,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<li><a href="contact.html" class="btn w3ls-hover">Contact</a></li>
 							<li><a href="#" class="dropdown-toggle btn w3ls-hover" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User <span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="icons.html">Profile</a></li>
-									<li><a href="codes.html">Log Out</a></li>
+								@if(Auth::guest())
+            <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
+            @else
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                        LOG OUT
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @endif
+									<!-- <li><a href="icons.html">Profile</a></li>
+									<li><a href="codes.html">Log Out</a></li> -->
 								</ul>
 							</li>
 						</ul>

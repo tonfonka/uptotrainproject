@@ -115,7 +115,19 @@
             <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
             <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
             <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
-            <li><a href="profileuser"><span class="glyphicon glyphicon-menu-right"></span> Profile</a></li>
+            @if(Auth::guest())
+           <li> <a href="{{ url('/login')}}" class="glyphicon glyphicon-menu-right">LOG IN</a></li>
+            @else
+            <li> <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="glyphicon glyphicon-menu-right">
+                        LOG OUT
+            </a></li>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @endif
             
           </ul>
         </div>

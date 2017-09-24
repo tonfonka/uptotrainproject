@@ -41,13 +41,26 @@ class UserController extends Controller
         );
         return view('schedule', $data);
     }
+    function schedules($id){
+        
+              $schedules = schedules::where('trip_id',$id)->get();
+              $triprounds = tripround::where('trip_id',$id)->get();
+              $booking =DB::table('booking')->where('tripround_id',$id)->get();
+              $sumbook = $booking->sum('number_booking');
+              $trip = trip::where('id',$id)->first();
+              $data = array(
+                  'schedules' => $schedules,
+                  'triprounds' => $triprounds,
+                  'trip' => $trip,
+                  'title' => 'Schedules',
+                  'sumbook' =>$sumbook
+              );
+              return view('schedule_tonfon', $data);
+          }
 
     function booking($id){
         if(Auth::user()->role != "user"){
-            return Response::json([
-                'statusCode'=> 401,
-                'statusMessage' => 'Autherization Failed'
-            ]);
+            return redirect('/hello');
         }
 
         $fk = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
@@ -111,6 +124,10 @@ class UserController extends Controller
             return redirect('/agency');
     }
     function profileuser(){
+        if(Auth::user()->role != "user"){
+            return redirect('/hello');
+        }
+
         $userId = Auth::user()->id; 
         //dd($userId);
         $userbook = DB::table('booking')->where('user_id',$userId)->get();

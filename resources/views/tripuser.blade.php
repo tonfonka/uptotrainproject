@@ -67,7 +67,7 @@
                                         <div class="view view-first">
                                             <div class="inner_content clearfix">
                                                 <div class="product_image">
-                                                    <img src="http://placehold.it/500x400" class="img-responsive" alt="" />
+                                                    <img src="/images/{{$tripuser->image}}" class="img-responsive" alt="" />
                                                     <div class="mask">
                                                         <div class="info">Quick View</div>
                                                     </div>
