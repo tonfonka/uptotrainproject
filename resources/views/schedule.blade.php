@@ -103,10 +103,6 @@
                                     $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
                                     $sum = $amount-$seat;
                                 ?>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 0629eddec4dca3678d3fa84cd6abcca0e3cb5503
                                 <tr align="center">
                                     <td>{{ $tripround->start_date }}</td>
                                     <td>{{$tripround->price_adult}}</td>
@@ -117,22 +113,6 @@
                                         <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
                                 </tr>
                                 @endforeach
-<<<<<<< HEAD
-=======
-=======
-                                    <tr align="center">
-                                        <td>{{ $tripround->start_date }}</td>
-                                        <td>{{$tripround->price_adult}}</td>
-                                        <td>{{$tripround->price_child}}</td>
-                                        <td>{{$sum}}</td>
-                                        <?php
-                                    $tid="{{$tripround->id}}"
-                                    ?>
-                                            <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
-                                    </tr>
-                                    @endforeach
->>>>>>> develop
->>>>>>> 0629eddec4dca3678d3fa84cd6abcca0e3cb5503
                             </table>
                             <!-- end loop -->
                         </ul>
