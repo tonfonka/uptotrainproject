@@ -169,29 +169,7 @@ $total_c = $num_c * $price_c;
                         <td align="center">{{$book->total_cost}}</td>
                     </tr>
                 </table>
-
             </div><br><br>
-            <div style='text-align:center'>
-                <form name="checkoutForm" method="POST" action="/charge">
-                    <input type="hidden" name="description" value="Product order " />
-                    <input type="hidden" name="name" value="{{$user[0]->name}}" />
-                    <input type="hidden" name="booking_id" value="{{$book->id}}" />
-                    <input type="hidden" name="amount" value="{{$book->total_cost *100}}" /> {{ csrf_field() }}
-
-
-                    <script type="text/javascript" src="https://cdn.omise.co/card.js"
-                    data-key="pkey_test_58x5lew98sd34rjio0a" data-image="http://www.mx7.com/view2/A2ElRcLZ5FAr6dEv"
-                    data-frame-label="UP to Train" 
-                    data-button-label="จ่ายเงิน" 
-                    data-submit-label="Submit" 
-                    data-location="yes"
-                        data-amount="{{$book->total_cost * 100}}" data-currency="thb">
-                    </script>
-
-                    <!--the script will render <input type="hidden" name="omiseToken"> for you automatically-->
-                </form>
-
-            </div>
         </div>
     </div>
 </body>
