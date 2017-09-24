@@ -47,7 +47,9 @@
                                         <div class="view view-first">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                <a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"><h3>{{$trip->trips_name}}</h3></a>
+                                                <a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"><h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3>
+                                                
+                                                </a>
                                                 </div>
                                                 
                                                 <table class="table">
@@ -59,6 +61,11 @@
                                                         
                                                     </tr>
                                                     @foreach($trip->tripRounds as $tripRound)
+                                                    <?php
+                                                         
+                                                         $order = $tripRound->orderBy('start_date')->get();
+
+                                                     ?> 
                                                     <tr>
                                                     <td>
                                                             {{$tripRound->start_date}} -  {{$tripRound->departure_date}}
@@ -71,8 +78,8 @@
                                                          
                                                          $sumbook = DB::table('booking')
                                                          ->where([['tripround_id',$tripRound->id],['status','=','success']])->get();
-                                                     $sumnumber = $sumbook->sum('number_booking');
-                                                     $total = $sumbook->sum('total_cost');
+                                                        $sumnumber = $sumbook->sum('number_booking');
+                                                        $total = $sumbook->sum('total_cost');
                                                         $id=$tripRound->id;
 
                                                      ?> 

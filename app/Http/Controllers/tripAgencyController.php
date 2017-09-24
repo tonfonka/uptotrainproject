@@ -26,10 +26,13 @@ class tripAgencyController extends Controller
             return redirect('/hello');
         }
 
-        $userId = Auth::user()->id;
-        $agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
+        $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+        
+        $data=array(
+            'travelagencies' => $travelagencies
+        );
 
-        return view('addTrip');
+        return view('addTrip',$data);
 
     //     $trips = DB::table('trips')
     //     ->join('triprounds','trips.id','=','triprounds.trip_id')
@@ -156,6 +159,42 @@ class tripAgencyController extends Controller
         return view('agency_tripdetail',$data);
 
     }
+    function shownumber($id) {
+        if(Auth::user()->role != "travel agency"){
+            return redirect('/hello');
+        }
+        $userId = Auth::user()->id;
+         $travelagencies =  DB::table('travelagency')->where('user_id', Auth::user()->id)->first();
+        // $trips = DB::table('trips')->where('id',$id)->get();
+        // $tripround = DB::table('triprounds')->where('trip_id',$id)->get();
+        
+        
+        $round = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
+        $trips = DB::table('trips')->where('id',$round)->get();
+        //dd($trips);
+        $booking = DB::table('booking')->where('tripround_id',$id)->get();
+        
+        $book = DB::table('booking')->select('user_id')->where('tripround_id',$id)->pluck('user_id');
+        $count = $book->count();
+        $tripround = DB::table('triprounds')->where('id',$id)->first();
+        $username =DB::table('users')->where('id',$book)->get();
+
+                $data = array(
+                    'travelagencies' => $travelagencies,
+                    'booking' => $booking,
+                    'book' => $book,
+                    'username' => $username,
+                    'trips' => $trips,
+                    'round'=>$round,
+                    'tripround' => $tripround,
+                    'count' =>$count
+
+                );
+
+    return view('agency_tripmember',$data);
+
+}
+
 
     public function imageindex()
     {

@@ -31,25 +31,13 @@ class showtripController extends Controller
                 'statusCode'=> 401,
                 'statusMessage' => 'Autherization Failed'
             ]);
-        }
-    // $trips = DB::table('trips')->get();
-        // $tripround =DB::table('triprounds')->join('trips','trips.id','=','triprounds.trip_id')->get();
-        // $travelagency =DB::table('travelagency')->get();
-        // $booking = DB::table('booking')->join('triprounds','triprounds.id','=','booking.tripround_id')->first();
-        // $bookings = DB::table('booking')->select('number_booking')->join('triprounds','triprounds.id','=','booking.tripround_id')->pluck('number_booking');
+            }
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
-        //$sumbooking = $booking->sum('number_booking');
+        
         $data=array(
-            'travelagencies'=>$travelagencies
+            'travelagencies' => $travelagencies
         );
         return view('TravelAgency_home',$data);
-        // foreach($travelagencies as $travelagency){
-            
-        //      foreach($travelagency->trips as $trip){
-        //          echo $trip->tripRounds.'<br><br>';
-        //      }
-        // }
-      //  return view('TravelAgency_home',['data'=> $trips]);
     }
 
     /**

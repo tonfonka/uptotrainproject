@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">HELLO $travelagencies->agency_name_en !!!!</h1>
+            <h1 class="page-header">HELLO {{$travelagencies->agency_name_en}} !!!!</h1>
         </div>
         <div class="col-md-12" style="font-size:1.3em;">
         </div>
@@ -27,8 +27,10 @@
                 <div class="row">
                     
                     <div class="col-lg-12">
-                        <h1>$ชื่อทริป</h1>
-                        <h3>รอบ $รอบวันที่เริ่ม ถึง $รอบวันที่จบ</h1>
+                    @foreach($trips as $trip)
+                    <h1>{{$trip->trips_name}}</h1>
+                    @endforeach
+                        <h3>รอบ {{$tripround->start_date}} ถึง 	{{$tripround->departure_date}}</h1>
                     </div>
 
                     <div>
@@ -42,16 +44,25 @@
                                 <th>สถานะการจ่าย</th>
                                 <th>รายการล่าสุดเมื่อ</th>
                             </tr>
-                          
+                            @if($count >0)
+                            @foreach($booking as $boo)
+                                @foreach($username as $user)
+                                     
                             <tr>
-                                <td><a href=''>$ชื่อ</a></td>
-                                <td>$จำนวนเด็ก</td>
-                                <td>$จำนวนผู้ใหญ่</td>
-                                <td>$จำนวนรวมทั้งหมด</td>
-                                <td>$ราคา</td>
-                                <td>$สถานะการจ่าย</td>
-                                <td>$รายการล่าสุดเมื่อ</td>
-                            </tr>
+                                <td><a href=''>{{$user->name}}</a></td>
+                                
+                                <td>{{$boo->number_children}}</td>
+                                <td>{{$boo->number_adults}}</td>
+                                <td>{{$boo->number_booking}}</td>
+                                <td>{{$boo->total_cost}}</td>
+                                <td>{{$boo->status}}</td>
+                                <td>{{$boo->booking_time}}</td>
+                            </tr> 
+                            
+                                    
+                                @endforeach
+                            @endforeach
+                            @endif
                         </table>
                     </div>
                    

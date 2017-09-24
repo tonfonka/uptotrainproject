@@ -72,7 +72,7 @@
                                 <td> {{$total}}</td>
                                 <td>
                                     <center>
-                                        <a href="/">
+                                        <a href="/shownumber/{{$tripRound->id}}" name ={{$id}}>
                                             <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
                                         </a>
                                     </center>
