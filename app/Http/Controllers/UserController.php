@@ -60,10 +60,7 @@ class UserController extends Controller
 
     function booking($id){
         if(Auth::user()->role != "user"){
-            return Response::json([
-                'statusCode'=> 401,
-                'statusMessage' => 'Autherization Failed'
-            ]);
+            return redirect('/hello');
         }
 
         $fk = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
@@ -127,6 +124,10 @@ class UserController extends Controller
             return redirect('/agency');
     }
     function profileuser(){
+        if(Auth::user()->role != "user"){
+            return redirect('/hello');
+        }
+
         $userId = Auth::user()->id; 
         //dd($userId);
         $userbook = DB::table('booking')->where('user_id',$userId)->get();

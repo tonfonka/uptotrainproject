@@ -23,10 +23,7 @@ class tripAgencyController extends Controller
     function index() {
 
         if(Auth::user()->role != "travel agency"){
-            return Response::json([
-                'statusCode'=> 401,
-                'statusMessage' => 'Autherization Failed'
-            ]);
+            return redirect('/hello');
         }
 
         $userId = Auth::user()->id;
@@ -140,10 +137,7 @@ class tripAgencyController extends Controller
 
    function showdetailtrip($id) {
             if(Auth::user()->role != "travel agency"){
-                return Response::json([
-                    'statusCode'=> 401,
-                    'statusMessage' => 'Autherization Failed'
-                ]);
+                return redirect('/hello');
             }
             $userId = Auth::user()->id;
             //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();

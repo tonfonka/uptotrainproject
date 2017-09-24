@@ -57,7 +57,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       <div class="topnav pull-right">
         <ul class="quick-menu pull-right clearfix">
-          <li><a href="javascript:;">Go Travel</a></li>
+          <li><a href="javascript:;">{{$travelagencies->agency_name_en}}</a></li>
           <li><a href="/_member/logout.php">ออกจากระบบ</a></li>
         </ul>
       </div>
