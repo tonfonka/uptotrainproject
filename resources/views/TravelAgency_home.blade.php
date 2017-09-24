@@ -38,8 +38,6 @@
                     <!-- Show trip here-->
                     <?php
                             $today =date("d-m-y");
-                            
-
                     ?>
                         <ul><h4>ทริปที่กำลังจะถึง</h4>
                             @foreach($travelagencies->trips as $trip)
@@ -51,7 +49,6 @@
                                                 <div class="panel-heading">
                                                     <h3>{{$trip->trips_name}}</h3>
                                                 </div>
-                                                
                                                 <table class="table">
                                                     <tr style="align:center;font-size:1.3em;">
                                                         <th>รอบการเดินทาง</th>
@@ -90,11 +87,9 @@
                         </ul>
                     <!-- Show trip here-->
                 </div>
-
             </div>
             <!-- Page Content -->
             <div class="container">
-
                 <!-- Marketing Icons Section -->
                 <div class="row">
                     <div class="col-lg-12">
