@@ -12,13 +12,11 @@
             font-family: 'Prompt';
             color: #555;
         }
-
         .invoice-box table {
             width: 100%;
             line-height: inherit;
             text-align: left;
         }
-
         .invoice-box table td {
             padding: 5px;
             vertical-align: top;
@@ -68,7 +66,6 @@
             font-weight: bold;
             text-align: center;
         }
-
         @media only screen and (max-width: 600px) {
             .invoice-box table tr.top table td {
                 width: 100%;
@@ -138,7 +135,6 @@
 $num_a = $book->number_adults ;
 $price_a = $tripround[0]->price_adult;
 $total_a = $num_a * $price_a;
-
 $num_c = $book->number_children ;
 $price_c = $tripround[0]->price_child;
 $total_c = $num_c * $price_c;

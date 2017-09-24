@@ -28,10 +28,6 @@ Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/agency', 'UserController@regisagency');
 Route::post('/agency','tripAgencyController@imageupload');
 
-
-
-
-
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
@@ -47,6 +43,7 @@ Route::post ( '/searcht', function () {
 		return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
 } );
 Route::get('/schedule/{id}','UserController@schedule');
+Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
 Route::post('/bookingsum','OmiseController@bookingstore');
 Route::get('/bookingsum','OmiseController@bookingsum');
@@ -96,8 +93,8 @@ Route::get('/checkregis', function(){
 });
 Route::get('/profileuser','UserController@profileuser')->middleware('auth');
 
-
-Route::get('/usererror', function () {
-	return view ('usererror');
-});
-
+Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
+Route::get('/hello', function () {
+	return view ('error/Brokebot');
+	});
+	Route::get('/shownumber/{id}','tripAgencyController@shownumber');
