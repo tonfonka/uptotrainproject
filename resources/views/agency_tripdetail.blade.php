@@ -62,7 +62,11 @@
                                 ?> 
                                 <td>
                                     <div class="progress">
+<<<<<<< HEAD
                                         <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%; color:black; ">
+=======
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%;color:#222;background-color:#34b055;">
+>>>>>>> dd01b44e32a4aaaabb66ea7d6943904a774aa869
                                         {{$percent}}%
                                         </div>
                                     </div>

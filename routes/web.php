@@ -93,3 +93,6 @@ Route::get('/checkregis', function(){
 Route::get('/profileuser','UserController@profileuser')->middleware('auth');
 
 Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
+Route::get('/hello', function () {
+	return view ('error/Brokebot');
+	});
