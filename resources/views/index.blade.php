@@ -38,7 +38,7 @@
     <div class="container">
         <div class="intro-text">
             <div class="intro-heading">Welcome</div>
-            <div class="intro-lead-in">Are you looking for some Trip ?</div><br><br>
+            <div class="intro-lead-in">Are you looking for a Trip ?</div><br><br>
 
             <!-- laravel <a href="#services" class="page-scroll btn btn-xl">LOG IN</a>-->
             @if(Auth::guest())

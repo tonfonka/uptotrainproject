@@ -21,6 +21,7 @@
     padding-right: 15px;background-color:#fff;border-color:#fff;
 "><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
   </div>
+<<<<<<< HEAD
  <?php
                     if($count == 0){
                         $sum = $triprounds->amount_seats;
@@ -32,12 +33,16 @@
                     }
                       $bookId = $triprounds->id;      
                     ?>
+=======
+
+>>>>>>> develop
   <div class="welcome about">
     <div class="container" align="center">
       <div class="row">
         @foreach($trip as $trips)
         <div>
           <h1>{{$trips->trips_name}}</h1>
+<<<<<<< HEAD
           <h4>รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}}
                     ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}</h4>
            <h4>จำนวนที่นั่งว่าง {{$sum}} คน จากจำนวนที่นั่งทั้งหมด {{$triprounds->amount_seats}}</h4>
@@ -45,6 +50,11 @@
           <p>จังหวัด{{$trips->trip_province}}</p>
           <p>{{$trips->trip_meal}} มื้อ</p>
            
+=======
+          <p>{{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
+          <p>จังหวัด{{$trips->trip_province}}</p>
+          <p>{{$trips->trip_meal}} มื้อ</p>
+>>>>>>> develop
           <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
           <br>
         </div>
@@ -165,6 +175,7 @@
   <script src="{{url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
   <!-- Bootstrap Core JavaScript -->
 
+<<<<<<< HEAD
   <!-- Plugin JavaScript -->
   <!-- Plugin JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
@@ -214,7 +225,48 @@
    }
 );
   </script>
+=======
+<!-- Theme JavaScript -->
+<script src="js/agency.min.js"></script>
+<script>
+  let allPerson = 0
+  $('#number_children').bind('click keyup', function() {
+    const value = $(this).val()
+    const multiple = {{$triprounds->price_child}}
+    $('#pchild').html("ราคารวมเด็กทั้งหมด" + value * multiple+"บาท")
+    const allChild = $('#number_children').val()*1
+    const allAdult = $('#number_adults').val()*1
+    $('#number_booking').val(allChild+allAdult)
+    $('#total_cost').val((allChild*{{$triprounds->price_child}})+(allAdult*{{$triprounds->price_adult}}))
+    if(isEnough()){
+      $('#summary').html('OK')
+    }else{
+      $('#summary').html('กรุณากรอกจำนวนคนใหม่')
+    }
+  })
+  $('#number_adults').bind('click keyup', function() {
+    const value = $(this).val()
+    const multiple = {{$triprounds->price_adult}} 
+    $('#padult').html("ราคารวมผู้ใหญ่ทั้งหมด" + value * multiple+"บาท")
+    const allChild = $('#number_children').val()*1
+    const allAdult = $('#number_adults').val()*1
+    $('#number_booking').val(allChild+allAdult)
+    $('#total_cost').val((allChild*{{$triprounds->price_child}})+(allAdult*{{$triprounds->price_adult}}))
+    if(isEnough()){
+      $('#summary').html('OK')
+    }else{
+      $('#summary').html('กรุณากรอกจำนวนคนใหม่')
+    }
+  })
+  function isEnough(){
+    const allChild = $('#number_children').val()*1
+    const allAdult = $('#number_adults').val()*1
+    return (allChild+allAdult) <= {{$sum}}
+  }
+</script>
+>>>>>>> develop
 </body>
 
 
 </html>
+        

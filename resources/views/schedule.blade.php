@@ -11,7 +11,6 @@
     <link href="/css/uptotrain2.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
-
 <body id="page-top" class="index">
     <div align="right">
         <a class="btn btn-primary" href={{ url( '/search') }} style="
@@ -24,7 +23,6 @@
     <!--<div class="container">-->
     <div class="container" id="about" align="center">
         <div class="row">
-       
             <!-- Project Details Go Here -->
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
@@ -105,6 +103,7 @@
                                     $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
                                     $sum = $amount-$seat;
                                 ?>
+<<<<<<< HEAD
                                 <tr align="center">
                                     <td>{{ $tripround->start_date }}</td>
                                     <td>{{$tripround->price_adult}}</td>
@@ -115,6 +114,19 @@
                                         <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
                                 </tr>
                                 @endforeach
+=======
+                                    <tr align="center">
+                                        <td>{{ $tripround->start_date }}</td>
+                                        <td>{{$tripround->price_adult}}</td>
+                                        <td>{{$tripround->price_child}}</td>
+                                        <td>{{$sum}}</td>
+                                        <?php
+                                    $tid="{{$tripround->id}}"
+                                    ?>
+                                            <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
+                                    </tr>
+                                    @endforeach
+>>>>>>> develop
                             </table>
                             <!-- end loop -->
                         </ul>
