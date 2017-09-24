@@ -95,9 +95,4 @@ Route::get('/checkregis', function(){
 	}
 });
 Route::get('/profileuser','UserController@profileuser')->middleware('auth');
-
-
-Route::get('/usererror', function () {
-	return view ('usererror');
-});
-
+Route::get('/showdetailtrip','tripAgencyController@showdetailtrip');

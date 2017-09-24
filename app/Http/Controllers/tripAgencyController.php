@@ -129,6 +129,22 @@ class tripAgencyController extends Controller
             return view('/imagegallery',['tripID'=>$tripID->id]);
     
     }
+   function showdetailtrip($id){
+        $schedules = schedules::where('trip_id',$id)->get();
+        $triprounds = tripround::where('trip_id',$id)->get();
+        $booking =DB::table('booking')->where('tripround_id',$id)->get();
+        $sumbook = $booking->sum('number_booking');
+        $trip = trip::where('id',$id)->first();
+        $data = array(
+            'schedules' => $schedules,
+            'triprounds' => $triprounds,
+            'trip' => $trip,
+            'title' => 'Schedules',
+            'sumbook' =>$sumbook
+        );
+        return view('agency_tripdetail');
+
+    }
     public function imageindex()
     {
       //$images = DB::table('imagegallery')->get();
