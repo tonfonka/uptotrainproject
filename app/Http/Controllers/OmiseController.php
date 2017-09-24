@@ -133,6 +133,28 @@ class OmiseController extends Controller
         );
         return view('bookingsum', $data);
     }
+        public function bookingsums()
+        {
+            $booking = DB::table('booking')->get();
+            $mbook =$booking->max('id');
+            $book = DB::table('booking')->where('id',$mbook)->first();
+            $nu = DB::table('booking')->select('tripround_id')->where('id',$mbook)->pluck('tripround_id');
+            $u= DB::table('booking')->select('user_id')->where('id',$mbook)->pluck('user_id');
+            $triprounds = DB::table('triprounds')->where('id',$nu)->get();
+            $tr = DB::table('triprounds')->select('trip_id')->where('id',$nu)->pluck('trip_id');
+           
+            $user = DB::table('users')->where('id',$u)->get();
+            $trip = DB::table('trips')->where('id',$tr)->get();
+            $data = array(
+                'booking' => $booking,
+                'mbook' =>$mbook,
+                'book' =>$book,
+                'tripround' =>$triprounds,
+                'user' => $user,
+                'trip'=>$trip
+            );
+            return view('paysum', $data);
+    }
     
     
     

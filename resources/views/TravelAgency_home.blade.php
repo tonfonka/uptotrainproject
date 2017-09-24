@@ -51,7 +51,6 @@
                                                 
                                                 </a>
                                                 </div>
-                                                
                                                 <table class="table">
                                                     <tr style="align:center;font-size:1.3em;">
                                                         <th>รอบการเดินทาง</th>
@@ -104,11 +103,9 @@
                         </ul>
                     <!-- Show trip here-->
                 </div>
-
             </div>
             <!-- Page Content -->
             <div class="container">
-
                 <!-- Marketing Icons Section -->
                 <div class="row">
                     <div class="col-lg-12">

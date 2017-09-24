@@ -46,7 +46,8 @@ Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
 Route::post('/bookingsum','OmiseController@bookingstore');
-Route::get('/bookingsum','OmiseController@bookingsum');;
+Route::get('/bookingsum','OmiseController@bookingsum');
+Route::get('/paysum','OmiseController@bookingsums');
 Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {

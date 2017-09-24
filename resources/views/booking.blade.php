@@ -22,6 +22,9 @@
 "><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
   </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> supich
  <?php
                     if($count == 0){
                         $sum = $triprounds->amount_seats;
@@ -33,15 +36,19 @@
                     }
                       $bookId = $triprounds->id;      
                     ?>
+<<<<<<< HEAD
 =======
 
 >>>>>>> develop
+=======
+>>>>>>> supich
   <div class="welcome about">
     <div class="container" align="center">
       <div class="row">
         @foreach($trip as $trips)
         <div>
           <h1>{{$trips->trips_name}}</h1>
+<<<<<<< HEAD
 <<<<<<< HEAD
           <h4>รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}}
                     ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}</h4>
@@ -55,6 +62,15 @@
           <p>จังหวัด{{$trips->trip_province}}</p>
           <p>{{$trips->trip_meal}} มื้อ</p>
 >>>>>>> develop
+=======
+          <h4>รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}}
+                    ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}</h4>
+           <h4>จำนวนที่นั่งว่าง {{$sum}} คน จากจำนวนที่นั่งทั้งหมด {{$triprounds->amount_seats}}</h4>
+          <p>{{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
+          <p>จังหวัด{{$trips->trip_province}}</p>
+          <p>{{$trips->trip_meal}} มื้อ</p>
+           
+>>>>>>> supich
           <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
           <br>
         </div>
@@ -148,15 +164,30 @@
                 </div>
                 จำนวนผู้ใหญ่
                 <input type="number" name="number_adults" id="number_adults" min="0" max={{$sum}} value="0"> ราคา :: {{$triprounds->price_adult}}
+<<<<<<< HEAD
                 <h3 id="padult"></h3>
                 สถานะการจอง :
                 <h3 id="summary"></h3>
+=======
+
+                <h3 id="padult"></h3>
+                สถานะการจอง :
+                <h3 id="summary"></h3>
+
+>>>>>>> supich
                 <h4>
                   จำนวนคนจองทั้งหมด :
                   
                   <input type="number" id="number_booking" name="number_booking" readonly>
+<<<<<<< HEAD
                 </h4>
                 <br>
+=======
+
+                </h4>
+                <br>
+
+>>>>>>> supich
                 <h4>ราคารวมทั้งหมด :
                   
                   <input type="number" id="total_cost" name="total_cost" readonly>
@@ -176,6 +207,9 @@
   <!-- Bootstrap Core JavaScript -->
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> supich
   <!-- Plugin JavaScript -->
   <!-- Plugin JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
@@ -213,10 +247,15 @@
         $('#summary').html('กรุณากรอกจำนวนคนใหม่')
       }
     })
+<<<<<<< HEAD
+=======
+
+>>>>>>> supich
     function isEnough() {
       const allChild = $('#number_children').val() * 1
       const allAdult = $('#number_adults').val() * 1
       return (allChild + allAdult)<={{$sum}}
+<<<<<<< HEAD
     }
     $("#booking_btn").click(
    function notallow() {
@@ -265,8 +304,18 @@
   }
 </script>
 >>>>>>> develop
+=======
+    }
+
+    $("#booking_btn").click(
+   function notallow() {
+     
+      window.location.replace("/bookingsum");
+   }
+);
+  </script>
+>>>>>>> supich
 </body>
 
 
 </html>
-        
