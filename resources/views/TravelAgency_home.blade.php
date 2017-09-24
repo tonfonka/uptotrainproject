@@ -70,10 +70,11 @@
                                                         <?php
                                                          
                                                          $sumbook = DB::table('booking')
-                                                     ->where('tripround_id',$tripRound->id)->get();
+                                                         ->where([['tripround_id',$tripRound->id],['status','=','success']])->get();
                                                      $sumnumber = $sumbook->sum('number_booking');
                                                      $total = $sumbook->sum('total_cost');
                                                         $id=$tripRound->id;
+
                                                      ?> 
                                                          <td> 
                                                          
