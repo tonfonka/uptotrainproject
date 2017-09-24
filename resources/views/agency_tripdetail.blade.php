@@ -28,9 +28,9 @@
                     ?>
                 <div class="row">
                     <div class="col-lg-12">
-                    @foreach($travelagencies->trips as $trip)
-                                @if(count($trip->tripRounds) > 0 )
-                        <h1 class="page-header">{{$trip->trips_name}}</h1>
+                    
+                               
+                        <h1 class="page-header">{{$trips[0]->trips_name}}</h1>
                     </div>
                     <div class="clearfix"></div>
                     <div>
@@ -45,27 +45,29 @@
                                     <center>รายชื่อคนที่จอง</center>
                                 </th>
                             </tr>
-                            @foreach($trip->tripRounds as $tripRound)
+                            @foreach($tripround as $tripRound)
                             <tr>
                                 <td>{{$tripRound->start_date}} </a>
                                 </td>
                                 <td>{{$tripRound->departure_date}}</a>
-                                </td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-                                            10%
-                                        </div>
-                                    </div>
-                                </td>
-                                <?php
+                                </td> <?php
                                                          
                                            $sumbook = DB::table('booking')
-                                            ->where('tripround_id',$tripRound->id)->get();
+                                            ->where([['tripround_id',$tripRound->id],['status','=','success']])->get();
+                                            //->where([['tripround_id',$tid],['status','=','success']])
                                            $sumnumber = $sumbook->sum('number_booking');
                                             $total = $sumbook->sum('total_cost');
                                             $id=$tripRound->id;
+                                            $percent =(($sumnumber)*($tripRound->amount_seats))/100;
                                 ?> 
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%;">
+                                        {{$percent}}%
+                                        </div>
+                                    </div>
+                                </td>
+                               
                                 <td>{{$sumnumber}}/{{$tripRound->amount_seats}}</td>
                                 <td> {{$total}}</td>
                                 <td>
@@ -84,8 +86,7 @@
             </div>
             <!-- end Page Content -->
         </div>
-        @endif
-                            @endforeach
+        
         <!-- end products-page -->
     </div>
     <!-- end container -->

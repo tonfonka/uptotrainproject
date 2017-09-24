@@ -76,8 +76,8 @@
                                                         $id=$tripRound->id;
                                                      ?> 
                                                          <td> 
-                                                         <a  href="/tripdetail/{{$tripRound->id}}" name="{{$id}}"> 
-                                                         {{$sumnumber}}</a>
+                                                         
+                                                         {{$sumnumber}}
                                                         </td>
                                                         <td>
                                                             {{$total}}

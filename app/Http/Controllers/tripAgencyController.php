@@ -147,10 +147,16 @@ class tripAgencyController extends Controller
             }
             $userId = Auth::user()->id;
             //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
-            $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+            //$travelagencies = travelagency::where([['user_id', Auth::user()->id],['trips.id',$id]])->first();
+            $travelagencies =  DB::table('travelagency')->where('user_id', Auth::user()->id)->first();
+            //$trip = DB::table('trips')->where([['id',$id],['travelagency_id', Auth::user()->id]])->get();
+            $trips = DB::table('trips')->where('id',$id)->get();
+            $tripround = DB::table('triprounds')->where('trip_id',$id)->get();
+            //dd($trips);
                     $data = array(
-                        'travelagencies' => $travelagencies
-                        
+                        'travelagencies' => $travelagencies,
+                        'trips' => $trips,
+                        'tripround' => $tripround
                     );
     
         return view('agency_tripdetail',$data);
