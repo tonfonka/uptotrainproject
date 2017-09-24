@@ -57,13 +57,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       <div class="topnav pull-right">
         <ul class="quick-menu pull-right clearfix">
-<<<<<<< HEAD
-          <li><a href="javascript:;"></a></li>
-          <li><a href="/logout">ออกจากระบบ</a></li>
-=======
           <li><a href="javascript:;">{{$travelagencies->agency_name_en}}</a></li>
-          <li><a href="/_member/logout.php">ออกจากระบบ</a></li>
->>>>>>> dd01b44e32a4aaaabb66ea7d6943904a774aa869
+          <li><a href="/logout">ออกจากระบบ</a></li>
         </ul>
       </div>
     </div>

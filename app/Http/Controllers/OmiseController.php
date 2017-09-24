@@ -52,15 +52,8 @@ class OmiseController extends Controller
             'card' => $_POST['omiseToken'],
             'metadata' => ['name' => $name, 'booking_id' => $booking_id]
           ));
-          echo '<pre>';
-          print_r($_POST);
-          echo '</pre>';
           
-          echo '<hr>';
-          
-          echo '<pre>';
-          print_r($charge);
-          echo '</pre>';
+          return redirect('/profileuser');
      }
      function charge(Request $request){
         $data = $request->json()->all();
