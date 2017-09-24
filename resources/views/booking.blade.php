@@ -138,19 +138,15 @@
                 </div>
                 จำนวนผู้ใหญ่
                 <input type="number" name="number_adults" id="number_adults" min="0" max={{$sum}} value="0"> ราคา :: {{$triprounds->price_adult}}
-
                 <h3 id="padult"></h3>
                 สถานะการจอง :
                 <h3 id="summary"></h3>
-
                 <h4>
                   จำนวนคนจองทั้งหมด :
                   
                   <input type="number" id="number_booking" name="number_booking" readonly>
-
                 </h4>
                 <br>
-
                 <h4>ราคารวมทั้งหมด :
                   
                   <input type="number" id="total_cost" name="total_cost" readonly>
@@ -206,13 +202,11 @@
         $('#summary').html('กรุณากรอกจำนวนคนใหม่')
       }
     })
-
     function isEnough() {
       const allChild = $('#number_children').val() * 1
       const allAdult = $('#number_adults').val() * 1
       return (allChild + allAdult)<={{$sum}}
     }
-
     $("#booking_btn").click(
    function notallow() {
      
@@ -224,3 +218,4 @@
 
 
 </html>
+        
