@@ -73,7 +73,20 @@
                 <a href="search">Search</a>
               </li>
               <li>
-                <a href="profileuser">profile</a>
+
+                @if(Auth::guest())
+            <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
+            @else
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                        LOG OUT
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @endif
               </li>
             </ul>
 
@@ -115,7 +128,19 @@
             <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
             <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
             <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
-            <li><a href="profileuser"><span class="glyphicon glyphicon-menu-right"></span> Profile</a></li>
+            @if(Auth::guest())
+           <li> <a href="{{ url('/login')}}" class="glyphicon glyphicon-menu-right">LOG IN</a></li>
+            @else
+            <li> <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="glyphicon glyphicon-menu-right">
+                        LOG OUT
+            </a></li>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @endif
             
           </ul>
         </div>
@@ -151,7 +176,6 @@
     jQuery(document).ready(function ($) {
       $(".scroll").click(function (event) {
         event.preventDefault();
-
         $('html,body').animate({
           scrollTop: $(this.hash).offset().top
         }, 1000);
@@ -170,11 +194,9 @@
       	easingType: 'linear' 
       };
       */
-
       $().UItoTop({
         easingType: 'easeOutQuart'
       });
-
     });
   </script>
   <script src="js/bootstrap2.js"></script>

@@ -14,14 +14,19 @@ class trip extends Model
      protected $primarykey = 'id';
 
      public function tripRounds(){
-        return $this->hasMany('App\tripround','id');
+        return $this->hasMany('App\tripround','trip_id');
      }
-     public function stations(){
-         return $this->belongsTo('App\station','source_id','destination_id');
+     public function ImageGallery(){
+        return $this->hasMany('App\ImageGallery','trip_id');
      }
+     
+
+    //  public function stations(){
+    //      return $this->belongsTo('App\station','source_id','destination_id');
+    //  }
 
      public function travelagency(){
-         return $this->belongsTo('App\travelagency','travelagency_id');
+         return $this->belongsTo('App\travelagency','id');
      }
 
      public function schedules(){

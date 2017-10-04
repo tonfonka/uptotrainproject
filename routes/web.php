@@ -14,14 +14,20 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/addtrip','addtripController');
-Route::get('/addTrip', function()
-{
-	return View::make('/addtrip');
-});
-Route::post('/addtripround','addtriproundController@store');
-Route::resource('/edittrip','addtripController');
-Route::resource('/agency', 'showtripController'); 
+
+Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
+//Route::post('/addtrip','tripAgencyController@tripstore');
+Route::post('/imagegallery','tripAgencyController@tripstore');
+Route::get('/imagegallery', 'tripAgencyController@imageindex');
+Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::post('/imagegallery', 'ImageGalleryController@imageupload');
+Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
+
+
+Route::get('/agency', 'showtripController@index')->middleware('auth');
+Route::post('/agency', 'UserController@regisagency');
+Route::post('/agency','tripAgencyController@imageupload');
+
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
@@ -37,9 +43,11 @@ Route::post ( '/searcht', function () {
 		return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
 } );
 Route::get('/schedule/{id}','UserController@schedule');
-Route::get('/booking/{id}','UserController@booking');
+Route::get('/schedules/{id}','UserController@schedules');
+Route::get('/booking/{id}','UserController@booking')->middleware('auth');
 Route::post('/bookingsum','OmiseController@bookingstore');
-Route::get('/bookingsum','OmiseController@bookingsum');;
+Route::get('/bookingsum','OmiseController@bookingsum');
+Route::get('/paysum','OmiseController@bookingsums');
 Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
@@ -53,4 +61,40 @@ Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
+Route::get('/regisagency','UserController@res');
+Route::post('/regisagency','UserController@regisagency');
 Route::post('/webhook','OmiseController@webhook');
+
+Route::get('/checkRole', function(){
+	if(Auth::guest()){
+		return redirect('/home');
+	}else{
+		if(Auth::user()->role == "admin"){
+			return redirect('/home');
+		}else if(Auth::user()->role == "travel agency"){
+			return redirect('/agency');
+		}else if(Auth::user()->role == "user"){
+			return redirect('/home');
+		}
+	}
+});
+Route::get('/checkregis', function(){
+	if(Auth::guest()){
+		return redirect('/home');
+	}else{
+		if(Auth::user()->role == "admin"){
+			return redirect('/home');
+		}else if(Auth::user()->role == "travel agency"){
+			return redirect ('/regisagency');
+		}else if(Auth::user()->role == "user"){
+			return redirect('/profileuser');
+		}
+	}
+});
+Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+
+Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
+Route::get('/hello', function () {
+	return view ('error/Brokebot');
+	});
+	Route::get('/shownumber/{id}','tripAgencyController@shownumber');

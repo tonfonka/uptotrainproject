@@ -11,7 +11,6 @@
     <link href="/css/uptotrain2.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
-
 <body id="page-top" class="index">
     <div align="right">
         <a class="btn btn-primary" href={{ url( '/search') }} style="
@@ -24,13 +23,12 @@
     <!--<div class="container">-->
     <div class="container" id="about" align="center">
         <div class="row">
-       
             <!-- Project Details Go Here -->
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
             <p>ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน</p>
             <p>บริษัท {{ $trip->trip_nday }}</p>
-            <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
+            <img class="img-responsive img-centered" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
             <div class="container">
@@ -83,14 +81,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-9">
                         <ul class="list-inline">
                             <table class="table">
                                 <tr align="center">
                                     <th>วันที่เดินทาง</th>
                                     <th>ราคาผู้ใหญ่</th>
                                     <th>ราคาเด็ก</th>
+                                    <th>จำนวนที่นั่งว่าง</th>
                                     <th>จำนวนที่นั่ง</th>
                                     <th></th>
                                 </tr>
@@ -99,16 +98,18 @@
                                 <?php
                                     $amount =  $tripround->amount_seats;
                         
-                                    $sum = $amount-$sumbook;   
+                                    
+                                    $tid=$tripround->id;
+                                    $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
+                                    $sum = $amount-$seat;
                                 ?>
                                 <tr align="center">
                                     <td>{{ $tripround->start_date }}</td>
                                     <td>{{$tripround->price_adult}}</td>
                                     <td>{{$tripround->price_child}}</td>
-                                    <td>{{$sum}}</td>
-                                    <?php
-                                    $tid="{{$tripround->id}}"
-                                    ?>
+                                    <td>{{$sum}} </td>
+                                    <td>{{$amount}}</td>
+                                    
                                         <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
                                 </tr>
                                 @endforeach
