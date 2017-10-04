@@ -73,7 +73,20 @@
                 <a href="search">Search</a>
               </li>
               <li>
-                <a href="profileuser">profile</a>
+
+                @if(Auth::guest())
+            <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
+            @else
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                        LOG OUT
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @endif
               </li>
             </ul>
 
