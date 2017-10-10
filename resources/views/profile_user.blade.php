@@ -40,7 +40,7 @@
 													if(($tripname[0]->start_date)<=$today){
 
 																									
-													echo "ชื่อทริป :".($tripname[0]->trips_name)."<br>";
+													echo "ชื่อทริป : ".($tripname[0]->trips_name)."<br>";
 													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
 													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
 													echo "<hr>";
@@ -63,7 +63,7 @@
 					
 							<h4>กำลังไปเร็วๆนี้</h4>
 							<div class="image-box style14">
-								<article class="box" style="padding-top: 50px; padding-left:50px;">
+								<article class="box" style="padding-top: 0px; padding-left:0px;">
 									<div class="details">
 										<h4 >	
 										<?php
@@ -80,16 +80,15 @@
 													if(($tripname[0]->start_date)>=$today){
 														
 														
-														echo "ชื่อทริป :";
+														echo "ชื่อทริป : ";
 														
 														echo '<a href="/schedules/'.$tripname[0]->id.'">'.($tripname[0]->trips_name).'</a><br>';												
-													//echo " :".($tripname[0]->trips_name)."<br>";
 													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
-												echo "วันสิ้นสุดการเดินทาง".($tripname[0]->departure_date)."<br>";
+												echo "วันสิ้นสุดการเดินทาง : ".($tripname[0]->departure_date)."<br>";
 													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
 
-													echo "สถานะการจอง :";
-													if($tripname[$i]->status != 'success'){
+													echo "สถานะการจอง : ";
+													if($tripname[0]->status != 'success'){
 														echo "กรุณาจ่ายเงิน";
 													}else{
 															echo "จ่ายเงินสำเร็จแล้ว";
