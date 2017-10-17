@@ -33,15 +33,7 @@ Route::get('/agreement',function(){
 });
 
 Route::get('/search', 'UserController@search');
-Route::post ( '/searcht', function () {
-	$q = Input::get ( 'q' );
-	$user = DB::table('trips')
-	->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);;
-	if (count ( $user ) > 0)
-		return view ( 'tripuser_resultsearch' )->withDetails ( $user )->withQuery ( $q );
-	else
-		return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
-} );
+Route::post ( '/searcht', 'UserController@searchResult' );
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
@@ -98,3 +90,10 @@ Route::get('/hello', function () {
 	return view ('error/Brokebot');
 	});
 	Route::get('/shownumber/{id}','tripAgencyController@shownumber');
+
+	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
+
+	Route::get('verify/{email}/{verifyToken}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
+
+	
+	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');

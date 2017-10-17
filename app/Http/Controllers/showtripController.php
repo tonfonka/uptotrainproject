@@ -197,4 +197,5 @@ class showtripController extends Controller
 
     return view('offices.index',compact('offices'));
 }
+
 }

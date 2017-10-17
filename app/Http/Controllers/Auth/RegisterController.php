@@ -15,6 +15,9 @@ use App\trip;
 use App\booking;
 use App\travelagency;
 use Auth;
+use Illuminate\support\Str;
+use Mail;
+use App\Mail\verifyEmail;
 class RegisterController extends Controller
 {
     /*
@@ -71,16 +74,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'role' => $data['role'],
             'password' => bcrypt($data['password']),
+            'verifyToken' => Str::random(40),
         ]);
        // $userId = DB::table('users')->where('role', $data['role'])->first();
         //return view('regis_agen', ['userId'=> $userId->id]);
-        
+        $thisUser = User::findOrFail($user->id);
+        $this->sendEmail($thisUser);
+        return $user;
     }
+
     function regisAgency(Request $request)
     {
         $agency =  DB::table('travelagency')
@@ -94,10 +101,30 @@ class RegisterController extends Controller
             ]);
              return view('add_tripround', ['trips' => $trips]);
     }
+
+    
+
+    public function sendEmail($thisUser){
+        Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
+    }
+
+    public function verifyEmailFirst(){
+        return view('email.verifyEmailFirst');
+    }
+    
     function index()
     {
         $userId = Auth::user()->id;
         dd($userId);
         return view('regis_agency',['userId'=> $userId]);
+    }
+
+    public function sendEmailDone($email,$verifyToken){
+        $user = User::where(['email'=>$email,'verifyToken'=>$verifyToken])->first();
+        if($user){
+            user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
+        }else{
+            return 'user not found';
+        }
     }
 }

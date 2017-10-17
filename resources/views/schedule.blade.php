@@ -9,6 +9,7 @@
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- เปิดแล้ว Theme CSS -->
     <link href="/css/uptotrain2.min.css" rel="stylesheet">
+   
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
 <body id="page-top" class="index">

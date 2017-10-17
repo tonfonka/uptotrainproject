@@ -9,28 +9,28 @@
   <meta name="author" content="">
 
   <!-- Bootstrap Core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
 
   <!-- Custom Fonts -->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" re l="stylesheet" type="text/css">
+  <link href="{{ URL::asset('/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
   <!--Theme CSS-->
-  <link href="css/uptotrain2.min.css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/uptotrain2.min.css') }}" rel="stylesheet" />
 
 
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
-  <link rel="stylesheet" href="css/swipebox.css">
-  <link rel="stylesheet" href="css/ziehharmonika.css">
+  <link href="{{ URL::asset('/css/style.css') }}" type="text/css" rel="stylesheet" media="all">
+  <link rel="stylesheet" href="{{ URL::asset('/css/swipebox.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('/css/ziehharmonika.css') }}">
   <!-- //Custom Theme files -->
   <!-- font-awesome icons -->
-  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/font-awesome.css') }}" rel="stylesheet">
   <!-- //font-awesome icons -->
   <!-- js -->
-  <script src="js/jquery-2.2.3.min.js"></script>
+  <script src="{{ URL::asset('/js/jquery-2.2.3.min.js') }}"></script>
   <!-- //js -->
   <!-- web-fonts -->
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
@@ -49,7 +49,7 @@
 
 <body>
   <!-- banner -->
-  <div class="banner about-banner" style="background-image:url('img/2.jpg')">
+  <div class="banner about-banner" style="background-image:{{ URL::asset('/img/2.jpg') }}">
     <div class="header agileinfo-header">
       <!-- header -->
       <nav id="mainNav" class="navbar-inverse navbar-custom2 navbar-fixed-top">
@@ -129,12 +129,12 @@
             <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
             <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
             @if(Auth::guest())
-           <li> <a href="{{ url('/login')}}" class="glyphicon glyphicon-menu-right">LOG IN</a></li>
+           <li> <a href="{{ url('/login')}}"><span class="glyphicon glyphicon-menu-right"></span> Login</a></li>
             @else
             <li> <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="glyphicon glyphicon-menu-right">
-                        LOG OUT
+                        <span class="glyphicon glyphicon-menu-right"></span> Logout
             </a></li>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

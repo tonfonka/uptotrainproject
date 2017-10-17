@@ -30,7 +30,10 @@
                     @foreach($trips as $trip)
                     <h1>{{$trip->trips_name}}</h1>
                     @endforeach
-                        <h3>รอบ {{$tripround->start_date}} ถึง 	{{$tripround->departure_date}}</h1>
+                        <h3>รอบ {{date('d/m/Y', strtotime($tripround->start_date))}}  ถึง 	{{date('d/m/Y', strtotime($tripround->departure_date))}}</h1>
+                        <h3>จำนวนรายชื่อที่มีการจองทั้งหมด {{$username->count()}} คน </h3>
+                        
+                        
                     </div>
 
                     <div>

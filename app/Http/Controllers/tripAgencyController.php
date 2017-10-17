@@ -159,6 +159,8 @@ class tripAgencyController extends Controller
         return view('agency_tripdetail',$data);
 
     }
+
+    
     function shownumber($id) {
         if(Auth::user()->role != "travel agency"){
             return redirect('/hello');
@@ -237,5 +239,26 @@ class tripAgencyController extends Controller
     	return back()
     		->with('success','Image removed successfully.');	
     }
+
+    function showAgencyDetail($id) {
+       
+        //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
+        //$travelagencies = travelagency::where([['user_id', Auth::user()->id],['trips.id',$id]])->first();
+        $travelagencies =  DB::table('travelagency')->where('id',$id )->first();
+        $trips = DB::table('trips')->where('travelagency_id',$id)->get();
+        //$trip = DB::table('trips')->where([['id',$id],['travelagency_id', Auth::user()->id]])->get();
+        //$trips = DB::table('trips')->where('id',$id)->get();
+        //$tripround = DB::table('triprounds')->where('trip_id',$id)->get();
+        //dd($trips);
+                $data = array(
+                    'travelagencies' => $travelagencies,
+                    'trips' => $trips,
+                    //'tripround' => $tripround
+                );
+
+    return view('profileagency',$data);
+
+}
+
     
 }

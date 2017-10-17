@@ -17,24 +17,9 @@
     <link href="/css/search_tripUser/component.css" rel='stylesheet' type='text/css' />
     <div class="container">
         <div class="products-page">
-            <div class="products">
-                <div class="product-listy">
-                    <h2>All trips</h2>
-                    <ul class="product-list">
-                        <li><a href="">New Trips</a></li>
-                        <li><a href="">Available Tour</a></li>
-                        <li><a href="">Hot Price</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="new-product">
+            
                 <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-list">
-                    <div class="pages">
-                     <h4>
-                     </h4>
-                       
-                    </div>
-                    <div class="clearfix"></div>
+                    
                     <!-- Show trip here-->
                     <?php
                             $today =date("d-m-y");
@@ -51,6 +36,7 @@
                                                 
                                                 </a>
                                                 </div>
+                                                <div>
                                                 <table class="table">
                                                     <tr style="align:center;font-size:1.3em;">
                                                         <th>รอบการเดินทาง</th>
@@ -103,14 +89,14 @@
                         </ul>
                     <!-- Show trip here-->
                 </div>
-            </div>
+            
             <!-- Page Content -->
             <div class="container">
                 <!-- Marketing Icons Section -->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            COMMENTION
+                            COMMENT
                         </h1>
                     </div>
                     <div class="col-md-4">
@@ -121,7 +107,7 @@
                             <div class="panel-body">
                                 <p>
                                     <div class="alert alert-success" role="alert">
-                                        Well done! You have n new COMMENTION .
+                                        Well done! You have new comment.
                                     </div>
                                 </p>
                                 <a href="comment_TRIP.html" class="btn btn-default">SHOW NOW</a>
@@ -136,7 +122,7 @@
                             <div class="panel-body">
                                 <p>
                                     <div class="alert alert-success" role="alert">
-                                        Well done! You have n new COMMENTION .
+                                        Well done! You have new comment.
                                     </div>
                                 </p>
                                 <a href="comment_TRIP.html" class="btn btn-default">SHOW NOW</a>
