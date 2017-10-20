@@ -18,6 +18,7 @@ use Auth;
 use Illuminate\support\Str;
 use Mail;
 use App\Mail\verifyEmail;
+use Session;
 class RegisterController extends Controller
 {
     /*
@@ -74,6 +75,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Session::flash('status','Registered! but verify your email to activate your account');
         $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -122,7 +124,7 @@ class RegisterController extends Controller
     public function sendEmailDone($email,$verifyToken){
         $user = User::where(['email'=>$email,'verifyToken'=>$verifyToken])->first();
         if($user){
-            user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
+            return user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
         }else{
             return 'user not found';
         }

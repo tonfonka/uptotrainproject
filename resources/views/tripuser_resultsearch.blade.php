@@ -70,9 +70,7 @@
                                         <div class="inner_content clearfix">
                                             <div class="product_image">
                                                 <img src="/images/{{$trips->image}}" class="img-responsive" alt="" />
-                                                <div class="mask">
-                                                    <div class="info">Quick View</div>
-                                                </div>
+                                               
                                                 <div class="product_container">
                                                     <div class="cart-center">
                                                         <p class="title">{{$trips->trips_name}}</p>
@@ -80,7 +78,12 @@
                                                            <a href="/profileagency/{{$trips->travelagency_id}}"> 
                                                            <p>บริษัท {{$t[0]->agency_name_en}}</p>
                                                            </a>
-                                                            <p>ระยะเวลา {{$trips->trip_nday}} วัน {{$trips->trip_nnight}}คืน</p>
+                                                           @if($trips->trip_nnight > 0)
+<p>ระยะเวลา {{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
+@else
+<p>ระยะเวลา {{$trips->trip_nday}} วัน</p>
+                                                            @endif
+                                                            
                                                     </div>
                                                     <div class="clearfix"></div>
                                                 </div>
@@ -92,7 +95,7 @@
                             <div class="cbp-vm-details">
                                 <p>{{$trips->trip_description}}</p>
                             </div>
-                            <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$trips->id}}">Add to cart</a>
+                            <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$trips->id}}">View Detail</a>
                         </li>
                         @endforeach
                     </ul>

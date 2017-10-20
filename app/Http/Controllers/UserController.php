@@ -40,6 +40,7 @@ class UserController extends Controller
   
         $schedules = schedules::where('trip_id',$id)->get();
         $triprounds = tripround::where('trip_id',$id)->get();
+        
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
         $sumbook = $booking->sum('number_booking');
         $trip = trip::where('id',$id)->first();
@@ -48,7 +49,8 @@ class UserController extends Controller
             'triprounds' => $triprounds,
             'trip' => $trip,
             'title' => 'Schedules',
-            'sumbook' =>$sumbook
+            'sumbook' =>$sumbook,
+            
         );
         return view('schedule', $data);
     }

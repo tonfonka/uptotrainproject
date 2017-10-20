@@ -66,9 +66,7 @@
                                             <div class="inner_content clearfix">
                                                 <div class="product_image">
                                                     <img src="/images/{{$tripuser->image}}" class="img-responsive" alt="" />
-                                                    <div class="mask">
-                                                        <div class="info">Quick View</div>
-                                                    </div>
+                                                   
                                                     <div class="product_container">
                                                         <div class="cart-center">
                                                             
@@ -84,10 +82,15 @@
                                 <p class="title">{{$tripuser->trips_name}}</p>
                                                             <p>จังหวัด {{$tripuser->trip_province}}</p>
                                                             <a href="/profileagency/{{$tripuser->travelagency_id}}"><p>บริษัท {{$tripagent->agency_name_en}}</p><br></a>
-                                                            <p>ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}}คืน</p>
+                                                            @if($tripuser->trip_nnight > 0)
+ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}} คืน
+@else
+ระยะเวลา {{$tripuser->trip_nday}} วัน
+                                                            @endif
+                                                            
                                     <p>{{$tripuser->trip_description}}</p>
                                 </div>
-                                <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$tripuser->id}}">Add to cart</a>
+                                <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$tripuser->id}}">View Detail</a>
                             </li>
                         @endforeach
                     </ul>
