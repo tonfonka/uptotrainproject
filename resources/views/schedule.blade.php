@@ -9,6 +9,7 @@
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- เปิดแล้ว Theme CSS -->
     <link href="/css/uptotrain2.min.css" rel="stylesheet">
+   
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
 <body id="page-top" class="index">
@@ -26,8 +27,14 @@
             <!-- Project Details Go Here -->
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
-            <p>ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน</p>
-            <p>บริษัท {{ $trip->trip_nday }}</p>
+           
+            @if($trip->trip_nnight > 0)
+            ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน
+            @else
+            ระยะเวลา {{ $trip->trip_nday }} วัน
+            @endif
+            
+            <p>บริษัท {{ $trip->agency}}</p>
             <img class="img-responsive img-centered" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
@@ -56,7 +63,7 @@
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{ $schedule->schedule_time }}</h4>
+                                            <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
                                             <h4 class="subheading">{{ $schedule->schedule_place }}</h4>
                                         </div>
                                         <div class="timeline-body">
@@ -104,7 +111,7 @@
                                     $sum = $amount-$seat;
                                 ?>
                                 <tr align="center">
-                                    <td>{{ $tripround->start_date }}</td>
+                                    <td>{{date('d/m/Y', strtotime($tripround->start_date ))}}</td>
                                     <td>{{$tripround->price_adult}}</td>
                                     <td>{{$tripround->price_child}}</td>
                                     <td>{{$sum}} </td>

@@ -11,8 +11,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <title>Up To train - @yield('title')</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="keywords" content="Holiday Spot Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
   <script type="application/x-javascript">
     addEventListener("load", function () {
       setTimeout(hideURLbar, 0);

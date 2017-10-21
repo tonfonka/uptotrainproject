@@ -27,10 +27,7 @@ class showtripController extends Controller
     public function index()
     {
         if(Auth::user()->role != "travel agency"){
-            return Response::json([
-                'statusCode'=> 401,
-                'statusMessage' => 'Autherization Failed'
-            ]);
+            return redirect('/hello');
             }
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         
@@ -200,4 +197,5 @@ class showtripController extends Controller
 
     return view('offices.index',compact('offices'));
 }
+
 }

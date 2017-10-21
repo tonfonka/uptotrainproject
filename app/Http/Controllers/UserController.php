@@ -24,11 +24,23 @@ class UserController extends Controller
         return view('tripuser',['trips'=>$trips]);
     }
 
+    function searchResult(){
+        $q = Input::get ( 'q' );
+       
+        $trips = DB::table('trips')
+        ->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);
+        if (count ( $trips ) > 0)
+            return view ( 'tripuser_resultsearch' )->withDetails ( $trips )->withQuery ( $q );
+        else
+            return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
+   }
+
 
     function schedule($id){
   
         $schedules = schedules::where('trip_id',$id)->get();
         $triprounds = tripround::where('trip_id',$id)->get();
+        
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
         $sumbook = $booking->sum('number_booking');
         $trip = trip::where('id',$id)->first();
@@ -37,7 +49,8 @@ class UserController extends Controller
             'triprounds' => $triprounds,
             'trip' => $trip,
             'title' => 'Schedules',
-            'sumbook' =>$sumbook
+            'sumbook' =>$sumbook,
+            
         );
         return view('schedule', $data);
     }

@@ -102,7 +102,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  @yield('content')
  
   <!-- footer start here -->
-  <div class="footer-agile" style="padding-top:20px;padding-bottom:20px;">
+  <div class="footer-agile navbar-fixed-bottom" style="padding-top:20px;padding-bottom:20px;">
     <div class="container">
       <div class="footer-agileinfo">
         <div class="copy-right">
