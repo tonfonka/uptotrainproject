@@ -19,14 +19,12 @@
             </div>
         </div>
     </div>
-</div>
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/tether/tether.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 @endsection 
-
 @section('tripuser')
 <div class="container">
     <link href="/css/search_tripUser/style.css" rel="stylesheet" type="text/css" />
@@ -67,16 +65,11 @@
                                         <div class="view view-first">
                                             <div class="inner_content clearfix">
                                                 <div class="product_image">
-                                                    <img src="http://placehold.it/500x400" class="img-responsive" alt="" />
-                                                    <div class="mask">
-                                                        <div class="info">Quick View</div>
-                                                    </div>
+                                                    <img src="/images/{{$tripuser->image}}" class="img-responsive" alt="" />
+                                                   
                                                     <div class="product_container">
-                                                        <div class="cart-left">
-                                                            <p class="title">{{$tripuser->trips_name}}</p>
-                                                            <p>จังหวัด {{$tripuser->trip_province}}</p>
-                                                            <p>บริษัท {{$tripagent->agency_name_en}}</p><br>
-                                                            <p>ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}}คืน</p>
+                                                        <div class="cart-center">
+                                                            
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </div>
@@ -86,9 +79,18 @@
                                     </div>
                                 </a>
                                 <div class="cbp-vm-details">
+                                <p class="title">{{$tripuser->trips_name}}</p>
+                                                            <p>จังหวัด {{$tripuser->trip_province}}</p>
+                                                            <a href="/profileagency/{{$tripuser->travelagency_id}}"><p>บริษัท {{$tripagent->agency_name_en}}</p><br></a>
+                                                            @if($tripuser->trip_nnight > 0)
+ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}} คืน
+@else
+ระยะเวลา {{$tripuser->trip_nday}} วัน
+                                                            @endif
+                                                            
                                     <p>{{$tripuser->trip_description}}</p>
                                 </div>
-                                <a class="cbp-vm-icon cbp-vm-add item_add" href="#">Add to cart</a>
+                                <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$tripuser->id}}">View Detail</a>
                             </li>
                         @endforeach
                     </ul>

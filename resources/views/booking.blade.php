@@ -21,10 +21,7 @@
     padding-right: 15px;background-color:#fff;border-color:#fff;
 "><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
   </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> supich
+
  <?php
                     if($count == 0){
                         $sum = $triprounds->amount_seats;
@@ -36,20 +33,20 @@
                     }
                       $bookId = $triprounds->id;      
                     ?>
-<<<<<<< HEAD
-=======
 
->>>>>>> develop
-=======
->>>>>>> supich
   <div class="welcome about">
     <div class="container" align="center">
       <div class="row">
         @foreach($trip as $trips)
         <div>
           <h1>{{$trips->trips_name}}</h1>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+           
+
+          <p>{{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
+          <p>จังหวัด{{$trips->trip_province}}</p>
+          <p>{{$trips->trip_meal}} มื้อ</p>
+
           <h4>รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}}
                     ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}</h4>
            <h4>จำนวนที่นั่งว่าง {{$sum}} คน จากจำนวนที่นั่งทั้งหมด {{$triprounds->amount_seats}}</h4>
@@ -57,20 +54,7 @@
           <p>จังหวัด{{$trips->trip_province}}</p>
           <p>{{$trips->trip_meal}} มื้อ</p>
            
-=======
-          <p>{{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
-          <p>จังหวัด{{$trips->trip_province}}</p>
-          <p>{{$trips->trip_meal}} มื้อ</p>
->>>>>>> develop
-=======
-          <h4>รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}}
-                    ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}</h4>
-           <h4>จำนวนที่นั่งว่าง {{$sum}} คน จากจำนวนที่นั่งทั้งหมด {{$triprounds->amount_seats}}</h4>
-          <p>{{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
-          <p>จังหวัด{{$trips->trip_province}}</p>
-          <p>{{$trips->trip_meal}} มื้อ</p>
-           
->>>>>>> supich
+
           <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
           <br>
         </div>
@@ -120,82 +104,6 @@
             </div>
           </div>
         </form>
-   
-          <!--<div class="col-md-12" style="align:center;">
-            <?php
-                    if($count == 0){
-                        $sum = $triprounds->amount_seats;
-                    }
-                    else if($count > 0 ){
-                        $amount =  $triprounds->amount_seats;
-                        
-                        $sum = $amount-$sumbook;
-                    }
-                      $bookId = $triprounds->id;      
-                    ?>
-              <form action="/bookingsum" method="POST" name="id">
-                <div class="row">
-                  <div class="col-md-12">
-                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> {{ csrf_field() }}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-2"></div>
-                  <div class="col-md-4">
-                    <input type="hidden" name="book_id" value="{{ $bookId }}"> รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}}
-                    ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}
-                  </div>
-                  <div class="col-md-4">
-                    <p>จำนวนที่นั่งว่าง {{$sum}} คน จากจำนวนที่นั่งทั้งหมด {{$triprounds->amount_seats}}</p>
-                  </div>
-                  <div class="col-md-2"></div>
-                </div>
-                <div class="row">
-									<label class="col-xs-3">จำนวนเด็ก</label>
-									<div class="col-xs-1 col-md-1">
-										<div class="input-group ">
-											<input type="number" name="number_children" id="number_children" min="0" max={{$sum}} value="0">		
-									  </div>
-									</div>								
-																	
-                  <input type="number" name="number_children" id="number_children" min="0" max={{$sum}} value="0"> ราคา ::
-                  {{$triprounds->price_child}}
-                  <h3 id="pchild"></h3>
-                </div>
-                จำนวนผู้ใหญ่
-                <input type="number" name="number_adults" id="number_adults" min="0" max={{$sum}} value="0"> ราคา :: {{$triprounds->price_adult}}
-<<<<<<< HEAD
-                <h3 id="padult"></h3>
-                สถานะการจอง :
-                <h3 id="summary"></h3>
-=======
-
-                <h3 id="padult"></h3>
-                สถานะการจอง :
-                <h3 id="summary"></h3>
-
->>>>>>> supich
-                <h4>
-                  จำนวนคนจองทั้งหมด :
-                  
-                  <input type="number" id="number_booking" name="number_booking" readonly>
-<<<<<<< HEAD
-                </h4>
-                <br>
-=======
-
-                </h4>
-                <br>
-
->>>>>>> supich
-                <h4>ราคารวมทั้งหมด :
-                  
-                  <input type="number" id="total_cost" name="total_cost" readonly>
-                </h4>
-                <br>
-                <button id="booking_btn" type="submit" class="btn btn-primary">จองตอนนี้</button>
-              </form>-->
-          
       </div>
     </div>
   </div>
@@ -206,11 +114,7 @@
   <script src="{{url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
   <!-- Bootstrap Core JavaScript -->
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> supich
-  <!-- Plugin JavaScript -->
+
   <!-- Plugin JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
     crossorigin="anonymous"></script>
@@ -247,75 +151,53 @@
         $('#summary').html('กรุณากรอกจำนวนคนใหม่')
       }
     })
-<<<<<<< HEAD
-=======
-
->>>>>>> supich
     function isEnough() {
       const allChild = $('#number_children').val() * 1
       const allAdult = $('#number_adults').val() * 1
       return (allChild + allAdult)<={{$sum}}
-<<<<<<< HEAD
     }
-    $("#booking_btn").click(
-   function notallow() {
-     
-      window.location.replace("/bookingsum");
-   }
-);
+    </script>
+    <!-- swipe box js -->
+  <script src="js/jquery.swipebox.min.js"></script>
+  <script type="text/javascript">
+    jQuery(function ($) {
+      $(".swipebox").swipebox();
+    });
   </script>
-=======
-<!-- Theme JavaScript -->
-<script src="js/agency.min.js"></script>
-<script>
-  let allPerson = 0
-  $('#number_children').bind('click keyup', function() {
-    const value = $(this).val()
-    const multiple = {{$triprounds->price_child}}
-    $('#pchild').html("ราคารวมเด็กทั้งหมด" + value * multiple+"บาท")
-    const allChild = $('#number_children').val()*1
-    const allAdult = $('#number_adults').val()*1
-    $('#number_booking').val(allChild+allAdult)
-    $('#total_cost').val((allChild*{{$triprounds->price_child}})+(allAdult*{{$triprounds->price_adult}}))
-    if(isEnough()){
-      $('#summary').html('OK')
-    }else{
-      $('#summary').html('กรุณากรอกจำนวนคนใหม่')
-    }
-  })
-  $('#number_adults').bind('click keyup', function() {
-    const value = $(this).val()
-    const multiple = {{$triprounds->price_adult}} 
-    $('#padult').html("ราคารวมผู้ใหญ่ทั้งหมด" + value * multiple+"บาท")
-    const allChild = $('#number_children').val()*1
-    const allAdult = $('#number_adults').val()*1
-    $('#number_booking').val(allChild+allAdult)
-    $('#total_cost').val((allChild*{{$triprounds->price_child}})+(allAdult*{{$triprounds->price_adult}}))
-    if(isEnough()){
-      $('#summary').html('OK')
-    }else{
-      $('#summary').html('กรุณากรอกจำนวนคนใหม่')
-    }
-  })
-  function isEnough(){
-    const allChild = $('#number_children').val()*1
-    const allAdult = $('#number_adults').val()*1
-    return (allChild+allAdult) <= {{$sum}}
-  }
-</script>
->>>>>>> develop
-=======
-    }
-
-    $("#booking_btn").click(
-   function notallow() {
-     
-      window.location.replace("/bookingsum");
-   }
-);
+  <!-- //swipe box js -->
+     <!-- start-smooth-scrolling -->
+  <script type="text/javascript" src="js/move-top.js"></script>
+  <script type="text/javascript" src="js/easing.js"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+      $(".scroll").click(function (event) {
+        event.preventDefault();
+        $('html,body').animate({
+          scrollTop: $(this.hash).offset().top
+        }, 1000);
+      });
+    });
   </script>
->>>>>>> supich
+  <!-- //end-smooth-scrolling -->
+  <!-- smooth-scrolling-of-move-up -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      /*
+      var defaults = {
+      	containerID: 'toTop', // fading element id
+      	containerHoverID: 'toTopHover', // fading element hover id
+      	scrollSpeed: 1200,
+      	easingType: 'linear' 
+      };
+      */
+      $().UItoTop({
+        easingType: 'easeOutQuart'
+      });
+    });
+  </script>
+  <!-- //smooth-scrolling-of-move-up -->
 </body>
 
 
 </html>
+        

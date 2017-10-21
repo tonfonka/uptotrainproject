@@ -40,7 +40,7 @@
 													if(($tripname[0]->start_date)<=$today){
 
 																									
-													echo "ชื่อทริป :".($tripname[0]->trips_name)."<br>";
+													echo "ชื่อทริป : ".($tripname[0]->trips_name)."<br>";
 													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
 													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
 													echo "<hr>";
@@ -63,7 +63,7 @@
 					
 							<h4>กำลังไปเร็วๆนี้</h4>
 							<div class="image-box style14">
-								<article class="box" style="padding-top: 50px; padding-left:50px;">
+								<article class="box" style="padding-top: 0px; padding-left:0px;">
 									<div class="details">
 										<h4 >	
 										<?php
@@ -80,16 +80,15 @@
 													if(($tripname[0]->start_date)>=$today){
 														
 														
-														echo "ชื่อทริป :";
+														echo "ชื่อทริป : ";
 														
 														echo '<a href="/schedules/'.$tripname[0]->id.'">'.($tripname[0]->trips_name).'</a><br>';												
-													//echo " :".($tripname[0]->trips_name)."<br>";
 													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
-												echo "วันสิ้นสุดการเดินทาง".($tripname[0]->departure_date)."<br>";
+												echo "วันสิ้นสุดการเดินทาง : ".($tripname[0]->departure_date)."<br>";
 													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
 
-													echo "สถานะการจอง :";
-													if($tripname[$i]->status != 'success'){
+													echo "สถานะการจอง : ";
+													if($tripname[0]->status != 'success'){
 														echo "กรุณาจ่ายเงิน";
 													}else{
 															echo "จ่ายเงินสำเร็จแล้ว";
@@ -113,22 +112,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="sidebar col-md-3">
+			<!--<div class="sidebar col-md-3">
 				<div class="travelo-box book-with-us-box">
 					<h4>ค้นหาการเดินทางครั้งใหม่</h4>
 					<ul>
 						<li>
-							<i class="soap-icon-hotel-1 circle blue-color"></i>-->
+							<i class="soap-icon-hotel-1 circle blue-color"></i>
 							<h5 class="title"><a href="/hotel" target="_blank">
 									ค้นหาโรงแรมที่ดีที่สุด</a></h5>
 						</li>
 						<li>
-							<i class="icon soap-icon-plane-right takeoff-effect yellow-color circle"></i>-->
+							<i class="icon soap-icon-plane-right takeoff-effect yellow-color circle"></i>
 							<h5 class="title"><a href="/restuarant" target="_blank">
 									ค้นหาร้านอาหารสุดคุ้ม</a></h5>
 						</li>
 						<li>
-						<i class="icon soap-icon-plane circle red-color"></i>-->
+						<i class="icon soap-icon-plane circle red-color"></i>
 							<i class="soap-icon-places circle red-color"></i>
 							 <h5 class="title"><a href="/trips" target="_blank">
 									ทริปยอดนิยม</a></h5>
@@ -140,7 +139,7 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div>
