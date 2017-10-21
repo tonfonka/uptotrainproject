@@ -178,6 +178,11 @@ class tripAgencyController extends Controller
         
         $book = DB::table('booking')->select('user_id')->where('tripround_id',$id)->pluck('user_id');
         $count = $book->count();
+        $totalNum = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_booking');
+        //([['tripround_id',$id],['status','=','success']])
+        $totalChild = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_children');
+        $totalAdult = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_adults');
+        $totalMoney = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('total_cost');
         $tripround = DB::table('triprounds')->where('id',$id)->first();
         $username =DB::table('users')->where('id',$book)->get();
 
@@ -189,7 +194,11 @@ class tripAgencyController extends Controller
                     'trips' => $trips,
                     'round'=>$round,
                     'tripround' => $tripround,
-                    'count' =>$count
+                    'count' =>$count,
+                    'totalNum' =>$totalNum,
+                    'totalChild' => $totalChild,
+                    'totalAdult' => $totalAdult,
+                    'totalMoney' => $totalMoney
 
                 );
 
@@ -223,6 +232,15 @@ class tripAgencyController extends Controller
         $input['title'] = $request->title;
         $input['trip_id'] =$request->trip_id;
         ImageGallery::create($input);
+        $tripd = $request->input('trip_id');
+        $ima =   $input['image'];
+       // dd($ima);
+        // $myTrip = trip::find($input['trip_id']);
+        // $myTrip->image = $request->image;
+        // $myTrip->save();
+        $myTrip = trip::find($tripd);
+        $myTrip->image = $input['image'];
+        $myTrip->save();
         return redirect('/agency');
     	// return back()
     	// 	->with('success','Image Uploaded successfully.');
