@@ -81,7 +81,8 @@
                                 <div class="cbp-vm-details">
                                 <p class="title">{{$tripuser->trips_name}}</p>
                                                             <p>จังหวัด {{$tripuser->trip_province}}</p>
-                                                            <a href="/profileagency/{{$tripuser->travelagency_id}}"><p>บริษัท {{$tripagent->agency_name_en}}</p><br></a>
+                                                            <a href="/profileagency/{{$tripuser->travelagency_id}}">
+                                                            <p>บริษัท {{$tripagent->agency_name_en}}</p><br></a>
                                                             @if($tripuser->trip_nnight > 0)
 ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}} คืน
 @else
