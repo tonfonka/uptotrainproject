@@ -65,7 +65,7 @@
                                         <div class="view view-first">
                                             <div class="inner_content clearfix">
                                                 <div class="product_image">
-                                                    <img src="/images/{{$tripuser->image}}" class="img-responsive" alt="" />
+                                                    <img src="/images/{{$tripuser->image}}" class="img-responsive" style= "height: 180px; width: 250px;" alt="" />
                                                    
                                                     <div class="product_container">
                                                         <div class="cart-center">

@@ -13,6 +13,7 @@ use App\travelagency;
 use Auth;
 use App\ImageGallery;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 
@@ -255,7 +256,6 @@ class tripAgencyController extends Controller
                     'trips' => $trips,
                     //'tripround' => $tripround
                 );
-
     return view('profileagency',$data);
 
 }

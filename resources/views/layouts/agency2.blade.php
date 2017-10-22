@@ -72,12 +72,13 @@
               <li>
                 <a href="search">Search</a>
               </li>
-              <li>
+              
 
                 @if(Auth::guest())
-            <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
+            <li><a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a></li>
             @else
-            <a href="{{ route('logout') }}"
+            <li><a href="profile"><span class="glyphicon glyphicon-menu-right"></span>welcome</a></li>
+            <li><a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
                         LOG OUT
@@ -85,9 +86,9 @@
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
-            </form>
+            </form></li>
             @endif
-              </li>
+              
             </ul>
 
           </div>
@@ -111,57 +112,7 @@
   @yield('tripuser')
   @yield('schedule')
 
-  <!-- footer start here -->
-  <div class="footer-agile">
-    <div class="container">
-      <div class="footer-agileinfo">
-        <div class="col-md-5 col-sm-5 footer-wthree-grid">
-          <div class="agileits-w3layouts-tweets">
-            <h5><a href="home">Up To Train</a></h5>
-            
-          </div>
-          <p>เว็บไซต์ที่รวบรวมทริปท่องเที่ยวโดยรถไฟภายในประเทศไทย เชิญคุณพบกับประสบการณ์ใหม่ๆโดยการท่องเที่ยวโดยรถไฟ</p>
-        </div>
-        <div class="col-md-3 col-sm-3 footer-wthree-grid">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
-            <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
-            <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
-            @if(Auth::guest())
-           <li> <a href="{{ url('/login')}}"><span class="glyphicon glyphicon-menu-right"></span> Login</a></li>
-            @else
-            <li><a href="profile"><span class="glyphicon glyphicon-menu-right"></span>welcome</a></li>
-            <li> <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="glyphicon glyphicon-menu-right">
-                        <span class="glyphicon glyphicon-menu-right"></span> Logout
-            </a></li>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-            @endif
-            
-          </ul>
-        </div>
-        <div class="col-md-4 col-sm-4 footer-wthree-grid">
-          <!--<h3>Contact Info</h3>
-          <ul>
-            <li>123 Broome St,2nd Block</li>
-            <li>NY 10002, New York</li>
-            <li>Phone: +01 111 222 3333</li>
-            <li><a href="mailto:info@example.com"> mail@example.com</a></li>
-          </ul>-->
-        </div>
-        <div class="clearfix"> </div>
-      </div>
-      <div class="copy-right">
-        <p>© 2017 Holiday Spot . All rights reserved | Design by UP TO TRAIN</a></p>
-      </div>
-    </div>
-  </div>
-  <!-- //footer end here -->
+  
   <!-- swipe box js -->
   <script src="js/jquery.swipebox.min.js"></script>
   <script type="text/javascript">

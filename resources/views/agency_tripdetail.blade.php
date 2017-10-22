@@ -47,7 +47,7 @@
                             </tr>
                             @foreach($tripround as $tripRound)
                             <tr>
-                                <td>{{$tripRound->start_date}} </a>
+                                <td>{{date('d/m/Y', strtotime($tripRound->start_date))}} </a>
                                 </td>
                                 <td>{{$tripRound->departure_date}}</a>
                                 </td> <?php

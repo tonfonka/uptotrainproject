@@ -44,9 +44,8 @@ Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
 	return view ('omisecard');
-});Route::get('/map', function () {
-	return view ('map');
 });
+
 
 Route::post('/charge','OmiseController@checkout');
 Route::get('/card', function () {

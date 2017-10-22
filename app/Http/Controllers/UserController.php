@@ -171,4 +171,23 @@ class UserController extends Controller
         );
         return view('profile_user',$data);
     }
+
+    function testModal($id){
+        
+              $schedules = schedules::where('trip_id',$id)->get();
+              $triprounds = tripround::where('trip_id',$id)->get();
+              
+              $booking =DB::table('booking')->where('tripround_id',$id)->get();
+              $sumbook = $booking->sum('number_booking');
+              $trip = trip::where('id',$id)->first();
+              $data = array(
+                  'schedules' => $schedules,
+                  'triprounds' => $triprounds,
+                  'trip' => $trip,
+                  'title' => 'Schedules',
+                  'sumbook' =>$sumbook,
+                  
+              );
+              return view('testModal', $data);
+          }
 }
