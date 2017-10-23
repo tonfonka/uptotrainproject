@@ -84,9 +84,9 @@
                                                             <a href="/profileagency/{{$tripuser->travelagency_id}}">
                                                             <p>บริษัท {{$tripagent->agency_name_en}}</p><br></a>
                                                             @if($tripuser->trip_nnight > 0)
-ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}} คืน
-@else
-ระยะเวลา {{$tripuser->trip_nday}} วัน
+                                                            ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}} คืน
+                                                            @else
+                                                            ระยะเวลา {{$tripuser->trip_nday}} วัน
                                                             @endif
                                                             
                                     <p>{{$tripuser->trip_description}}</p>
