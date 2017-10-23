@@ -1,4 +1,6 @@
-@extends('layouts.agency') @section('title', 'Agency') @section('agency_banner')
+@extends('layouts.agency') 
+@section('title', 'Agency') 
+@section('agency_banner')
 <link href="css/uptotrain.min.css" rel="stylesheet">
 <link href="css/login.css" rel="stylesheet">
 <div class="container">
@@ -32,9 +34,10 @@
                                         <div class="view view-first">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                <a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"><h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3>
+                                                <h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3>
+                                                <!--<a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"></a>-->
                                                 
-                                                </a>
+                                                
                                                 </div>
                                                 <div>
                                                 <table class="table">
@@ -42,8 +45,11 @@
                                                         <th>รอบการเดินทาง</th>
                                                         <th>จำนวนที่นั่งทั้งหมด</th>
                                                         <th>จำนวนที่จองแล้ว</th>
+                                                        <th>สถานะการจอง</th>
                                                         <th>ยอดเงินรวม</th>
-                                                        
+                                                        <th>
+                                    <center>รายชื่อคนที่จอง</center>
+                                </th>
                                                     </tr>
                                                     @foreach($trip->tripRounds as $tripRound)
                                                     <?php
@@ -53,7 +59,7 @@
                                                      ?> 
                                                     <tr>
                                                     <td>
-                                                            {{$tripRound->start_date}} -  {{$tripRound->departure_date}}
+                                                            {{date('d/m/Y', strtotime($tripRound->start_date))}} -  {{date('d/m/Y', strtotime($tripRound->departure_date))}}
                                                         </td>
                                                         <td>
                                                             {{$tripRound->amount_seats}}
@@ -72,10 +78,34 @@
                                                          
                                                          {{$sumnumber}}
                                                         </td>
+                                                         <?php
+                                                         
+                                           $sumbook = DB::table('booking')
+                                            ->where([['tripround_id',$tripRound->id],['status','=','success']])->get();
+                                            //->where([['tripround_id',$tid],['status','=','success']])
+                                           $sumnumber = $sumbook->sum('number_booking');
+                                            $total = $sumbook->sum('total_cost');
+                                            $id=$tripRound->id;
+                                            $percent =(($sumnumber*100)/($tripRound->amount_seats));
+                                ?> 
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%;color:#222;background-color:#34b055;">
+                                        {{$percent}}%
+                                        </div>
+                                    </div>
+                                </td>
                                                         <td>
                                                             {{$total}}
                                                             <!-- ยอดเงินรวม -->
                                                         </td>
+                                                        <td>
+                                    <center>
+                                        <a href="/shownumber/{{$tripRound->id}}" name ={{$id}}>
+                                            <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
+                                        </a>
+                                    </center>
+                                </td>
                                                     </tr>
                                                     @endforeach
                                                 </table>
@@ -134,11 +164,7 @@
             </div>
         </div>
     </div>
-    <script src="js/search_tripUser/cbpViewModeSwitch.js" type="text/javascript"></script>
-    <script src="js/search_tripUser/classie.js" type="text/javascript"></script>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/tether/tether.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  
 </div>
 <div class="clearfix"></div>
 @endsection

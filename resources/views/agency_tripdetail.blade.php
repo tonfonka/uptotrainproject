@@ -90,6 +90,7 @@
         <!-- end products-page -->
     </div>
     <!-- end container -->
+    
     <script src="js/search_tripUser/cbpViewModeSwitch.js" type="text/javascript"></script>
     <script src="js/search_tripUser/classie.js" type="text/javascript"></script>
     <script src="vendor/jquery/jquery.min.js"></script>

@@ -70,7 +70,7 @@
                 <a href="agreement">Agreement</a>
               </li>
               <li>
-                <a href="search">Search</a>
+                <a href="{{url('/search'}}">Search</a>
               </li>
               <li>
 

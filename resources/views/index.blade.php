@@ -18,7 +18,7 @@
                 </li>
 
                 <li>
-                    <a class="page-scroll" href="#about">Search</a>
+                    <a href="/search">Search</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#portfolio">Highlight</a>
