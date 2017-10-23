@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller; 
 use DB;
 use Illuminate\Http\Request;
+use Request as _Request;
+use Storage;
 use Response;
 use App\tripround;
 use App\schedule;
@@ -13,6 +15,12 @@ use App\travelagency;
 use Auth;
 use App\ImageGallery;
 use Illuminate\Http\UploadedFile;
+use Hash;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Datatables;
 
 
 
@@ -47,6 +55,7 @@ class tripAgencyController extends Controller
     }
     public function tripstore(Request $request)
     {
+        //dd($request); //FUCKYOU
         $userId = Auth::user()->id;
         $agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->pluck('id');
        // dd($agen);
@@ -56,6 +65,11 @@ class tripAgencyController extends Controller
            $data = array($agen[$i]);
            array_push($a, $data);
        }
+       //dd($request->input('image'));
+       $path = public_path('images');
+       $imgName = 'TRIP_'.str_random(10).$request->file('image')->getClientOriginalName();
+       $request->file('image')->move($path,$imgName);
+      
        foreach($a as $rs) {
         DB::table('trips')
             ->insertGetId([
@@ -65,23 +79,24 @@ class tripAgencyController extends Controller
                 "trip_province" => $request->input('trip_province'),
                 "trip_meal" =>$request->input('trip_meal'),
                 "trip_description" => $request->input('trip_description'),
-                //"image" =>$request->input('image'),
-            //    $input['image'] = time().'.'.$request->image->getClientOriginalExtension(),
-               // 
-               
-               //$request->image->move(public_path('images')),
+               "image" =>$imgName,
+                //"image" =>$request->file('image')->getPathName(),
                 "travelagency_id" => $rs[0],
                 "source_id"=>$request->input("source_id", '1'),
                 "destination_id"=>$request->input("source_id", '1')
             ]);
+
+       
+           
     }
-               
     
       $tripId = DB::table('trips')->where('trips_name', $request->input('trips_name'))->first()->id;
       $tripID = DB::table('trips')->where('trips_name', $request->input('trips_name'))->first();
     
-   
+     
     
+    
+
       //$tripId = DB::table('trips')->select('id')->where('trips_name', $request->input('trips_name'))->first();
         // return view('add_TripRound', ['tripId'=> $tripId->id]);
     $startDate = $request->input('start_date');
@@ -120,7 +135,11 @@ class tripAgencyController extends Controller
         $data = array($schedule_day[$i],  $schedule_time[$i], $schedule_place[$i],$schedule_description[$i]);
         array_push($schedule, $data);
      }
-    $i=1;
+   // $i=1;
+//    $path = public_path('images');
+//    $imgName = 'schedule_'.str_random(10).$request->file('image')->getClientOriginalName();
+//    $request->file('image')->move($path,$imgName);
+
         foreach($schedule as $sd){
             if ($i <= count($schedule_day)){
                     DB::table('schedules')
@@ -134,7 +153,7 @@ class tripAgencyController extends Controller
                 } 
 
    }
-            return view('/imagegallery',['tripID'=>$tripID->id]);
+         return redirect('/agency');
     
     }
 
@@ -232,15 +251,15 @@ class tripAgencyController extends Controller
         $input['title'] = $request->title;
         $input['trip_id'] =$request->trip_id;
         ImageGallery::create($input);
-        $tripd = $request->input('trip_id');
-        $ima =   $input['image'];
+        // $tripd = $request->input('trip_id');
+        // $ima =   $input['image'];
        // dd($ima);
         // $myTrip = trip::find($input['trip_id']);
         // $myTrip->image = $request->image;
         // $myTrip->save();
-        $myTrip = trip::find($tripd);
-        $myTrip->image = $input['image'];
-        $myTrip->save();
+        // $myTrip = trip::find($tripd);
+        // $myTrip->image = $input['image'];
+        // $myTrip->save();
         return redirect('/agency');
     	// return back()
     	// 	->with('success','Image Uploaded successfully.');

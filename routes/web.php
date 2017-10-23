@@ -16,17 +16,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
+
 //Route::post('/addtrip','tripAgencyController@tripstore');
-Route::post('/imagegallery','tripAgencyController@tripstore');
-Route::get('/imagegallery', 'tripAgencyController@imageindex');
-Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::get('/imagegallery', 'tripAgencyController@imageindex');
+//Route::post('/imagegallery','tripAgencyController@tripstore');
 //Route::post('/imagegallery', 'ImageGalleryController@imageupload');
-Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
+//Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
 
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/agency', 'UserController@regisagency');
-Route::post('/agency','tripAgencyController@imageupload');
+Route::post('/agency','tripAgencyController@tripstore');
+//Route::post('/agency','tripAgencyController@imageupload');
 
 Route::get('/agreement',function(){
 	return view ('agreement');
