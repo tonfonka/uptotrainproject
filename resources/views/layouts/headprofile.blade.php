@@ -72,11 +72,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <nav id="main-menu" role="navigation">
           <ul class="menu">
             <li class="">
-              <a href="">
+              <a href="/">
 						หน้าหลัก 					  </a>
             </li>
             <li class="">
-              <a href="">
+              <a href="/profileuser">
 						ข้อมูลการจอง					  </a>
             </li>
             <li class="">
@@ -84,7 +84,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						รายงาน					  </a>
             </li>
             <li class="">
-              <a href="">
+              <a href="#">
 						ตั้งค่า					  </a>
             </li>
           </ul>

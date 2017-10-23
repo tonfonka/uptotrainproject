@@ -70,22 +70,52 @@
                 <a href="agreement">Agreement</a>
               </li>
               <li>
-                <a href="search">Search</a>
+                <a href="/seach">Search</a>
               </li>
               <li>
 
                 @if(Auth::guest())
             <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
-            @else
+
+            @elseif(Auth::user()->role == 'user' )
+            <a href="/profileuser"                       class="page-scroll btn btn-xl">
+                       
+                       My Profile  {{Auth::user()->name}}
+            </a>
+  </li>
+  <li>
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
-                        LOG OUT
+                       
+                       LOG OUT
             </a>
-
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
+  </li>
+
+            @elseif(Auth::user()->role =='travel agency')
+            <?php
+                $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+            ?>
+               
+                <a href='/agency' class="page-scroll btn btn-xl">
+                       
+                My {{$agencyName[0]->agency_name_en}} profile
+            </a>
+             </li>
+             <li>
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                       
+                       LOG OUT
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+  </li>
             @endif
               </li>
             </ul>

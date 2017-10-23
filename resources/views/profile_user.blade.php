@@ -33,10 +33,12 @@
 									if($count>0){
 										for($i=0;$i<$count;$i++){
 													$tripname = DB::table('trips')
-																									->select(['trips_name','triprounds.start_date'])
-																									->join('triprounds','trips.id','=','triprounds.trip_id')
-																									->where('triprounds.id',$triproundbook[$i])
-																									->get();
+													->select(['trips_name','triprounds.start_date','triprounds.departure_date','trips.id','booking.status'])
+													->join('triprounds','trips.id','=','triprounds.trip_id')
+													->join('booking','triprounds.id','=','booking.tripround_id')
+													->where('triprounds.id',$triproundbook[$i])
+													->orderBy('triprounds.start_date', 'asc')
+													->get();
 													if(($tripname[0]->start_date)<=$today){
 
 																									
@@ -75,6 +77,7 @@
 																									->join('triprounds','trips.id','=','triprounds.trip_id')
 																									->join('booking','triprounds.id','=','booking.tripround_id')
 																									->where('triprounds.id',$triproundbook[$i])
+																									->orderBy('triprounds.start_date', 'asc')
 																									->get();
 													
 													if(($tripname[0]->start_date)>=$today){
