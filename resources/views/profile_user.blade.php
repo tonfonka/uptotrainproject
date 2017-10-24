@@ -37,14 +37,17 @@
 													->join('triprounds','trips.id','=','triprounds.trip_id')
 													->join('booking','triprounds.id','=','booking.tripround_id')
 													->where('triprounds.id',$triproundbook[$i])
-													->orderBy('triprounds.start_date', 'asc')
+													->orderBy ('triprounds.start_date' , 'asc')
 													->get();
 													if(($tripname[0]->start_date)<=$today){
 
 																									
 													echo "ชื่อทริป : ".($tripname[0]->trips_name)."<br>";
-													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
-													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
+													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
+													echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
+													echo "จำนวนคนที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->number_booking))."<br>";
+													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->updated_at)).'&nbsp'.date('H:i:s', strtotime($tripbook[$i]->updated_at))."<br>";
+													
 													echo "<hr>";
 												}
 																								
@@ -77,7 +80,8 @@
 																									->join('triprounds','trips.id','=','triprounds.trip_id')
 																									->join('booking','triprounds.id','=','booking.tripround_id')
 																									->where('triprounds.id',$triproundbook[$i])
-																									->orderBy('triprounds.start_date', 'asc')
+																									->orderBy ('triprounds.start_date' , 'asc')
+																									//cast([date] as datetime)
 																									->get();
 													
 													if(($tripname[0]->start_date)>=$today){
@@ -86,13 +90,13 @@
 														echo "ชื่อทริป : ";
 														
 														echo '<a href="/schedules/'.$tripname[0]->id.'">'.($tripname[0]->trips_name).'</a><br>';												
-													echo "วันเริ่มเดินทาง : ".($tripname[0]->start_date)."<br>";
-												echo "วันสิ้นสุดการเดินทาง : ".($tripname[0]->departure_date)."<br>";
+													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
+												  echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
 													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
-
+													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->updated_at)).'&nbsp'.date('H:i:s', strtotime($tripbook[$i]->updated_at))."<br>";
 													echo "สถานะการจอง : ";
 													if($tripname[0]->status != 'success'){
-														echo "กรุณาจ่ายเงิน";
+														echo "การจองไม่สำเร็จ";
 													}else{
 															echo "จ่ายเงินสำเร็จแล้ว";
 													}
