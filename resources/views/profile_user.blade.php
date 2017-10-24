@@ -16,7 +16,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-6">
 							<h4>เพิ่งไปล่าสุด</h4>
 							<div class="image-box style14">
-								<article class="box" style="padding-top: 50px; padding-left:50px;">
+								<article class="box" style="padding-top: 50px; padding-left:0px;">
 									<div class="details">
 										
 										
@@ -42,11 +42,11 @@
 													if(($tripname[0]->start_date)<=$today){
 
 																									
-													echo "ชื่อทริป : ".($tripname[0]->trips_name)."<br>";
+														echo '<a href="/schedules/'.$tripname[0]->id.'">'.($tripname[0]->trips_name).'</a><br>';
 													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
 													echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
-													echo "จำนวนคนที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->number_booking))."<br>";
-													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->updated_at)).'&nbsp'.date('H:i:s', strtotime($tripbook[$i]->updated_at))."<br>";
+													echo '<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a><br>';
+													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->updated_at)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->updated_at))."<br>";
 													
 													echo "<hr>";
 												}
@@ -87,13 +87,13 @@
 													if(($tripname[0]->start_date)>=$today){
 														
 														
-														echo "ชื่อทริป : ";
+													
 														
-														echo '<a href="/schedules/'.$tripname[0]->id.'">'.($tripname[0]->trips_name).'</a><br>';												
+														echo '<a href="/schedules/'.$tripname[0]->id.'">'."ชื่อทริป : ".($tripname[0]->trips_name).'</a><br>';												
 													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
 												  echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
-													echo "จำนวนคนที่จอง : ".($tripbook[$i]->number_booking)."<br>";
-													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->updated_at)).'&nbsp'.date('H:i:s', strtotime($tripbook[$i]->updated_at))."<br>";
+													echo '<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a><br>';
+													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->updated_at)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->updated_at))."<br>";
 													echo "สถานะการจอง : ";
 													if($tripname[0]->status != 'success'){
 														echo "การจองไม่สำเร็จ";

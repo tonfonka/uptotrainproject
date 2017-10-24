@@ -136,9 +136,7 @@ class tripAgencyController extends Controller
         array_push($schedule, $data);
      }
    // $i=1;
-//    $path = public_path('images');
-//    $imgName = 'schedule_'.str_random(10).$request->file('image')->getClientOriginalName();
-//    $request->file('image')->move($path,$imgName);
+
 
         foreach($schedule as $sd){
             if ($i <= count($schedule_day)){

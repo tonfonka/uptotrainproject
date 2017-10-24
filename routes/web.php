@@ -41,7 +41,7 @@ Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
 Route::post('/bookingsum','OmiseController@bookingstore');
 Route::get('/bookingsum','OmiseController@bookingsum');
-Route::get('/paysum','OmiseController@bookingsums');
+Route::get('/paysum/{id}','OmiseController@bookingsums');
 Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
@@ -102,3 +102,5 @@ Route::get('/hello', function () {
 
 	
 	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
+	Route::get('/profileusersetting', 'UserController@profileusersetting');
+	

@@ -54,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       <div class="topnav pull-right">
         <ul class="quick-menu pull-right clearfix">
-          <li><a href="javascript:;">{{$user->name}}</a></li>
+          <li><a href="javascript:;">{{Auth::user()->name}}</a></li>
           <li><a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -84,7 +84,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						รายงาน					  </a>
             </li>
             <li class="">
-              <a href="#">
+              <a href="/profileusersetting">
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -106,7 +106,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<img src="https://scontent.xx.fbcdn.net/v/t1.0-1/s200x200/16508263_1660676713946062_4952681256780516861_n.jpg?oh=409dd134e21cea115ec4bee48f6f2aea&amp;oe=5A0DBEE6" alt="avatar">                            </a>
                   </div>
                   <h3>
-                    ยินดีต้อนรับ {{$user->name}} <a href="/setting" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
+                    ยินดีต้อนรับ {{Auth::user()->name}} <a href="/profileusersetting" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
                   </h3>
                 </div>
               </div>
