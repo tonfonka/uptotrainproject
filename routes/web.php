@@ -46,7 +46,6 @@ Route::get('/charge', function () {
 	return view ('omisecard');
 });
 
-
 Route::post('/charge','OmiseController@checkout');
 Route::get('/card', function () {
 	return view ('card');
@@ -55,6 +54,7 @@ Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
+
 Route::get('/regisagency','UserController@res');
 Route::post('/regisagency','UserController@regisagency');
 Route::post('/webhook','OmiseController@webhook');
@@ -99,3 +99,4 @@ Route::get('/hello', function () {
 
 	
 	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
+	Route::get('/profileusersetting', 'UserController@profileusersetting');

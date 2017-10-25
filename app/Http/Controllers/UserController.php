@@ -172,22 +172,27 @@ class UserController extends Controller
         return view('profile_user',$data);
     }
 
-    function testModal($id){
+    function profileusersetting(){
+        if(Auth::user()->role != "user"){
+            return redirect('/hello');
+        }
+
+        $userId = Auth::user()->id; 
         
-              $schedules = schedules::where('trip_id',$id)->get();
-              $triprounds = tripround::where('trip_id',$id)->get();
-              
-              $booking =DB::table('booking')->where('tripround_id',$id)->get();
-              $sumbook = $booking->sum('number_booking');
-              $trip = trip::where('id',$id)->first();
-              $data = array(
-                  'schedules' => $schedules,
-                  'triprounds' => $triprounds,
-                  'trip' => $trip,
-                  'title' => 'Schedules',
-                  'sumbook' =>$sumbook,
-                  
-              );
-              return view('testModal', $data);
-          }
+        $userbook = DB::table('booking')->where('user_id',$userId)->get();
+        $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+        $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+           // dd($user);
+        $data = array(
+            'user' => $user,
+            'userbook' => $userbook,
+            
+             ' triproundbook' => $triproundbook
+            
+            
+        );
+        return view ('profile_setting');
+}
+
+    
 }
