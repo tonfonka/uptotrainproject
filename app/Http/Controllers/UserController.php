@@ -152,22 +152,6 @@ class UserController extends Controller
         $userbook = DB::table('booking')->where('user_id',$userId)->get();
         $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
         $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
-            // $tripname = DB::table('trips')
-            // ->join('triprounds','trips.id','=','triprounds.trip_id')
-            // ->where('triprounds.id',$triproundbook[1])
-            // ->get();
-        
-        
-       //ข้อมูลการจอง
-       // 
-        // dd($tripname);
-         
-        // $tripbooking = DB::table('triprounds')->where('id',$userbook)->get();//รอบที่จอง
-        // $tripbookings = DB::table('triprounds')->select('trip_id')->where('id',$triproundbook)->pluck('trip_id');
-        // $tripname = DB::table('trips')->where('id',$tripbookings)->get();//ทริปที่จอง
-        //dd($tripname);
-        //dd($user);
-        //dd($userbook);
         $data = array(
             //'user' => $user,
             'userbook' => $userbook,
@@ -177,11 +161,11 @@ class UserController extends Controller
         );
         return view('profile_user',$data);
     }
-    //function profileusersetting(Request $request,$id){
-        function profileusersetting(){
-            if(Auth::user()->role != "user"){
-                return redirect('/hello');
-            }
+    function profileusersetting(Request $request,$id){
+       // function profileusersetting(){
+            // if(Auth::user()->role != "user"){
+            //     return redirect('/hello');
+            // }
     
             $userId = Auth::user()->id; 
             
@@ -197,6 +181,6 @@ class UserController extends Controller
                 
                 
             );
-            return view ('profile_setting');
+            return view ('profile_setting',$data);
     }
 }

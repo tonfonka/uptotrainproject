@@ -102,5 +102,5 @@ Route::get('/hello', function () {
 
 	
 	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
-	Route::get('/profileusersetting', 'UserController@profileusersetting');
+	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
 	

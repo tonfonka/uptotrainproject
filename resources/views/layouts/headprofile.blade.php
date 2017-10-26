@@ -84,7 +84,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						รายงาน					  </a>
             </li>
             <li class="">
-              <a href="/profileusersetting">
+              <a href="/profileusersetting/{{Auth::user()->id}}">
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -106,7 +106,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<img src="https://scontent.xx.fbcdn.net/v/t1.0-1/s200x200/16508263_1660676713946062_4952681256780516861_n.jpg?oh=409dd134e21cea115ec4bee48f6f2aea&amp;oe=5A0DBEE6" alt="avatar">                            </a>
                   </div>
                   <h3>
-                    ยินดีต้อนรับ {{Auth::user()->name}} <a href="/profileusersetting" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
+                    ยินดีต้อนรับ {{Auth::user()->name}}  <a href="/profileusersetting/{{Auth::user()->id}}" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
                   </h3>
                 </div>
               </div>
