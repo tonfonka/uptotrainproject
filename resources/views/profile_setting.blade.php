@@ -4,9 +4,9 @@
 
 
 
-<link href="css/profile/blogttc.css" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('/css/profile/blogttc.css') }}" rel="stylesheet" type="text/css" />
 
-<link href="css/profile_setting/navbar-affix.css" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('/css/profile_setting/navbar-affix.css') }}" rel="stylesheet" type="text/css" />
 
 <body data-spy="scroll" data-target=".scrollspy">
 
