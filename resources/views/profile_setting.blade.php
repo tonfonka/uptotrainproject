@@ -115,7 +115,7 @@
 						
 			
 			
-			<button style="float:right;" type="button" class="btn btn-primary"> บันทึก</button>
+			<button style="float:right;" type="submit" class="btn btn-primary"> บันทึก</button>
 			</section>
 
 					</form>

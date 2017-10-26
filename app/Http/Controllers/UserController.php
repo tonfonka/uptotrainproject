@@ -161,7 +161,7 @@ class UserController extends Controller
         );
         return view('profile_user',$data);
     }
-    function profileusersetting(Request $request,$id){
+    function profileusersetting($id){
        // function profileusersetting(){
             // if(Auth::user()->role != "user"){
             //     return redirect('/hello');
@@ -183,4 +183,15 @@ class UserController extends Controller
             );
             return view ('profile_setting',$data);
     }
+    function profileusersettingto(Request $request,$id){
+
+        $userId = Auth::user()->id; 
+        $userId->firstname = $request->firstname;
+        $userId->lastname = $request->lastname;
+        $userId->phone = $request->phone;
+        $userId->update();
+
+             
+             return redirect('/profileuser');
+     }
 }
