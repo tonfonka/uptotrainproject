@@ -63,13 +63,16 @@ class UserController extends Controller
               $triprounds = tripround::where('trip_id',$id)->get();
               $booking =DB::table('booking')->where('tripround_id',$id)->get();
               $sumbook = $booking->sum('number_booking');
+              $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
+              $agen = DB::table('travelagency')->where('id',$n)->get();
               $trip = trip::where('id',$id)->first();
               $data = array(
                   'schedules' => $schedules,
                   'triprounds' => $triprounds,
                   'trip' => $trip,
                   'title' => 'Schedules',
-                  'sumbook' =>$sumbook
+                  'sumbook' =>$sumbook,
+                  'agen' => $agen
               );
               return view('schedule_tonfon', $data);
           }

@@ -46,7 +46,7 @@
 													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
 													echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
 													echo '<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a><br>';
-													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->updated_at)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->updated_at))."<br>";
+													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time))."<br>";
 													
 													echo "<hr>";
 												}
@@ -93,7 +93,7 @@
 													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
 												  echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
 													echo '<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a><br>';
-													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->updated_at)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->updated_at))."<br>";
+													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time))."<br>";
 													echo "สถานะการจอง : ";
 													if($tripname[0]->status != 'success'){
 														echo "การจองไม่สำเร็จ";
