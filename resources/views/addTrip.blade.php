@@ -163,10 +163,10 @@
                                         <label style="margin-bottom:13px;font-size:1.3em;">รายละเอียด</label>
                                         <input class="form-control" name='schedule_description[]' type="text" onChange="mySdes()">
                                     </div>
-                                    <!-- <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รูปภาพกิจกรรม</label>
-                                        <input class="form-control" name='image[]' type="file" onChange="mySdes()">
-                                    </div> -->
+                                        <input class="form-control" name='pic[]' type="file" onChange="mySdes()">
+                                    </div>
                                 </div>
                             </div>
                             <label><button type="button" class="btn btn-primary" id='nextday'>เพิ่มกิจกรรมถัดไป</button></label>

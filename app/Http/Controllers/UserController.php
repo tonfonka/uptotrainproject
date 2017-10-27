@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\trip;
+use App\User;
 use App\schedules;
 use App\tripround;
 use Auth;
@@ -161,11 +162,7 @@ class UserController extends Controller
         );
         return view('profile_user',$data);
     }
-    function profileusersetting($id){
-       // function profileusersetting(){
-            // if(Auth::user()->role != "user"){
-            //     return redirect('/hello');
-            // }
+    function profileusersetting(Request $request,$id){
     
             $userId = Auth::user()->id; 
             
@@ -183,13 +180,40 @@ class UserController extends Controller
             );
             return view ('profile_setting',$data);
     }
-    function profileusersettingto(Request $request,$id){
+       
+    public function settingto(Request $request){
 
-        $userId = Auth::user()->id; 
+        // $userId = DB::table('users')->where('id',Auth::user()->id)->first();
+
+        $userId = User::find(Auth::user()->id);
+
         $userId->firstname = $request->firstname;
         $userId->lastname = $request->lastname;
         $userId->phone = $request->phone;
-        $userId->update();
+        $userId->address = $request->address;
+        $userId->province = $request->province;
+        $userId->zipcode = $request->zipcode;
+        $userId->sex = $request->sex;
+        $userId->age = $request->age;
+        $userId->food_allergy = $request->food_allergy;  
+        $userId->chronic_disease = $request->chronic_disease;
+        $userId->save();
+
+//          $payload = $request->json()->all();
+//  $id= $userId = Auth::user()->id;  
+//       
+        // $userId = users::find($id);
+        // $userId->firstname = $request->firstname;
+        // $userId->lastname = $request->lastname;
+        // $userId->phone = $request->phone;
+        // $userId->address = $request->address;
+        // $userId->province = $request->province;
+        // $userId->zipcode = $request->zipcode;
+        // $userId->sex = $request->sex;
+        // $userId->age = $request->age;
+        // $userId->food_allergy = $request->food_allergy;
+        // $userId->chronic_disease = $request->chronic_disease;
+        // $userId->save();
 
              
              return redirect('/profileuser');
