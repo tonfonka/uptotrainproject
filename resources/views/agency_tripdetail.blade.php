@@ -61,8 +61,9 @@
                                             $percent =(($sumnumber*100)/($tripRound->amount_seats));
                                 ?> 
                                 <td>
-                                    <div class="progress-bar-striped active">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%;color:#222;background-color:#34b055;">
+                                    <div class="progress">
+                                        <div class="progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%;color:#222;background-color:#34b055;">
+
                                         {{$percent}}%
                                         </div>
                                     </div>

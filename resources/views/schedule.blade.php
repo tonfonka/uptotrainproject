@@ -33,8 +33,7 @@
             @else
             ระยะเวลา {{ $trip->trip_nday }} วัน
             @endif
-            
-            <p>บริษัท {{ $trip->agency}}</p>
+            <p>บริษัท {{ $agen[0]->agency_name_en}}</p>
 
             <img class="img-responsive img-centered" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>

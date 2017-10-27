@@ -45,7 +45,9 @@ class UserController extends Controller
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
         $sumbook = $booking->sum('number_booking');
         $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
-               $agen = DB::table('travelagency')->where('id',$n)->get();
+
+        $agen = DB::table('travelagency')->where('id',$n)->get();
+
         $trip = trip::where('id',$id)->first();
         $data = array(
             'schedules' => $schedules,
@@ -65,7 +67,9 @@ class UserController extends Controller
               $booking =DB::table('booking')->where('tripround_id',$id)->get();
               $sumbook = $booking->sum('number_booking');
               $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
-                           $agen = DB::table('travelagency')->where('id',$n)->get();
+
+              $agen = DB::table('travelagency')->where('id',$n)->get();
+
               $trip = trip::where('id',$id)->first();
               $data = array(
                   'schedules' => $schedules,
@@ -153,22 +157,6 @@ class UserController extends Controller
         $userbook = DB::table('booking')->where('user_id',$userId)->get();
         $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
         $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
-            // $tripname = DB::table('trips')
-            // ->join('triprounds','trips.id','=','triprounds.trip_id')
-            // ->where('triprounds.id',$triproundbook[1])
-            // ->get();
-        
-        
-       //ข้อมูลการจอง
-       // 
-        // dd($tripname);
-         
-        // $tripbooking = DB::table('triprounds')->where('id',$userbook)->get();//รอบที่จอง
-        // $tripbookings = DB::table('triprounds')->select('trip_id')->where('id',$triproundbook)->pluck('trip_id');
-        // $tripname = DB::table('trips')->where('id',$tripbookings)->get();//ทริปที่จอง
-        //dd($tripname);
-        //dd($user);
-        //dd($userbook);
         $data = array(
             //'user' => $user,
             'userbook' => $userbook,
@@ -179,27 +167,65 @@ class UserController extends Controller
         return view('profile_user',$data);
     }
 
-    function profileusersetting(){
-        if(Auth::user()->role != "user"){
-            return redirect('/hello');
-        }
-
-        $userId = Auth::user()->id; 
-        
-        $userbook = DB::table('booking')->where('user_id',$userId)->get();
-        $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
-        $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
-           // dd($user);
-        $data = array(
-            'user' => $user,
-            'userbook' => $userbook,
-            
-             ' triproundbook' => $triproundbook
-            
-            
-        );
-        return view ('profile_setting');
-}
-
+    function profileusersetting(Request $request,$id){
     
+            $userId = Auth::user()->id; 
+            
+            $userbook = DB::table('booking')->where('user_id',$userId)->get();
+            $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+            $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+               // dd($user);
+            $data = array(
+                'user' => $user,
+                'userbook' => $userbook,
+                
+                 ' triproundbook' => $triproundbook
+                
+                
+            );
+            return view ('profile_setting',$data);
+    }
+       
+    public function settingto(Request $request){
+
+        // $userId = DB::table('users')->where('id',Auth::user()->id)->first();
+        $path = public_path('images');
+        $imgName = 'Profileuser_'.str_random(10).$request->file('image')->getClientOriginalName();
+        $request->file('image')->move($path,$imgName);
+
+        $userId = User::find(Auth::user()->id);
+
+        $userId->firstname = $request->firstname;
+        $userId->lastname = $request->lastname;
+        $userId->image = $imgName;
+        $userId->phone = $request->phone;
+        $userId->address = $request->address;
+        $userId->province = $request->province;
+        $userId->zipcode = $request->zipcode;
+        $userId->sex = $request->sex;
+        $userId->age = $request->age;
+        $userId->food_allergy = $request->food_allergy;  
+        $userId->chronic_disease = $request->chronic_disease;
+        $userId->save();
+
+//          $payload = $request->json()->all();
+//  $id= $userId = Auth::user()->id;  
+//       
+        // $userId = users::find($id);
+        // $userId->firstname = $request->firstname;
+        // $userId->lastname = $request->lastname;
+        // $userId->phone = $request->phone;
+        // $userId->address = $request->address;
+        // $userId->province = $request->province;
+        // $userId->zipcode = $request->zipcode;
+        // $userId->sex = $request->sex;
+        // $userId->age = $request->age;
+        // $userId->food_allergy = $request->food_allergy;
+        // $userId->chronic_disease = $request->chronic_disease;
+        // $userId->save();
+
+             
+             return redirect('/profileuser');
+     }
+
 }

@@ -113,6 +113,8 @@ footer p {
 @media (min-width:1200px) {
     .affix,
     .affix-bottom {
-        width: 263px;
+
+        width: 280px;
+
     }
 }
