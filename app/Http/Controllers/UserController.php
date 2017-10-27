@@ -188,7 +188,7 @@ class UserController extends Controller
     public function settingto(Request $request){
 
         // $userId = DB::table('users')->where('id',Auth::user()->id)->first();
-        if ($request->hasFile('input_image')) {
+        if ($request->hasFile('image')) {
             $path = public_path('images');
         $imgName = 'Profileuser_'.str_random(10).$request->file('image')->getClientOriginalName();
         $request->file('image')->move($path,$imgName);
