@@ -68,7 +68,8 @@
                                 </div>
                                  <div class="col-md-5">
                                         <strong>Image:</strong>
-                                        <input type="file" name="image" class="form-control">
+                                        <input type="file" name="image" id="image" class="form-control">
+
                                     </div> 
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
@@ -162,6 +163,10 @@
                                     <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รายละเอียด</label>
                                         <input class="form-control" name='schedule_description[]' type="text" onChange="mySdes()">
+                                    </div>
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                        <label style="margin-bottom:13px;font-size:1.3em;">รูปภาพกิจกรรม</label>
+                                        <input class="form-control" name='pic[]' type="file" onChange="mySdes()">
                                     </div>
                                 </div>
                             </div>

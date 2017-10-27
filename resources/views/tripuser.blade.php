@@ -77,15 +77,16 @@
                                     </div>
                                 </a>
                                 <div class="cbp-vm-details">
-                                    <p class="title">{{$tripuser->trips_name}}</p>
-                                    <p>จังหวัด {{$tripuser->trip_province}}</p>
-                                    <a href="/profileagency/{{$tripuser->travelagency_id}}">
-                                        <p>บริษัท {{$tripagent->agency_name_en}}</p>
-                                        <br>
-                                    </a>
-                                    @if($tripuser->trip_nnight > 0) ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}} คืน @else ระยะเวลา {{$tripuser->trip_nday}}
-                                    วัน @endif
-
+                                <p class="title">{{$tripuser->trips_name}}</p>
+                                                            <p>จังหวัด {{$tripuser->trip_province}}</p>
+                                                            <a href="/profileagency/{{$tripuser->travelagency_id}}">
+                                                            <p>บริษัท {{$tripagent->agency_name_en}}</p><br></a>
+                                                            @if($tripuser->trip_nnight > 0)
+                                                            ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}} คืน
+                                                            @else
+                                                            ระยะเวลา {{$tripuser->trip_nday}} วัน
+                                                            @endif
+                                                            
                                     <p>{{$tripuser->trip_description}}</p>
                                 </div>
                                 <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$tripuser->id}}">View Detail</a>
