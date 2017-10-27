@@ -75,6 +75,18 @@
 							<input class="form-control" type="text" id="phone" name="phone" value="{{Auth::user()->phone}}">
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-lg-3 control-label">โรคประจำตัว</label>
+							<div class="col-md-6">
+							<input class="form-control" type="text"id ="chronic_disease" name="chronic_disease" value="{{Auth::user()->chronic_disease}}">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-3 control-label">อาหารที่แพ้</label>
+							<div class="col-md-6">
+							<input class="form-control" type="text"id ="food_allergy" name="food_allergy" value="{{Auth::user()->food_allergy}}">
+							</div>
+						</div>
 				</section>
 				<!--end of #personal-info-->
 
@@ -102,18 +114,7 @@
 							<input class="form-control" type="text" id="zipcode" name="zipcode" value="{{Auth::user()->zipcode}}">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-lg-3 control-label">โรคประจำตัว</label>
-							<div class="col-md-6">
-							<input class="form-control" type="text"id ="chronic_disease" name="chronic_disease" value="{{Auth::user()->chronic_disease}}">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 control-label">อาหารที่แพ้</label>
-							<div class="col-md-6">
-							<input class="form-control" type="text"id ="food_allergy" name="food_allergy" value="{{Auth::user()->food_allergy}}">
-							</div>
-						</div>
+						
 						
 			<button style="float:right;" type="submit" class="btn btn-primary"> บันทึก</button>
 
