@@ -28,8 +28,7 @@ class UserController extends Controller
     function searchResult(){
         $q = Input::get ( 'q' );
        
-        $trips = DB::table('trips')
-        ->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);
+        $trips = DB::table('trips')->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);
         if (count ( $trips ) > 0)
             return view ( 'tripuser_resultsearch' )->withDetails ( $trips )->withQuery ( $q );
         else

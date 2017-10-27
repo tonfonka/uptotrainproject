@@ -67,11 +67,10 @@
             <ul class="nav navbar-nav navbar-right" style="padding-top:0px;">
 
               <li>
-                <a href="agreement">Agreement</a>
+                <a href="/agreement">Agreement</a>
               </li>
               <li>
-
-                <a href="{{url('/search'}}">Search</a>
+                <a href="/search">Search</a>
               </li>
               <li>
 
