@@ -16,17 +16,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
+
 //Route::post('/addtrip','tripAgencyController@tripstore');
-Route::post('/imagegallery','tripAgencyController@tripstore');
-Route::get('/imagegallery', 'tripAgencyController@imageindex');
-Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::get('/imagegallery', 'tripAgencyController@imageindex');
+//Route::post('/imagegallery','tripAgencyController@tripstore');
 //Route::post('/imagegallery', 'ImageGalleryController@imageupload');
-Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
+//Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
 
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/agency', 'UserController@regisagency');
-Route::post('/agency','tripAgencyController@imageupload');
+Route::post('/agency','tripAgencyController@tripstore');
+//Route::post('/agency','tripAgencyController@imageupload');
 
 Route::get('/agreement',function(){
 	return view ('agreement');
@@ -39,13 +41,11 @@ Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
 Route::post('/bookingsum','OmiseController@bookingstore');
 Route::get('/bookingsum','OmiseController@bookingsum');
-Route::get('/paysum','OmiseController@bookingsums');
+Route::get('/paysum/{id}','OmiseController@bookingsums');
 Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
 	return view ('omisecard');
-});Route::get('/map', function () {
-	return view ('map');
 });
 
 Route::post('/charge','OmiseController@checkout');
@@ -56,6 +56,7 @@ Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
+
 Route::get('/regisagency','UserController@res');
 Route::post('/regisagency','UserController@regisagency');
 Route::post('/webhook','OmiseController@webhook');
@@ -100,3 +101,6 @@ Route::get('/hello', function () {
 
 	
 	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
+	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
+	Route::post('/profileuser','UserController@settingto');
+

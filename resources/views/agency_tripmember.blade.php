@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">HELLO {{$travelagencies->agency_name_en}} !!!!</h1>
-        </div>
+        </div> 
         <div class="col-md-12" style="font-size:1.3em;">
         </div>
     </div>
@@ -15,7 +15,6 @@
 <div class="container" style="padding-top:30px;">
     <link href="/css/search_tripUser/style.css" rel="stylesheet" type="text/css" />
     <link href="/css/search_tripUser/component.css" rel='stylesheet' type='text/css' />
-    
     <div class="container">
         <div class="products-page">
      
@@ -61,10 +60,28 @@
                                 <td>{{$boo->status}}</td>
                                 <td>{{$boo->booking_time}}</td>
                             </tr> 
-                            
-                                    
+                
+                                                
                                 @endforeach
                             @endforeach
+                            <tr>
+                                <td>ยอดรวมรายชื่อการจอง </td>
+                                <td>จำนวนเด็กทั้งหมด </td>
+                                <td>จำนวนผู้ใหญ่ทั้งหมด</td>
+                                <td>ยอดรวมคนทั้งหมด </td>
+                                <td>ยอดรวมราคาทั้งหมด </td>
+                                <td>พิมพ์รายชื่อคนจองทริป </td>
+
+                            </tr>
+                            <tr>
+                                <td> {{$count}} </td>
+                                <td> {{$totalChild}} </td>
+                                <td>{{$totalAdult}} </td>
+                                <td>  {{$totalNum}} </td>
+                                <td>{{$totalMoney}} </td>
+                                <td> <a href="/pdf">พิมพ์รายชื่อผู้ร่วมทริป PDF</a> </td>
+
+                            </tr>
                             @endif
                         </table>
                     </div>

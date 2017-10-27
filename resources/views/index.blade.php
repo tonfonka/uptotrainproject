@@ -18,7 +18,7 @@
                 </li>
 
                 <li>
-                    <a class="page-scroll" href="#about">Search</a>
+                    <a href="/search">Search</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#portfolio">Highlight</a>
@@ -38,18 +38,36 @@
     <div class="container">
         <div class="intro-text">
             <div class="intro-heading">Welcome</div>
-            <div class="intro-lead-in">Are you looking for a Trip ?</div><br><br>
+            
 
             <!-- laravel <a href="#services" class="page-scroll btn btn-xl">LOG IN</a>-->
             @if(Auth::guest())
+            <div class="intro-lead-in">Are you looking for a Trip ?</div><br><br>
             <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
-            @else
+            @elseif(Auth::user()->role == 'user' )
+            <div class="intro-lead-in">Are you looking for a Trip ?</div><br><br>
+            <div class="intro-lead-in"> {{Auth::user()->name}}</div>
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
-                        LOG OUT
+                       
+                       LOG OUT
             </a>
-
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @elseif(Auth::user()->role =='travel agency')
+            <?php
+                $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+            ?>
+            <div class="intro-lead-in">มีทริปใหม่มานำเสนอไหมคะ ?</div><br><br>
+                <h1> {{$agencyName[0]->agency_name_en}}</h1>
+                <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                       
+                       LOG OUT
+            </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>

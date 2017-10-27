@@ -1198,7 +1198,7 @@ section#tables p {
 .table>thead>tr>td,
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
-    font-size: 0.9em;
+    font-size: 1.3em;
     color: #999;
     border-top: none !important;
 }
