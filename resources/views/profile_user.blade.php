@@ -1,7 +1,7 @@
 @extends('layouts.headprofile') @section('title', 'profile') @section('content')
 
 <link href="css/profile/blogttc.css" rel="stylesheet" type="text/css">
-<div class="container">
+<!--<div class="container">
 
 
 	<div class="clearfix"></div>
@@ -29,8 +29,8 @@
 						</tr>
 
 					</table>
-				</div>
-				<!--<div class="container">
+				</div>-->
+			<div class="container">
 	<div class="blog-page blog-content-1">
 		<div class="row">
 			<div class="col-md-9" style="padding-top: 50px">
@@ -79,7 +79,7 @@
 									else
 										echo "ไม่มีรายการ";
 										?></h4>
-										<!-- {{$triproundbook}}<br> 
+										<!-- {{$triproundbook}}<br>--> 
 									
 										<label class="price-wrapper"><span class="price-per-unit">  </span></label>
 									</div>
