@@ -28,8 +28,13 @@
             <!-- Project Details Go Here -->
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
-            <p>ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน</p>
-            <p>บริษัท {{ $trip->trip_nday }}</p>
+            @if($trip->trip_nnight > 0)
+                                                            ระยะเวลา {{$trip->trip_nday}} วัน {{$trip->trip_nnight}} คืน
+                                                            @else
+                                                            ระยะเวลา {{$trip->trip_nday}} วัน
+                                                            @endif
+            
+            <p>บริษัท {{ $agen[0]->agency_name_en}}</p>
             <img class="img-responsive img-centered" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>

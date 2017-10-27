@@ -53,7 +53,7 @@
             <script>
             
             </script>
-            <form role="form" action="/imagegallery" method="POST" name="id">
+            <form role="form" action="/agency" method="POST" name="id" enctype="multipart/form-data">
             
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="tab-content">
@@ -66,10 +66,11 @@
                                     <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Trip Name</label>
                                     <input type="text" class="form-control" name="trips_name" id="tripName" placeholder="Trip Name" onChange="myTripname()" required>
                                 </div>
-                                 <!-- <div class="col-md-5">
+                                 <div class="col-md-5">
                                         <strong>Image:</strong>
-                                        <input type="file" name="image" class="form-control">
-                                    </div>  -->
+                                        <input type="file" name="image" id="image" class="form-control">
+
+                                    </div> 
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
                                     <input type="text" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>
@@ -147,21 +148,25 @@
                             <div class="col-md-12" id='days'>
                                 <label>รายละเอียดทัวร์</label>
                                 <div class="row">
-                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">วันที่</label>
                                         <input class="form-control" name='schedule_day[]' type="text" value="1" onChange="mySday()">
                                     </div>
-                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">เวลา</label>
                                         <input class="form-control" name='schedule_time[]' type="time" onChange="myStime()">
                                     </div>
-                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">สถานที่</label>
                                         <input class="form-control" name='schedule_place[]' type="text" onChange="mySplace()">
                                     </div>
-                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รายละเอียด</label>
                                         <input class="form-control" name='schedule_description[]' type="text" onChange="mySdes()">
+                                    </div>
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                        <label style="margin-bottom:13px;font-size:1.3em;">รูปภาพกิจกรรม</label>
+                                        <input class="form-control" name='pic[]' type="file" onChange="mySdes()">
                                     </div>
                                 </div>
                             </div>
