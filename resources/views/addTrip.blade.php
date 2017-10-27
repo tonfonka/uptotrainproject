@@ -69,6 +69,7 @@
                                  <div class="col-md-5">
                                         <strong>Image:</strong>
                                         <input type="file" name="image" id="image" class="form-control">
+
                                     </div> 
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>

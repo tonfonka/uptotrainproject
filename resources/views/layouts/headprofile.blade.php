@@ -28,7 +28,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <link href="{{ URL::asset('/css/font-awesome.css') }}" rel="stylesheet">
   <!-- //font-awesome icons -->
   <!-- js -->
+
   <script src="{{ URL::asset('js/jquery-2.2.3.min.js') }}"></script>
+
   <!-- //js -->
   <!-- web-fonts -->
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
@@ -85,6 +87,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </li>
             <li class="">
               <a href="/profileusersetting/{{Auth::user()->id}}">
+
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -106,7 +109,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<img src="/images/{{Auth::user()->image}}" alt="avatar">                            </a>
                   </div>
                   <h3>
-                    ยินดีต้อนรับ {{Auth::user()->name}} <a href="" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
+
+                    ยินดีต้อนรับ {{Auth::user()->name}} <a href="/profileusersetting" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
+
                   </h3>
                 </div>
               </div>
@@ -164,6 +169,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <!-- //footer end here -->
   <!-- swipe box js -->
   <script src="{{ asset('js/jquery.swipebox.min.js') }}"></script>
+
   <script type="text/javascript">
     jQuery(function ($) {
       $(".swipebox").swipebox();

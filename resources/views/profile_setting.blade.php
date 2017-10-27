@@ -13,7 +13,6 @@
 
 	<div class="container">
 		<div class="row">
-
 		<form class="form-horizontal" role="form" action="/profileuser" method="POST" name="id" enctype="multipart/form-data">
 	            
 		     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -38,11 +37,11 @@
  						</div>
  					</div>
 
+
 			<div class="col-md-9">
 				<section id="personal-info">
 					<h2>
 						<span class="fa fa-edit"></span> ข้อมูลส่วนตัว</h2>
-					
 						<div class="form-group">
 							<label class="col-lg-3 control-label">ชื่อจริง</label>
 							<div class="col-lg-6">
@@ -78,6 +77,7 @@
 						</div>
 				</section>
 				<!--end of #personal-info-->
+
 				<!--end of #web-devlopment-->
 
 				<section id="address" style="height:350px;">
@@ -116,6 +116,7 @@
 						</div>
 						
 			<button style="float:right;" type="submit" class="btn btn-primary"> บันทึก</button>
+
 
 			</section>
 		</div>

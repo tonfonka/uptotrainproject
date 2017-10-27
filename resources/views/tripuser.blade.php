@@ -66,6 +66,7 @@
                                             <div class="inner_content clearfix">
                                                 <div class="product_image">
                                                     <img src="/images/{{$tripuser->image}}" class="img-responsive" alt="" style='width: 300px; height:200px;' />
+
                                                    
                                                     <div class="product_container">
                                                         <div class="cart-center">

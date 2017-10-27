@@ -47,7 +47,7 @@
                             </tr>
                             @foreach($tripround as $tripRound)
                             <tr>
-                                <td>{{$tripRound->start_date}} </a>
+                                <td>{{date('d/m/Y', strtotime($tripRound->start_date))}} </a>
                                 </td>
                                 <td>{{$tripRound->departure_date}}</a>
                                 </td> <?php
@@ -63,6 +63,7 @@
                                 <td>
                                     <div class="progress">
                                         <div class="progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%;color:#222;background-color:#34b055;">
+
                                         {{$percent}}%
                                         </div>
                                     </div>
@@ -90,6 +91,7 @@
         <!-- end products-page -->
     </div>
     <!-- end container -->
+    
     <script src="js/search_tripUser/cbpViewModeSwitch.js" type="text/javascript"></script>
     <script src="js/search_tripUser/classie.js" type="text/javascript"></script>
     <script src="vendor/jquery/jquery.min.js"></script>

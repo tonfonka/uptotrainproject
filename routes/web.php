@@ -46,8 +46,6 @@ Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
 	return view ('omisecard');
-});Route::get('/map', function () {
-	return view ('map');
 });
 
 Route::post('/charge','OmiseController@checkout');
@@ -58,6 +56,7 @@ Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
+
 Route::get('/regisagency','UserController@res');
 Route::post('/regisagency','UserController@regisagency');
 Route::post('/webhook','OmiseController@webhook');

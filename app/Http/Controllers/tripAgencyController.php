@@ -26,6 +26,7 @@ use Datatables;
 
 
 
+
 class tripAgencyController extends Controller
 {
     function index() {
@@ -79,8 +80,10 @@ class tripAgencyController extends Controller
                 "trip_province" => $request->input('trip_province'),
                 "trip_meal" =>$request->input('trip_meal'),
                 "trip_description" => $request->input('trip_description'),
+
                "image" =>$imgName,
                 //"image" =>$request->file('image')->getPathName(),
+
                 "travelagency_id" => $rs[0],
                 "source_id"=>$request->input("source_id", '1'),
                 "destination_id"=>$request->input("source_id", '1')
@@ -137,7 +140,6 @@ class tripAgencyController extends Controller
      }
    // $i=1;
 
-
         foreach($schedule as $sd){
             if ($i <= count($schedule_day)){
                     DB::table('schedules')
@@ -173,7 +175,7 @@ class tripAgencyController extends Controller
                         'tripround' => $tripround
                     );
     
-        return view('agency_tripdetail',$data);
+        return redirect('/agency');
 
     }
 
@@ -290,7 +292,6 @@ class tripAgencyController extends Controller
                     'trips' => $trips,
                     //'tripround' => $tripround
                 );
-
     return view('profileagency',$data);
 
 }
