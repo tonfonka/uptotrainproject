@@ -22,7 +22,7 @@
 							<span class="fa fa-edit"></span> รูปประจำตัว</h2>
 						<div class="col-md-3">
 							<div class="text-center">
-								<img src="https://scontent.xx.fbcdn.net/v/t1.0-1/s200x200/16508263_1660676713946062_4952681256780516861_n.jpg?oh=409dd134e21cea115ec4bee48f6f2aea&amp;oe=5A0DBEE6"
+								<img src="/images/{{Auth::user()->image}}"
 								  alt="" width="150" class="avatar img-circle" alt="avatar">
 									</div>
  				</div>
@@ -33,7 +33,7 @@
  						<div>
  							<span class="btn default btn-file">
  
- 								<input type="file" name="image" id="image" value="/images/{{Auth::user()->image}}"> </span>
+ 								<input type="file" name="image" id="image" > </span>
  							
  						</div>
  					</div>

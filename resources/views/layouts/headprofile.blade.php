@@ -103,7 +103,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="blog-banner blog-container">
                   <div class="blog-banner-avatar">
                     <a href="javascript:;">
-								<img src="https://scontent.xx.fbcdn.net/v/t1.0-1/s200x200/16508263_1660676713946062_4952681256780516861_n.jpg?oh=409dd134e21cea115ec4bee48f6f2aea&amp;oe=5A0DBEE6" alt="avatar">                            </a>
+								<img src="/images/{{Auth::user()->image}}" alt="avatar">                            </a>
                   </div>
                   <h3>
                     ยินดีต้อนรับ {{Auth::user()->name}} <a href="" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
