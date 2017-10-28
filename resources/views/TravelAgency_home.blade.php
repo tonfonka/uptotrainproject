@@ -79,6 +79,8 @@
                                             $total = $sumbook->sum('total_cost');
                                             $id=$tripRound->id;
                                             $percent =(($sumnumber*100)/($tripRound->amount_seats));
+
+                                            $net = ($total*96.5)/100;
                                 ?> 
                                 <td>
                                     <div class="progress">
@@ -91,7 +93,7 @@
                                                             {{$total}}
                                                             <!-- ยอดเงินรวม -->
                                                         </td>
-                                                        <td>ยอดเงินที่ได้รับจริงนะจ๊ะ</td>
+                                                        <td>{{$net}}</td>
                                                         <td style="align:center;">
                                     
                                         <a href="/shownumber/{{$tripRound->id}}" name ={{$id}}>

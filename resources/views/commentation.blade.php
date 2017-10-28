@@ -1,6 +1,6 @@
 @extends('layouts.headprofile') @section('title', 'profile') @section('content')
 
-<link href="css/profile/blogttc.css" rel="stylesheet" type="text/css">
+<link href="{{asset('/css/profile/blogttc.css')}}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{asset('/css/rating.css')}}"/>
 			<div class="container">
 	
