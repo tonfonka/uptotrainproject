@@ -6,7 +6,19 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use DB;
+use Illuminate\Http\Request;
+use Response;
+use App\tripround;
+use App\schedule;
+use App\trip;
+use App\booking;
+use App\travelagency;
+use Auth;
+use Illuminate\support\Str;
+use Mail;
+use App\Mail\verifyEmail;
+use Session;
 class RegisterController extends Controller
 {
     /*
@@ -27,7 +39,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/checkregis';
 
     /**
      * Create a new controller instance.
@@ -38,7 +50,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+    
     /**
      * Get a validator for an incoming registration request.
      *
@@ -50,6 +62,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'role'=>'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -62,10 +75,59 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        Session::flash('status','Registered! but verify your email to activate your account');
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => $data['role'],
             'password' => bcrypt($data['password']),
+            'verifyToken' => Str::random(40),
         ]);
+       // $userId = DB::table('users')->where('role', $data['role'])->first();
+        //return view('regis_agen', ['userId'=> $userId->id]);
+        $thisUser = User::findOrFail($user->id);
+        $this->sendEmail($thisUser);
+        return $user;
+    }
+
+    function regisAgency(Request $request)
+    {
+        $agency =  DB::table('travelagency')
+        ->insertGetId([ 
+            "trip_name" => $request->input('trip_name'),
+            "trip_nday" => $request->input('trip_nday'),
+            "trip_nnight" => $request->input('trip_nnight'),
+            "trip_province" => $request->input('trip_province'),
+            "trip_meal" =>$request->input('trip_meal'),
+            "trip_description" => $request->input('trip_description')
+            ]);
+             return view('add_tripround', ['trips' => $trips]);
+    }
+
+    
+
+    public function sendEmail($thisUser){
+        Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
+    }
+
+    public function verifyEmailFirst(){
+        return view('email.verifyEmailFirst');
+    }
+    
+    function index()
+    {
+        $userId = Auth::user()->id;
+        dd($userId);
+        return view('regis_agency',['userId'=> $userId]);
+    }
+
+    public function sendEmailDone($email,$verifyToken){
+        $user = User::where(['email'=>$email,'verifyToken'=>$verifyToken])->first();
+        if($user){
+            user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
+            return view('email.sendSuccess');
+        }else{
+            return 'user not found';
+        }
     }
 }

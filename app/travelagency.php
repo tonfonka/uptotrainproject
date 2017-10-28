@@ -15,10 +15,10 @@ class travelagency extends Model
         'agency_tax_id','agency_address','agency_province',
         'agency_zipcode','agency_tel1','agency_tel2',
         'agency_fax','agency_email','agency_web','agency_fb',
-        'agency_description'
+        'agency_description','user_id'
     ];
     protected $primarykey ='id';
     public function trips(){
-        return $this->hasMany('App\trip','id');
+        return $this->hasMany('App\trip','travelagency_id');
     }
 }

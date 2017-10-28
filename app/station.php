@@ -9,7 +9,7 @@ class station extends Model
     protected $table ="stations";
     public $timestamps = true;
     protected $fillable = [
-        'id','station_name','station_province','station_description','routes_id'
+        'id','station_name','station_province','latitude','longtitude','station_description','routes_id'
     ];
     protected $primarykey ="id";
     public function routes(){

@@ -10,6 +10,11 @@ class tripround extends Model
     public $timestamps = true;
     protected $fillale = ['id','start_date','departure_date','price_child','price_adult','amount_seats','triprounds_description','trip_id'];
     public function trips(){
-        return $this->belongsTo('App\trip','trip_id');
+        return $this->belongsTo('App\trip','id');
     }
+
+    public function booking(){
+        return $this->hasMany('App\booking','tripround_id');
+    }
+
 }

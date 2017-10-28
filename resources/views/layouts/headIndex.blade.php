@@ -9,28 +9,28 @@
   <meta name="author" content="">
 
   <!-- Bootstrap Core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
 
   <!-- Custom Fonts -->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" re l="stylesheet" type="text/css">
+  <link href="{{ URL::asset('/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
   <!--Theme CSS-->
-  <link href="css/uptotrain2.min.css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/uptotrain2.min.css') }}" rel="stylesheet" />
 
 
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
-  <link rel="stylesheet" href="css/swipebox.css">
-  <link rel="stylesheet" href="css/ziehharmonika.css">
+  <link href="{{ URL::asset('/css/style.css') }}" type="text/css" rel="stylesheet" media="all">
+  <link rel="stylesheet" href="{{ URL::asset('/css/swipebox.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('/css/ziehharmonika.css') }}">
   <!-- //Custom Theme files -->
   <!-- font-awesome icons -->
-  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/font-awesome.css') }}" rel="stylesheet">
   <!-- //font-awesome icons -->
   <!-- js -->
-  <script src="js/jquery-2.2.3.min.js"></script>
+  <script src="{{ URL::asset('/js/jquery-2.2.3.min.js') }}"></script>
   <!-- //js -->
   <!-- web-fonts -->
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
@@ -49,7 +49,7 @@
 
 <body>
   <!-- banner -->
-  <div class="banner about-banner" style="background-image:url('img/2.jpg')">
+  <div class="banner about-banner" style="background-image:{{ URL::asset('/img/2.jpg') }}">
     <div class="header agileinfo-header">
       <!-- header -->
       <nav id="mainNav" class="navbar-inverse navbar-custom2 navbar-fixed-top">
@@ -59,7 +59,7 @@
             <button type="button" class="navbar-toggle" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Up To Train</a>
+            <a class="navbar-brand page-scroll" href="home">Up To Train</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,27 +67,51 @@
             <ul class="nav navbar-nav navbar-right" style="padding-top:0px;">
 
               <li>
-                <a href="#services">Agreement</a>
+                <a href="/agreement">Agreement</a>
               </li>
               <li>
-                <a href="#about">Search</a>
+                <a href="/search">Search</a>
               </li>
-              <li>
-                <a href="#portfolio">Highlight</a>
-              </li>
-              <li>
-                <a href="#team">Railway</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
+                @if(Auth::guest())
+                  <li><a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a></li>
+                @elseif(Auth::user()->role == 'user' )
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::user()->name}} <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/profileuser">My profile</a></li>
+                    <li><a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">LOG OUT</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    </li>
+                  </ul>
+                </li>
+                @elseif(Auth::user()->role =='travel agency')
+                <?php
+                    $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+                ?>
+               <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$agencyName[0]->agency_name_en}} <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/agency">My profile</a></li>
+                    <li><a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">LOG OUT</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    </li>
+                  </ul>
+                </li>
+                @endif
               </li>
             </ul>
-
           </div>
         </div>
         <!-- /.container-fluid -->
       </nav>
-
     </div>
     <!-- //header -->
     <div class="banner-text">
@@ -110,38 +134,42 @@
       <div class="footer-agileinfo">
         <div class="col-md-5 col-sm-5 footer-wthree-grid">
           <div class="agileits-w3layouts-tweets">
-            <h5><a href="index.html">Up To Train</a></h5>
-            <div class="social-icon footerw3ls">
-              <a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a>
-            </div>
+            <h5><a href="home">Up To Train</a></h5>
+            
           </div>
           <p>เว็บไซต์ที่รวบรวมทริปท่องเที่ยวโดยรถไฟภายในประเทศไทย เชิญคุณพบกับประสบการณ์ใหม่ๆโดยการท่องเที่ยวโดยรถไฟ</p>
         </div>
         <div class="col-md-3 col-sm-3 footer-wthree-grid">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="index.html"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
-            <li><a href="about.html"><span class="glyphicon glyphicon-menu-right"></span> About</a></li>
-            <li><a href="tours.html"><span class="glyphicon glyphicon-menu-right"></span> Tours</a></li>
-            <li><a href="codes.html"><span class="glyphicon glyphicon-menu-right"></span> Short Codes</a></li>
-            <li><a href="contact.html"><span class="glyphicon glyphicon-menu-right"></span> Contact</a></li>
+            <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
+            <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
+            <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
+            <ul class="dropdown-menu">
+            @if(Auth::guest())
+           <li> <a href="{{ url('/login')}}"><span class="glyphicon glyphicon-menu-right"></span> Login</a></li>
+            @else
+            <li><a href="profile"><span class="glyphicon glyphicon-menu-right"></span>welcome</a></li>
+            <li> <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="glyphicon glyphicon-menu-right">
+                       Logout
+            </a></li>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+            @endif
+            </ul>
           </ul>
         </div>
         <div class="col-md-4 col-sm-4 footer-wthree-grid">
-          <h3>Contact Info</h3>
-          <ul>
-            <li>123 Broome St,2nd Block</li>
-            <li>NY 10002, New York</li>
-            <li>Phone: +01 111 222 3333</li>
-            <li><a href="mailto:info@example.com"> mail@example.com</a></li>
-          </ul>
+         
         </div>
         <div class="clearfix"> </div>
       </div>
       <div class="copy-right">
-        <p>© 2017 Holiday Spot . All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank"> Winnie Secret.</a></p>
+        <p>© 2017 Holiday Spot . All rights reserved | Design by UP TO TRAIN</a></p>
       </div>
     </div>
   </div>
@@ -161,7 +189,6 @@
     jQuery(document).ready(function ($) {
       $(".scroll").click(function (event) {
         event.preventDefault();
-
         $('html,body').animate({
           scrollTop: $(this.hash).offset().top
         }, 1000);
@@ -180,11 +207,9 @@
       	easingType: 'linear' 
       };
       */
-
       $().UItoTop({
         easingType: 'easeOutQuart'
       });
-
     });
   </script>
   <script src="js/bootstrap2.js"></script>

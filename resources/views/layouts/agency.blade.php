@@ -22,17 +22,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     }
   </script>
   <!--Custom Theme files-->
-  <link href="css/bootstrap2.css" type="text/css" rel="stylesheet">
-  <link href="css/style.css" type="text/css" rel="stylesheet">
-  <link href="css/profile/member-style.css" type="text/css" rel="stylesheet">
+  <link href=" {{ URL::asset('css/bootstrap2.css') }}" rel="stylesheet">
+  <link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet">
+  <link href=" {{ URL::asset('css/profile/member-style.css') }}" rel="stylesheet">
 
   <!-- font-awesome icons -->
-  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href=" {{ URL::asset('css/font-awesome.css') }}" rel="stylesheet">
   <!-- //font-awesome icons -->
   <!-- js -->
   <script src="js/jquery-2.2.3.min.js"></script>
   <!-- //js -->
   <!-- web-fonts -->
+  
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
     rel='stylesheet' type='text/css'>
   <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
@@ -51,13 +52,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-        <h1><a href="index.html">Up To Train</a></h1>
+        <h1><a href="/">Up To Train</a></h1>
       </div>
 
       <div class="topnav pull-right">
         <ul class="quick-menu pull-right clearfix">
-          <li><a href="javascript:;">Go Go Company</a></li>
-          <li><a href="/_member/logout.php">ออกจากระบบ</a></li>
+          <li><a href="javascript:;">{{$travelagencies->agency_name_en}}</a></li>
+          <li><a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        LOG OUT
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                {{ csrf_field() }}
+            </form></li>
         </ul>
       </div>
     </div>
@@ -66,19 +75,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <nav id="main-menu" role="navigation">
           <ul class="menu">
             <li class="">
-              <a href="/_member/home/th">
+              <a href="/agency">
 						หน้าหลัก 					  </a>
             </li>
             <li class="">
-              <a href="/_member/reservation/th">
-						ข้อมูลการจอง					  </a>
+              <a href="/addtrip">
+						เพิ่มทริป					  </a>
             </li>
             <li class="">
-              <a href="/_member/report/th">
+              <a href="">
 						รายงาน					  </a>
             </li>
             <li class="">
-              <a href="/_member/setting/th">
+              <a href="">
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -89,19 +98,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </header>
 
   <!-- //header-->
-
-
-
   @yield('agency_banner')
  @yield('content')
+ 
   <!-- footer start here -->
-  <div class="footer-agile" style="padding-top:20px;padding-bottom:20px;">
+  <div class="footer-agile " style="padding-top:20px;padding-bottom:20px;">
     <div class="container">
       <div class="footer-agileinfo">
         <div class="copy-right">
-          <p>© UP TO TRAIN . All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank"> Winnie secret</a></p>
+          <p>© UP TO TRAIN . All rights reserved | Design by UP TO TRAIN</a></p>
         </div>
       </div>
+    </div>
     </div>
     <!-- //footer end here -->
     <!-- swipe box js -->

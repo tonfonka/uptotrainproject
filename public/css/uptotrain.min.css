@@ -204,7 +204,6 @@ fieldset[disabled] .btn-xl:hover {
 .navbar-custom .navbar-nav>.active>a {
     border-radius: 0;
     color: #fff;
-    background-color: #fed136
 }
 
 .navbar-custom .navbar-nav>.active>a:focus,

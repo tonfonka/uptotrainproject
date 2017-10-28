@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller; 
 use DB;
 use Illuminate\Http\Request;
+use Response;
 use App\tripround;
 use App\schedule;
 use App\trip;
+use App\booking;
+use App\travelagency;
+use Auth;
 class showtripController extends Controller
 {
     /**
@@ -14,20 +18,23 @@ class showtripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // function __construct(){
+    //     //  if(Auth::user()->role !== "travel agency"){
+    //     //      echo "Permission Denied.";
+    //     //  }
+    //         echo 
+    //  }
     public function index()
     {
-
-        $trips = DB::table('trips')->get();
-        $tripround =DB::table('triprounds')->join('trips','trips.id','=','triprounds.trip_id')->get();
-        $travelagency =DB::table('travelagency')->get();
+        if(Auth::user()->role != "travel agency"){
+            return redirect('/hello');
+            }
+        $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+        
         $data=array(
-            'trips' =>$trips,
-            'travelagency'=>$travelagency,
-            'tripround' =>$tripround
-            
+            'travelagencies' => $travelagencies
         );
         return view('TravelAgency_home',$data);
-      //  return view('TravelAgency_home',['data'=> $trips]);
     }
 
     /**
@@ -56,7 +63,7 @@ class showtripController extends Controller
            "trip_province" => $request->input('trip_province'),
            "trip_meal" =>$request->input('trip_meal'),
            "trip_description" => $request->input('trip_description'),
-           "travelagency_id"=> $request->input( "travelagency_id", '1'),
+           "travelagency_id"=> $request->input( "travelagency_id", Auth::user()->id),
            "source_id"=>$request->input("source_id", '1'),
            "destination_id"=>$request->input("source_id", '1')
            ]);
@@ -190,4 +197,5 @@ class showtripController extends Controller
 
     return view('offices.index',compact('offices'));
 }
+
 }

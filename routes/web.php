@@ -14,44 +14,103 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/addtrip','addtripController');
-Route::get('/addTrip', function()
-{
-	return View::make('/addtrip');
-});
-Route::post('/addtripround','addtriproundController@store');
-Route::resource('/edittrip','addtripController');
-Route::resource('/agency', 'showtripController'); 
+
+Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
+
+//Route::post('/addtrip','tripAgencyController@tripstore');
+//Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::get('/imagegallery', 'tripAgencyController@imageindex');
+//Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::post('/imagegallery', 'ImageGalleryController@imageupload');
+//Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
+
+
+Route::get('/agency', 'showtripController@index')->middleware('auth');
+Route::post('/agency', 'UserController@regisagency');
+Route::post('/agency','tripAgencyController@tripstore');
+//Route::post('/agency','tripAgencyController@imageupload');
+
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
 
 Route::get('/search', 'UserController@search');
-Route::get('/searchtrip', 'UserController@searchtrip');
-Route::post ( '/searcht', function () {
-	$q = Input::get ( 'q' );
-	$user = DB::table('trips')
-	->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(10);;
-	if (count ( $user ) > 0)
-		return view ( 'tripuser_resultsearch' )->withDetails ( $user )->withQuery ( $q );
-	else
-		return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
-} );
+Route::post ( '/searcht', 'UserController@searchResult' );
 Route::get('/schedule/{id}','UserController@schedule');
-Route::get('/booking/{id}','UserController@booking');
-Route::get('/bookingsum', function () {
-	return view ('bookingsum');
-});
-
+Route::get('/schedules/{id}','UserController@schedules');
+Route::get('/booking/{id}','UserController@booking')->middleware('auth');
+Route::post('/bookingsum','OmiseController@bookingstore');
+Route::get('/bookingsum','OmiseController@bookingsum');
+Route::get('/paysum/{id}','OmiseController@bookingsums');
+Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
 	return view ('omisecard');
 });
+
 Route::post('/charge','OmiseController@checkout');
 Route::get('/card', function () {
 	return view ('card');
 });
-
-Route::get('/bookingsum', function () {
-	return view ('bookingsum');
+Route::post('/card', 'OmiseController@checkout');
+Route::get('/profileuser', function () {
+	return view ('profile_user');
 });
+
+Route::get('/regisagency','UserController@res');
+Route::post('/regisagency','UserController@regisagency');
+Route::post('/webhook','OmiseController@webhook');
+
+Route::get('/checkRole', function(){
+	if(Auth::guest()){
+		return redirect('/home');
+	}else{
+		if(Auth::user()->role == "admin"){
+			return redirect('/home');
+		}else if(Auth::user()->role == "travel agency"){
+			return redirect('/agency');
+		}else if(Auth::user()->role == "user"){
+			return redirect('/home');
+		}
+	}
+});
+Route::get('/checkregis', function(){
+	if(Auth::guest()){
+		return redirect('/home');
+	}else{
+		if(Auth::user()->role == "admin"){
+			return redirect('/home');
+		}else if(Auth::user()->role == "travel agency"){
+			return redirect ('/regisagency');
+		}else if(Auth::user()->role == "user"){
+			return redirect('/profileuser');
+		}
+	}
+});
+Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+
+Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
+Route::get('/hello', function () {
+	return view ('error/Brokebot');
+	});
+	Route::get('/shownumber/{id}','tripAgencyController@shownumber');
+
+	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
+
+	Route::get('verify/{email}/{verifyToken}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
+
+	
+	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
+	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
+	Route::post('/profileuser','UserController@settingto');
+	Route::get('/comment/{id}','UserController@commenttrip');
+	Route::post('/profileuser','UserController@commentstore');
+
+	Route::get('/profileagencysetting', function () {
+	 
+		 return view('profileagencysetting');
+	 
+	});
+
+
+	

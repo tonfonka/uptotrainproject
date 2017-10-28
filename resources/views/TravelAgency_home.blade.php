@@ -1,13 +1,14 @@
-@extends('layouts.agency') @section('title', 'Agency') @section('agency_banner')
+@extends('layouts.agency') 
+@section('title', 'Agency') 
+@section('agency_banner')
 <link href="css/uptotrain.min.css" rel="stylesheet">
 <link href="css/login.css" rel="stylesheet">
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">HELLO {{$travelagency[0]->agency_name_en}} !!!!</h1>
+            <h1 class="page-header">HELLO {{$travelagencies->agency_name_en}} !!!!</h1>
         </div>
         <div class="col-md-12" style="font-size:1.3em;">
-            {{$travelagency[0]->agency_description}}
         </div>
     </div>
 </div>
@@ -18,86 +19,107 @@
     <link href="/css/search_tripUser/component.css" rel='stylesheet' type='text/css' />
     <div class="container">
         <div class="products-page">
-            <div class="products">
-                <div class="product-listy">
-                    <h2>All trips</h2>
-                    <ul class="product-list">
-                        <li><a href="">New Trips</a></li>
-                        <li><a href="">Available Tour</a></li>
-                        <li><a href="">Hot Price</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="new-product">
-                <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-list">
-                    <div class="pages">
-                     <h4><?php 
-                     use Carbon\Carbon;
-                     $dt     = Carbon::now();
-                     echo $dt->subDays(10)->diffForHumans();  ?>
-                     </h4>
-                        <h4>{{$trips->count()}} total trips</h4>
-                    </div>
-                    <div class="clearfix"></div>
-                    <ul>
-                        @foreach($trips as $tripuser )
-                        <li>
-                            <div class="simpleCart_shelfItem">
-                                <div class="view view-first">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3>{{$tripuser->trips_name}}</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            <img class="img-responsive img-portfolio img-hover" src="">
-                                            </a>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                                    aria-valuemax="100" style="width: 40%">
-                                                    <span class="sr-only">40% Complete (success)</span> 40% BOOKING
-                                                </div>
-                                            </div>
-                                            <!-- Table -->
-                                            <table class="table">
-                                                <!--problem ตรงนี้ไม่รัน -->
-                                                <?php
-                                            $tripagent = DB::table('travelagency')->where('id', $tripuser->travelagency_id)->first();
-                                            
-                                            $tripround = DB::table('triprounds')->where('trip_id', $tripuser->id)->get();
-                                            ?>
-                                                    <tr style="align:center;font-size:1.3em;">
-                                                        <th>รอบการเดินทาง</th>
-                                                        <th>จำนวนที่นั่งทั้งหมด</th>
-                                                        <th>จำนวนที่จองแล้ว</th>
-                                                    </tr>
-                                                    @foreach($tripround as $tr)
-                                                    <tr style="font-size:1.3em;">
-                                                        <td>{{date('d-m-Y', strtotime($tr->start_date))}} ถึง {{date('d-m-Y',
-                                                            strtotime($tr->departure_date))}}
+            <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-list">
+            <!-- Show trip here-->
+            <?php
+                $today =date("d-m-y");
+            ?>
+            <ul>
+                <h4>ทริปที่กำลังจะถึง</h4>
+                @foreach($travelagencies->trips as $trip)
+                @if(count($trip->tripRounds) > 0 )
+                    <li>
+                        <div class="simpleCart_shelfItem">
+                            <div class="view view-first">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3>
+                                        <!--<a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"></a>-->
+                                    </div>
+                                <div>
+                                <table class="table">
+                                    <tr style="align:center;font-size:1em;">
+                                        <th>รอบการเดินทาง</th>
+                                        <th>จำนวนที่นั่งทั้งหมด</th>
+                                        <th>จำนวนที่จองแล้ว</th>
+                                        <th>สถานะการจอง</th>
+                                        <th>ยอดเงินรวม</th>
+                                        <th>ยอดเงินที่ได้รับ</th>
+                                        <th><center>รายชื่อคนที่จอง</center></th>
+                                    </tr>
+                                @foreach($trip->tripRounds as $tripRound)
+                                <?php                         
+                                    $order = $tripRound->orderBy('start_date')->get();
+                                ?> 
+                                    <tr>
+                                        <td>{{date('d/m/Y', strtotime($tripRound->start_date))}} -  {{date('d/m/Y', strtotime($tripRound->departure_date))}}</td>
+                                                        <td>
+                                                            {{$tripRound->amount_seats}}
+                                                        </td> 
+                                                        
+                                                        <?php
+                                                         
+                                                         $sumbook = DB::table('booking')
+                                                         ->where([['tripround_id',$tripRound->id],['status','=','success']])->get();
+                                                        $sumnumber = $sumbook->sum('number_booking');
+                                                        $total = $sumbook->sum('total_cost');
+                                                        $id=$tripRound->id;
+
+                                                        ?> 
+                                                         <td> 
+                                                         
+                                                         {{$sumnumber}}
                                                         </td>
-                                                        <td>{{$tr->amount_seats}}</td>
-                                                        <td>{{$tr->amount_seats}}</td>
-                                                    </tr>
-                                                    @endforeach
-                                            </table>
+                                                         <?php
+                                                         
+                                           $sumbook = DB::table('booking')
+                                            ->where([['tripround_id',$tripRound->id],['status','=','success']])->get();
+                                            //->where([['tripround_id',$tid],['status','=','success']])
+                                           $sumnumber = $sumbook->sum('number_booking');
+                                            $total = $sumbook->sum('total_cost');
+                                            $id=$tripRound->id;
+                                            $percent =(($sumnumber*100)/($tripRound->amount_seats));
+                                ?> 
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{$percent}}%;color:#222;background-color:#34b055;">
+                                        {{$percent}}%
                                         </div>
                                     </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </li>
-                    </ul>
+                                </td>
+                                                        <td>
+                                                            {{$total}}
+                                                            <!-- ยอดเงินรวม -->
+                                                        </td>
+                                                        <td>ยอดเงินที่ได้รับจริงนะจ๊ะ</td>
+                                                        <td style="align:center;">
+                                    
+                                        <a href="/shownumber/{{$tripRound->id}}" name ={{$id}}>
+                                            <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
+                                        </a>
+                                
+                                </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    <!-- Show trip here-->
                 </div>
-
-            </div>
+            
             <!-- Page Content -->
             <div class="container">
-
                 <!-- Marketing Icons Section -->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            COMMENTION
+                            COMMENT
                         </h1>
                     </div>
                     <div class="col-md-4">
@@ -108,7 +130,7 @@
                             <div class="panel-body">
                                 <p>
                                     <div class="alert alert-success" role="alert">
-                                        Well done! You have n new COMMENTION .
+                                        Well done! You have new comment.
                                     </div>
                                 </p>
                                 <a href="comment_TRIP.html" class="btn btn-default">SHOW NOW</a>
@@ -123,7 +145,7 @@
                             <div class="panel-body">
                                 <p>
                                     <div class="alert alert-success" role="alert">
-                                        Well done! You have n new COMMENTION .
+                                        Well done! You have new comment.
                                     </div>
                                 </p>
                                 <a href="comment_TRIP.html" class="btn btn-default">SHOW NOW</a>
@@ -135,11 +157,7 @@
             </div>
         </div>
     </div>
-    <script src="js/search_tripUser/cbpViewModeSwitch.js" type="text/javascript"></script>
-    <script src="js/search_tripUser/classie.js" type="text/javascript"></script>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/tether/tether.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  
 </div>
 <div class="clearfix"></div>
 @endsection

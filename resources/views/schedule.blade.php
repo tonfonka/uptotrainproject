@@ -9,12 +9,17 @@
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- เปิดแล้ว Theme CSS -->
     <link href="/css/uptotrain2.min.css" rel="stylesheet">
+   
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
-
 <body id="page-top" class="index">
-    <div align="left">
-        <a class="btn btn-primary" href={{ url( '/search') }}>Back</a>
+    <div align="right">
+        <a class="btn btn-primary" href={{ url( '/search') }} style="
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    padding-right: 15px;background-color:#fff;border-color:#fff;
+"><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
     </div>
     <!--<div class="container">-->
     <div class="container" id="about" align="center">
@@ -22,9 +27,13 @@
             <!-- Project Details Go Here -->
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
-            <p>ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน</p>
-            <p>บริษัท {{ $trip->trip_nday }}</p>
-            <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
+            @if($trip->trip_nnight > 0)
+            ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน
+            @else
+            ระยะเวลา {{ $trip->trip_nday }} วัน
+            @endif
+            <p>บริษัท {{ $agen[0]->agency_name_en}}</p>
+            <img class="img-responsive img-centered" style="height:500px;width:850px;" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
             <div class="container">
@@ -44,16 +53,26 @@
                             </div>
                             @if($loop->iteration %2 == 0)
                             <li class="timeline-inverted">
-                                @else
-                                <li>
+                            @else
+                            <li>
                                     @endif
                                     <div class="timeline-image">
-                                        <img class="img-circle img-responsive" src="/img/about/1.jpg" alt="">
+                                        <img class="img-circle img-responsive" style="" src="/img/about/1.jpg" alt="">
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{ $schedule->schedule_time }}</h4>
-                                            <h4 class="subheading">{{ $schedule->schedule_place }}</h4>
+                                            <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
+
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                           {{ $schedule->schedule_place }}<span class="caret"></span></a>
+                                           <ul class="dropdown-menu" role="menu">
+                    <li><a href="">My profile</a></li>
+                    </ul>
+
+                                        </li>
+                                        </ul>
+                                        
                                         </div>
                                         <div class="timeline-body">
                                             <p class="text-muted">{{ $schedule->schedule_description }}</p>
@@ -77,27 +96,35 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-9">
                         <ul class="list-inline">
                             <table class="table">
                                 <tr align="center">
-                                    <th>วันที่เดินทาง</th>
+                                    <th>กำหนดการเดินทาง</th>
                                     <th>ราคาผู้ใหญ่</th>
                                     <th>ราคาเด็ก</th>
-                                    <th>จำนวนที่ว่าง</th>
+                                    <th>จำนวนที่นั่งว่าง</th>
+                                    <th>จำนวนที่นั่ง</th>
                                     <th></th>
                                 </tr>
                                 <!-- edit add loop select for db -->
                                 @foreach($triprounds as $tripround)
+                                <?php
+                                    $amount =  $tripround->amount_seats;
+                        
+                                    
+                                    $tid=$tripround->id;
+                                    $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
+                                    $sum = $amount-$seat;
+                                ?>
                                 <tr align="center">
-                                    <td>{{ $tripround->start_date }}</td>
+                                    <td>{{date('d/m/Y', strtotime($tripround->start_date ))}} - {{date('d/m/Y', strtotime($tripround->departure_date ))}} </td>
                                     <td>{{$tripround->price_adult}}</td>
                                     <td>{{$tripround->price_child}}</td>
-                                    <td>{{$tripround->amount_seats}}</td>
-                                    <?php
-                                    $tid="{{$tripround->id}}"
-                                    ?>
+                                    <td>{{$sum}} </td>
+                                    <td>{{$amount}}</td>
+                                    
                                         <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
                                 </tr>
                                 @endforeach
@@ -111,6 +138,139 @@
             </div>
         </div>
     </div>
+
+    <!-- Trip Modal 1 -->
+<!-- แก้ -->
+
+<div class="portfolio-modal modal fade" id="tripModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>เขื่อนป่าสักชลสิทธิ</h2>
+                        <p class="item-intro text-muted">เที่ยว 1 วัน ชิวๆกับรถไฟไทย<br>by abc company</p>
+                        <img class="img-responsive img-centered" src="img/portfolio/trip1_00.jpg" alt="">
+                        <p>ทริปเที่ยวเพลินๆ 1 วันชิวๆ</p>
+
+                        <br><br>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <h2 class="section-heading">Schedule</h2>
+                                    <h3 class="section-subheading text-muted">" ไปไหนบ้างนะ "</h3>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="timeline">
+                                        <li>
+                                            <div class="timeline-image">
+                                                <img class="img-circle img-responsive" src="img/about/1.jpg" alt="">
+                                            </div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4>06.30-7.10</h4>
+                                                    <h4 class="subheading">สถานีรถไฟหัวลำโพง</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p class="text-muted">พร้อมกันที่สถานีรถไฟกรุงเทพ โดยมีเจ้าหน้าที่ของบริษัทฯ คอยให้การต้อนรับและอำนวยความสะดวกก่อนเดินทาง</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-inverted">
+                                            <div class="timeline-image">
+                                                <img class="img-circle img-responsive" src="img/about/2.jpg" alt="">
+                                            </div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4>10.00-10.40</h4>
+                                                    <h4 class="subheading">รถไฟลอยน้ำ</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p class="text-muted">ขบวนรถหยุด 40 นาที นำนักท่องเที่ยวชมทิวทัศน์และถ่ายภาพบริเวณ “เหนือเขื่อนป่าสักชลสิทธิ์”
+                                                        พร้อมชม “รถไฟลอยน้ำ”</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-image">
+                                                <img class="img-circle img-responsive" src="img/about/3.jpg" alt="">
+                                            </div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4>11.30-12.30</h4>
+                                                    <h4 class="subheading">ร้านอาหารน่านน้ำป่าสัก</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p class="text-muted">บริการอาหารกลางวัน ณ ร้านน่านน้ำป่าสัก</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-inverted">
+                                            <div class="timeline-image">
+                                                <img class="img-circle img-responsive" src="img/about/4.jpg" alt="">
+                                            </div>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4>12.30-14.50</h4>
+                                                    <h4 class="subheading">เขื่อนป่าสักชลสิทธิ์</h4>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p class="text-muted">ท่องเที่ยวบริเวณเขื่อนป่าสักชลสิทธิ์<br>o เพลิดเพลินกับวิถีชีวิตชุมชนไทยเบิ้ง
+                                                        เป็นกลุ่มชนพื้นถิ่นที่ตั้งบ้านเรือนอยู่บริเวณลุ่มน้ำป่าสัก ในพื้นที่อำเภอพัฒนานิคม
+                                                        อำเภอโคกสำโรง อำเภอสระโบสถ์ และอำเภอชัยบาดาล จังหวัดลพบุรี ชาวไทยเบิ้ง
+                                                        มีขนบธรรมเนียมประเพณีและวัฒนธรรมคล้ายกลุ่มชนไทยภาคกลาง แต่ยังมีภาษา
+                                                        ความเชื่อ เพลงพื้นบ้าน การละเล่น การทอผ้า ที่เป็นเอกลักษณ์ของกลุ่มชนอยู่
+                                                        <br>o ชมพิพิธภัณฑ์การก่อสร้างเขื่อนป่าสักและโครงการพัฒนาลุ่มแม่น้ำป่าสักในพระราชดำริ
+                                                        <br>o นั่งรถตัวหนอนชมสันเขื่อน
+                                                        <br>o นั่งรถม้า ชื่นชมฟาร์มแพะ ฟาร์มแกะ
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-inverted">
+                                            <div class="timeline-image">
+                                                <h4>Booking
+                                                    <br><br>Now!
+                                                </h4>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <br><br>
+
+                            <ul class="list-inline">
+                                <li>Travel Agency: abc company</li>
+                                <li>Date: 1 July 2017</li>
+                                <li>Cost: 500 baht</li>
+                            </ul>
+
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close This</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Trip Unknow Modal 1 -->
+
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
 
@@ -156,7 +316,7 @@
 
         });
     </script>
-    
+
 </body>
 
 </html>
