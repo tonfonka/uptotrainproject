@@ -14,48 +14,38 @@
 
 <body id="page-top" class="index">
   <div align="right">
-    <a class="btn btn-primary" href={{ url( '/search') }} style="
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 15px;
-    padding-right: 15px;background-color:#fff;border-color:#fff;
-"><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
+    <a class="btn btn-primary" href={{ url( '/search') }} 
+    style="padding-top: 12px; padding-bottom: 12px;
+    padding-left: 15px;padding-right: 15px;background-color:#fff;border-color:#fff;">
+    <i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
   </div>
-
  <?php
-                    if($count == 0){
-                        $sum = $triprounds->amount_seats;
-                    }
-                    else if($count > 0 ){
-                        $amount =  $triprounds->amount_seats;
-                        
-                        $sum = $amount-$sumbook;
-                    }
-                      $bookId = $triprounds->id;      
+  if($count == 0){
+  $sum = $triprounds->amount_seats;
+  }
+  else if($count > 0 ){
+    $amount =  $triprounds->amount_seats;                    
+    $sum = $amount-$sumbook;
+  }
+    $bookId = $triprounds->id;      
                     ?>
-
   <div class="welcome about">
     <div class="container" align="center">
       <div class="row">
         @foreach($trip as $trips)
         <div>
           <h1>{{$trips->trips_name}}</h1>
-
-           
-
-          <p>{{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
+          @if($trips->trip_nnight > 0)
+            ระยะเวลา {{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน
+          @else
+            ระยะเวลา {{$trips->trip_nday}} วัน
+          @endif
           <p>จังหวัด{{$trips->trip_province}}</p>
           <p>{{$trips->trip_meal}} มื้อ</p>
-
           <h4>รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}}
                     ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}</h4>
            <h4>จำนวนที่นั่งว่าง {{$sum}} คน จากจำนวนที่นั่งทั้งหมด {{$triprounds->amount_seats}}</h4>
-          <p>{{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
-          <p>จังหวัด{{$trips->trip_province}}</p>
-          <p>{{$trips->trip_meal}} มื้อ</p>
-           
-
-          <img class="img-responsive img-centered" src="/img/portfolio/trip1_00.jpg" alt="">
+          <img class="img-responsive img-centered" style="height:500px;width:850px;" src="/images/{{$trips->image}}" alt="">
           <br>
         </div>
         @endforeach

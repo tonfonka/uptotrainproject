@@ -52,7 +52,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-        <h1><a href="index.html">Up To Train</a></h1>
+        <h1><a href="/">Up To Train</a></h1>
       </div>
 
       <div class="topnav pull-right">
@@ -79,8 +79,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						หน้าหลัก 					  </a>
             </li>
             <li class="">
-              <a href="">
-						ข้อมูลการจอง					  </a>
+              <a href="/addtrip">
+						เพิ่มทริป					  </a>
             </li>
             <li class="">
               <a href="">
