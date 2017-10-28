@@ -106,11 +106,7 @@ Route::get('/hello', function () {
 	Route::get('/comment/{id}','UserController@commenttrip');
 	Route::post('/profileuser','UserController@commentstore');
 
-	Route::get('/profileagencysetting', function () {
-	 
-		 return view('profileagencysetting');
-	 
-	});
-
+	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
+	Route::post('/agency', 'UserController@profileagencysettingstore');
 
 	

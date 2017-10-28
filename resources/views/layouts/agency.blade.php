@@ -87,7 +87,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						รายงาน					  </a>
             </li>
             <li class="">
-              <a href="">
+              <a href="/profileagencysetting">
 						ตั้งค่า					  </a>
             </li>
           </ul>

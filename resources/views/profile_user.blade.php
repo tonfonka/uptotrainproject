@@ -69,7 +69,7 @@
 													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
 													echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
 													echo '<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a><br>';
-													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time))."<br>";
+													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time))."<br>"; 
 													echo '<a href="/comment/'.$tripname[0]->id.'">'.'review Trip'.'</a><br>';
 													echo "<hr>";
 												}
@@ -78,7 +78,8 @@
 									}
 									else
 										echo "ไม่มีรายการ";
-										?></h4>
+										?>
+										</h4>
 										<!-- {{$triproundbook}}<br>--> 
 									
 										<label class="price-wrapper"><span class="price-per-unit">  </span></label>
