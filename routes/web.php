@@ -104,3 +104,11 @@ Route::get('/hello', function () {
 	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
 	Route::post('/profileuser','UserController@settingto');
 
+	Route::get('/profileagencysetting', function () {
+	 
+		 return view('profileagencysetting');
+	 
+	});
+
+
+	
