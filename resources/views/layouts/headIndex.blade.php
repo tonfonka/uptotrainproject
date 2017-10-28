@@ -72,59 +72,46 @@
               <li>
                 <a href="/search">Search</a>
               </li>
-              <li>
-
                 @if(Auth::guest())
-            <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
-
-            @elseif(Auth::user()->role == 'user' )
-            <a href="/profileuser"                       class="page-scroll btn btn-xl">
-                       
-                       My Profile  {{Auth::user()->name}}
-            </a>
-  </li>
-  <li>
-            <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
-                       
-                       LOG OUT
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-  </li>
-
-            @elseif(Auth::user()->role =='travel agency')
-            <?php
-                $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
-            ?>
-               
-                <a href='/agency' class="page-scroll btn btn-xl">
-                       
-                My {{$agencyName[0]->agency_name_en}} profile
-            </a>
-             </li>
-             <li>
-            <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
-                       
-                       LOG OUT
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-  </li>
-            @endif
+                  <li><a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a></li>
+                @elseif(Auth::user()->role == 'user' )
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::user()->name}} <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/profileuser">My profile</a></li>
+                    <li><a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">LOG OUT</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    </li>
+                  </ul>
+                </li>
+                @elseif(Auth::user()->role =='travel agency')
+                <?php
+                    $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+                ?>
+               <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$agencyName[0]->agency_name_en}} <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/agency">My profile</a></li>
+                    <li><a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">LOG OUT</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    </li>
+                  </ul>
+                </li>
+                @endif
               </li>
             </ul>
-
           </div>
         </div>
         <!-- /.container-fluid -->
       </nav>
-
     </div>
     <!-- //header -->
     <div class="banner-text">
@@ -158,6 +145,7 @@
             <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
             <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
             <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
+            <ul class="dropdown-menu">
             @if(Auth::guest())
            <li> <a href="{{ url('/login')}}"><span class="glyphicon glyphicon-menu-right"></span> Login</a></li>
             @else
@@ -165,24 +153,18 @@
             <li> <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="glyphicon glyphicon-menu-right">
-                        <span class="glyphicon glyphicon-menu-right"></span> Logout
+                       Logout
             </a></li>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
             @endif
-            
+            </ul>
           </ul>
         </div>
         <div class="col-md-4 col-sm-4 footer-wthree-grid">
-          <!--<h3>Contact Info</h3>
-          <ul>
-            <li>123 Broome St,2nd Block</li>
-            <li>NY 10002, New York</li>
-            <li>Phone: +01 111 222 3333</li>
-            <li><a href="mailto:info@example.com"> mail@example.com</a></li>
-          </ul>-->
+         
         </div>
         <div class="clearfix"> </div>
       </div>
