@@ -19,48 +19,40 @@
     <link href="/css/search_tripUser/component.css" rel='stylesheet' type='text/css' />
     <div class="container">
         <div class="products-page">
-            
-                <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-list">
-                    
-                    <!-- Show trip here-->
-                    <?php
-                            $today =date("d-m-y");
-                    ?>
-                        <ul><h4>ทริปที่กำลังจะถึง</h4>
-                            @foreach($travelagencies->trips as $trip)
-                                @if(count($trip->tripRounds) > 0 )
-                                <li>
-                                    <div class="simpleCart_shelfItem">
-                                        <div class="view view-first">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                <h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3>
-                                                <!--<a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"></a>-->
-                                                
-                                                
-                                                </div>
-                                                <div>
-                                                <table class="table">
-                                                    <tr style="align:center;font-size:1.3em;">
-                                                        <th>รอบการเดินทาง</th>
-                                                        <th>จำนวนที่นั่งทั้งหมด</th>
-                                                        <th>จำนวนที่จองแล้ว</th>
-                                                        <th>สถานะการจอง</th>
-                                                        <th>ยอดเงินรวม</th>
-                                                        <th>
-                                    <center>รายชื่อคนที่จอง</center>
-                                </th>
-                                                    </tr>
-                                                    @foreach($trip->tripRounds as $tripRound)
-                                                    <?php
-                                                         
-                                                         $order = $tripRound->orderBy('start_date')->get();
-
-                                                     ?> 
-                                                    <tr>
-                                                    <td>
-                                                            {{date('d/m/Y', strtotime($tripRound->start_date))}} -  {{date('d/m/Y', strtotime($tripRound->departure_date))}}
-                                                        </td>
+            <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-list">
+            <!-- Show trip here-->
+            <?php
+                $today =date("d-m-y");
+            ?>
+            <ul>
+                <h4>ทริปที่กำลังจะถึง</h4>
+                @foreach($travelagencies->trips as $trip)
+                @if(count($trip->tripRounds) > 0 )
+                    <li>
+                        <div class="simpleCart_shelfItem">
+                            <div class="view view-first">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3>
+                                        <!--<a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}"></a>-->
+                                    </div>
+                                <div>
+                                <table class="table">
+                                    <tr style="align:center;font-size:1em;">
+                                        <th>รอบการเดินทาง</th>
+                                        <th>จำนวนที่นั่งทั้งหมด</th>
+                                        <th>จำนวนที่จองแล้ว</th>
+                                        <th>สถานะการจอง</th>
+                                        <th>ยอดเงินรวม</th>
+                                        <th>ยอดเงินที่ได้รับ</th>
+                                        <th><center>รายชื่อคนที่จอง</center></th>
+                                    </tr>
+                                @foreach($trip->tripRounds as $tripRound)
+                                <?php                         
+                                    $order = $tripRound->orderBy('start_date')->get();
+                                ?> 
+                                    <tr>
+                                        <td>{{date('d/m/Y', strtotime($tripRound->start_date))}} -  {{date('d/m/Y', strtotime($tripRound->departure_date))}}</td>
                                                         <td>
                                                             {{$tripRound->amount_seats}}
                                                         </td> 
@@ -99,12 +91,13 @@
                                                             {{$total}}
                                                             <!-- ยอดเงินรวม -->
                                                         </td>
-                                                        <td>
-                                    <center>
+                                                        <td>ยอดเงินที่ได้รับจริงนะจ๊ะ</td>
+                                                        <td style="align:center;">
+                                    
                                         <a href="/shownumber/{{$tripRound->id}}" name ={{$id}}>
                                             <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
                                         </a>
-                                    </center>
+                                
                                 </td>
                                                     </tr>
                                                     @endforeach

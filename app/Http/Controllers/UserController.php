@@ -233,4 +233,26 @@ class UserController extends Controller
              return redirect('/profileuser');
      }
 
+     function commenttrip($id){
+        
+               $tripname = DB::table('trips')->where('id',$id)->first();
+               $data = array(
+                'tripname' => $tripname,
+            );
+        
+                 return view('commentation',$data);
+             }
+        function commentstore(Request $request){
+
+                     DB::table('reviewTrip')
+                     ->insertGetId([ 
+                            "rate" =>$request->input('rate'),
+                            "rate_des" =>$request->input('des'),
+                            "trip_id"=>$request->input('trip_id'),
+                            "user_id"=>$request->input("user_id",Auth::user()->id),
+                        ]);
+
+            return redirect('/profileuser');
+     }
+
 }
