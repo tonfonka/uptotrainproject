@@ -57,7 +57,7 @@
 									if($count>0){
 										for($i=0;$i<$count;$i++){
 													$tripname = DB::table('trips')
-													->select(['trips_name','triprounds.start_date','triprounds.departure_date','trips.id','booking.status'])
+													->select(['trips.id','trips_name','triprounds.start_date','triprounds.departure_date','trips.id','booking.status'])
 													->join('triprounds','trips.id','=','triprounds.trip_id')
 													->join('booking','triprounds.id','=','booking.tripround_id')
 													->where('triprounds.id',$triproundbook[$i])
@@ -70,7 +70,7 @@
 													echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
 													echo '<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a><br>';
 													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time))."<br>";
-													
+													echo '<a href="/comment/'.$tripname[0]->id.'">'.'review Trip'.'</a><br>';
 													echo "<hr>";
 												}
 																								
