@@ -1,157 +1,158 @@
-<html>
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <title>Up To train - @yield('title')</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <!-- Bootstrap Core CSS -->
-  <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
-
-  <!-- Custom Fonts -->
-  <link href="{{ URL::asset('/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-  <!--Theme CSS-->
-  <link href="{{ URL::asset('/css/uptotrain2.min.css') }}" rel="stylesheet" />
-
-
-  <link href="{{ URL::asset('/css/style.css') }}" type="text/css" rel="stylesheet" media="all">
-  <link rel="stylesheet" href="{{ URL::asset('/css/swipebox.css') }}">
-  <link rel="stylesheet" href="{{ URL::asset('/css/ziehharmonika.css') }}">
-  <!-- //Custom Theme files -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="Holiday Spot Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+  <script type="application/x-javascript">
+    addEventListener("load", function () {
+      setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+      window.scrollTo(0, 1);
+    }
+  </script>
+  <!--Custom Theme files-->
+  <link href=" {{ URL::asset('css/bootstrap2.css') }}" rel="stylesheet"/>
+  <link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet"/>
+  <link href=" {{ URL::asset('css/profile/member-style.css') }}" rel="stylesheet"/>
+<link href="{{asset('css/uptotrain.min.css')}}" rel="stylesheet"/>
   <!-- font-awesome icons -->
-  <link href="{{ URL::asset('/css/font-awesome.css') }}" rel="stylesheet">
+  <link href=" {{ URL::asset('css/font-awesome.css') }}" rel="stylesheet"/>
   <!-- //font-awesome icons -->
   <!-- js -->
-  <script src="{{ URL::asset('/js/jquery-2.2.3.min.js') }}"></script>
+  <script src="js/jquery-2.2.3.min.js"></script>
   <!-- //js -->
   <!-- web-fonts -->
-  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
-    rel='stylesheet' type='text/css'>
+  
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
   <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
-        <link href="css/bootstrap2.css" type="text/css" rel="stylesheet" media="all">
-    <![endif]-->
 </head>
 
 <body>
   <!-- banner -->
-  <div class="banner about-banner" style="background-image:{{ URL::asset('/img/2.jpg') }}">
-    <div class="header agileinfo-header">
-      <!-- header -->
-      <nav id="mainNav" class="navbar-inverse navbar-custom2 navbar-fixed-top">
-        <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-            <a class="navbar-brand page-scroll" href="home">Up To Train</a>
-          </div>
+  <header id="header" class="navbar-static-top style6">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+        <h1><a href="/">Up To Train</a></h1>
+      </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right" style="padding-top:0px;">
-
-              <li>
-                <a href="agreement">Agreement</a>
-              </li>
-              <li>
-                <a href="search">Search</a>
-              </li>
-              
-
-                @if(Auth::guest())
-            <li><a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a></li>
-            @else
-            <li><a href="profile"><span class="glyphicon glyphicon-menu-right"></span>welcome</a></li>
-            <li><a href="{{ route('logout') }}"
+      <div class="topnav pull-right">
+        <ul class="quick-menu pull-right clearfix">
+          <li><a href="javascript:;">$agency->agency_name_en</a></li>
+          <li><a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
-                        LOG OUT
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        document.getElementById('logout-form').submit();">
+                        LOG OUT</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                 {{ csrf_field() }}
             </form></li>
-            @endif
-              
-            </ul>
-
-          </div>
-        </div>
-        <!-- /.container-fluid -->
-      </nav>
-
+        </ul>
+      </div>
     </div>
-    <!-- //header -->
-    <div class="banner-text">
+    <div class="main-navigation">
       <div class="container">
-        <div class="banner-w3lstext" style="padding-top:74px;">
-          <h2>Let's Have Fun With Train </h2>
+        <nav id="main-menu" role="navigation">
+          <ul class="menu">
+            <li class="">
+              <a href="/agency">
+						หน้าหลัก 					  </a>
+            </li>
+            <li class="">
+              <a href="/addtrip">
+						เพิ่มทริป					  </a>
+            </li>
+            <li class="">
+              <a href="">
+						ทริปทั้งหมด					  </a>
+            </li>
+            <li class="">
+              <a href="/profileagencysetting">
+						ตั้งค่า					  </a>
+            </li>
+          </ul>
+          <div class="clearfix"> </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- //header-->
+  @yield('agency_banner')
+ @yield('content')
+ 
+  <!-- footer start here -->
+  <div class="footer-agile " style="padding-top:20px;padding-bottom:20px;">
+    <div class="container">
+      <div class="footer-agileinfo">
+        <div class="copy-right">
+          <p>© UP TO TRAIN . All rights reserved | Design by UP TO TRAIN</a></p>
         </div>
       </div>
     </div>
-  </div>
-
-
-  @yield('content') 
-  @yield('tripuser')
-  @yield('schedule')
-
-  
-  <!-- swipe box js -->
-  <script src="js/jquery.swipebox.min.js"></script>
-  <script type="text/javascript">
-    jQuery(function ($) {
-      $(".swipebox").swipebox();
-    });
-  </script>
-  <!-- //swipe box js -->
-  <!-- start-smooth-scrolling -->
-  <script type="text/javascript" src="js/move-top.js"></script>
-  <script type="text/javascript" src="js/easing.js"></script>
-  <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-      $(".scroll").click(function (event) {
-        event.preventDefault();
-        $('html,body').animate({
-          scrollTop: $(this.hash).offset().top
-        }, 1000);
+    </div>
+    <!-- //footer end here -->
+    <!-- swipe box js -->
+    <script src="js/jquery.swipebox.min.js"></script>
+    <script type="text/javascript">
+      jQuery(function ($) {
+        $(".swipebox").swipebox();
       });
-    });
-  </script>
-  <!-- //end-smooth-scrolling -->
-  <!-- smooth-scrolling-of-move-up -->
-  <script type="text/javascript">
-    $(document).ready(function () {
-      /*
-      var defaults = {
-      	containerID: 'toTop', // fading element id
-      	containerHoverID: 'toTopHover', // fading element hover id
-      	scrollSpeed: 1200,
-      	easingType: 'linear' 
-      };
-      */
-      $().UItoTop({
-        easingType: 'easeOutQuart'
+    </script>
+    <!-- //swipe box js -->
+    <!-- start-smooth-scrolling -->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+          event.preventDefault();
+          $('html,body').animate({
+            scrollTop: $(this.hash).offset().top
+          }, 1000);
+        });
       });
-    });
-  </script>
-  <script src="js/bootstrap2.js"></script>
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        /*
+        var defaults = {
+        	containerID: 'toTop', // fading element id
+        	containerHoverID: 'toTopHover', // fading element hover id
+        	scrollSpeed: 1200,
+        	easingType: 'linear' 
+        };
+        */
+        $().UItoTop({
+          easingType: 'easeOutQuart'
+        });
+      });
+    </script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+    
 </body>
 
 </html>
