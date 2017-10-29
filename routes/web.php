@@ -112,5 +112,9 @@ Route::get('/hello', function () {
 	 
 	});
 
-
+	Route::get('/userinfo', function () {
+		
+			return view('agency_userinfo');
+		
+	 });
 	
