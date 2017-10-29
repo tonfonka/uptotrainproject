@@ -107,6 +107,17 @@ Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 
 	
 
+	Route::get('/profileagencysetting', function () {
+	 
+		 return view('profileagencysetting');
+	 
+	});
+
+	Route::get('/userinfo', function () {
+		
+			return view('agency_userinfo');
+		
+	 });
 	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
 	Route::post('/agency', 'UserController@profileagencysettingstore');
 
