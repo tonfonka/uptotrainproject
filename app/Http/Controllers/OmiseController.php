@@ -25,16 +25,6 @@ class OmiseController extends Controller
         return view('tripuser',['trips'=>$trips]);
     }
     
-    function schedule($id){
-        
-        $schedules = schedules::where('trip_id',$id)->get();
-        $data = array(
-            'schedules' => $schedules,
-            'title' => 'Schedules'
-        );
-        return view('schedule', $data);
-    }
-    
     function login(){
         return view('login');
     }

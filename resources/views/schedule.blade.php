@@ -11,6 +11,30 @@
     <link href="/css/uptotrain2.min.css" rel="stylesheet">
    
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body id="page-top" class="index">
     <div align="right">
@@ -163,39 +187,29 @@
 </div><!-- /col-sm-12 -->
 </div><!-- /row -->
 <div class="row">
+<div id="donutchart" style="width: 900px; height: 500px;"></div>
+@foreach($review as $reviews)
+<?php
+    $userName = DB::table('users')->where('id',$reviews->user_id)->get();
+
+?>
 <div class="col-sm-1">
 <div class="thumbnail">
-<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+<img class="img-responsive user-photo" src="/images/{{$userName[0]->image}}">
 </div><!-- /thumbnail -->
 </div><!-- /col-sm-1 -->
 
 <div class="col-sm-5">
 <div class="panel panel-default">
 <div class="panel-heading">
-<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
+<strong>{{$userName[0]->name}}</strong> <span class="text-muted">commented 5 days ago</span>
 </div>
 <div class="panel-body">
-Panel content
+{{$reviews->rate_des}}
 </div><!-- /panel-body -->
 </div><!-- /panel panel-default -->
 </div><!-- /col-sm-5 -->
-
-<div class="col-sm-1">
-<div class="thumbnail">
-<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-</div><!-- /thumbnail -->
-</div><!-- /col-sm-1 -->
-
-<div class="col-sm-5">
-<div class="panel panel-default">
-<div class="panel-heading">
-<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
-</div>
-<div class="panel-body">
-Panel content
-</div><!-- /panel-body -->
-</div><!-- /panel panel-default -->
-</div><!-- /col-sm-5 -->
+@endforeach
 </div><!-- /row -->
 
 </div><!-- /container -->

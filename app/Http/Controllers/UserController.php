@@ -47,7 +47,8 @@ class UserController extends Controller
         $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
 
         $agen = DB::table('travelagency')->where('id',$n)->get();
-
+        $review = DB::table('reviewTrip')->where('trip_id',$id)->get();
+        $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
         $trip = trip::where('id',$id)->first();
         $data = array(
             'schedules' => $schedules,
@@ -55,7 +56,8 @@ class UserController extends Controller
             'trip' => $trip,
             'title' => 'Schedules',
             'sumbook' =>$sumbook,
-            'agen' => $agen
+            'agen' => $agen,
+            'review' =>$review,
             
         );
         return view('schedule', $data);

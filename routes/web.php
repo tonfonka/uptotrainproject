@@ -88,12 +88,13 @@ Route::get('/checkregis', function(){
 	}
 });
 Route::get('/profileuser','UserController@profileuser')->middleware('auth');
-
+Route::get('/comment/{id}','UserController@commenttrip');
+Route::post('/profileuser','UserController@commentstore');
 Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
 Route::get('/hello', function () {
 	return view ('error/Brokebot');
-	});
-	Route::get('/shownumber/{id}','tripAgencyController@shownumber');
+});
+Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 
 	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
 
@@ -103,8 +104,8 @@ Route::get('/hello', function () {
 	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
 	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
 	Route::post('/profileuser','UserController@settingto');
-	Route::get('/comment/{id}','UserController@commenttrip');
-	Route::post('/profileuser','UserController@commentstore');
+
+	
 
 	Route::get('/profileagencysetting', function () {
 	 
