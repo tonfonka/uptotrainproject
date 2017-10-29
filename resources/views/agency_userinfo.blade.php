@@ -55,6 +55,7 @@
           </div>
       </div>
     </div>
+    </div>
 
 
 	
@@ -76,7 +77,7 @@
             } 
           })})
       </script>
-      <center><h1>อย่าลืมใส่ footer ด้วย จาก Ed</h1></center>
+      
 </body>
 
 @endsection
