@@ -1,4 +1,6 @@
-@extends('layouts.headprofile') @section('title', 'setting') @section('content')
+@extends('layouts.headprofile') 
+@section('title', 'setting') 
+@section('content')
 <link href="{{ URL::asset('/css/profile/blogttc.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('/css/profile_setting/navbar-affix.css') }}" rel="stylesheet" type="text/css" />
 <body data-spy="scroll" data-target=".scrollspy">
