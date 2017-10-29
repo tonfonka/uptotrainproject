@@ -45,11 +45,21 @@ class UserController extends Controller
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
         $sumbook = $booking->sum('number_booking');
         $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
-
         $agen = DB::table('travelagency')->where('id',$n)->get();
         $review = DB::table('reviewTrip')->where('trip_id',$id)->get();
+        $alluser = $review->count();
         $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
         $trip = trip::where('id',$id)->first();
+        $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();
+        $one = $starone->count();
+        $startwo =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','2']])->get();
+        $two = $startwo->count();
+        $starthree =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','3']])->get();
+        $three = $starthree->count();
+        $starfour =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','4']])->get();
+        $four = $starfour->count();
+        $starfive =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','5']])->get();
+        $five = $starfive->count();
         $data = array(
             'schedules' => $schedules,
             'triprounds' => $triprounds,
@@ -58,6 +68,12 @@ class UserController extends Controller
             'sumbook' =>$sumbook,
             'agen' => $agen,
             'review' =>$review,
+            'one' =>$one,
+            'two' => $two,
+            'three' =>$three,
+            'four' => $four,
+            'five' => $five,
+            'alluser' => $alluser
             
         );
         return view('schedule', $data);
