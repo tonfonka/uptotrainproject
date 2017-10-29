@@ -117,4 +117,7 @@ Route::get('/hello', function () {
 			return view('agency_userinfo');
 		
 	 });
+	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
+	Route::post('/agency', 'UserController@profileagencysettingstore');
+
 	

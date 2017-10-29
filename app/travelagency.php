@@ -21,4 +21,7 @@ class travelagency extends Model
     public function trips(){
         return $this->hasMany('App\trip','travelagency_id');
     }
+    public function user(){
+        return $this->belongsTo('App\User','id');
+    }
 }

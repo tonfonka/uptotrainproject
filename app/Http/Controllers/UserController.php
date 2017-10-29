@@ -5,6 +5,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\trip;
 use App\User;
+use App\travelagency;
 use App\schedules;
 use App\tripround;
 use Auth;
@@ -166,7 +167,7 @@ class UserController extends Controller
         return view('profile_user',$data);
     }
 
-    function profileusersetting(Request $request,$id){
+    function profileusersetting(){
     
             $userId = Auth::user()->id; 
             
@@ -177,8 +178,7 @@ class UserController extends Controller
             $data = array(
                 'user' => $user,
                 'userbook' => $userbook,
-                
-                 ' triproundbook' => $triproundbook
+                 'triproundbook' => $triproundbook
                 
                 
             );
@@ -254,5 +254,58 @@ class UserController extends Controller
 
             return redirect('/profileuser');
      }
+            function profileagencysetting(){
+
+                $userId = Auth::user()->id; 
+                $agency = DB::table('travelagency')->where('user_id',$userId)->get();
+
+                //$userbook = DB::table('booking')->where('user_id',$userId)->get();
+                //$triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+                $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+                   // dd($user);
+                $data = array(
+                    'user' => $user,
+                    'agency' => $agency,
+                    //'triproundbook' => $triproundbook
+                    
+                    
+                );
+        
+                 return view('profileagencysetting',$data);
+             }
+             function profileagencysettingstore(Request $request){
+
+                $userId = Auth::user()->id; 
+                $agency = DB::table('travelagency')->select('id')->where('user_id',$userId)->pluck('id')->first();  
+
+                if ($request->hasFile('image')) {
+                    $path = public_path('images');
+                    $imgName = 'Profileagency_'.str_random(10).$request->file('image')->getClientOriginalName();
+                    $request->file('image')->move($path,$imgName);
+                    $userId = User::find(Auth::user()->id);
+                    $userId->image = $imgName;
+                    $userId->save();
+            }
+                
+
+                $agencysetting = travelagency::find($agency);
+        
+                $agencysetting->agency_iata_no = $request->agency_iata_no;
+                $agencysetting->agency_tax_id = $request->agency_tax_id;
+                $agencysetting->agency_address = $request->agency_address;
+                $agencysetting->agency_province = $request->agency_province;
+                $agencysetting->agency_zipcode = $request->agency_zipcode;
+                $agencysetting->agency_tel1 = $request->agency_tel1;
+                $agencysetting->agency_tel2 = $request->agency_tel2;
+                $agencysetting->agency_fax = $request->agency_fax;  
+                $agencysetting->agency_web = $request->agency_web;
+                $agencysetting->agency_fb = $request->agency_fb;
+                $agencysetting->agency_description = $request->agency_description;
+                $agencysetting->save();
+                
+                               
+                        
+                                 return redirect('/agency');
+                             }
 
 }
