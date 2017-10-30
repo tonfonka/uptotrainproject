@@ -96,7 +96,7 @@ class UserController extends Controller
                   'title' => 'Schedules',
                   'sumbook' =>$sumbook,
                   'agen' => $agen,
-                  'diffdate' => $diffdate
+                  //'diffdate' => $diffdate
               );
               return view('schedule_tonfon', $data);
           }

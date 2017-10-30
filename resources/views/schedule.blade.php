@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <title>Up To train</title>
     <!-- Bootstrap Core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom Fonts -->
-    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- เปิดแล้ว Theme CSS -->
-    <link href="/css/uptotrain2.min.css" rel="stylesheet">
-   
+    <link href="/css/uptotrain2.min.css" rel="stylesheet"/>
+   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet"/>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -61,7 +62,7 @@
             @else
             ระยะเวลา {{ $trip->trip_nday }} วัน
             @endif
-            <p>บริษัท {{ $agen[0]->agency_name_en}}</p>
+            <a href="/profileagency/{{$trip->travelagency_id}}"><p>บริษัท {{ $agen[0]->agency_name_en}}</p></a>
             <img class="img-responsive img-centered" style="height:500px;width:850px;" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>

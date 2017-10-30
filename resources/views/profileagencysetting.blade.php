@@ -1,4 +1,6 @@
-@extends('layouts.agency2') @section('title', 'Setting') @section('content')
+@extends('layouts.agency3') 
+@section('title', 'Setting') 
+@section('content')
 <link href="{{ asset('/css/profile/blogttc.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('/css/profile_setting/navbar-affix.css') }}" rel="stylesheet" type="text/css" />
 
