@@ -25,16 +25,6 @@ class OmiseController extends Controller
         return view('tripuser',['trips'=>$trips]);
     }
     
-    function schedule($id){
-        
-        $schedules = schedules::where('trip_id',$id)->get();
-        $data = array(
-            'schedules' => $schedules,
-            'title' => 'Schedules'
-        );
-        return view('schedule', $data);
-    }
-    
     function login(){
         return view('login');
     }
@@ -112,20 +102,20 @@ class OmiseController extends Controller
             ]);
             return redirect('/bookingsum');
     }
-    public function bookingsum($id)
+    public function bookingsum()
     {
         $booking = DB::table('booking')->get();
-        //$mbook =$booking->max('id');
-        $book = DB::table('booking')->where('id',$id)->first();
-        $nu = DB::table('booking')->select('tripround_id')->where('id',$id)->pluck('tripround_id');
-        $u= DB::table('booking')->select('user_id')->where('id',$id)->pluck('user_id');
+        $mbook =$booking->max('id');
+        $book = DB::table('booking')->where('id',$mbook)->first();
+        $nu = DB::table('booking')->select('tripround_id')->where('id',$mbook)->pluck('tripround_id');
+        $u= DB::table('booking')->select('user_id')->where('id',$mbook)->pluck('user_id');
         $triprounds = DB::table('triprounds')->where('id',$nu)->get();
         $tr = DB::table('triprounds')->select('trip_id')->where('id',$nu)->pluck('trip_id');
         $user = DB::table('users')->where('id',$u)->get();
         $trip = DB::table('trips')->where('id',$tr)->get();
         $data = array(
             'booking' => $booking,
-            //'mbook' =>$mbook,
+            'mbook' =>$mbook,
             'book' =>$book,
             'tripround' =>$triprounds,
             'user' => $user,

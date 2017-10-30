@@ -5,11 +5,13 @@ use DB;
 use Illuminate\Http\Request;
 use App\trip;
 use App\User;
+use App\travelagency;
 use App\schedules;
 use App\tripround;
 use Auth;
 use Response;
 use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 class UserController extends Controller
 {
     function __construct(){
@@ -44,17 +46,35 @@ class UserController extends Controller
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
         $sumbook = $booking->sum('number_booking');
         $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
-
         $agen = DB::table('travelagency')->where('id',$n)->get();
-
+        $review = DB::table('reviewTrip')->where('trip_id',$id)->get();
+        $alluser = $review->count();
+        $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
         $trip = trip::where('id',$id)->first();
+        $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();
+        $one = $starone->count();
+        $startwo =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','2']])->get();
+        $two = $startwo->count();
+        $starthree =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','3']])->get();
+        $three = $starthree->count();
+        $starfour =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','4']])->get();
+        $four = $starfour->count();
+        $starfive =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','5']])->get();
+        $five = $starfive->count();
         $data = array(
             'schedules' => $schedules,
             'triprounds' => $triprounds,
             'trip' => $trip,
             'title' => 'Schedules',
             'sumbook' =>$sumbook,
-            'agen' => $agen
+            'agen' => $agen,
+            'review' =>$review,
+            'one' =>$one,
+            'two' => $two,
+            'three' =>$three,
+            'four' => $four,
+            'five' => $five,
+            'alluser' => $alluser
             
         );
         return view('schedule', $data);
@@ -68,7 +88,6 @@ class UserController extends Controller
               $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
 
               $agen = DB::table('travelagency')->where('id',$n)->get();
-
               $trip = trip::where('id',$id)->first();
               $data = array(
                   'schedules' => $schedules,
@@ -76,7 +95,8 @@ class UserController extends Controller
                   'trip' => $trip,
                   'title' => 'Schedules',
                   'sumbook' =>$sumbook,
-                  'agen' => $agen
+                  'agen' => $agen,
+                  'diffdate' => $diffdate
               );
               return view('schedule_tonfon', $data);
           }
@@ -166,7 +186,7 @@ class UserController extends Controller
         return view('profile_user',$data);
     }
 
-    function profileusersetting(Request $request,$id){
+    function profileusersetting(){
     
             $userId = Auth::user()->id; 
             
@@ -177,8 +197,7 @@ class UserController extends Controller
             $data = array(
                 'user' => $user,
                 'userbook' => $userbook,
-                
-                 ' triproundbook' => $triproundbook
+                 'triproundbook' => $triproundbook
                 
                 
             );
@@ -188,15 +207,21 @@ class UserController extends Controller
     public function settingto(Request $request){
 
         // $userId = DB::table('users')->where('id',Auth::user()->id)->first();
-        $path = public_path('images');
+        if ($request->hasFile('image')) {
+            $path = public_path('images');
         $imgName = 'Profileuser_'.str_random(10).$request->file('image')->getClientOriginalName();
         $request->file('image')->move($path,$imgName);
+        $userId = User::find(Auth::user()->id);
+        $userId->image = $imgName;
+        $userId->save();
+    }
+        
 
         $userId = User::find(Auth::user()->id);
 
         $userId->firstname = $request->firstname;
         $userId->lastname = $request->lastname;
-        $userId->image = $imgName;
+        //$userId->image = $imgName;
         $userId->phone = $request->phone;
         $userId->address = $request->address;
         $userId->province = $request->province;
@@ -226,5 +251,80 @@ class UserController extends Controller
              
              return redirect('/profileuser');
      }
+
+     function commenttrip($id){
+        
+               $tripname = DB::table('trips')->where('id',$id)->first();
+               $data = array(
+                'tripname' => $tripname,
+            );
+        
+                 return view('commentation',$data);
+             }
+        function commentstore(Request $request){
+
+                     DB::table('reviewTrip')
+                     ->insertGetId([ 
+                            "rate" =>$request->input('rate'),
+                            "rate_des" =>$request->input('des'),
+                            "trip_id"=>$request->input('trip_id'),
+                            "user_id"=>$request->input("user_id",Auth::user()->id),
+                        ]);
+
+            return redirect('/profileuser');
+     }
+            function profileagencysetting(){
+
+                $userId = Auth::user()->id; 
+                $agency = DB::table('travelagency')->where('user_id',$userId)->get();
+
+                //$userbook = DB::table('booking')->where('user_id',$userId)->get();
+                //$triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+                $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+                   // dd($user);
+                $data = array(
+                    'user' => $user,
+                    'agency' => $agency,
+                    //'triproundbook' => $triproundbook
+                    
+                    
+                );
+        
+                 return view('profileagencysetting',$data);
+             }
+             function profileagencysettingstore(Request $request){
+
+                $userId = Auth::user()->id; 
+                $agency = DB::table('travelagency')->select('id')->where('user_id',$userId)->pluck('id')->first();  
+
+                if ($request->hasFile('image')) {
+                    $path = public_path('images');
+                    $imgName = 'Profileagency_'.str_random(10).$request->file('image')->getClientOriginalName();
+                    $request->file('image')->move($path,$imgName);
+                    $userId = User::find(Auth::user()->id);
+                    $userId->image = $imgName;
+                    $userId->save();
+            }
+                
+
+                $agencysetting = travelagency::find($agency);
+        
+                $agencysetting->agency_iata_no = $request->agency_iata_no;
+                $agencysetting->agency_tax_id = $request->agency_tax_id;
+                $agencysetting->agency_address = $request->agency_address;
+                $agencysetting->agency_province = $request->agency_province;
+                $agencysetting->agency_zipcode = $request->agency_zipcode;
+                $agencysetting->agency_tel1 = $request->agency_tel1;
+                $agencysetting->agency_tel2 = $request->agency_tel2;
+                $agencysetting->agency_fax = $request->agency_fax;  
+                $agencysetting->agency_web = $request->agency_web;
+                $agencysetting->agency_fb = $request->agency_fb;
+                $agencysetting->agency_description = $request->agency_description;
+                $agencysetting->save();
+                
+                               
+                        
+                                 return redirect('/agency');
+                             }
 
 }

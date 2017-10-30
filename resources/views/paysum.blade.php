@@ -116,6 +116,12 @@
                                 <tr>
                                     <td>{{$user[0]->email}}</td>
                                 </tr>
+                                <tr>
+                                    <td>{{$user[0]->address}}
+                                    {{$user[0]->province}}
+                                    {{$user[0]->zipcode}}
+                                    </td>
+                                </tr>
                             </table>
                         </td>
                     </tr>

@@ -1,43 +1,39 @@
-@extends('layouts.agency') @section('title', 'Agency') @section('agency_banner')
-<link href="css/uptotrain.min.css" rel="stylesheet">
-<link href="css/login.css" rel="stylesheet">
+@extends('layouts.agency') 
+@section('title', 'Agency') 
+@section('agency_banner')
+<link href="{{asset('css/uptotrain.min.css')}}" rel="stylesheet">
+<link href="{{asset('css/login.css')}}" rel="stylesheet">
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">HELLO {{$travelagencies->agency_name_en}} !!!!</h1>
         </div> 
-        <div class="col-md-12" style="font-size:1.3em;">
-        </div>
     </div>
 </div>
 <!-- /.row -->
-@endsection @section('content')
+@endsection 
+@section('content')
 <div class="container" style="padding-top:30px;">
     <link href="/css/search_tripUser/style.css" rel="stylesheet" type="text/css" />
     <link href="/css/search_tripUser/component.css" rel='stylesheet' type='text/css' />
     <div class="container">
-        <div class="products-page">
-     
-         
+        <div class="products-page">     
             <!-- Page Content -->
             <div class="container">
-
                 <!-- Marketing Icons Section -->
                 <div class="row">
-                    
                     <div class="col-lg-12">
-                    @foreach($trips as $trip)
-                    <h1>{{$trip->trips_name}}</h1>
-                    @endforeach
-                        <h3>รอบ {{date('d/m/Y', strtotime($tripround->start_date))}}  ถึง 	{{date('d/m/Y', strtotime($tripround->departure_date))}}</h1>
-                        <h3>จำนวนรายชื่อที่มีการจองทั้งหมด {{$username->count()}} คน </h3>
-                        
-                        
+                        @foreach($trips as $trip)
+                            <h1>{{$trip->trips_name}}</h1>
+                        @endforeach
+                            <h3>รอบ {{date('d/m/Y', strtotime($tripround->start_date))}}  ถึง 	{{date('d/m/Y', strtotime($tripround->departure_date))}}</h1>
+                            <h3>จำนวนรายชื่อที่มีการจองทั้งหมด {{$username->count()}} คน </h3>
                     </div>
 
                     <div>
                         <table class="table">
                             <tr>
+                            <th>ลำดับ</th>
                                 <th>ชื่อ</th>
                                 <th>เด็ก</th>
                                 <th>ผู้ใหญ่</th>
@@ -51,6 +47,7 @@
                                 @foreach($username as $user)
                                      
                             <tr>
+                            <td>id</td>
                                 <td><a href=''>{{$user->name}}</a></td>
                                 
                                 <td>{{$boo->number_children}}</td>

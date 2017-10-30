@@ -22,20 +22,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     }
   </script>
   <!--Custom Theme files-->
-  <link href=" {{ URL::asset('css/bootstrap2.css') }}" rel="stylesheet">
-  <link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet">
-  <link href=" {{ URL::asset('css/profile/member-style.css') }}" rel="stylesheet">
-
+  <link href=" {{ URL::asset('css/bootstrap2.css') }}" rel="stylesheet"/>
+  <link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet"/>
+  <link href=" {{ URL::asset('css/profile/member-style.css') }}" rel="stylesheet"/>
+<link href="{{asset('css/uptotrain.min.css')}}" rel="stylesheet"/>
   <!-- font-awesome icons -->
-  <link href=" {{ URL::asset('css/font-awesome.css') }}" rel="stylesheet">
+  <link href=" {{ URL::asset('css/font-awesome.css') }}" rel="stylesheet"/>
   <!-- //font-awesome icons -->
   <!-- js -->
   <script src="js/jquery-2.2.3.min.js"></script>
   <!-- //js -->
   <!-- web-fonts -->
   
-  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
-    rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
   <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
@@ -52,7 +51,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-        <h1><a href="index.html">Up To Train</a></h1>
+        <h1><a href="/">Up To Train</a></h1>
       </div>
 
       <div class="topnav pull-right">
@@ -61,9 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <li><a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-                        LOG OUT
-            </a>
-
+                        LOG OUT</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                 {{ csrf_field() }}
             </form></li>
@@ -79,15 +76,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						หน้าหลัก 					  </a>
             </li>
             <li class="">
-              <a href="">
-						ข้อมูลการจอง					  </a>
+              <a href="/addtrip">
+						เพิ่มทริป					  </a>
             </li>
             <li class="">
               <a href="">
-						รายงาน					  </a>
+						ทริปทั้งหมด					  </a>
             </li>
             <li class="">
-              <a href="">
+              <a href="/profileagencysetting">
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -155,7 +152,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.js"></script>
-    <script src="js/search_tripUser/cbpViewModeSwitch.js" type="text/javascript"></script>
+    
 </body>
 
 </html>
