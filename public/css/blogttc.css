@@ -95,3 +95,14 @@
 .table-user-information>tbody>tr>td {
     border-top: 0;
 }
+
+.table-cont {
+    max-width: 400px;
+    max-height: 200px;
+    overflow: auto;
+    border: 1px red solid;
+}
+
+.table-cont .table {
+    min-width: 600px;
+}
