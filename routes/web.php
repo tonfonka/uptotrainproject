@@ -35,7 +35,7 @@ Route::get('/agreement',function(){
 });
 
 Route::get('/search', 'UserController@search');
-Route::post ( '/searcht', 'UserController@searchResult' );
+Route::post ('/searcht', 'UserController@searchResult' );
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
@@ -89,12 +89,12 @@ Route::get('/checkregis', function(){
 });
 Route::get('/profileuser','UserController@profileuser')->middleware('auth');
 Route::get('/comment/{id}','UserController@commenttrip');
-	Route::post('/profileuser','UserController@commentstore');
+Route::post('/profileuser','UserController@commentstore');
 Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
 Route::get('/hello', function () {
 	return view ('error/Brokebot');
-	});
-	Route::get('/shownumber/{id}','tripAgencyController@shownumber');
+});
+Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 
 	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
 
@@ -107,6 +107,17 @@ Route::get('/hello', function () {
 
 	
 
+	Route::get('/profileagencysetting', function () {
+	 
+		 return view('profileagencysetting');
+	 
+	});
+
+	Route::get('/userinfo', function () {
+		
+			return view('agency_userinfo');
+		
+	 });
 	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
 	Route::post('/agency', 'UserController@profileagencysettingstore');
 
