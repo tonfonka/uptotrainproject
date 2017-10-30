@@ -35,7 +35,7 @@ Route::get('/agreement',function(){
 });
 
 Route::get('/search', 'UserController@search');
-Route::post ( '/searcht', 'UserController@searchResult' );
+Route::post ('/searcht', 'UserController@searchResult' );
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');

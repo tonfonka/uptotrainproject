@@ -94,17 +94,18 @@
                                             </td>
                                             <td>{{$total}}</td>
                                             <td>{{$net}}</td>
-                                            @if($percent > 1)
+                                            @if($percent == 0 )
+<td style="align:center;">
+                                                
+                                                    <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
+                                                
+                                            </td>
+                                            
+                                            @else
                                             <td style="align:center;">
                                                 <a href="/shownumber/{{$tripRound->id}}" name ={{$id}}>
                                                     <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
                                                 </a>
-                                            </td>
-                                            @else
-                                            <td style="align:center;">
-                                                
-                                                    <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
-                                                
                                             </td>
                                             @endif
                                         </tr>

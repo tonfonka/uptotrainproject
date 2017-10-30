@@ -110,7 +110,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <!-- //footer end here -->
     <!-- swipe box js -->
-    <script src="js/jquery.swipebox.min.js"></script>
+    <script src="{{asset('/js/jquery.swipebox.min.js')}}"></script>
     <script type="text/javascript">
       jQuery(function ($) {
         $(".swipebox").swipebox();
