@@ -35,7 +35,7 @@ Route::get('/agreement',function(){
 });
 
 Route::get('/search', 'UserController@search');
-Route::post ('/searcht', 'UserController@searchResult' );
+Route::post ( '/searcht', 'UserController@searchResult' );
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
@@ -87,9 +87,8 @@ Route::get('/checkregis', function(){
 		}
 	}
 });
-Route::get('/profileuser','UserController@profileuser')->middleware('auth');
-Route::get('/comment/{id}','UserController@commenttrip');
-Route::post('/profileuser','UserController@commentstore');
+
+
 Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
 Route::get('/hello', function () {
 	return view ('error/Brokebot');
@@ -97,15 +96,18 @@ Route::get('/hello', function () {
 Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 
 	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
-
 	Route::get('verify/{email}/{verifyToken}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 
-	
-	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
-	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
-	Route::post('/profileuser','UserController@settingto');
 
+	Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
+	Route::get('/comment/{id}','UserController@commenttrip');
+	Route::post('/profileuser','UserController@commentstore');
 	
+	Route::post('/profileusersetting/{id}','UserController@settingto');
+	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
+	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
+
 
 	Route::get('/profileagencysetting', function () {
 	 
@@ -113,12 +115,8 @@ Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 	 
 	});
 
-	Route::get('/userinfo', function () {
-		
-			return view('agency_userinfo');
-		
-	 });
-	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
+	Route::get('/userinfo', 'tripAgencyController@showuserDetail');
+	
 	Route::post('/agency', 'UserController@profileagencysettingstore');
 
 	Route::get('/historytripuser', function () {
