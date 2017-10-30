@@ -299,8 +299,8 @@ class tripAgencyController extends Controller
 function showUserDetail($id) {
     
      //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
-     $travelagencies = travelagency::where('user_id', Auth::user()->id)->get();
-     $user =  DB::table('users')->where('id',$id )->first();
+     $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+     $user =  DB::table('users')->where('id',$id )->get();
      //$trips = DB::table('trips')->where('travelagency_id',$id)->get();
      //$trip = DB::table('trips')->where([['id',$id],['travelagency_id', Auth::user()->id]])->get();
      //$trips = DB::table('trips')->where('id',$id)->get();

@@ -105,17 +105,20 @@ Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 	Route::post('/profileuser','UserController@commentstore');
 	
 	Route::post('/myprofile/{id}','UserController@settingto');
+
 	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
+Route::post('/myagency/{id}', 'UserController@profileagencysettingstore');
+Route::get('/myagency/{id}', 'UserController@myagency');
+
 	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
 
 
 	Route::get('/userinfo/{id}', 'tripAgencyController@showuserDetail');
 	
-	Route::post('/agency', 'UserController@profileagencysettingstore');
-
+	
+	
 	Route::get('/historytripuser', function () {
 			return view('historytripuser');
 	});
 	
 	Route::get('/myprofile/{id}', 'tripAgencyController@myprofile');
-	
