@@ -209,9 +209,8 @@ $due = $reviews->created_at;
 <div class="col-sm-5">
 <div class="panel panel-default">
 <div class="panel-heading">
-<strong>{{$userName[0]->name}}</strong> <span class="text-muted">{{  \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
+<strong>{{$userName[0]->name}}</strong> <span class="text-muted">{{\Carbon\Carbon::now('Asia/Bangkok')->createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
 </div>
-
 <div class="panel-body">
 {{$reviews->rate_des}}
 @if(($reviews->rate) =='1')

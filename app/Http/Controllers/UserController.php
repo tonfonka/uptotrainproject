@@ -204,7 +204,7 @@ class UserController extends Controller
             return view ('profile_setting',$data);
     }
        
-    public function settingto(Request $request){
+    public function settingto(Request $request,$id){
 
         // $userId = DB::table('users')->where('id',Auth::user()->id)->first();
         if ($request->hasFile('image')) {
@@ -249,7 +249,7 @@ class UserController extends Controller
         // $userId->save();
 
              
-             return redirect('/profileuser');
+             return redirect('/profileusersetting/{id}');
      }
 
      function commenttrip($id){
@@ -266,7 +266,7 @@ class UserController extends Controller
                      DB::table('reviewTrip')
                      ->insertGetId([ 
                             "rate" =>$request->input('rate'),
-                            "rate_des" =>$request->input('des'),
+                            "rate_des" =>$request->input('rate_des'),
                             "trip_id"=>$request->input('trip_id'),
                             "user_id"=>$request->input("user_id",Auth::user()->id),
                         ]);
