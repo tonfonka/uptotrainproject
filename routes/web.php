@@ -121,4 +121,7 @@ Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
 	Route::post('/agency', 'UserController@profileagencysettingstore');
 
+	Route::get('/historytripuser', function () {
+			return view('historytripuser');
+	});
 	
