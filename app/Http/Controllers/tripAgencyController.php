@@ -296,6 +296,30 @@ class tripAgencyController extends Controller
     return view('profileagency',$data);
 
 }
+function showUserDetail($id) {
+    
+     //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
+     $travelagencies = travelagency::where('user_id', Auth::user()->id)->get();
+     $user =  DB::table('users')->where('id',$id )->first();
+     //$trips = DB::table('trips')->where('travelagency_id',$id)->get();
+     //$trip = DB::table('trips')->where([['id',$id],['travelagency_id', Auth::user()->id]])->get();
+     //$trips = DB::table('trips')->where('id',$id)->get();
+     //$tripround = DB::table('triprounds')->where('trip_id',$id)->get();
+     //dd($trips);
+             $data = array(
+                 'travelagencies' => $travelagencies,
+                 'user' => $user,
+                 //'tripround' => $tripround
+             );
+    return view('profileuser.agency_userinfo',$data);
+
+}
+function myprofile($id) {
+    
+     
+    return view('profileuser.userside');
+
+}
 
     
 }

@@ -48,7 +48,7 @@
                                      
                             <tr>
                             <td>id</td>
-                                <td><a href=''>{{$user->name}}</a></td>
+                                <td><a href='/userinfo/{{$user->id}}'>{{$user->name}}</a></td>
                                 
                                 <td>{{$boo->number_children}}</td>
                                 <td>{{$boo->number_adults}}</td>

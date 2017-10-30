@@ -19,38 +19,38 @@
             <div class="col-md-2">
               <section id="edit-avatar" style="height:200px;">
                 <div class="text-center">
-                  <img src="/images/{{Auth::user()->image}}" alt="" width="150" class="avatar img-circle" alt="avatar">
+                  <img src="/images/{{$user->image}}" alt="" width="150" class="avatar img-circle" alt="avatar">
                 </div>
-                <center><label>username</label></center>
+                <center><label>{{$user->name}}</label></center>
               </section>
             </div>
             <div class="col-md-10">
-              <p style="font-size:25px;color:black;">ชื่อ : อธิวัชร์ แสงแก้ว</p>
+              <p style="font-size:25px;color:black;">ชื่อ :{{$user->firstname}}  {{$user->lastname}}</p>
               <div class="row">
                 <div class="col-md-6">
-                  <p style="font-size:25px;color:black;">เพศ : ชาย </p>
-                  <p style="font-size:25px;color:black;">เบอร์ติดต่อ : 0874444444 </p>
-                  <p style="font-size:25px;color:black;">โรคประจำตัว : chronic_disease </p>
+                  <p style="font-size:25px;color:black;">เพศ : {{$user->sex}} </p>
+                  <p style="font-size:25px;color:black;">เบอร์ติดต่อ : {{$user->phone}} </p>
+                  <p style="font-size:25px;color:black;">โรคประจำตัว : {{$user->chronic_disease}} </p>
                 </div>
                 <div class="col-md-6">
-                <p style="font-size:25px;color:black;">อายุ : 22  </p>
-                <p style="font-size:25px;color:black;">อีเมลล์ : ed@gmail.com </p>
-                <p style="font-size:25px;color:black;">อาหารที่แพ้ : food_allergy	 </p>
+                <p style="font-size:25px;color:black;">อายุ :{{$user->age}} </p>
+                <p style="font-size:25px;color:black;">อีเมลล์ : {{$user->email}} </p>
+                <p style="font-size:25px;color:black;">อาหารที่แพ้ : {{$user->food_allergy}}	 </p>
                 </div>
               </div> 
             </div>
           </div>
           <div class="row">
             <div class = "col-md-12">
-              <p style="font-size:25px;color:black;">ที่อยู่ : address</p>
+              <p style="font-size:25px;color:black;">ที่อยู่ : {{$user->address}}</p>
             </div>
           </div>
           <div class="row">
             <div class = "col-md-6">
-              <p style="font-size:25px;color:black;">จังหวัด : province	</p>
+              <p style="font-size:25px;color:black;">จังหวัด : {{$user->province}}	</p>
             </div>
             <div class = "col-md-6">
-              <p style="font-size:25px;color:black;">รหัสไปรษณีย์ : zipcode</p>
+              <p style="font-size:25px;color:black;">รหัสไปรษณีย์ : {{$user->zipcode}}</p>
             </div>    
           </div>
       </div>

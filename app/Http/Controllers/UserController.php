@@ -249,7 +249,7 @@ class UserController extends Controller
         // $userId->save();
 
              
-             return redirect('/profileusersetting/{id}');
+             return redirect('/myprofile/{id}');
      }
 
      function commenttrip($id){
