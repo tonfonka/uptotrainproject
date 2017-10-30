@@ -4,8 +4,143 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "33bcc1b49e8698b6d58ef4f33782beca",
+    "content-hash": "c59bf8abbb67874d3fa9e369ece04d4f",
     "packages": [
+        {
+            "name": "arcanedev/seo-helper",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ARCANEDEV/SEO-Helper.git",
+                "reference": "067abc130cd519cfa256c24b097397213c35aeda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ARCANEDEV/SEO-Helper/zipball/067abc130cd519cfa256c24b097397213c35aeda",
+                "reference": "067abc130cd519cfa256c24b097397213c35aeda",
+                "shasum": ""
+            },
+            "require": {
+                "arcanedev/support": "~4.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpcov": "~4.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Arcanedev\\SeoHelper\\SeoHelperServiceProvider"
+                    ],
+                    "aliases": {
+                        "SeoHelper": "Arcanedev\\SeoHelper\\Facades\\SeoHelper"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Arcanedev\\SeoHelper\\": "src/"
+                },
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ARCANEDEV",
+                    "email": "arcanedev.maroc@gmail.com",
+                    "homepage": "https://github.com/arcanedev-maroc",
+                    "role": "Developer"
+                }
+            ],
+            "description": "SEO Helper is a framework agnostic package that provides tools & helpers for SEO (Laravel supported).",
+            "homepage": "https://github.com/ARCANEDEV/SEO-Helper",
+            "keywords": [
+                "Alexa",
+                "bing",
+                "description",
+                "google",
+                "helper",
+                "keywords",
+                "laravel",
+                "metas",
+                "og",
+                "opengraph",
+                "seo",
+                "tags",
+                "title",
+                "twitter",
+                "webmaster",
+                "yandex"
+            ],
+            "time": "2017-08-31T09:38:32+00:00"
+        },
+        {
+            "name": "arcanedev/support",
+            "version": "4.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ARCANEDEV/Support.git",
+                "reference": "50bf6c1e6aabf7c5c4e1cea0d6028b0622d5ce2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/50bf6c1e6aabf7c5c4e1cea0d6028b0622d5ce2d",
+                "reference": "50bf6c1e6aabf7c5c4e1cea0d6028b0622d5ce2d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "~5.4.0",
+                "illuminate/support": "~5.4.0",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "orchestra/testbench-browser-kit": "~3.4.0",
+                "phpunit/phpcov": "~3.0",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Arcanedev\\Support\\": "src/"
+                },
+                "files": [
+                    "constants.php",
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ARCANEDEV",
+                    "email": "arcanedev.maroc@gmail.com",
+                    "homepage": "https://github.com/arcanedev-maroc"
+                }
+            ],
+            "description": "ARCANEDEV Support Helpers",
+            "homepage": "https://github.com/ARCANEDEV/Support",
+            "keywords": [
+                "arcanedev",
+                "arcanesoft",
+                "laravel",
+                "support"
+            ],
+            "time": "2017-05-08T12:18:25+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -41,25 +176,6 @@
         },
         {
             "name": "doctrine/inflector",
-<<<<<<< HEAD
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/inflector.git",
-                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/90b2128806bfde671b6952ab8bea493942c1fdae",
-                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*"
-=======
             "version": "v1.2.0",
             "source": {
                 "type": "git",
@@ -77,26 +193,16 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.2"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Inflector\\": "lib/"
-=======
                     "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -133,8 +239,7 @@
                 "singularize",
                 "string"
             ],
-<<<<<<< HEAD
-            "time": "2015-11-06T14:35:42+00:00"
+            "time": "2017-07-22T12:18:28+00:00"
         },
         {
             "name": "dompdf/dompdf",
@@ -196,9 +301,6 @@
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
             "time": "2016-05-11T00:36:29+00:00"
-=======
-            "time": "2017-07-22T12:18:28+00:00"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
         },
         {
             "name": "erusev/parsedown",
@@ -330,7 +432,6 @@
             "time": "2015-04-20T18:58:01+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "jeremeamia/SuperClosure",
             "version": "2.3.0",
             "source": {
@@ -389,8 +490,6 @@
             "time": "2016-12-07T09:37:55+00:00"
         },
         {
-=======
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
             "name": "laravel/framework",
             "version": "v5.4.36",
             "source": {
@@ -720,7 +819,6 @@
             "time": "2017-08-06T17:41:04+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "league/fractal",
             "version": "0.17.0",
             "source": {
@@ -863,8 +961,6 @@
             "time": "2017-09-19T19:36:48+00:00"
         },
         {
-=======
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
             "name": "monolog/monolog",
             "version": "1.23.0",
             "source": {
@@ -1139,7 +1235,6 @@
             "time": "2017-09-27T21:40:39+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "phenx/php-font-lib",
             "version": "0.4",
             "source": {
@@ -1265,8 +1360,6 @@
             "time": "2015-05-01T07:00:55+00:00"
         },
         {
-=======
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
             "name": "psr/log",
             "version": "1.0.2",
             "source": {
@@ -2010,7 +2103,6 @@
             "time": "2017-10-11T12:05:26+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "symfony/polyfill-php56",
             "version": "v1.6.0",
             "source": {
@@ -2119,8 +2211,6 @@
             "time": "2017-10-11T12:05:26+00:00"
         },
         {
-=======
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
             "name": "symfony/process",
             "version": "v3.3.10",
             "source": {
@@ -2476,7 +2566,6 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
-<<<<<<< HEAD
         },
         {
             "name": "yajra/laravel-datatables-oracle",
@@ -2537,29 +2626,11 @@
                 "laravel5"
             ],
             "time": "2017-01-24T02:46:52+00:00"
-=======
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
         }
     ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
-<<<<<<< HEAD
-            "version": "1.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
-                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3,<8.0-DEV"
-=======
             "version": "1.1.0",
             "source": {
                 "type": "git",
@@ -2574,28 +2645,18 @@
             },
             "require": {
                 "php": "^7.1"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
             },
             "require-dev": {
                 "athletic/athletic": "~0.1.8",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-<<<<<<< HEAD
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~2.0"
-=======
                 "phpunit/phpunit": "^6.2.3",
                 "squizlabs/php_codesniffer": "^3.0.2"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
-                    "dev-master": "1.0.x-dev"
-=======
                     "dev-master": "1.2.x-dev"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
                 }
             },
             "autoload": {
@@ -2620,11 +2681,7 @@
                 "constructor",
                 "instantiate"
             ],
-<<<<<<< HEAD
-            "time": "2015-06-14T21:17:01+00:00"
-=======
             "time": "2017-07-22T11:58:36+00:00"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
         },
         {
             "name": "fzaninotto/faker",
@@ -2887,24 +2944,6 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-<<<<<<< HEAD
-            "version": "3.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "4aada1f93c72c35e22fb1383b47fee43b8f1d157"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/4aada1f93c72c35e22fb1383b47fee43b8f1d157",
-                "reference": "4aada1f93c72c35e22fb1383b47fee43b8f1d157",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5",
-                "phpdocumentor/reflection-common": "^1.0@dev",
-                "phpdocumentor/type-resolver": "^0.3.0",
-=======
             "version": "4.1.1",
             "source": {
                 "type": "git",
@@ -2921,7 +2960,6 @@
                 "php": "^7.0",
                 "phpdocumentor/reflection-common": "^1.0@dev",
                 "phpdocumentor/type-resolver": "^0.4.0",
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
                 "webmozart/assert": "^1.0"
             },
             "require-dev": {
@@ -2947,22 +2985,6 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-<<<<<<< HEAD
-            "time": "2017-08-08T06:39:58+00:00"
-        },
-        {
-            "name": "phpdocumentor/type-resolver",
-            "version": "0.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "fb3933512008d8162b3cdf9e18dba9309b7c3773"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/fb3933512008d8162b3cdf9e18dba9309b7c3773",
-                "reference": "fb3933512008d8162b3cdf9e18dba9309b7c3773",
-=======
             "time": "2017-08-30T18:51:59+00:00"
         },
         {
@@ -2977,7 +2999,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/9c977708995954784726e25d0cd1dddf4e65b0f7",
                 "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7",
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
                 "shasum": ""
             },
             "require": {
@@ -3011,11 +3032,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2017-06-03T08:32:36+00:00"
-=======
             "time": "2017-07-14T14:27:02+00:00"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
         },
         {
             "name": "phpspec/prophecy",
@@ -3282,18 +3299,6 @@
         },
         {
             "name": "phpunit/php-token-stream",
-<<<<<<< HEAD
-            "version": "1.4.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/e03f8f67534427a787e21a385a67ec3ca6978ea7",
-                "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7",
-=======
             "version": "2.0.1",
             "source": {
                 "type": "git",
@@ -3304,31 +3309,19 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/9a02332089ac48e704c70f6cefed30c224e3c0b0",
                 "reference": "9a02332089ac48e704c70f6cefed30c224e3c0b0",
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
-<<<<<<< HEAD
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.2"
-=======
                 "php": "^7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.2.4"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
-                    "dev-master": "1.4-dev"
-=======
                     "dev-master": "2.0-dev"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
                 }
             },
             "autoload": {
@@ -3351,11 +3344,7 @@
             "keywords": [
                 "tokenizer"
             ],
-<<<<<<< HEAD
-            "time": "2017-02-27T10:12:30+00:00"
-=======
             "time": "2017-08-20T05:47:52+00:00"
->>>>>>> bb9c1562a2bfb43432d480a4e113b8c15d0cf97d
         },
         {
             "name": "phpunit/phpunit",
