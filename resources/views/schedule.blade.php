@@ -203,11 +203,13 @@
 <img class="img-responsive user-photo" src="/images/{{$userName[0]->image}}">
 </div><!-- /thumbnail -->
 </div><!-- /col-sm-1 -->
-
+<?php
+$due = $reviews->created_at;
+?>
 <div class="col-sm-5">
 <div class="panel panel-default">
 <div class="panel-heading">
-<strong>{{$userName[0]->name}}</strong> <span class="text-muted">commented 5 days ago</span>
+<strong>{{$userName[0]->name}}</strong> <span class="text-muted">{{  \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
 </div>
 
 <div class="panel-body">

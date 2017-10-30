@@ -11,6 +11,7 @@ use App\tripround;
 use Auth;
 use Response;
 use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 class UserController extends Controller
 {
     function __construct(){
@@ -87,7 +88,6 @@ class UserController extends Controller
               $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
 
               $agen = DB::table('travelagency')->where('id',$n)->get();
-
               $trip = trip::where('id',$id)->first();
               $data = array(
                   'schedules' => $schedules,
@@ -95,7 +95,8 @@ class UserController extends Controller
                   'trip' => $trip,
                   'title' => 'Schedules',
                   'sumbook' =>$sumbook,
-                  'agen' => $agen
+                  'agen' => $agen,
+                  'diffdate' => $diffdate
               );
               return view('schedule_tonfon', $data);
           }
