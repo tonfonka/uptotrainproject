@@ -82,10 +82,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						ข้อมูลการจอง					  </a>
             </li>
             <li class="">
-              <a href="">
-						รายงาน					  </a>
-            </li>
-            <li class="">
               <a href="/profileusersetting/{{Auth::user()->id}}">
 
 						ตั้งค่า					  </a>
