@@ -87,20 +87,46 @@ Route::get('/checkregis', function(){
 		}
 	}
 });
-Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+
 
 Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
 Route::get('/hello', function () {
 	return view ('error/Brokebot');
-	});
-	Route::get('/shownumber/{id}','tripAgencyController@shownumber');
+});
+
+Route::get('/map', function () {
+	return view ('map');
+});
+Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 
 	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
-
 	Route::get('verify/{email}/{verifyToken}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 
-	
-	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
-	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
-	Route::post('/profileuser','UserController@settingto');
 
+	Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
+	Route::get('/comment/{id}','UserController@commenttrip');
+	Route::post('/profileuser','UserController@commentstore');
+	
+	Route::post('/myprofile/{id}','UserController@settingto');
+
+	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
+Route::post('/myagency/{id}', 'UserController@profileagencysettingstore');
+Route::get('/myagency/{id}', 'UserController@myagency');
+
+	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
+
+
+	Route::get('/userinfo/{id}', 'tripAgencyController@showuserDetail');
+	
+	
+	
+	Route::get('/historytripuser', function () {
+			return view('historytripuser');
+	});
+	
+	Route::get('/myprofile/{id}', 'tripAgencyController@myprofile');
+
+	Route::get('trip/getdata','tripAgencyController@getData')->name('data');
+
+	Route::get('trip/datatables','tripAgencyController@data')->name('datatables.data');
