@@ -22,7 +22,7 @@ class UserController extends Controller
     }
 
     function search(){
-         $trips = Trip::paginate(15);
+         $trips = DB::table('trips')->orderBy('id','desc')->paginate(15);
          
         return view('tripuser',['trips'=>$trips]);
     }

@@ -22,7 +22,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Datatables;
 use App\Data;
-
+use PDF;
 
 
 
@@ -194,7 +194,7 @@ class tripAgencyController extends Controller
         $round = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
         $trips = DB::table('trips')->where('id',$round)->get();
         //dd($trips);
-        $booking = DB::table('booking')->where('tripround_id',$id)->get();
+        $booking = DB::table('booking')->where('tripround_id',$id)->orderBy('id','desc')->get();
         
         $book = DB::table('booking')->select('user_id')->where('tripround_id',$id)->pluck('user_id');
         $count = $book->count();
@@ -320,6 +320,5 @@ function myprofile($id) {
     return view('profileuser.userside');
 
 }
-
     
 }
