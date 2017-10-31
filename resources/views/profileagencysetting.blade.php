@@ -1,4 +1,6 @@
-@extends('layouts.agency2') @section('title', 'Setting') @section('content')
+@extends('layouts.agency3') 
+@section('title', 'Setting') 
+@section('content')
 <link href="{{ asset('/css/profile/blogttc.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('/css/profile_setting/navbar-affix.css') }}" rel="stylesheet" type="text/css" />
 
@@ -18,7 +20,7 @@
       </div>
 
 
-      <form class="form-horizontal" role="form" action="/agency" method="POST" name="id" enctype="multipart/form-data">
+      <form class="form-horizontal" role="form" action="/myagency/{{Auth::user()->id}}" method="POST" name="id" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <div class="col-md-9">
           <section id="edit-logo" style="height:300px;">

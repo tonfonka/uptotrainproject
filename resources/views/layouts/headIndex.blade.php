@@ -59,7 +59,7 @@
             <button type="button" class="navbar-toggle" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-            <a class="navbar-brand page-scroll" href="home">Up To Train</a>
+            <a class="navbar-brand page-scroll" href="/">Up To Train</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -147,7 +147,7 @@
             <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
             <ul class="dropdown-menu">
             @if(Auth::guest())
-           <li> <a href="{{ url('/login')}}"><span class="glyphicon glyphicon-menu-right"></span> Login</a></li>
+           <li><a href="{{ url('/login')}}"><span class="glyphicon glyphicon-menu-right"></span> Login</a></li>
             @else
             <li><a href="profile"><span class="glyphicon glyphicon-menu-right"></span>welcome</a></li>
             <li> <a href="{{ route('logout') }}"

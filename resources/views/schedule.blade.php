@@ -4,14 +4,16 @@
     <meta charset="utf-8">
     <title>Up To train</title>
     <!-- Bootstrap Core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom Fonts -->
-    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- เปิดแล้ว Theme CSS -->
-    <link href="/css/uptotrain2.min.css" rel="stylesheet">
-   
+    <link href="/css/uptotrain2.min.css" rel="stylesheet"/>
+   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet"/>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+    
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -25,14 +27,18 @@
         ]);
 
         var options = {
+            
           title: 'คะแนนรวม จากผู้ใช้ทั้งหมด' ,
           pieHole: 0.5,
           slices: {
-            0: { color: 'yellow' },
-            1: { color: 'black' },
-            2: { color: 'red' }
-
+            0: { color: '#febf05' },
+            1: { color: '#feae40' },
+            2: { color: '#fe8005' },
+            3:{color:'#fe9505'},
+            4:{color:'#fe5705'},
           }
+          
+          
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -61,7 +67,7 @@
             @else
             ระยะเวลา {{ $trip->trip_nday }} วัน
             @endif
-            <p>บริษัท {{ $agen[0]->agency_name_en}}</p>
+            <a href="/profileagency/{{$trip->travelagency_id}}"><p>บริษัท {{ $agen[0]->agency_name_en}}</p></a>
             <img class="img-responsive img-centered" style="height:500px;width:850px;" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
@@ -188,7 +194,7 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
-<h3>รีวิวจากผู้เข้าร่วมจริงทั้งหมด : {{$alluser}}</h3>
+<h3>รีวิวจากผู้เข้าร่วมจริงทั้งหมด : {{$alluser}} คน</h3>
 </div><!-- /col-sm-12 -->
 </div><!-- /row -->
 <div class="row">
@@ -209,9 +215,8 @@ $due = $reviews->created_at;
 <div class="col-sm-5">
 <div class="panel panel-default">
 <div class="panel-heading">
-<strong>{{$userName[0]->name}}</strong> <span class="text-muted">{{  \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
+<strong>{{$userName[0]->name}}</strong> <span class="text-muted">{{\Carbon\Carbon::now('Asia/Bangkok')->createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
 </div>
-
 <div class="panel-body">
 {{$reviews->rate_des}}
 @if(($reviews->rate) =='1')

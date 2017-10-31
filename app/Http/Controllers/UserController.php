@@ -22,7 +22,7 @@ class UserController extends Controller
     }
 
     function search(){
-         $trips = Trip::paginate(15);
+         $trips = DB::table('trips')->orderBy('id','desc')->paginate(15);
          
         return view('tripuser',['trips'=>$trips]);
     }
@@ -96,7 +96,7 @@ class UserController extends Controller
                   'title' => 'Schedules',
                   'sumbook' =>$sumbook,
                   'agen' => $agen,
-                  'diffdate' => $diffdate
+                  //'diffdate' => $diffdate
               );
               return view('schedule_tonfon', $data);
           }
@@ -204,7 +204,7 @@ class UserController extends Controller
             return view ('profile_setting',$data);
     }
        
-    public function settingto(Request $request){
+    public function settingto(Request $request,$id){
 
         // $userId = DB::table('users')->where('id',Auth::user()->id)->first();
         if ($request->hasFile('image')) {
@@ -249,7 +249,7 @@ class UserController extends Controller
         // $userId->save();
 
              
-             return redirect('/profileuser');
+             return redirect('/myprofile/{id}');
      }
 
      function commenttrip($id){
@@ -266,7 +266,7 @@ class UserController extends Controller
                      DB::table('reviewTrip')
                      ->insertGetId([ 
                             "rate" =>$request->input('rate'),
-                            "rate_des" =>$request->input('des'),
+                            "rate_des" =>$request->input('rate_des'),
                             "trip_id"=>$request->input('trip_id'),
                             "user_id"=>$request->input("user_id",Auth::user()->id),
                         ]);
@@ -292,7 +292,7 @@ class UserController extends Controller
         
                  return view('profileagencysetting',$data);
              }
-             function profileagencysettingstore(Request $request){
+             function profileagencysettingstore(Request $request,$id){
 
                 $userId = Auth::user()->id; 
                 $agency = DB::table('travelagency')->select('id')->where('user_id',$userId)->pluck('id')->first();  
@@ -324,7 +324,26 @@ class UserController extends Controller
                 
                                
                         
-                                 return redirect('/agency');
+                                 return redirect('/myagency/{$id}');
                              }
+                 function myagency($id){
+
+                $userId = Auth::user()->id; 
+                $travelagencies = DB::table('travelagency')->where('user_id',$userId)->get();
+
+                //$userbook = DB::table('booking')->where('user_id',$userId)->get();
+                //$triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+                $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+                   // dd($user);
+                $data = array(
+                    'user' => $user,
+                    'travelagencies' => $travelagencies,
+                    //'triproundbook' => $triproundbook
+                    
+                    
+                );
+        
+                 return view('myagency',$data);
+             }            
 
 }
