@@ -154,7 +154,12 @@ fieldset[disabled] .btn-xl:hover {
     border-color: #fed136
 }
 
-.panel {
+
+/*.panel {
+    position: relative;
+}*/
+
+.panel2 {
     position: relative;
 }
 

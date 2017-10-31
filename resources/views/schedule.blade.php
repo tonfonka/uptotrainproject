@@ -13,6 +13,7 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+    
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -26,14 +27,18 @@
         ]);
 
         var options = {
+            
           title: 'คะแนนรวม จากผู้ใช้ทั้งหมด' ,
           pieHole: 0.5,
           slices: {
-            0: { color: 'yellow' },
-            1: { color: 'black' },
-            2: { color: 'red' }
-
+            0: { color: '#febf05' },
+            1: { color: '#feae40' },
+            2: { color: '#fe8005' },
+            3:{color:'#fe9505'},
+            4:{color:'#fe5705'},
           }
+          
+          
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -189,7 +194,7 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
-<h3>รีวิวจากผู้เข้าร่วมจริงทั้งหมด : {{$alluser}}</h3>
+<h3>รีวิวจากผู้เข้าร่วมจริงทั้งหมด : {{$alluser}} คน</h3>
 </div><!-- /col-sm-12 -->
 </div><!-- /row -->
 <div class="row">

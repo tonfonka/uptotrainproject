@@ -19,24 +19,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       window.scrollTo(0, 1);
     }
   </script>
-  <!--Custom Theme files-->
-  <link href="{{ URL::asset('/css/bootstrap2.css') }}" type="text/css" rel="stylesheet">
-  <link href="{{ URL::asset('/css/style.css') }}" type="text/css" rel="stylesheet">
-  <link href="{{ URL::asset('/css/profile/member-style.css') }}" type="text/css" rel="stylesheet">
-
-  <!-- font-awesome icons -->
-  <link href="{{ URL::asset('/css/font-awesome.css') }}" rel="stylesheet">
-  <!-- //font-awesome icons -->
+   <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet" />
+  <!--Theme CSS-->
+  
+<link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet"/>
+  <link href=" {{ URL::asset('css/profile/member-style.css') }}" rel="stylesheet"/>
   <!-- js -->
-
-  <script src="{{ URL::asset('js/jquery-2.2.3.min.js') }}"></script>
-
-  <!-- //js -->
-  <!-- web-fonts -->
-  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
-    rel='stylesheet' type='text/css'>
-  <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+  <script src="{{ URL::asset('/js/jquery-2.2.3.min.js') }}"></script>
+ 
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+      <link rel="stylesheet" href="{{asset('/css/codebox/style.css')}}"/>
+
+  
 </head>
 
 <body>
@@ -96,31 +90,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </div>
     </div>
   </header>
-  <div class="banner about-banner" style="background-image:{{ URL::asset('/img/2.jpg') }}">
-    <div class="blog-page blog-content-1">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="banner-text">
-            <div class="container">
-              <div class="banner-w3lstext">
-                <div class="blog-banner blog-container">
-                  <div class="blog-banner-avatar">
-                    <a href="javascript:;">
-								<img src="/images/{{Auth::user()->image}}" alt="avatar">                            </a>
-                  </div>
-                  <h3>
-
-                    ยินดีต้อนรับ {{Auth::user()->name}} <a href="/profileusersetting" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
-
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
 
   <!-- //header-->
