@@ -774,7 +774,6 @@ p {
     -o-transform: scale(0);
     -ms-transform: scale(0);
     transform: scale(0);
-    -webkit-backface-visibility: hidden;
     /*for a smooth font */
 }
 
@@ -1198,8 +1197,8 @@ section#tables p {
 .table>thead>tr>td,
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
-    font-size: 0.9em;
-    color: #999;
+    font-size: 1.2em;
+    color: #7c7c7c;
     border-top: none !important;
 }
 

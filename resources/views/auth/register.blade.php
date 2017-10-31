@@ -41,8 +41,7 @@
                         <label for="role" class="col-md-4 control-label">Position</label>
                         <div class="col-md-6" >
                         <input type="radio" id="role" name="role" value="user" > User<br>
-                        <input type="radio" id="role" name="role" value="travel agency">travle agency<br>
-                        <input type="radio"  id="role" name="role" value="owner"> owner <br>
+                        <input type="radio" id="role" name="role" value="travel agency">travel agency<br>
                         </div>
                         <br>
                         <br>

@@ -2,7 +2,7 @@
 <!-- saved from url=(0083)http://aprendagames.com/stock/brokebot/errorpages-headless-robot.html?errorcode=404 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>AprendaGames - Error</title>
+<title>Error</title>
 
 <link rel="stylesheet" type="text/css" href="/css/error/robot_page.css">
 <link rel="stylesheet" type="text/css" href="/css/error/robot_styles.css">

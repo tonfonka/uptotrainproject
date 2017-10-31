@@ -9,28 +9,28 @@
   <meta name="author" content="">
 
   <!-- Bootstrap Core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
 
   <!-- Custom Fonts -->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" re l="stylesheet" type="text/css">
+  <link href="{{ URL::asset('/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
   <!--Theme CSS-->
-  <link href="css/uptotrain2.min.css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/uptotrain2.min.css') }}" rel="stylesheet" />
 
 
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
-  <link rel="stylesheet" href="css/swipebox.css">
-  <link rel="stylesheet" href="css/ziehharmonika.css">
+  <link href="{{ URL::asset('/css/style.css') }}" type="text/css" rel="stylesheet" media="all">
+  <link rel="stylesheet" href="{{ URL::asset('/css/swipebox.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('/css/ziehharmonika.css') }}">
   <!-- //Custom Theme files -->
   <!-- font-awesome icons -->
-  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/font-awesome.css') }}" rel="stylesheet">
   <!-- //font-awesome icons -->
   <!-- js -->
-  <script src="js/jquery-2.2.3.min.js"></script>
+  <script src="{{ URL::asset('/js/jquery-2.2.3.min.js') }}"></script>
   <!-- //js -->
   <!-- web-fonts -->
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
@@ -49,7 +49,7 @@
 
 <body>
   <!-- banner -->
-  <div class="banner about-banner" style="background-image:url('img/2.jpg')">
+  <div class="banner about-banner" style="background-image:{{ URL::asset('/img/2.jpg') }}">
     <div class="header agileinfo-header">
       <!-- header -->
       <nav id="mainNav" class="navbar-inverse navbar-custom2 navbar-fixed-top">
@@ -59,7 +59,7 @@
             <button type="button" class="navbar-toggle" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-            <a class="navbar-brand page-scroll" href="home">Up To Train</a>
+            <a class="navbar-brand page-scroll" href="/">Up To Train</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,21 +67,51 @@
             <ul class="nav navbar-nav navbar-right" style="padding-top:0px;">
 
               <li>
-                <a href="agreement">Agreement</a>
+                <a href="/agreement">Agreement</a>
               </li>
               <li>
-                <a href="search">Search</a>
+                <a href="/search">Search</a>
               </li>
-              <li>
-                <a href="profileuser">profile</a>
+                @if(Auth::guest())
+                  <li><a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a></li>
+                @elseif(Auth::user()->role == 'user' )
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::user()->name}} <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/profileuser">My profile</a></li>
+                    <li><a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">LOG OUT</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    </li>
+                  </ul>
+                </li>
+                @elseif(Auth::user()->role =='travel agency')
+                <?php
+                    $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+                ?>
+               <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$agencyName[0]->agency_name_en}} <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/agency">My profile</a></li>
+                    <li><a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">LOG OUT</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    </li>
+                  </ul>
+                </li>
+                @endif
               </li>
             </ul>
-
           </div>
         </div>
         <!-- /.container-fluid -->
       </nav>
-
     </div>
     <!-- //header -->
     <div class="banner-text">
@@ -115,30 +145,26 @@
             <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
             <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
             <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
+            <ul class="dropdown-menu">
             @if(Auth::guest())
-           <li> <a href="{{ url('/login')}}" class="glyphicon glyphicon-menu-right">LOG IN</a></li>
+           <li><a href="{{ url('/login')}}"><span class="glyphicon glyphicon-menu-right"></span> Login</a></li>
             @else
+            <li><a href="profile"><span class="glyphicon glyphicon-menu-right"></span>welcome</a></li>
             <li> <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="glyphicon glyphicon-menu-right">
-                        LOG OUT
+                       Logout
             </a></li>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
             @endif
-            
+            </ul>
           </ul>
         </div>
         <div class="col-md-4 col-sm-4 footer-wthree-grid">
-          <!--<h3>Contact Info</h3>
-          <ul>
-            <li>123 Broome St,2nd Block</li>
-            <li>NY 10002, New York</li>
-            <li>Phone: +01 111 222 3333</li>
-            <li><a href="mailto:info@example.com"> mail@example.com</a></li>
-          </ul>-->
+         
         </div>
         <div class="clearfix"> </div>
       </div>

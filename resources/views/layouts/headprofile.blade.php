@@ -11,8 +11,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <title>Up To train - @yield('title')</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="keywords" content="Holiday Spot Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
   <script type="application/x-javascript">
     addEventListener("load", function () {
       setTimeout(hideURLbar, 0);
@@ -22,15 +20,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     }
   </script>
   <!--Custom Theme files-->
-  <link href="css/bootstrap2.css" type="text/css" rel="stylesheet">
-  <link href="css/style.css" type="text/css" rel="stylesheet">
-  <link href="css/profile/member-style.css" type="text/css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/bootstrap2.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/style.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/profile/member-style.css') }}" type="text/css" rel="stylesheet">
 
   <!-- font-awesome icons -->
-  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/font-awesome.css') }}" rel="stylesheet">
   <!-- //font-awesome icons -->
   <!-- js -->
-  <script src="js/jquery-2.2.3.min.js"></script>
+
+  <script src="{{ URL::asset('js/jquery-2.2.3.min.js') }}"></script>
+
   <!-- //js -->
   <!-- web-fonts -->
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
@@ -56,7 +56,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       <div class="topnav pull-right">
         <ul class="quick-menu pull-right clearfix">
-          <li><a href="javascript:;">{{$user->name}}</a></li>
+          <li><a href="javascript:;">{{Auth::user()->name}}</a></li>
           <li><a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -74,19 +74,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <nav id="main-menu" role="navigation">
           <ul class="menu">
             <li class="">
-              <a href="">
+              <a href="/">
 						หน้าหลัก 					  </a>
             </li>
             <li class="">
-              <a href="">
+              <a href="/profileuser">
 						ข้อมูลการจอง					  </a>
             </li>
             <li class="">
-              <a href="">
-						รายงาน					  </a>
+              <a href="/myhistorytrip/{{Auth::user()->id}}">
+						ประวัติการจอง					  </a>
             </li>
             <li class="">
-              <a href="">
+              <a href="/profileusersetting/{{Auth::user()->id}}">
+
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -95,7 +96,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </div>
     </div>
   </header>
-  <div class="banner about-banner" style="background-image:url('img/2.jpg')">
+  <div class="banner about-banner" style="background-image:{{ URL::asset('/img/2.jpg') }}">
     <div class="blog-page blog-content-1">
       <div class="row">
         <div class="col-xs-12">
@@ -105,10 +106,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="blog-banner blog-container">
                   <div class="blog-banner-avatar">
                     <a href="javascript:;">
-								<img src="https://scontent.xx.fbcdn.net/v/t1.0-1/s200x200/16508263_1660676713946062_4952681256780516861_n.jpg?oh=409dd134e21cea115ec4bee48f6f2aea&amp;oe=5A0DBEE6" alt="avatar">                            </a>
+								<img src="/images/{{Auth::user()->image}}" alt="avatar">                            </a>
                   </div>
                   <h3>
-                    ยินดีต้อนรับ {{$user->name}} <a href="/setting" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
+
+                    ยินดีต้อนรับ {{Auth::user()->name}} <a href="/profileusersetting" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
+
                   </h3>
                 </div>
               </div>
@@ -125,6 +128,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
   @yield('content')
+  
   <!-- footer start here -->
   <div class="footer-agile">
     <div class="container">
@@ -164,7 +168,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </div>
   <!-- //footer end here -->
   <!-- swipe box js -->
-  <script src="js/jquery.swipebox.min.js"></script>
+  <script src="{{ asset('js/jquery.swipebox.min.js') }}"></script>
+
   <script type="text/javascript">
     jQuery(function ($) {
       $(".swipebox").swipebox();
@@ -172,8 +177,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </script>
   <!-- //swipe box js -->
   <!-- start-smooth-scrolling -->
-  <script type="text/javascript" src="js/move-top.js"></script>
-  <script type="text/javascript" src="js/easing.js"></script>
+  <script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
   <script type="text/javascript">
     jQuery(document).ready(function ($) {
       $(".scroll").click(function (event) {
@@ -205,7 +210,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="js/bootstrap2.js"></script>
+  
 </body>
 
 </html>
+

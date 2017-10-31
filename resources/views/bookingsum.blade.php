@@ -21,37 +21,46 @@
             padding: 5px;
             vertical-align: top;
         }
+
         .invoice-box table tr td:nth-child(2) {
             text-align: center;
         }
+
         .invoice-box table tr.top table td {
             padding-bottom: 20px;
         }
+
         .invoice-box table tr.top table td.title {
             font-size: 45px;
             line-height: 45px;
             color: #333;
         }
+
         .invoice-box table tr.information table td {
             padding-bottom: 40px;
         }
+
         .invoice-box table tr.heading td {
             background: #eee;
             border-bottom: 1px solid #ddd;
             font-weight: bold;
         }
+
         .invoice-box table tr.details td {
             padding-bottom: 20px;
         }
+
         .invoice-box table tr.item td {
             border-bottom: 1px solid #eee;
         }
         .invoice-box table tr.total td {
             border-bottom: 1px solid #eee;
         }
+
         /*.invoice-box table tr.item.last td {
             border-bottom: none;
         }*/
+
         .invoice-box table tr.total td:nth-child(4) {
             border-bottom: 3px solid #eee;
             font-weight: bold;
@@ -104,6 +113,12 @@
                                 <tr>
                                     <td>{{$user[0]->email}}</td>
                                 </tr>
+                                <tr>
+                                <td>{{$user[0]->address}}
+                                    {{$user[0]->province}}
+                                    {{$user[0]->zipcode}}
+                                    </td>
+                                </td>
                             </table>
                         </td>
                     </tr>

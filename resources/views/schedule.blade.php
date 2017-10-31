@@ -4,12 +4,48 @@
     <meta charset="utf-8">
     <title>Up To train</title>
     <!-- Bootstrap Core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom Fonts -->
-    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- เปิดแล้ว Theme CSS -->
-    <link href="/css/uptotrain2.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+    <link href="/css/uptotrain2.min.css" rel="stylesheet"/>
+   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet"/>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['คะแนนความพึ่งพอใจ', 'Hours per Day'],
+            ['1 ดาว',{{$one}}],
+            ['2 ดาว',{{$two}}],
+            ['3 ดาว',{{$three}}],
+            ['4 ดาว',{{$four}}],
+            ['5 ดาว',{{$five}}],
+        ]);
+
+        var options = {
+            
+          title: 'คะแนนรวม จากผู้ใช้ทั้งหมด' ,
+          pieHole: 0.5,
+          slices: {
+            0: { color: '#febf05' },
+            1: { color: '#feae40' },
+            2: { color: '#fe8005' },
+            3:{color:'#fe9505'},
+            4:{color:'#fe5705'},
+          }
+          
+          
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+     
 </head>
 <body id="page-top" class="index">
     <div align="right">
@@ -26,9 +62,13 @@
             <!-- Project Details Go Here -->
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
-            <p>ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน</p>
-            <p>บริษัท {{ $trip->trip_nday }}</p>
-            <img class="img-responsive img-centered" src="/images/{{$trip->image}}" alt="">
+            @if($trip->trip_nnight > 0)
+            ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน
+            @else
+            ระยะเวลา {{ $trip->trip_nday }} วัน
+            @endif
+            <a href="/profileagency/{{$trip->travelagency_id}}"><p>บริษัท {{ $agen[0]->agency_name_en}}</p></a>
+            <img class="img-responsive img-centered" style="height:500px;width:850px;" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
             <div class="container">
@@ -43,36 +83,66 @@
                         <ul class="timeline">
                             <!--ถ้าเลขคู่ ตรง li จะเพิ่ม class='timeline-inverted'-->
                             @foreach($schedules as $schedule)
-                            <div style="color:white;">
-                                <h3>{{$loop->iteration}}</h3>
-                            </div>
-                            @if($loop->iteration %2 == 0)
-                            <li class="timeline-inverted">
+                                <div style="color:white;">
+                                    <h3>{{$loop->iteration}}</h3>
+                                </div>
+                                @if($loop->iteration %2 == 0)
+                                    <li class="timeline-inverted">
                                 @else
-                                <li>
-                                    @endif
-                                    <div class="timeline-image">
-                                        <img class="img-circle img-responsive" src="/img/about/1.jpg" alt="">
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{ $schedule->schedule_time }}</h4>
-                                            <h4 class="subheading">{{ $schedule->schedule_place }}</h4>
+                                    <li>
+                                @endif
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" style="" src="/img/about/1.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
+                                    <h4><a  data-toggle="modal" href="#betaModal">{{ $schedule->schedule_place }}</a></h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">{{ $schedule->schedule_description }}</p>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                                <div class="modal fade" id="betaModal" role="dialog">
+                                    <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">{{ $schedule->schedule_place }}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row-fluid">
+                                                    <div class="span12">
+                                                        <div class="span6">
+                                                        <div class="logowrapper">
+                                                            <img style="height:380px;width:485px;" src="/img/about/1.jpg" alt="App Logo"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="span6">
+                                                        <hr>
+                                                        <p class="help-block">Name</p>
+                                                        <p class="help-block">Email</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
-                                        <div class="timeline-body">
-                                            <p class="text-muted">{{ $schedule->schedule_description }}</p>
-                                        </div>
                                     </div>
-                                </li>
-                                @endforeach
-                                <li class="timeline-inverted">
-                                    <div class="timeline-image">
-                                        <h4>Booking</h4>
-                                        <h4>now</h4>
-                                    </div>
-                                </li>
+                                </div>
+                            <!--end Modal-->
+                            @endforeach
+                            <li class="timeline-inverted">
+                                <div class="timeline-image">
+                                    <h4>Booking</h4>
+                                    <h4>now</h4>
+                                </div>
+                            </li>
                         </ul>
-                    </div>
+                    </div> 
                 </div>
                 <br><br>
                 <div class="row">
@@ -85,8 +155,8 @@
                     <div class="col-md-9">
                         <ul class="list-inline">
                             <table class="table">
-                                <tr align="center">
-                                    <th>วันที่เดินทาง</th>
+                                <tr>
+                                    <th>กำหนดการเดินทาง</th>
                                     <th>ราคาผู้ใหญ่</th>
                                     <th>ราคาเด็ก</th>
                                     <th>จำนวนที่นั่งว่าง</th>
@@ -97,20 +167,17 @@
                                 @foreach($triprounds as $tripround)
                                 <?php
                                     $amount =  $tripround->amount_seats;
-                        
-                                    
                                     $tid=$tripround->id;
                                     $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
                                     $sum = $amount-$seat;
                                 ?>
                                 <tr align="center">
-                                    <td>{{ $tripround->start_date }}</td>
+                                    <td>{{date('d/m/Y', strtotime($tripround->start_date ))}} - {{date('d/m/Y', strtotime($tripround->departure_date ))}} </td>
                                     <td>{{$tripround->price_adult}}</td>
                                     <td>{{$tripround->price_child}}</td>
                                     <td>{{$sum}} </td>
                                     <td>{{$amount}}</td>
-                                    
-                                        <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
+                                    <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
                                 </tr>
                                 @endforeach
                             </table>
@@ -123,6 +190,64 @@
             </div>
         </div>
     </div>
+
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<h3>รีวิวจากผู้เข้าร่วมจริงทั้งหมด : {{$alluser}} คน</h3>
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+<div class="row">
+<div id="donutchart" style="width: 900px; height: 500px;"></div>
+@foreach($review as $reviews)
+<?php
+    $userName = DB::table('users')->where('id',$reviews->user_id)->get();
+
+?>
+<div class="col-sm-1">
+<div class="thumbnail">
+<img class="img-responsive user-photo" src="/images/{{$userName[0]->image}}">
+</div><!-- /thumbnail -->
+</div><!-- /col-sm-1 -->
+<?php
+$due = $reviews->created_at;
+?>
+<div class="col-sm-5">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>{{$userName[0]->name}}</strong> <span class="text-muted">{{\Carbon\Carbon::now('Asia/Bangkok')->createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
+</div>
+<div class="panel-body">
+{{$reviews->rate_des}}
+@if(($reviews->rate) =='1')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@elseif(($reviews->rate) =='2')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@elseif(($reviews->rate) =='3')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@elseif(($reviews->rate) =='4')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@elseif(($reviews->rate) =='5')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@endif
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+@endforeach
+</div><!-- /row -->
+
+</div><!-- /container -->
+
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
 

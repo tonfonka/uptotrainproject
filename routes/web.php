@@ -16,42 +16,38 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
+
 //Route::post('/addtrip','tripAgencyController@tripstore');
-Route::post('/imagegallery','tripAgencyController@tripstore');
-Route::get('/imagegallery', 'tripAgencyController@imageindex');
-Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::post('/imagegallery','tripAgencyController@tripstore');
+//Route::get('/imagegallery', 'tripAgencyController@imageindex');
+//Route::post('/imagegallery','tripAgencyController@tripstore');
 //Route::post('/imagegallery', 'ImageGalleryController@imageupload');
-Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
+//Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
 
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/agency', 'UserController@regisagency');
-Route::post('/agency','tripAgencyController@imageupload');
+Route::post('/agency','tripAgencyController@tripstore');
+//Route::post('/agency','tripAgencyController@imageupload');
 
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
 
 Route::get('/search', 'UserController@search');
-Route::post ( '/searcht', function () {
-	$q = Input::get ( 'q' );
-	$user = DB::table('trips')
-	->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);;
-	if (count ( $user ) > 0)
-		return view ( 'tripuser_resultsearch' )->withDetails ( $user )->withQuery ( $q );
-	else
-		return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
-} );
+Route::post ( '/searcht', 'UserController@searchResult' );
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
 Route::post('/bookingsum','OmiseController@bookingstore');
-Route::get('/bookingsum','OmiseController@bookingsum');;
+Route::get('/bookingsum','OmiseController@bookingsum');
+Route::get('/paysum/{id}','OmiseController@bookingsums');
 Route::get('/search/index', 'UserController@index');
 
 Route::get('/charge', function () {
 	return view ('omisecard');
 });
+
 Route::post('/charge','OmiseController@checkout');
 Route::get('/card', function () {
 	return view ('card');
@@ -60,6 +56,7 @@ Route::post('/card', 'OmiseController@checkout');
 Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
+
 Route::get('/regisagency','UserController@res');
 Route::post('/regisagency','UserController@regisagency');
 Route::post('/webhook','OmiseController@webhook');
@@ -90,10 +87,53 @@ Route::get('/checkregis', function(){
 		}
 	}
 });
-Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+
 
 Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
 Route::get('/hello', function () {
 	return view ('error/Brokebot');
+});
+
+Route::get('/map', function () {
+	return view ('map');
+});
+Route::get('/shownumber/{id}','tripAgencyController@shownumber');
+
+	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
+	Route::get('verify/{email}/{verifyToken}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
+
+
+	Route::get('/profileuser','UserController@profileuser')->middleware('auth');
+	Route::get('/profileusersetting/{id}', 'UserController@profileusersetting');
+	Route::get('/comment/{id}','UserController@commenttrip');
+	Route::post('/profileuser','UserController@commentstore');
+	
+	Route::post('/myprofile/{id}','UserController@settingto');
+
+	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
+Route::post('/myagency/{id}', 'UserController@profileagencysettingstore');
+Route::get('/myagency/{id}', 'UserController@myagency');
+
+	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
+
+
+	Route::get('/userinfo/{id}', 'tripAgencyController@showuserDetail');
+	
+	
+	
+	Route::get('/historytripuser', function () {
+			return view('historytripuser');
 	});
-	Route::get('/shownumber/{id}','tripAgencyController@shownumber');
+	
+	Route::get('/myprofile/{id}', 'tripAgencyController@myprofile');
+
+	Route::get('/myhistorytrip/{id}', 'UserController@myhistorytripuser');
+	
+	Route::get('/pdf', function () {
+			$data = [
+					'name'=>'อะไรสักอย่าง ไม่รู้นามสกุลอะไร'
+			];
+			$pdf = PDF::loadView('invoice', $data);
+			return @$pdf->stream();
+	});
+

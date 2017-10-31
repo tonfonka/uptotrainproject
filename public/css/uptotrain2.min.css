@@ -16,7 +16,6 @@
 body {
     overflow-x: hidden;
     font-family: "Roboto Slab", "Prompt", Helvetica, Arial, sans-serif;
-    webkit-tap-highlight-color: #fed136
 }
 
 .btn-primary,
@@ -155,9 +154,49 @@ fieldset[disabled] .btn-xl:hover {
     border-color: #fed136
 }
 
+
+/*.panel {
+    position: relative;
+}*/
+
+.panel2 {
+    position: relative;
+}
+
+.panel-default>.panel-heading {
+    background-color: #d0d0d0;
+}
+
+.panel>.panel-heading:after,
+.panel>.panel-heading:before {
+    position: absolute;
+    top: 11px;
+    left: -16px;
+    right: 100%;
+    width: 0;
+    height: 0;
+    display: block;
+    content: " ";
+    border-color: transparent;
+    border-style: solid solid outset;
+    pointer-events: none;
+}
+
+.panel>.panel-heading:after {
+    border-width: 7px;
+    border-right-color: #d0d0d0;
+    margin-top: 1px;
+    margin-left: 2px;
+}
+
+.panel>.panel-heading:before {
+    border-right-color: #d0d0d0;
+    border-width: 8px;
+}
+
 .btn-xl .badge {
     color: #fed136;
-    background-color: #fff
+    background-color: #fff;
 }
 
 .navbar-custom {
@@ -1347,11 +1386,7 @@ span.round-tab:hover {
 }
 
 .thumbnail {
-    margin-bottom: 20px;
     padding: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
 }
 
 .item.list-group-item {

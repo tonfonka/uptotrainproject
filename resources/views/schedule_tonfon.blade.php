@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <title>Up To train</title>
     <!-- Bootstrap Core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <!-- เปิดแล้ว Theme CSS -->
-    <link href="/css/uptotrain2.min.css" rel="stylesheet">
+    <link href="{{asset('/css/uptotrain2.min.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
 
@@ -28,9 +28,14 @@
             <!-- Project Details Go Here -->
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
-            <p>ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน</p>
-            <p>บริษัท {{ $trip->trip_nday }}</p>
-            <img class="img-responsive img-centered" src="/images/{{$tripuser->image}}" alt="">
+            @if($trip->trip_nnight > 0)
+                                                            ระยะเวลา {{$trip->trip_nday}} วัน {{$trip->trip_nnight}} คืน
+                                                            @else
+                                                            ระยะเวลา {{$trip->trip_nday}} วัน
+                                                            @endif
+            
+            <a href="/profileagency/{{$trip->travelagency_id}}"><p>บริษัท {{ $agen[0]->agency_name_en}}</p></a>
+            <img class="img-responsive img-centered" src="/images/{{$trip->image}}" alt="">
             <p style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
             <div class="container">
@@ -78,20 +83,20 @@
         </div>
     </div>
     <!-- jQuery -->
-    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="{{asset('/vendor/jquery/jquery.min.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{asset('/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
         crossorigin="anonymous"></script>
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="{{asset('js/jqBootstrapValidation.js')}}"></script>
     <!-- Theme JavaScript -->
-    <script src="js/agency.min.js"></script>
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
+    <script src="{{asset('js/agency.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/move-top.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/easing.js')}}"></script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $(".scroll").click(function (event) {
