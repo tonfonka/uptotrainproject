@@ -321,20 +321,6 @@ function myprofile($id) {
     return view('profileuser.userside');
 
 }
-public function getData()
-{
-
-    
-    return view('agency.showMember');
-}
-
-public function data(){
-
-
-     return Datatables::of(trip::get())->make(true);
-   
-}
-
 
 }
 
