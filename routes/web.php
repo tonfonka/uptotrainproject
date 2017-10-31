@@ -123,3 +123,6 @@ Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 			return view('historytripuser');
 	});
 	
+	Route::get('trip/getdata','tripAgencyController@getData')->name('data');
+
+	Route::get('trip/datatables','tripAgencyController@data')->name('datatables.data');
