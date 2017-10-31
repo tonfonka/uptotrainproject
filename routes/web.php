@@ -126,7 +126,5 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	});
 	
 	Route::get('/myprofile/{id}', 'tripAgencyController@myprofile');
-
-	Route::get('trip/getdata','tripAgencyController@getData')->name('data');
-
-	Route::get('trip/datatables','tripAgencyController@data')->name('datatables.data');
+	Route::get('/myhistorytrip/{id}', 'UserController@myhistorytripuser');
+	

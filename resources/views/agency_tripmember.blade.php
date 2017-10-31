@@ -129,7 +129,24 @@
             </div>
         </div>
     </div>
+<!--<tr>
+                                <td>ยอดรวมรายชื่อการจอง </td>
+                                <td>จำนวนเด็กทั้งหมด </td>
+                                <td>จำนวนผู้ใหญ่ทั้งหมด</td>
+                                <td>ยอดรวมคนทั้งหมด </td>
+                                <td>ยอดรวมราคาทั้งหมด </td>
+                                <td>พิมพ์รายชื่อคนจองทริป </td>
 
+                            </tr>
+                            <tr>
+                                <td> {{$count}} </td>
+                                <td> {{$totalChild}} </td>
+                                <td>{{$totalAdult}} </td>
+                                <td>  {{$totalNum}} </td>
+                                <td>{{$totalMoney}} </td>
+                                <td> <a href="/pdf">พิมพ์รายชื่อผู้ร่วมทริป PDF</a> </td>
+
+                            </tr>-->
     <!-- end container -->
 </div>
 <script type="text/javascript">
