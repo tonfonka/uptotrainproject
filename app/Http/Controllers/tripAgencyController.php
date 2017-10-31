@@ -20,9 +20,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Datatables;
 use App\Data;
 use PDF;
+use Yajra\Datatables\Facades\Datatables;
 
 
 
@@ -227,6 +227,8 @@ class tripAgencyController extends Controller
 }
 
 
+
+
     public function imageindex()
     {
       
@@ -312,7 +314,6 @@ function showUserDetail($id) {
                  //'tripround' => $tripround
              );
     return view('profileuser.agency_userinfo',$data);
-
 }
 function myprofile($id) {
     
@@ -320,5 +321,20 @@ function myprofile($id) {
     return view('profileuser.userside');
 
 }
+public function getData()
+{
+
     
+    return view('agency.showMember');
 }
+
+public function data(){
+
+
+     return Datatables::of(trip::get())->make(true);
+   
+}
+
+
+}
+

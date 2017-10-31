@@ -37,16 +37,18 @@
 <header>
     <div class="container">
         <div class="intro-text">
+        @if(Auth::guest())
             <div class="intro-heading">Welcome</div>
             
 
             <!-- laravel <a href="#services" class="page-scroll btn btn-xl">LOG IN</a>-->
-            @if(Auth::guest())
+            
             <div class="intro-lead-in">Are you looking for a Trip ?</div><br><br>
             <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
             @elseif(Auth::user()->role == 'user' )
+            <div class="intro-heading">Welcome - {{Auth::user()->name}}</div>
             <div class="intro-lead-in">Are you looking for a Trip ?</div><br><br>
-            <div class="intro-lead-in"> {{Auth::user()->name}}</div>
+            
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
@@ -60,8 +62,11 @@
             <?php
                 $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
             ?>
-            <div class="intro-lead-in">มีทริปใหม่มานำเสนอไหมคะ ?</div><br><br>
-                <h1> {{$agencyName[0]->agency_name_en}}</h1>
+            <div class="intro-heading">Welcome</div>
+            <div class="intro-heading">{{$agencyName[0]->agency_name_en}}</div>
+           
+            <div class="intro-lead-in">Do you have a new trip to offer?</div><br><br>
+               
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
