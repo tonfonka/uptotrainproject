@@ -93,6 +93,10 @@ Route::get('/tripdetail/{id}','tripAgencyController@showdetailtrip');
 Route::get('/hello', function () {
 	return view ('error/Brokebot');
 });
+
+Route::get('/map', function () {
+	return view ('map');
+});
 Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 
 	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');

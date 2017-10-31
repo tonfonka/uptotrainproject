@@ -9,7 +9,7 @@
   <meta name="author" content="">
 
   <!-- Bootstrap Core CSS -->
-  <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
+  <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet" />
 
   <!-- Custom Fonts -->
   <link href="{{ URL::asset('/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
@@ -57,8 +57,9 @@
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
+              <span class="sr-only">Toggle navigation</span> Menu
+              <i class="fa fa-bars"></i>
+            </button>
             <a class="navbar-brand page-scroll" href="/">Up To Train</a>
           </div>
 
@@ -72,41 +73,47 @@
               <li>
                 <a href="/search">Search</a>
               </li>
-                @if(Auth::guest())
-                  <li><a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a></li>
-                @elseif(Auth::user()->role == 'user' )
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{Auth::user()->name}} <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="/profileuser">My profile</a></li>
-                    <li><a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+              @if(Auth::guest())
+              <li>
+                <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
+              </li>
+              @elseif(Auth::user()->role == 'user' )
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                {{Auth::user()->name}}<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="/profileuser">My profile</a>
+                  </li>
+                  <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">LOG OUT</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
+                      {{ csrf_field() }}
                     </form>
-                    </li>
-                  </ul>
-                </li>
-                @elseif(Auth::user()->role =='travel agency')
-                <?php
+                  </li>
+                </ul>
+              </li>
+              @elseif(Auth::user()->role =='travel agency')
+              <?php
                     $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
                 ?>
-               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$agencyName[0]->agency_name_en}} <span class="caret"></span></a>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$agencyName[0]->agency_name_en}}<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="/agency">My profile</a></li>
-                    <li><a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <li>
+                      <a href="/agency">My profile</a>
+                    </li>
+                    <li>
+                      <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">LOG OUT</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
-                    </form>
+                      </form>
                     </li>
                   </ul>
                 </li>
                 @endif
-              </li>
             </ul>
           </div>
         </div>
@@ -125,10 +132,10 @@
 
 
   @yield('content') 
-  @yield('tripuser')
+  @yield('tripuser') 
   @yield('schedule')
 
-  
+
   <!-- swipe box js -->
   <script src="js/jquery.swipebox.min.js"></script>
   <script type="text/javascript">
