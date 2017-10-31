@@ -10,31 +10,36 @@
     <!-- เปิดแล้ว Theme CSS -->
     <link href="/css/uptotrain2.min.css" rel="stylesheet">
    
-    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
-
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+            ['คะแนนความพึ่งพอใจ', 'Hours per Day'],
+            ['1 ดาว',{{$one}}],
+            ['2 ดาว',{{$two}}],
+            ['3 ดาว',{{$three}}],
+            ['4 ดาว',{{$four}}],
+            ['5 ดาว',{{$five}}],
         ]);
 
         var options = {
-          title: 'My Daily Activities',
-          pieHole: 0.4,
+          title: 'คะแนนรวม จากผู้ใช้ทั้งหมด' ,
+          pieHole: 0.5,
+          slices: {
+            0: { color: 'yellow' },
+            1: { color: 'black' },
+            2: { color: 'red' }
+
+          }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
       }
     </script>
+     
 </head>
 <body id="page-top" class="index">
     <div align="right">
@@ -183,7 +188,7 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
-<h3>รีวิวจากผู้เข้าร่วมจริง</h3>
+<h3>รีวิวจากผู้เข้าร่วมจริงทั้งหมด : {{$alluser}}</h3>
 </div><!-- /col-sm-12 -->
 </div><!-- /row -->
 <div class="row">
@@ -198,14 +203,38 @@
 <img class="img-responsive user-photo" src="/images/{{$userName[0]->image}}">
 </div><!-- /thumbnail -->
 </div><!-- /col-sm-1 -->
-
+<?php
+$due = $reviews->created_at;
+?>
 <div class="col-sm-5">
 <div class="panel panel-default">
 <div class="panel-heading">
-<strong>{{$userName[0]->name}}</strong> <span class="text-muted">commented 5 days ago</span>
+<strong>{{$userName[0]->name}}</strong> <span class="text-muted">{{  \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
 </div>
+
 <div class="panel-body">
 {{$reviews->rate_des}}
+@if(($reviews->rate) =='1')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@elseif(($reviews->rate) =='2')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@elseif(($reviews->rate) =='3')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@elseif(($reviews->rate) =='4')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@elseif(($reviews->rate) =='5')
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+@endif
 </div><!-- /panel-body -->
 </div><!-- /panel panel-default -->
 </div><!-- /col-sm-5 -->
