@@ -774,7 +774,6 @@ p {
     -o-transform: scale(0);
     -ms-transform: scale(0);
     transform: scale(0);
-    -webkit-backface-visibility: hidden;
     /*for a smooth font */
 }
 
