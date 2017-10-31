@@ -7,12 +7,11 @@
     "require": {
         "php": ">=5.6.4",
         "arcanedev/seo-helper": "^1.4",
+        "barryvdh/laravel-dompdf": "^0.8.1",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "nesbot/carbon": "^1.22",
-        "yajra/laravel-datatables-oracle": "~6.0",
-        "zanysoft/laravel-pdf": "^1.0"
+        "nesbot/carbon": "^1.22"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -126,5 +126,14 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	});
 	
 	Route::get('/myprofile/{id}', 'tripAgencyController@myprofile');
+
 	Route::get('/myhistorytrip/{id}', 'UserController@myhistorytripuser');
 	
+	Route::get('/pdf', function () {
+			$data = [
+					'name'=>'อะไรสักอย่าง ไม่รู้นามสกุลอะไร'
+			];
+			$pdf = PDF::loadView('invoice', $data);
+			return @$pdf->stream();
+	});
+

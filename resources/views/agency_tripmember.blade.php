@@ -73,6 +73,7 @@
                         <button class="btn btn-default btn-xs btn-filter">
                             <span class="glyphicon glyphicon-filter"></span> Filter</button>
                     </div>
+
                 </div>
                 <table class="table">
                     <thead>
