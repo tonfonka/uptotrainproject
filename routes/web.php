@@ -104,25 +104,25 @@ Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 	Route::get('/comment/{id}','UserController@commenttrip');
 	Route::post('/profileuser','UserController@commentstore');
 	
-	Route::post('/profileusersetting/{id}','UserController@settingto');
+	Route::post('/myprofile/{id}','UserController@settingto');
+
 	Route::get('/profileagencysetting', 'UserController@profileagencysetting');
+Route::post('/myagency/{id}', 'UserController@profileagencysettingstore');
+Route::get('/myagency/{id}', 'UserController@myagency');
+
 	Route::get('/profileagency/{id}', 'tripAgencyController@showAgencyDetail');
 
 
-	Route::get('/profileagencysetting', function () {
-	 
-		 return view('profileagencysetting');
-	 
-	});
-
-	Route::get('/userinfo', 'tripAgencyController@showuserDetail');
+	Route::get('/userinfo/{id}', 'tripAgencyController@showuserDetail');
 	
-	Route::post('/agency', 'UserController@profileagencysettingstore');
-
+	
+	
 	Route::get('/historytripuser', function () {
 			return view('historytripuser');
 	});
 	
+	Route::get('/myprofile/{id}', 'tripAgencyController@myprofile');
+
 	Route::get('trip/getdata','tripAgencyController@getData')->name('data');
 
 	Route::get('trip/datatables','tripAgencyController@data')->name('datatables.data');
