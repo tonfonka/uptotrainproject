@@ -21,8 +21,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Data;
+use PDF;
 use Yajra\Datatables\Facades\Datatables;
-
 
 
 
@@ -194,7 +194,7 @@ class tripAgencyController extends Controller
         $round = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
         $trips = DB::table('trips')->where('id',$round)->get();
         //dd($trips);
-        $booking = DB::table('booking')->where('tripround_id',$id)->get();
+        $booking = DB::table('booking')->where('tripround_id',$id)->orderBy('id','desc')->get();
         
         $book = DB::table('booking')->select('user_id')->where('tripround_id',$id)->pluck('user_id');
         $count = $book->count();
@@ -298,9 +298,32 @@ class tripAgencyController extends Controller
     return view('profileagency',$data);
 
 }
+function showUserDetail($id) {
+    
+     //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
+     $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+     $user =  DB::table('users')->where('id',$id )->get();
+     //$trips = DB::table('trips')->where('travelagency_id',$id)->get();
+     //$trip = DB::table('trips')->where([['id',$id],['travelagency_id', Auth::user()->id]])->get();
+     //$trips = DB::table('trips')->where('id',$id)->get();
+     //$tripround = DB::table('triprounds')->where('trip_id',$id)->get();
+     //dd($trips);
+             $data = array(
+                 'travelagencies' => $travelagencies,
+                 'user' => $user,
+                 //'tripround' => $tripround
+             );
+    return view('profileuser.agency_userinfo',$data);
+}
+function myprofile($id) {
+    
+     
+    return view('profileuser.userside');
 
+}
 public function getData()
 {
+
     
     return view('agency.showMember');
 }

@@ -20,7 +20,7 @@
       </div>
 
 
-      <form class="form-horizontal" role="form" action="/agency" method="POST" name="id" enctype="multipart/form-data">
+      <form class="form-horizontal" role="form" action="/myagency/{{Auth::user()->id}}" method="POST" name="id" enctype="multipart/form-data">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <div class="col-md-9">
           <section id="edit-logo" style="height:300px;">
