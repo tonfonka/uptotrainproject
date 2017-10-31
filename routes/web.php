@@ -130,3 +130,11 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('trip/getdata','tripAgencyController@getData')->name('data');
 
 	Route::get('trip/datatables','tripAgencyController@data')->name('datatables.data');
+	
+	Route::get('/pdf', function () {
+			$data = [
+					'name'=>'อะไรสักอย่าง ไม่รู้นามสกุลอะไร'
+			];
+			$pdf = PDF::loadView('invoice', $data);
+			return @$pdf->stream();
+	});
