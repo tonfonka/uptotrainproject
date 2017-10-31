@@ -107,12 +107,15 @@
                     <tbody id="myTable">
                         @if($count >0) 
                         @foreach($booking as $boo) 
-                        @foreach($username as $user)
+                          
+                        <?php
+                               $user = DB::table('users')->where('id',$boo->user_id)->get();
+                            ?>
                        
                         <tr>
-                            <td>{{$loop->index}}</td>
+                            <td>{{$loop->iteration}}</td>
                             <td>
-                                <a href='/userinfo/{{$user->id}}'>{{$user->name}}</a>
+                                <a href='/userinfo/{{$boo->user_id}}'>{{$user[0]->name}}</a>
                             </td>
                             <td>{{$boo->number_children}}</td>
                             <td>{{$boo->number_adults}}</td>
@@ -121,7 +124,7 @@
                             <td>{{$boo->status}}</td>
                             <td>{{$boo->booking_time}}</td>
                         </tr>
-                        @endforeach @endforeach @endif
+                         @endforeach @endif
                     </tbody>
                 </table>
                 <div class="col-md-12 text-center">
