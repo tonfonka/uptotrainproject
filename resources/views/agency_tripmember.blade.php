@@ -17,6 +17,7 @@
                 <div class="col-lg-12">
                     @foreach($trips as $trip)
                     <h1>{{$trip->trips_name}}</h1>
+                    <a href='/pdf/{{$tripround->id}}'>พิมพ์ PDF </a>
                     @endforeach
                     <h3>รอบ {{date('d/m/Y', strtotime($tripround->start_date))}} ถึง {{date('d/m/Y', strtotime($tripround->departure_date))}}</h1>
                         <h3>จำนวนรายชื่อที่มีการจองทั้งหมด {{$username->count()}} คน </h3>
@@ -69,12 +70,15 @@
             <div class="panel panel-primary filterable">
                 <div class="panel-heading">
                     <h3 class="panel-title">รายชื่อผู้ร่วมทริป</h3>
+                    
                     <div class="pull-right">
                         <button class="btn btn-default btn-xs btn-filter">
                             <span class="glyphicon glyphicon-filter"></span> Filter</button>
                     </div>
 
                 </div>
+                
+                
                 <table class="table">
                     <thead>
                         <tr class="filters">
@@ -109,9 +113,10 @@
                         @foreach($booking as $boo) 
                           
                         <?php
-                               $user = DB::table('users')->where('id',$boo->user_id)->get();
+                               $user = DB::table('users')
+                               ->join('booking','booking.user_id','=','users.id')
+                               ->where([['users.id',$boo->user_id],['booking.status','=','success']])->get();
                             ?>
-                       
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
