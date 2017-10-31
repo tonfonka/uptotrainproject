@@ -12,6 +12,7 @@ use Auth;
 use Response;
 use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
+use PDF;
 class UserController extends Controller
 {
     function __construct(){
@@ -326,6 +327,7 @@ class UserController extends Controller
                         
                                  return redirect('/myagency/{$id}');
                              }
+
                  function myagency($id){
 
                 $userId = Auth::user()->id; 
@@ -345,5 +347,38 @@ class UserController extends Controller
         
                  return view('myagency',$data);
              }            
+
+             function myhistorytripuser($id){
+                
+                                $userId = Auth::user()->id; 
+                                $travelagencies = DB::table('travelagency')->where('user_id',$userId)->get();
+                
+                                //$userbook = DB::table('booking')->where('user_id',$userId)->get();
+                                //$triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+                                $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+                                   // dd($user);
+                                $data = array(
+                                    'user' => $user,
+                                    'travelagencies' => $travelagencies,
+                                    //'triproundbook' => $triproundbook
+                                    
+                                    
+                                );
+                        
+                                 return view('historytripuser',$data);
+                             }     
+        //function  pdf(Request $request){
+            function  pdf($id){
+                $tripround = DB::table('triprounds')->where('id',$id)->first();
+                $booking = DB::table('booking')->where('tripround_id',$id)->orderBy('id','desc')->get();
+                $totalChild = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_children');
+                $totalAdult = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_adults');
+                $totalMoney = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('total_cost');
+                $totalNum = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_booking');
+
+   
+        $pdf =PDF::loadView('invoice',compact('tripround','booking'));
+        return $pdf->stream('trip_member.pdf');
+        }     
 
 }
