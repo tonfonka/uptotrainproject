@@ -1,20 +1,54 @@
 @extends('layouts.headprofile') @section('title', 'profile') @section('content')
+<style>
+    .filterable {
+        margin-top: 15px;
+    }
 
+    .filterable .panel-heading .pull-right {
+        margin-top: -20px;
+    }
+
+    .filterable .filters input[disabled] {
+        background-color: transparent;
+        border: none;
+        cursor: auto;
+        box-shadow: none;
+        padding: 0;
+        height: auto;
+    }
+
+    .filterable .filters input[disabled]::-webkit-input-placeholder {
+        color: #333;
+    }
+
+    .filterable .filters input[disabled]::-moz-placeholder {
+        color: #333;
+    }
+
+    .filterable .filters input[disabled]:-ms-input-placeholder {
+        color: #333;
+    }
+</style>
 <link href="{{asset('css/profile/blogttc.css')}}" rel="stylesheet" type="text/css" />
 <div class="container">
 	<div class="blog-page blog-content-1">
 		<div class="row">
 			<div class="col-md-12" style="padding-top: 50px;">
 				<h2>กิจกรรมเมื่อเร็วๆนี้</h2>
-				<div class="travelo-box">
+				<div class="travelo-box" >
 					<div class="row">
-						<div class="col-md-5 col-sm-5 col-xs-5">
+						<div class="col-md-5 col-sm-5 col-xs-5" style="border-style:solid;border-width: 1px;padding-top:15px;">
 							<h4>เพิ่งไปล่าสุด</h4>
-							<div class="image-box style14">
+							<div class="image-box"  >
 								<article class="box" style="padding-top: 50px; padding-left:0px;">
-									<div class="table-cont">
-										<div class="details">
-											<h4>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="text-center">
+											<img src="/images/{{Auth::user()->image}}" alt="" width="350" alt="avatar">
+										</div>
+									</div>
+									<div class="col-md-8">
+										<h4>
 												<?php
 										$triproundbook = DB::table('booking')
 																				->select('tripround_id')
@@ -41,6 +75,8 @@
 													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time))."<br>"; 
 													echo '<a href="/comment/'.$tripname[0]->id.'">'.'review Trip'.'</a><br>';
 													echo "<hr>";
+
+												
 												}
 																								
 										}
@@ -51,18 +87,19 @@
 											</h4>
 											<!-- {{$triproundbook}}<br>-->
 
-											<label class="price-wrapper">
+											
+										</div>
+									
+								</article>
+								<label class="price-wrapper">
 												<span class="price-per-unit"> </span>
 											</label>
-										</div>
-									</div>
-								</article>
 							</div>
 						</div>
 						<div class="col-md-1 col-sm-1 col-xs-1"></div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
+						<div class="col-md-6 col-sm-6 col-xs-6" style="border-style:solid;border-width: 1px;padding-top:15px;">
 							<h4>กำลังไปเร็วๆนี้</h4>
-							<div class="image-box style14">
+							<div class="image-box" >
 								<article class="box" style="padding-top: 0px; padding-left:0px;">
 									<div class="details">
 										<h4>

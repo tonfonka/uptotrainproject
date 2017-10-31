@@ -191,6 +191,8 @@
         </div>
     </div>
 
+
+@if($alluser>0)
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
@@ -248,6 +250,9 @@ $due = $reviews->created_at;
 
 </div><!-- /container -->
 
+@else
+
+@endif
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
 

@@ -86,8 +86,6 @@
                                                             @else
                                                             ระยะเวลา {{$tripuser->trip_nday}} วัน
                                                             @endif
-                                                            
-                                    <p>{{$tripuser->trip_description}}</p>
                                 </div>
                                 <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$tripuser->id}}">View Detail</a>
                             </li>
