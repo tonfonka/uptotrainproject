@@ -49,6 +49,11 @@
 </head>
 <body id="page-top" class="index">
     <div align="right">
+    
+    
+
+
+
         <a class="btn btn-primary" href={{ url( '/search') }} style="
     padding-top: 12px;
     padding-bottom: 12px;
@@ -195,6 +200,8 @@
         </div>
     </div>
 
+
+@if($alluser>0)
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
@@ -252,6 +259,9 @@ $due = $reviews->created_at;
 
 </div><!-- /container -->
 
+@else
+
+@endif
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
 

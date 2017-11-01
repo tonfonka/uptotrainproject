@@ -62,40 +62,64 @@
                         <ul class="errorMessages"></ul>
                         <div class="step1">
                             <div class="row">
-                                <div class="col-md-6" style="padding-top:20px;padding-bottom:20px;">
-                                    <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Trip Name</label>
-                                    <input type="text" class="form-control" name="trips_name" id="tripName" placeholder="Trip Name" onChange="myTripname()" required>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12"style="padding-top:20px;padding-bottom:20px;">
+                                            <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Trip Name</label>
+                                            <input type="text" class="form-control" name="trips_name" id="tripName" placeholder="Trip Name" onChange="myTripname()" required>
+                                        </div>
+                                        <div class="col-md-12" style="padding-top:20px;padding-bottom:20px;">
+                                            <label for="tripdescription" style="margin-bottom:13px;font-size:1.3em;">Description</label>
+                                            <textarea rows="5" cols="10" class="form-control" name="trip_description" id="tripdescription" required data-validation-required-message="Please enter your description"
+                                             maxlength="999" style="resize:none" onChange="myTripdescription()"></textarea>
+                                            </div>
+                                    </div>
                                 </div>
-                                 <div class="col-md-5">
-                                        <strong>Image:</strong>
-                                        <input type="file" name="image" id="image" class="form-control">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6" style="padding-top:20px;padding-bottom:20px;">
+                                                <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
+                                                <input type="text" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>
+                                                </div>
 
-                                    </div> 
-                                <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
-                                    <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
-                                    <input type="text" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>
-                                </div>
-                                <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
-                                    <label for="tripNight" style="margin-bottom:13px;font-size:1.3em;">Night(s)</label>
-                                    <input type="text" class="form-control" name="trip_nnight" id="tripNight" placeholder="Night(s)" onChange="myTripnight()" required>
-                                </div>
-                                <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
-                                    <label for="tripMeal" style="margin-bottom:13px;font-size:1.3em;">Meal(s)</label>
-                                    <input type="text" class="form-control" name="trip_meal" id="tripMeal" placeholder="Meal(s)" onChange="myTripmeal()" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6" style="padding-bottom:20px;">
-                                    <label for="tripdescription" style="margin-bottom:13px;font-size:1.3em;">Description</label>
-                                    <textarea rows="5" cols="10" class="form-control" name="trip_description" id="tripdescription" required data-validation-required-message="Please enter your description"
-                                        maxlength="999" style="resize:none" onChange="myTripdescription()"></textarea>
-                                </div>
+                                                <div class="col-md-6" style="padding-top:20px;padding-bottom:20px;">
+                                                <label for="tripNight" style="margin-bottom:13px;font-size:1.3em;">Night(s)</label>
+                                                <input type="text" class="form-control" name="trip_nnight" id="tripNight" placeholder="Night(s)" onChange="myTripnight()" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <div class="col-md-3" style="padding-bottom:20px;">
-                                    <label for="tripPro" style="margin-bottom:13px;font-size:1.3em;">Province</label>
-                                    <input type="text" class="form-control" name="trip_province" id="tripPro" placeholder="จังหวัด" onChange="myTrippro()" required>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class ="row">
+                                                <div class="col-md-6">
+                                                <label for="tripMeal" style="margin-bottom:13px;font-size:1.3em;">Meal(s)</label>
+                                                <input type="text" class="form-control" name="trip_meal" id="tripMeal" placeholder="Meal(s)" onChange="myTripmeal()" required>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Image:</label>
+                                                <input type="file" name="image" id="image" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top:20px;padding-bottom:20px;">
+                                                <div class="col-md-6" style="padding-bottom:20px;">
+                                                    <label for="tripPro" style="margin-bottom:13px;font-size:1.3em;">Province</label>
+                                                    <input type="text" class="form-control" name="trip_province" id="tripPro" placeholder="จังหวัด" onChange="myTrippro()" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div> 
+                                
+                              
+                                
                             </div>
+                            
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">continue</button></li>

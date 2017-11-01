@@ -13,6 +13,8 @@
 </head>
 
 <body id="page-top" class="index">
+    
+    @if(Auth::user()->role == 'user')
     <div align="right">
         <a class="btn btn-primary" href={{ url( '/profileuser') }} style="
     padding-top: 12px;
@@ -20,6 +22,17 @@
     padding-left: 15px;
     padding-right: 15px;background-color:#fff;border-color:#fff;
 "><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
+</div>
+@elseif(Auth::user()->role == 'travel agency' )
+ <div align="right">
+ <a class="btn btn-primary" href={{ url( '/agency') }} style="
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    padding-right: 15px;background-color:#fff;border-color:#fff;
+"><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
+</div>
+@endif
     </div>
     <!--<div class="container">-->
     <div class="container" id="about" align="center">
