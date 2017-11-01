@@ -170,7 +170,10 @@
                                     $tid=$tripround->id;
                                     $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
                                     $sum = $amount-$seat;
+                                    $today = date('y/m/d'); 
+                                    //dd($today); 
                                 ?>
+                                    @if( ($today) < (date('Y/m/d', strtotime($tripround->start_date ))))
                                 <tr align="center">
                                     <td>{{date('d/m/Y', strtotime($tripround->start_date ))}} - {{date('d/m/Y', strtotime($tripround->departure_date ))}} </td>
                                     <td>{{$tripround->price_adult}}</td>
@@ -179,6 +182,7 @@
                                     <td>{{$amount}}</td>
                                     <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </table>
                             <!-- end loop -->
