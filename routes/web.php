@@ -129,11 +129,42 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 
 	Route::get('/myhistorytrip/{id}', 'UserController@myhistorytripuser');
 	
-	Route::get('/pdf', function () {
-			$data = [
-					'name'=>'อะไรสักอย่าง ไม่รู้นามสกุลอะไร'
-			];
-			$pdf = PDF::loadView('invoice', $data);
-			return @$pdf->stream();
-	});
+	// Route::get('/pdf/{id}', function () {
+	// 	$userId = Auth::user()->id;
+	// 	$travelagencies =  DB::table('travelagency')->where('user_id', Auth::user()->id)->first();
+	//  $round = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
+	//  $trips = DB::table('trips')->where('id',$round)->get();
+	//  //dd($trips);
+	//  $booking = DB::table('booking')->where('tripround_id',$id)->orderBy('id','desc')->get();
+	 
+	//  $book = DB::table('booking')->select('user_id')->where('tripround_id',$id)->pluck('user_id');
+	//  $count = $book->count();
+	//  $totalNum = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_booking');
+	//  //([['tripround_id',$id],['status','=','success']])
+	//  $totalChild = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_children');
+	//  $totalAdult = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_adults');
+	//  $totalMoney = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('total_cost');
+	//  $tripround = DB::table('triprounds')->where('id',$id)->first();
+	//  $username =DB::table('users')->where('id',$book)->get();
+
+	// 				 $data = array(
+	// 						 'travelagencies' => $travelagencies,
+	// 						 'booking' => $booking,
+	// 						 'book' => $book,
+	// 						 'username' => $username,
+	// 						 'trips' => $trips,
+	// 						 'round'=>$round,
+	// 						 'tripround' => $tripround,
+	// 						 'count' =>$count,
+	// 						 'totalNum' =>$totalNum,
+	// 						 'totalChild' => $totalChild,
+	// 						 'totalAdult' => $totalAdult,
+	// 						 'totalMoney' => $totalMoney
+
+	// 				 );
+
+	// 		$pdf = PDF::loadView('invoice', $data);
+	// 		return @$pdf->stream();
+	// });
+	Route::get('/pdf/{id}','UserController@pdf');
 
