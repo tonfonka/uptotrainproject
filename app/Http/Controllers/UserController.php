@@ -370,14 +370,15 @@ class UserController extends Controller
         //function  pdf(Request $request){
             function  pdf($id){
                 $tripround = DB::table('triprounds')->where('id',$id)->first();
-                $booking = DB::table('booking')->where('tripround_id',$id)->orderBy('id','desc')->get();
+                $booking = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->orderBy('id','desc')->get();
                 $totalChild = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_children');
                 $totalAdult = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_adults');
                 $totalMoney = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('total_cost');
                 $totalNum = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_booking');
-
-   
-        $pdf =PDF::loadView('invoice',compact('tripround','booking'));
+                $trip = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
+                $tripName = DB::table('trips')->where('id',$trip)->get();
+                $count = $booking->count();
+        $pdf =PDF::loadView('invoice',compact('tripround','booking','tripName','count'));
         return $pdf->stream('trip_member.pdf');
         }     
 

@@ -16,10 +16,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     @foreach($trips as $trip)
-                    <h1>{{$trip->trips_name}}</h1>
-                    <a href='/pdf/{{$tripround->id}}'>พิมพ์ PDF </a>
+                    <h1>{{$trip->trips_name}}</h1> 
+                    <button  class="btn btn-primary"><a href='/pdf/{{$tripround->id}}'>พิมพ์รายชื่อผู้ร่วมทริปเป็นไฟล์ PDF </a></button>
                     @endforeach
-                    <h3>รอบ {{date('d/m/Y', strtotime($tripround->start_date))}} ถึง {{date('d/m/Y', strtotime($tripround->departure_date))}}</h1>
+                    <h3>รอบการเดินทาง {{date('d/m/Y', strtotime($tripround->start_date))}} ถึง {{date('d/m/Y', strtotime($tripround->departure_date))}}</h1>
                         <h3>จำนวนรายชื่อที่มีการจองทั้งหมด {{$username->count()}} คน </h3>
                 </div>
             </div>
