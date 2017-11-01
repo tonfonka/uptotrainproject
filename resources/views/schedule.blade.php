@@ -49,6 +49,11 @@
 </head>
 <body id="page-top" class="index">
     <div align="right">
+    
+    
+
+
+
         <a class="btn btn-primary" href={{ url( '/search') }} style="
     padding-top: 12px;
     padding-bottom: 12px;

@@ -29,7 +29,7 @@
             <div class="col-sm-8 col-md-8">
                 <h2>ทริปที่กำลังจะถึง</h2>
                 </div>
-                    <div class="col-sm-4 col-md-4">
+                    <!--<div class="col-sm-4 col-md-4">
                         <form class="navbar-form" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search Trip Name" name="q">
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div>-->
                 </div>
                 @foreach($travelagencies->trips as $trip)
                 @if(count($trip->tripRounds) > 0 )
