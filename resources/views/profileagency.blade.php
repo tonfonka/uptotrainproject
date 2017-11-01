@@ -161,8 +161,6 @@
 </div>
 <!-- //footer end here -->
 
-<script src="js/jquery.filterizr.js"></script>
-<script src="js/controls.js"></script>
 <!-- Kick off Filterizr -->
 <script type="text/javascript">
 	/*
@@ -328,11 +326,14 @@
 </script>
 <!--paginate-->
 <!-- swipe box js -->
-<script src="js/jquery.swipebox.min.js"></script>
+<script src="{{asset('/js/jquery.swipebox.min.js')}}"></script>
 <script type="text/javascript">
 	jQuery(function ($) {
 		$(".swipebox").swipebox();
 	});
 </script>
 <!-- //swipe box js -->
+<script src="{{asset('/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('/vendor/tether/tether.min.js')}}"></script>
+<script src="{{asset('/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 @endsection

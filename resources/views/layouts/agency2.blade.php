@@ -37,7 +37,7 @@
     rel='stylesheet' type='text/css'>
   <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
-
+  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -137,7 +137,7 @@
 
 
   <!-- swipe box js -->
-  <script src="js/jquery.swipebox.min.js"></script>
+  <script src="{{asset('/js/jquery.swipebox.min.js')}}"></script>
   <script type="text/javascript">
     jQuery(function ($) {
       $(".swipebox").swipebox();
@@ -145,8 +145,8 @@
   </script>
   <!-- //swipe box js -->
   <!-- start-smooth-scrolling -->
-  <script type="text/javascript" src="js/move-top.js"></script>
-  <script type="text/javascript" src="js/easing.js"></script>
+  <script type="text/javascript" src="{{asset('/js/move-top.js')}}"></script>
+  <script type="text/javascript" src="{{asset('/js/easing.js')}}"></script>
   <script type="text/javascript">
     jQuery(document).ready(function ($) {
       $(".scroll").click(function (event) {
@@ -174,7 +174,8 @@
       });
     });
   </script>
-  <script src="js/bootstrap2.js"></script>
+ <script src="{{ asset('/js/jquery-2.2.3.min.js') }}"></script>
+
 </body>
 
 </html>

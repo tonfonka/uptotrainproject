@@ -21,9 +21,9 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/tether/tether.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{asset('/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('/vendor/tether/tether.min.js')}}"></script>
+    <script src="{{asset('/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 </div>
 @endsection @section('tripuser')
 <div class="container">
@@ -86,8 +86,6 @@
                                                             @else
                                                             ระยะเวลา {{$tripuser->trip_nday}} วัน
                                                             @endif
-                                                            
-                                    <p>{{$tripuser->trip_description}}</p>
                                 </div>
                                 <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$tripuser->id}}">View Detail</a>
                             </li>
