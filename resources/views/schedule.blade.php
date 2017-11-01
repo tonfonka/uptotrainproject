@@ -49,6 +49,11 @@
 </head>
 <body id="page-top" class="index">
     <div align="right">
+    
+    
+
+
+
         <a class="btn btn-primary" href={{ url( '/search') }} style="
     padding-top: 12px;
     padding-bottom: 12px;
@@ -170,7 +175,10 @@
                                     $tid=$tripround->id;
                                     $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
                                     $sum = $amount-$seat;
+                                    $today = date('y/m/d'); 
+                                    //dd($today); 
                                 ?>
+                                    @if( ($today) < (date('Y/m/d', strtotime($tripround->start_date ))))
                                 <tr align="center">
                                     <td>{{date('d/m/Y', strtotime($tripround->start_date ))}} - {{date('d/m/Y', strtotime($tripround->departure_date ))}} </td>
                                     <td>{{$tripround->price_adult}}</td>
@@ -179,6 +187,7 @@
                                     <td>{{$amount}}</td>
                                     <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </table>
                             <!-- end loop -->
@@ -191,6 +200,8 @@
         </div>
     </div>
 
+
+@if($alluser>0)
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
@@ -248,6 +259,9 @@ $due = $reviews->created_at;
 
 </div><!-- /container -->
 
+@else
+
+@endif
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
 

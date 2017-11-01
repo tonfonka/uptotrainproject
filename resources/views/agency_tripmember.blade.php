@@ -16,9 +16,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     @foreach($trips as $trip)
-                    <h1>{{$trip->trips_name}}</h1>
+                    <h1>{{$trip->trips_name}}</h1> 
+                    <button  class="btn btn-primary"><a href='/pdf/{{$tripround->id}}'>พิมพ์รายชื่อผู้ร่วมทริปเป็นไฟล์ PDF </a></button>
                     @endforeach
-                    <h3>รอบ {{date('d/m/Y', strtotime($tripround->start_date))}} ถึง {{date('d/m/Y', strtotime($tripround->departure_date))}}</h1>
+                    <h3>รอบการเดินทาง {{date('d/m/Y', strtotime($tripround->start_date))}} ถึง {{date('d/m/Y', strtotime($tripround->departure_date))}}</h1>
                         <h3>จำนวนรายชื่อที่มีการจองทั้งหมด {{$username->count()}} คน </h3>
                 </div>
             </div>
@@ -69,12 +70,15 @@
             <div class="panel panel-primary filterable">
                 <div class="panel-heading">
                     <h3 class="panel-title">รายชื่อผู้ร่วมทริป</h3>
+                    
                     <div class="pull-right">
                         <button class="btn btn-default btn-xs btn-filter">
                             <span class="glyphicon glyphicon-filter"></span> Filter</button>
                     </div>
 
                 </div>
+                
+                
                 <table class="table">
                     <thead>
                         <tr class="filters">
@@ -107,12 +111,16 @@
                     <tbody id="myTable">
                         @if($count >0) 
                         @foreach($booking as $boo) 
-                        @foreach($username as $user)
-                       
+                          
+                        <?php
+                               $user = DB::table('users')
+                               ->join('booking','booking.user_id','=','users.id')
+                               ->where([['users.id',$boo->user_id],['booking.status','=','success']])->get();
+                            ?>
                         <tr>
-                            <td>{{$loop->index}}</td>
+                            <td>{{$loop->iteration}}</td>
                             <td>
-                                <a href='/userinfo/{{$user->id}}'>{{$user->name}}</a>
+                                <a href='/userinfo/{{$boo->user_id}}'>{{$user[0]->name}}</a>
                             </td>
                             <td>{{$boo->number_children}}</td>
                             <td>{{$boo->number_adults}}</td>
@@ -121,7 +129,7 @@
                             <td>{{$boo->status}}</td>
                             <td>{{$boo->booking_time}}</td>
                         </tr>
-                        @endforeach @endforeach @endif
+                         @endforeach @endif
                     </tbody>
                 </table>
                 <div class="col-md-12 text-center">

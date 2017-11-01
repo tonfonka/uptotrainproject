@@ -172,26 +172,26 @@
                             <div class="col-md-12" id='days'>
                                 <label>รายละเอียดทัวร์</label>
                                 <div class="row">
-                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">วันที่</label>
                                         <input class="form-control" name='schedule_day[]' type="text" value="1" onChange="mySday()">
                                     </div>
-                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">เวลา</label>
                                         <input class="form-control" name='schedule_time[]' type="time" onChange="myStime()">
                                     </div>
-                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">สถานที่</label>
                                         <input class="form-control" name='schedule_place[]' type="text" onChange="mySplace()">
                                     </div>
-                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รายละเอียด</label>
                                         <input class="form-control" name='schedule_description[]' type="text" onChange="mySdes()">
                                     </div>
-                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                    <!-- <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รูปภาพกิจกรรม</label>
                                         <input class="form-control" name='pic[]' type="file" onChange="mySdes()">
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <label><button type="button" class="btn btn-primary" id='nextday'>เพิ่มกิจกรรมถัดไป</button></label>
