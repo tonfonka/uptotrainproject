@@ -21,9 +21,9 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/tether/tether.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{asset('/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('/vendor/tether/tether.min.js')}}"></script>
+    <script src="{{asset('/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 </div>
 @endsection @section('tripuser')
 <div class="container">
