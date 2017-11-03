@@ -221,7 +221,7 @@
 </div><!-- /thumbnail -->
 </div><!-- /col-sm-1 -->
 <?php
-$due = $reviews->created_at;
+$due = $reviews->updated_at;
 ?>
 <div class="col-sm-5">
 <div class="panel panel-default">
