@@ -45,15 +45,10 @@
         chart.draw(data, options);
       }
     </script>
-     
+    
 </head>
 <body id="page-top" class="index">
     <div align="right">
-    
-    
-
-
-
         <a class="btn btn-primary" href={{ url( '/search') }} style="
     padding-top: 12px;
     padding-bottom: 12px;
@@ -61,20 +56,20 @@
     padding-right: 15px;background-color:#fff;border-color:#fff;
 "><i class="fa fa-times" style="color:#000000;font-size:50px;"></i></a>
     </div>
-    <!--<div class="container">-->
     <div class="container" id="about" align="center">
         <div class="row">
             <!-- Project Details Go Here -->
-            <h1>{{ $trip->trips_name }}</h1>
-            <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
+            <h1>{{$trip->trips_name}}</h1>
             @if($trip->trip_nnight > 0)
-            ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน
+            <p class="item-intro text-muted">ระยะเวลา {{ $trip->trip_nday }} วัน {{ $trip->trip_nnight }} คืน</p>
             @else
-            ระยะเวลา {{ $trip->trip_nday }} วัน
+            <p class="item-intro text-muted">ระยะเวลา {{ $trip->trip_nday }} วัน</p>
             @endif
-            <a href="/profileagency/{{$trip->travelagency_id}}"><p>บริษัท {{ $agen[0]->agency_name_en}}</p></a>
-            <img class="img-responsive img-centered" style="height:500px;width:850px;" src="/images/{{$trip->image}}" alt="">
-            <p style="padding-top:20px;">{{$trip->trip_description}}</p>
+            <p class="item-intro text-muted">จังหวัด{{$trip->trip_province}}</p>
+          <p class="item-intro text-muted">จำนวนมื้ออาหาร {{$trip->trip_meal}} มื้อ</p>
+            <a href="/profileagency/{{$trip->travelagency_id}}"><p class="item-intro text-muted">บริษัท {{ $agen[0]->agency_name_en}}</p></a>
+            <img class="img-responsive img-centered" style="height:400px;width:750px;" src="/images/{{$trip->image}}" alt="">
+            <p class="text-muted" style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
             <div class="container">
                 <div class="row">
@@ -102,19 +97,24 @@
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
                                     <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
-                                    <h4><a  data-toggle="modal" href="#betaModal">{{ $schedule->schedule_place }}</a></h4>
+                                    <h4><a  data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>
                                 </div>
                                 <div class="timeline-body">
                                     <p class="text-muted">{{ $schedule->schedule_description }}</p>
+                                    {{$schedule->id}}
                                 </div>
                             </div>
+                            
+                            @endforeach
+
+                            @foreach($schedules as $schedule)
+                            
                             <!-- Modal -->
-                                <div class="modal fade" id="betaModal" role="dialog">
+                                <div class="modal fade" id="betaModal{{$schedule->id}}" role="dialog">
                                     <div class="modal-dialog">
                                     <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="modal-title">{{ $schedule->schedule_place }}</h4>
                                             </div>
                                             <div class="modal-body">
@@ -124,11 +124,12 @@
                                                         <div class="logowrapper">
                                                             <img style="height:380px;width:485px;" src="/img/about/1.jpg" alt="App Logo"/>
                                                         </div>
+                                                        </div>
                                                     </div>
                                                     <div class="span6">
                                                         <hr>
-                                                        <p class="help-block">Name</p>
-                                                        <p class="help-block">Email</p>
+                                                        <p class="help-block">Name {{ $schedule->schedule_place }}</p>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,9 +151,29 @@
                     </div> 
                 </div>
                 <br><br>
+<section class="bg-light" id="portfolio">
+            <div class="row">
+               <div class="portfolio-caption">
+                        <h2>gallery</h2>
+                    </div>
+                    @for ($i = 0; $i < 6; $i++)
+    
+
+               <div class="col-md-4 col-sm-3 portfolio-item">
+                        <img src="/images/{{$trip->image}}" class="img-responsive" alt="">
+
+                </div>
+                @endfor
+            </div>
+        </section>
+       
+
+
+
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h3 class="section-subheading text-muted">ตารางราคา</h3>
+                        <h2 class="section-heading">ตารางราคา</h2>
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -262,52 +283,14 @@ $due = $reviews->updated_at;
 @else
 
 @endif
+
     <!-- jQuery -->
     <script src="/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb"
-        crossorigin="anonymous"></script>
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <!-- Theme JavaScript -->
-    <script src="js/agency.min.js"></script>
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-
-                $('html,body').animate({
-                    scrollTop: $(this.hash).offset().top
-                }, 1000);
-            });
-        });
-    </script>
-    <!-- //end-smooth-scrolling -->
-    <!-- smooth-scrolling-of-move-up -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            /*
-            var defaults = {
-            	containerID: 'toTop', // fading element id
-            	containerHoverID: 'toTopHover', // fading element hover id
-            	scrollSpeed: 1200,
-            	easingType: 'linear' 
-            };
-            */
-
-            $().UItoTop({
-                easingType: 'easeOutQuart'
-            });
-
-        });
-    </script>
-
+   
 </body>
 
 </html>

@@ -42,6 +42,7 @@ class UserController extends Controller
     function schedule($id){
   
         $schedules = schedules::where('trip_id',$id)->get();
+        $schedules2 = schedules::where('id',$id)->get();
         $triprounds = tripround::where('trip_id',$id)->get();
         
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
@@ -64,6 +65,7 @@ class UserController extends Controller
         $five = $starfive->count();
         $data = array(
             'schedules' => $schedules,
+            'schedules2' => $schedules2,
             'triprounds' => $triprounds,
             'trip' => $trip,
             'title' => 'Schedules',

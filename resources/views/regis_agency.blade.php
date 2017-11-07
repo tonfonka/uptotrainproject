@@ -1,4 +1,4 @@
-@extends('layouts.headIndex') @section('title', 'log in') 
+@extends('layouts.agency') @section('title', 'log in') 
 @section('content')
 
 <head>

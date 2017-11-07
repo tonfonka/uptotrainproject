@@ -1,5 +1,5 @@
 @extends('layouts.headprofile2') @section('title', 'History Trip') @section('content')
-
+<link href=" {{ URL::asset('css/codebox/style.css') }}" rel="stylesheet"/>
 <div class="container">
   <div class="cards-2">
     <div class="card-2">
@@ -28,8 +28,11 @@
     </div>
   </div>
 </div>
+
+<script src="{{asset('/js/codebox/index.js')}}"></script>
+
+
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script>
 
-<script src="{{asset('/js/codebox/index.js')}}"></script>
 @endsection
