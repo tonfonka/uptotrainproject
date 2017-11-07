@@ -23,94 +23,97 @@
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/tether/tether.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-@endsection @section('tripuser')
-</div>
-<div class="container">
+@endsection 
+@section('tripuser')
+<style>
+    /* Image Center Crop Pattern CSS */
 
-    <link href="/css/search_tripUser/style.css" rel="stylesheet" type="text/css" />
-    <link href="/css/search_tripUser/component.css" rel='stylesheet' type='text/css' />
-
+    @media only screen and (max-width: 599px) {
+        div[class="pattern"] {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 450px;
+        }
+        div[class="pattern"] img {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -300px;
+        }
+    }
+</style>
+<section class="bg-light" id="portfolio">
     <div class="container">
-        <div class="products-page">
-            <div class="products">
-                <div class="product-listy">
-                    <h2>All trips</h2>
-                    <ul class="product-list">
-                        <li><a href="">New Trips</a></li>
-                        <li><a href="">Available Tour</a></li>
-                        <li><a href="">Hot Price</a></li>
-                    </ul>
-                </div>
+        <div class="row">
+            <div class="col-lg-12 text-right" style="padding-bottom:30px;">
+            @if(isset($details))
+                <h4 class="section-heading">{{$details->total()}} total trips</h4>
+                <h4>In this page {{$details->count()}} trips</h4>
             </div>
-            <div class="new-product">
-                <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
-                    <div class="cbp-vm-options">
-                        <a href="#" class="cbp-vm-icon cbp-vm-grid" data-view="cbp-vm-view-grid" title="grid"></a>
-                        <a href="#" class="cbp-vm-icon cbp-vm-list" data-view="cbp-vm-view-list" title="list"></a>
-                    </div>
-                    @if(isset($details))
-                    <div class="pages">
-                        <h4>{{$details->total()}} total trips</h4>
-                        <h5>In this page {{$details->count()}} trips</h5>
-                    </div>
-                    <div class="clearfix"></div>
-                    <p> The Search results for your destination <b> {{ $query }} </b> are :</p>
-                    <ul>
-                        @foreach($details as $trips)
+        </div>
+ <div class="row">
+  <div class="col-lg-12 text-left" style="padding-bottom:30px;">
+   <h4 class="section-heading">The Search results for your destination <b> {{ $query }} </b> are :</h4>
+  </div>
+</div>
+        <div class="row">
+
+           @foreach($details as $trips)
                         <?php
                          $a = $trips->travelagency_id;
                          //echo $a ;
                          $t = DB::table('travelagency')->where('id',$a)->get();
 
                          ?>
-                        <li>
-                            <a class="cbp-vm-image" href="/schedule/{{$trips->id}}">
-                                <div class="simpleCart_shelfItem">
-                                    <div class="view view-first">
-                                        <div class="inner_content clearfix">
-                                            <div class="product_image">
-                                                <img src="/images/{{$trips->image}}" class="img-responsive" style= "height: 180px; width: 250px;" alt="" />
-                                               
-                                                <div class="product_container">
-                                                    <div class="cart-center">
-                                                        <p class="title">{{$trips->trips_name}}</p>
-                                                            <p>จังหวัด {{$trips->trip_province}}</p>
-                                                           <a href="/profileagency/{{$trips->travelagency_id}}"> 
-                                                           <p>บริษัท {{$t[0]->agency_name_en}}</p>
-                                                           </a>
-                                                           @if($trips->trip_nnight > 0)
-<p>ระยะเวลา {{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
-@else
-<p>ระยะเวลา {{$trips->trip_nday}} วัน</p>
-                                                            @endif
-                                                            
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="cbp-vm-details">
-                                <p>{{$trips->trip_description}}</p>
-                            </div>
-                            <a class="cbp-vm-icon cbp-vm-add item_add" href="/schedule/{{$trips->id}}">View Detail</a>
-                        </li>
-                        @endforeach
-                    </ul>
 
-                    @elseif(isset($message))
+            <div class="col-md-4 col-sm-3 portfolio-item">
+             
+                    <a href="/schedule/{{$trips->id}}" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+
+                        <div class="pattern">
+                            <img src="/images/{{$trips->image}}" alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;"
+                            />
+
+                        </div>
+
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>{{str_limit($trips->trips_name, $limit = 35, $end = '....') }}</h4>
+                        <p class="text-muted">{{$trips->trip_province}}</p>
+                        <a href="/profileagency/{{$trips->travelagency_id}}">
+                            <p class="text-muted">โดยบริษัท {{$t[0]->agency_name_en}}</p>
+                        </a>
+                        @if($trips->trip_nnight > 0)
+                        <p class="text-muted">ระยะเวลา {{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
+                        @else
+                        <p class="text-muted">ระยะเวลา {{$trips->trip_nday}} วัน</p>
+                        @endif
+                    </div>
+            </div>
+
+
+            @endforeach
+
+
+        </div>
+ @elseif(isset($message))
                     <p>{{ $message }}</p>
                     @endif
-
-                </div>
-                <script src="/js/search_tripUser/cbpViewModeSwitch.js" type="text/javascript"></script>
-                <script src="/js/search_tripUser/classie.js" type="text/javascript"></script>
-            </div>
-            <div class="clearfix"></div>
-        </div>
     </div>
-</div>
+
+  
+
+    </div>
+
+</section>
+
+
+                
 
     @endsection

@@ -58,13 +58,15 @@
 				<table class="table">
 					<thead>
 						<tr class="filters">
-							<th class="text-center" style="width:380px;">
+							<th class="text-center">
 								<input type="text" class="form-control" placeholder="ชื่อทริป" disabled>
 							</th>
+							<th class="text-center"><input type="text" class="form-control" placeholder="จังหวัด" disabled></th>
 							<th class="text-center"><input type="text" class="form-control" placeholder="จำนวนวัน" disabled></th>
 							<th class="text-center"><input type="text" class="form-control" placeholder="จำนวนคืน" disabled></th>
+							<th class="text-center"><input type="text" class="form-control" placeholder="ราคา" disabled></th>
 							<th class="text-center"><input type="text" class="form-control" placeholder="รายละเอียด" disabled></th>
-							<th class="text-center"><input type="text" class="form-control" placeholder="รายละเอียด" disabled></th>
+							<th class="text-center"><input type="text" class="form-control" placeholder="" disabled></th>
 						</tr>
 					</thead>
 					<tbody id="myTable">
@@ -73,8 +75,10 @@
 							<td>
 								<a href="/schedules/{{$trip->id}}">{{ str_limit($trip->trips_name, $limit = 30, $end = '....') }}</a>
 							</td>
+							<td>จังหวัด</td>
 							<td>{{$trip->trip_nday}}</td>
 							<td>{{$trip->trip_nnight}}</td>
+							<td>ราคา</td>
 							<td>{{ str_limit($trip->trip_description, $limit = 30, $end = '....') }}</td>
 						</tr>
 						@endforeach
