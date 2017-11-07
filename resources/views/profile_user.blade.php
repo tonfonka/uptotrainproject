@@ -1,4 +1,4 @@
-@extends('layouts.headprofile2') @section('title', 'profile') @section('content')
+@extends('layouts.headprofile') @section('title', 'profile') @section('content')
 <style>
 	hr {
 		border-color: darkred;
