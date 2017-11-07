@@ -27,6 +27,7 @@ class HomeController extends Controller
         return view('index',['trips'=> $trips]);
         
     }
+   
     /**
      * Show the form for creating a new resource.
      *

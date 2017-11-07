@@ -5,7 +5,10 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
 @if(session('status'))
-{{session('status')}}
+<div class="alert alert-info">
+    <strong>{{session('status')}}</strong> 
+  </div>
+
 @endif
 
                 <div class="panel-heading">Login</div>
