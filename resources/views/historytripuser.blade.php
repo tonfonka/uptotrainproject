@@ -1,5 +1,5 @@
 @extends('layouts.headprofile2') @section('title', 'History Trip') @section('content')
-<link href=" {{ URL::asset('css/codebox/style.css') }}" rel="stylesheet"/>
+<link href=" {{ URL::asset('/css/codebox/style.css') }}" rel="stylesheet"/>
 <div class="container">
   <div class="cards-2">
     <div class="card-2">
