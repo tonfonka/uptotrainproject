@@ -21,106 +21,51 @@
     </head>
 
     <body id="page-top" class="index">
-    <!-- Navigation -->
-<nav id="mainNav" class="navbar  navbar-custom navbar-fixed-top">
+        @yield('content')
+    </body>
+    <div class="footer-agile">
     <div class="container">
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Up To Train</a>
+      <div class="footer-agileinfo">
+        <div class="col-md-5 col-sm-5 footer-wthree-grid">
+          <div class="agileits-w3layouts-tweets">
+            <h5><a href="home">Up To Train</a></h5>
+            
+          </div>
+          <p>เว็บไซต์ที่รวบรวมทริปท่องเที่ยวโดยรถไฟภายในประเทศไทย เชิญคุณพบกับประสบการณ์ใหม่ๆโดยการท่องเที่ยวโดยรถไฟ</p>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-
-                <li>
-                    <a class="page-scroll" href= "#services">How to Use</a>
-                </li>
-
-                <li>
-                    <a href="/search">Search</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio">Highlight</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-
-<!-- Header -->
-<header>
-    <div class="container">
-        <div class="intro-text">
-        @if(Auth::guest())
-            <div class="intro-heading">Welcome</div>
-            
-
-            <!-- laravel <a href="#services" class="page-scroll btn btn-xl">LOG IN</a>-->
-            
-            <div class="intro-lead-in">Are you looking for a Trip ?</div><br><br>
-            <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
-            @elseif(Auth::user()->role == 'user' )
-            <div class="intro-heading">Welcome - {{Auth::user()->name}}</div>
-            <div class="intro-lead-in">Are you looking for a Trip ?</div><br><br>
-            
-            <a href="{{ route('logout') }}"
+        <div class="col-md-3 col-sm-3 footer-wthree-grid">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="home"><span class="glyphicon glyphicon-menu-right"></span> Home</a></li>
+            <li><a href="agreement"><span class="glyphicon glyphicon-menu-right"></span> Agreement</a></li>
+            <li><a href="search"><span class="glyphicon glyphicon-menu-right"></span> Search</a></li>
+            <ul class="dropdown-menu">
+            @if(Auth::guest())
+           <li><a href="{{ url('/login')}}"><span class="glyphicon glyphicon-menu-right"></span> Login</a></li>
+            @else
+            <li><a href="profile"><span class="glyphicon glyphicon-menu-right"></span>welcome</a></li>
+            <li> <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
-                       
-                       LOG OUT
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-            @elseif(Auth::user()->role =='travel agency')
-            <?php
-                $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
-            ?>
-            <div class="intro-heading">Welcome</div>
-            <div class="intro-heading">{{$agencyName[0]->agency_name_en}}</div>
-           
-            <div class="intro-lead-in">Do you have a new trip to offer?</div><br><br>
-               
-                <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
-                       
-                       LOG OUT
-            </a>
+                        document.getElementById('logout-form').submit();" class="glyphicon glyphicon-menu-right">
+                       Logout
+            </a></li>
+
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
             @endif
+            </ul>
+          </ul>
         </div>
-    </div>
-</header>
-        @yield('content')
-    </body>
-    <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <span class="copyright">Copyright &copy; Up to train</span>
-            </div>
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                <ul class="list-inline quicklinks">
-                    <li><a href="#">Privacy Policy</a>
-                    </li>
-                    <li><a href="#">Terms of Use</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="col-md-4 col-sm-4 footer-wthree-grid">
+         
         </div>
+        <div class="clearfix"> </div>
+      </div>
+      <div class="copy-right">
+        <p>© 2017 Holiday Spot . All rights reserved | Design by UP TO TRAIN</a></p>
+      </div>
     </div>
-</footer>
+  </div>
+  <!-- //footer end here -->
 </html>
