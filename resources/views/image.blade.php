@@ -25,7 +25,9 @@
     <div class="container" id="about" align="center">
         <div class="row">
             <!-- Project Details Go Here -->
-           
+           <?php
+              $schedule = DB::table('schedules')->where('trip_id',$tripId)->get();
+           ?>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -33,16 +35,27 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="timeline">
-                            <!--ถ้าเลขคู่ ตรง li จะเพิ่ม class='timeline-inverted'-->
-                          
-                              
-                          
-                           Hi
-
-                        </ul>
-                    </div> 
+                    <form role="form" action="/agency" method="POST" name="id" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                       <table class ="table">
+                       <tr>
+                       <td>ชื่อสถานที่</td>
+                       <td>เพิ่มรูปกิจกรรม</td>
+                       </tr>
+                       @foreach($schedule as $schedules)
+                        <tr>
+                        
+                        <td>
+                        <input type="hidden" id ="trip_id" name="trip_id" value="{{$tripId}}">
+                        {{$schedules->schedule_place}}
+                        </td>
+                        <td><input type="file" id ="image" name="image[]" multiple></td>
+                        
+                        </tr>
+                      @endforeach
+                        </table>
+                        <button type="submit"  class="btn btn-primary">ยืนยันการสร้างทริป</button>
+                    </form>
                 </div>
                 <br><br>
         
