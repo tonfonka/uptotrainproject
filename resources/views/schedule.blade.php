@@ -96,12 +96,16 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
+                                    @if($schedule->schedule_day == 1)
+<h4>เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
+                                    @else
                                     <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
+                                    @endif
                                     <h4><a  data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>
                                 </div>
                                 <div class="timeline-body">
                                     <p class="text-muted">{{ $schedule->schedule_description }}</p>
-                                    {{$schedule->id}}
+                                   
                                 </div>
                             </div>
                             
@@ -236,45 +240,52 @@
     $userName = DB::table('users')->where('id',$reviews->user_id)->get();
 
 ?>
+
+@isset($reviews->rate_des)
 <div class="col-sm-1">
-<div class="thumbnail">
-<img class="img-responsive user-photo" src="/images/{{$userName[0]->image}}">
-</div><!-- /thumbnail -->
+    <div class="thumbnail">
+        <img class="img-responsive user-photo" src="/images/{{$userName[0]->image}}">
+    </div><!-- /thumbnail -->
 </div><!-- /col-sm-1 -->
-<?php
-$due = $reviews->updated_at;
-?>
+    <?php
+    $due = $reviews->updated_at;
+    ?>
 <div class="col-sm-5">
-<div class="panel panel-default">
-<div class="panel-heading">
-<strong>{{$userName[0]->name}}</strong> <span class="text-muted">{{\Carbon\Carbon::now('Asia/Bangkok')->createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
-</div>
-<div class="panel-body">
-{{$reviews->rate_des}}
-@if(($reviews->rate) =='1')
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-@elseif(($reviews->rate) =='2')
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-@elseif(($reviews->rate) =='3')
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-@elseif(($reviews->rate) =='4')
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-@elseif(($reviews->rate) =='5')
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-<li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-@endif
-</div><!-- /panel-body -->
-</div><!-- /panel panel-default -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>{{$userName[0]->name}}</strong> <span class="text-muted">     {{\Carbon\Carbon::now('Asia/Bangkok')->createFromFormat('Y-m-d H:i:s', $due)->diffForHumans() }}</span>
+            <span style="float:right;">  
+            @if(($reviews->rate) =='1')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='2')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='3')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='4')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='5')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @endif
+            </span>
+        </div>
+        <div class="panel-body">
+        {{$reviews->rate_des}}
+
+        </div><!-- /panel-body -->
+
+    </div><!-- /panel panel-default -->
 </div><!-- /col-sm-5 -->
+@endisset
 @endforeach
 </div><!-- /row -->
 

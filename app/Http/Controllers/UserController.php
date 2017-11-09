@@ -18,9 +18,9 @@ class UserController extends Controller
     function __construct(){
         
     }
-    function index() {
-        return view('index');
-    }
+    // function index() {
+    // //     return view('index');
+    // // }
 
     function search(){
          $trips = DB::table('trips')->orderBy('id','desc')->paginate(15);
@@ -31,7 +31,7 @@ class UserController extends Controller
     function searchResult(){
         $q = Input::get ( 'q' );
        
-        $trips = DB::table('trips')->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);
+        $trips = DB::table('trips')->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->orWhere('trip_province','LIKE','%' . $q . '%')->paginate(15);
         if (count ( $trips ) > 0)
             return view ( 'tripuser_resultsearch' )->withDetails ( $trips )->withQuery ( $q );
         else

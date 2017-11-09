@@ -15,10 +15,15 @@ body {
 h1,
 h2,
 h3,
-h4,
 h5,
 h6 {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700
+}
+
+h4 {
+    font-family: "Prompt", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     font-weight: 700
 }
@@ -34,6 +39,7 @@ a {
 }
 
 p {
+    font-family: "Prompt", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.75
 }
