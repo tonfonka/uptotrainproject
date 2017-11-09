@@ -152,19 +152,25 @@
                 </div>
                 <br><br>
 <section class="bg-light" id="portfolio">
+<?php
+                $pic = DB::table('imagegallery')->where('trip_id',$trip->id)->get();
+            
+            ?>
+
             <div class="row">
                <div class="portfolio-caption">
                         <h2>gallery</h2>
-                    </div>
-                    @for ($i = 0; $i < 6; $i++)
-    
-
+                    
+                    
+          @foreach($pic as $ps)  
+          
                <div class="col-md-4 col-sm-3 portfolio-item">
-                        <img src="/images/{{$trip->image}}" class="img-responsive" alt="">
-
+                        <!-- <img src="/images/{{$ps->image}}" class="img-responsive" alt=""> -->
+                        <img src="/images/{{$ps->image}}" class="img-responsive" alt="" class="card-img-top" >
                 </div>
-                @endfor
+         @endforeach
             </div>
+          </div>
         </section>
        
 
