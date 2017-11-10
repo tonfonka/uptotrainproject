@@ -265,7 +265,7 @@ class UserController extends Controller
                  return view('commentation',$data);
              }
         function commentstore(Request $request){
-
+            if ($request->hasFile('image')) {
             $path = public_path('images');
             $imgName = 'review_'.str_random(10).$request->file('image')->getClientOriginalName();
             $request->file('image')->move($path,$imgName);
@@ -278,6 +278,17 @@ class UserController extends Controller
                             "user_id"=>$request->input("user_id",Auth::user()->id),
                             "image" =>$imgName
                         ]);
+                     }
+                     else{
+                        DB::table('reviewTrip')
+                        ->insertGetId([ 
+                               "rate" =>$request->input('rate'),
+                               "rate_des" =>$request->input('rate_des'),
+                               "trip_id"=>$request->input('trip_id'),
+                               "user_id"=>$request->input("user_id",Auth::user()->id)
+                               
+                           ]);
+                     }
 
             return redirect('/profileuser');
      }

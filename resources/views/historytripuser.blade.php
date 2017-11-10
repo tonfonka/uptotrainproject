@@ -102,6 +102,7 @@
     $roundId = DB::table('triprounds')->select('trip_id')->where('id',$book->tripround_id)->orderBy('start_date','asc')->pluck('trip_id');
     $tripname = DB::table('trips')->where('id',$roundId)->get();
     $co = $round->count();
+    $id = $tripname[0]->id;
 ?>
 @if($co >0)
 
@@ -126,11 +127,12 @@
                 </div><!-- card actions -->
                 <div class="card-reveal">
                     <span class="card-title">รายละเอียด</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                   <a href="/schedules/{{$tripname[0]->id}}"> <p>ชื่อทริป : {{$tripname[0]->trips_name}}</p></a>
+                   <a href="/schedules/{{$id}}"> <p>ชื่อทริป : {{$tripname[0]->trips_name}}</p></a>
                     <p>วันเริ่มเดินทาง : {{$round[0]->start_date}}</p>
                     <p>วันสิ้นสุดการเดินทาง :{{$round[0]->departure_date}} </p>
                     <a href="/paysum/{{$book->id}}" ><p>จำนวนคนที่จอง : {{$book->number_booking}}</p></a>
                     <p>วันเวลาที่จอง :  {{$book->booking_time}}</p>
+                    <a href="/comment/{{$tripname[0]->id}}"><p>review Trip</p></a>
                     
                 </div><!-- card reveal -->
             </div>
