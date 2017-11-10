@@ -293,10 +293,31 @@ class tripAgencyController extends Controller
         //$trips = DB::table('trips')->where('id',$id)->get();
         //$tripround = DB::table('triprounds')->where('trip_id',$id)->get();
         //dd($trips);
+        $review = DB::table('reviewTrip')->where('trip_id',$id)->get();
+        $alluser = $review->count();
+        $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
+        $trip = trip::where('id',$id)->first();
+        $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();
+        $one = $starone->count();
+        $startwo =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','2']])->get();
+        $two = $startwo->count();
+        $starthree =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','3']])->get();
+        $three = $starthree->count();
+        $starfour =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','4']])->get();
+        $four = $starfour->count();
+        $starfive =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','5']])->get();
+        $five = $starfive->count();
                 $data = array(
                     'travelagencies' => $travelagencies,
                     'trips' => $trips,
                     //'tripround' => $tripround
+                    'review' =>$review,
+                    'one' =>$one,
+                    'two' => $two,
+                    'three' =>$three,
+                    'four' => $four,
+                    'five' => $five,
+                    'alluser' => $alluser
                 );
     return view('profileagency',$data);
 

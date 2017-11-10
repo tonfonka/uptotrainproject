@@ -19,18 +19,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       window.scrollTo(0, 1);
     }
   </script>
-   <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet" />
-  <!--Theme CSS-->
-  
-<link href=" {{ URL::asset('css/style.css') }}" rel="stylesheet"/>
-  <link href=" {{ URL::asset('css/profile/member-style.css') }}" rel="stylesheet"/>
-  <!-- js -->
-  <script src="{{ URL::asset('/js/jquery-2.2.3.min.js') }}"></script>
- 
-  <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
-      <link rel="stylesheet" href="{{asset('/css/codebox/style.css')}}"/>
+  <!--Custom Theme files-->
+  <link href="{{ URL::asset('/css/bootstrap2.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/style.css') }}" type="text/css" rel="stylesheet">
+  <link href="{{ URL::asset('/css/profile/member-style.css') }}" type="text/css" rel="stylesheet">
 
-  
+  <!-- font-awesome icons -->
+  <link href="{{ URL::asset('/css/font-awesome.css') }}" rel="stylesheet">
+  <!-- //font-awesome icons -->
+  <!-- js -->
+
+  <script src="{{ URL::asset('js/jquery-2.2.3.min.js') }}"></script>
+
+  <!-- //js -->
+  <!-- web-fonts -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
 
 <body>
@@ -50,7 +55,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
       <div class="topnav pull-right">
         <ul class="quick-menu pull-right clearfix">
-          <li><a href="javascript:;">{{Auth::user()->name}}</a></li>
+          <li><a href="javascript:;">{{$travelagencies->agency_name_en}}</a></li>
           <li><a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -68,20 +73,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <nav id="main-menu" role="navigation">
           <ul class="menu">
             <li class="">
-              <a href="/">
+              <a href="/agency">
 						หน้าหลัก 					  </a>
             </li>
             <li class="">
-              <a href="/profileuser">
-						ข้อมูลการจอง					  </a>
+              <a href="/addtrip">
+						เพิ่มทริป					  </a>
             </li>
             <li class="">
-              <a href="/myhistorytrip/{{Auth::user()->id}}">
-						ประวัติการจอง					  </a>
+              <a href="">
+						ทริปทั้งหมด					  </a>
             </li>
             <li class="">
-              <a href="/profileusersetting/{{Auth::user()->id}}">
-
+              <a href="/profileagencysetting">
 						ตั้งค่า					  </a>
             </li>
           </ul>
@@ -90,7 +94,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </div>
     </div>
   </header>
-  
 
 
   <!-- //header-->
