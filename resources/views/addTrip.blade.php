@@ -13,9 +13,10 @@
 </div>
 @endsection
 @section('content')
-  <link href="css/uptotrain.min.css" rel="stylesheet">
-  <link href="css/login.css" rel="stylesheet">
+ 
 <div class="container">
+ <link href="css/uptotrain.min.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
     <div class="row">
         <div class="wizard">
             <div class="wizard-inner">
@@ -53,7 +54,7 @@
             <script>
             
             </script>
-            <form role="form" action="/agency" method="POST" name="id" enctype="multipart/form-data">
+            <form role="form" action="/image" method="POST" name="id" enctype="multipart/form-data">
             
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="tab-content">
@@ -204,9 +205,9 @@
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <h3>Complete</h3>
                         <p>You have successfully completed all steps.</p>
-
+<div class="table-responsive text-center">
                         <table class="table">
-                            <tr >
+                            <tr>
                                 <td style="margin-bottom:13px;font-size:1.3em;"> ชื่อทริป : </td>
                                 <td id="name"></td>
                             </tr>
@@ -228,8 +229,44 @@
                                 <td id="tripdes"></td>
                             </tr>
                         </table>
+                        </div>
                         <hr>
-                        <div class="row" >
+                         <div class="table-responsive text-center">
+                            <table class="table">
+                            <tr>
+                                <th><label style="margin-bottom:13px;font-size:1em;width:150px;">วันเริ่มเดินทาง</label></td>
+                                <th><label style="margin-bottom:13px;font-size:1em;width:180px;">วันสิ้นสุดการเดินทาง</label></td>
+                                <th><label style="margin-bottom:13px;font-size:1em;width:150px;">ราคาของเด็ก</label></th>
+                                <th> <label style="margin-bottom:13px;font-size:1em;width:150px;">ราคาของผู้ใหญ่</label></th>
+                                <th><label style="margin-bottom:13px;font-size:1em;width:150px;">จำนวนที่นั่งทั้งหมด </label></th>
+                            </tr>
+                            <tr>
+                                <td><p id="startdate"></p></td>
+                                <td><p id="depdate"></p></td>
+                                <td><p id="pchild"></p></td>
+                                <td><p id="padult"></p></td>
+                                <td><p id="aseat"></p></td>
+                            </tr>
+                            </table>
+                        </div>
+                        <div class="table-responsive text-center">
+                            <table class="table">
+                            <tr>
+                                <th><label  style="margin-bottom:13px;font-size:1.3em;">วันที่</label></td>
+                                <th><label  style="margin-bottom:13px;font-size:1.3em;">เวลา</label></td>
+                                <th><label  style="margin-bottom:13px;font-size:1.3em;">สถานที่</label></th>
+                                <th> <label  style="margin-bottom:13px;font-size:1.3em;">รายละเอียด</label></th>
+                            </tr>
+                            <tr>
+                                <td> <p id="date"></p></td>
+                                <td> <p id="time"></p></td>
+                                <td><p id="pleace"></p></td>
+                                <td><p id="desa"></p></td>
+                               
+                            </tr>
+                            </table>
+                        </div>
+                        <!--<div class="row" >
                             <div class="col-md-3" >
                                 <label style="margin-bottom:13px;font-size:1.3em;width:150px;">วันเริ่มเดินทาง</label>
 
@@ -278,7 +315,7 @@
                                 <p id="desa"></p>
                             </div>
 
-                        </div>
+                        </div>-->
                         <br>
 
                         <ul class="list-inline pull-right">

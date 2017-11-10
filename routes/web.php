@@ -27,8 +27,10 @@ Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/agency', 'UserController@regisagency');
-Route::post('/agency','tripAgencyController@tripstore');
-//Route::post('/agency','tripAgencyController@imageupload');
+//Route::post('/agency','tripAgencyController@tripstore');
+Route::post('/image','tripAgencyController@tripstore');
+Route::get('/image','imageController@viewimage');
+Route::post('/agency','imageController@upload');
 
 Route::get('/agreement',function(){
 	return view ('agreement');
