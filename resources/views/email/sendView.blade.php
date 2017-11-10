@@ -180,7 +180,7 @@
                                       <div class="mobile-br">
                                         <br>
                                       </div>
-                                      Hello!! 
+                                      Hello from UP TO TRAIN!! 
                                       
                                       <br>
                                       <br>
@@ -233,17 +233,26 @@
 
                                       <div >
                                         <!--[if mso]> <v:rect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.sendwithus.com" style="height:45px;v-text-anchor:middle;width:180px;" stroke="f" fillcolor="#f5774e"> <w:anchorlock></w:anchorlock> <center> <![endif]-->
-                                        <a  href="{{route('sendEmailDone',["email" => $user->email,"verifyToken" => $user->verifyToken])}}"
+                                       
+
+                                        <a  href="{{route('sendEmailDone',["email" => $user->email,"verifyToken" => $user->verifyToken, "id"=> $user->id])}}"
                                           style="background-color:#585858;color:#ffffff;display:inline-block;font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;line-height:45px;text-align:center;text-decoration:none;width:180px;-webkit-text-size-adjust:none;">
                                           <span id="button_text">
+                                            
                                             Click 
                                           </span>
                                         </a>
                                         <!--[if mso]> </center> </v:rect> <![endif]-->
+                                       
                                       </div>
                                       <br>
                                     </td>
-                                  </tr>
+                                    
+                                  </tr><tr>
+                                  <td class="w320 mobile-spacing" 
+                                      style="font-size:24px; text-align:center; padding: 0 75px; color:#6f6f6f;">
+                                      Let's Have Fun With Train<br>
+                                    </td></tr>
                                 </tbody>
                               </table>
 

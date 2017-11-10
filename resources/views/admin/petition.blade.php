@@ -12,10 +12,10 @@
     <title>Admin Page</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('/css/admin/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="{{asset('css/admin/sidebar.css')}}css/simple-sidebar.css" rel="stylesheet">
 
 
 </head>

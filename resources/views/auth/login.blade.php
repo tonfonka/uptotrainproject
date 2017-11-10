@@ -1,4 +1,5 @@
 @extends('layouts.authen')
+@section('title', 'login')
 @section('content')
 <div class="container" style="padding-top:50px;">
     <div class="row">

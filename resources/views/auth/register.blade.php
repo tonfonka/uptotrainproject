@@ -1,6 +1,7 @@
 @extends('layouts.authen')
 
 @section('content')
+
 <div class="container" style="padding-top:50px;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -40,8 +41,14 @@
                         </div>
                         <label for="role" class="col-md-4 control-label">Position</label>
                         <div class="col-md-6" >
-                        <input type="radio" id="role" name="role" value="user" > User<br>
-                        <input type="radio" id="role" name="role" value="travel agency">travel agency<br>
+                         <label class="radio-inline">
+      <input type="radio" id="role" name="role" value="user">Tourist
+    </label>
+    <label class="radio-inline">
+      <input type="radio" id="role" name="role" value="travel agency">Travel Agency
+    </label>
+          <!--<input type="radio" id="role" name="role" value="user" > User<br>
+                        <input type="radio" id="role" name="role" value="travel agency">travel agency<br>-->
                         </div>
                         <br>
                         <br>
