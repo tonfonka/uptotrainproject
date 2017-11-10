@@ -166,3 +166,6 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	// });
 	Route::get('/pdf/{id}','UserController@pdf');
 
+	Route::get('/historytripusertest', function () {
+			return view('historytripusertest');
+	});
