@@ -31,7 +31,7 @@ class imageController extends Controller
                 {
                         foreach ($request->image as $image){
 
-                            $filename = 'sch_'.str_random(10)->getClientOriginalName();
+                            $filename = 'sch_'.str_random(10).$image->getClientOriginalName();
                             $path = public_path('images');
                             $image->move($path,$filename);
                             $ImageGallery = new ImageGallery;

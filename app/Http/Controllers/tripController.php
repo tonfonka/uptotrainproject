@@ -93,7 +93,7 @@ class tripController extends Controller
         DB::table('trips')
             ->where('id', $id)
             ->update([
-                 "trip_name" => $request->input('trip_name'),
+            "trip_name" => $request->input('trip_name'),
             "trip_nday" => $request->input('trip_nday'),
             "trip_nnight" => $request->input('trip_nnight'),
             "trip_province" => $request->input('trip_province'),

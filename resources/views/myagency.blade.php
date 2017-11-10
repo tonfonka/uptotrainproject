@@ -7,7 +7,7 @@
 		<h3 class="agileits-title" style="font-size:35px;">{{$travelagencies[0]->agency_name_th}}</h3>
 		<div class="about-grids"> 
 			<div class="col-md-5 welcome-w3right">
-				<img src="/img/img4.jpg" class="img-responsive" alt="" />
+				<img src="/images/{{Auth::user()->image}}" class="img-responsive" alt="" width="350" height="250" />
 			</div>
 			<div class="col-md-7 welcome-w3left">
       <li>Address : {{$travelagencies[0]->agency_address}}</li>
