@@ -284,7 +284,8 @@ class UserController extends Controller
      }
             function profileagencysetting(){
 
-                $userId = Auth::user()->id; 
+                $userId = Auth::user()->id;
+                $travelagencies =  DB::table('travelagency')->where('user_id', Auth::user()->id)->first();
                 $agency = DB::table('travelagency')->where('user_id',$userId)->get();
 
                 //$userbook = DB::table('booking')->where('user_id',$userId)->get();
@@ -293,7 +294,9 @@ class UserController extends Controller
                    // dd($user);
                 $data = array(
                     'user' => $user,
-                    'agency' => $agency,
+                    'travelagencies' => $travelagencies,
+                    'agency' => $agency
+                    
                     //'triproundbook' => $triproundbook
                     
                     
@@ -333,10 +336,10 @@ class UserController extends Controller
                 
                                
                         
-                                 return redirect('/myagency/{$id}');
-                             }
+                return redirect('/myagency/{$id}');
+                }
 
-                 function myagency($id){
+                function myagency($id){
 
                 $userId = Auth::user()->id; 
                 $travelagencies = DB::table('travelagency')->where('user_id',$userId)->get();
