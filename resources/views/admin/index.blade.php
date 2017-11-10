@@ -8,11 +8,11 @@
   <title>Admin Page</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="Admin\css\bootstrap.min.css" rel="stylesheet">
+  <link href="{{asset('/css/admin/bootstrap.min.css')}}" rel="stylesheet">
 
   <!-- Custom CSS -->
-  <link href="Admin\css\sidebar.css" rel="stylesheet">
-  <link href="Admin\js\sidebar.js" >
+  <link href="{{asset('/css/admin/sidebar.css')}}" rel="stylesheet">
+  <script src="{{asset('/js/admin/sidebar.js')}}" ></script>
 
 </head>
 

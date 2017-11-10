@@ -1,1 +1,0 @@
-Yay, you got it!! <a href="{{route('login')}}">click here</a>
