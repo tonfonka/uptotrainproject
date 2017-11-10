@@ -156,7 +156,7 @@
                             </div>
                         </div>
                         <div class="pattern">
-                            <img src="images/{{$t->image}}" class="img-responsive">
+                            <img src="images/{{$t->image}}"  alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;">
                         </div>
                     </a>
                     <div class="portfolio-caption" >
