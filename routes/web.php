@@ -59,7 +59,7 @@ Route::get('/profileuser', function () {
 	return view ('profile_user');
 });
 
-Route::get('/regisagency','UserController@res');
+Route::get('/regisagency','UserController@res')->name('regisagency');
 Route::post('/regisagency','UserController@regisagency');
 Route::post('/webhook','OmiseController@webhook');
 
@@ -100,7 +100,7 @@ Route::get('/hello', function () {
 Route::get('/shownumber/{id}','tripAgencyController@shownumber');
 
 	Route::get('verifyEmailFirst','Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
-	Route::get('verify/{email}/{verifyToken}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
+	Route::get('verify/{email}/{verifyToken}/{id}','Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 
 
 	Route::get('/profileuser','UserController@profileuser')->middleware('auth');
@@ -131,5 +131,6 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 
 	Route::get('/pdf/{id}','UserController@pdf');
 	Route::get('/statement','tripAgencyController@statement');
+
 
 
