@@ -9,7 +9,7 @@
     <div class="col-md-12">
       <div class="row">
         <p style="font-size:40px;color:black;font-family:'Prompt', sans-serif;">
-          <i class="fa fa-address-card"></i> ข้อมูลลูกค้า</p>
+          <i class="fa fa-address-card"></i> ข้อมูลส่วนตัว</p>
         <br>
       </div>
     </div>
@@ -18,38 +18,38 @@
     <div class="col-md-4">
       <div class="text-center">
         <div style="object-fit: cover;">
-          <img src="/images/{{$user[0]->image}}" alt="" width="250" class="avatar img-circle" alt="avatar">
+          <img src="/images/{{Auth::user()->image}}" alt="" width="250" class="avatar img-circle" alt="avatar">
         </div>
       </div>
       <center>
-        <label>{{$user[0]->name}}</label>
+        <label>{{Auth::user()->name}}</label>
       </center>
     </div>
     <div class="col-md-8">
-      <p style="font-size:25px;color:black;">ชื่อ : {{$user[0]->firstname}} {{$user[0]->lastname}}</p>
+      <p style="font-size:25px;color:black;">ชื่อ : {{Auth::user()->firstname}} {{Auth::user()->lastname}}</p>
       <div class="row">
         <div class="col-md-6">
-          <p style="font-size:25px;color:black;">เพศ : {{$user[0]->sex}} </p>
-          <p style="font-size:25px;color:black;">เบอร์ติดต่อ : {{$user[0]->phone}} </p>
-          <p style="font-size:25px;color:black;">โรคประจำตัว : {{$user[0]->chronic_disease}} </p>
+          <p style="font-size:25px;color:black;">เพศ : {{Auth::user()->sex}} </p>
+          <p style="font-size:25px;color:black;">เบอร์ติดต่อ : {{Auth::user()->phone}} </p>
+          <p style="font-size:25px;color:black;">โรคประจำตัว : {{Auth::user()->chronic_disease}} </p>
         </div>
         <div class="col-md-6">
-          <p style="font-size:25px;color:black;">อายุ : {{$user[0]->age}} </p>
-          <p style="font-size:25px;color:black;">อีเมลล์ : {{$user[0]->email}} </p>
-          <p style="font-size:25px;color:black;">อาหารที่แพ้ : {{$user[0]->food_allergy}} </p>
+          <p style="font-size:25px;color:black;">อายุ : {{Auth::user()->age}} </p>
+          <p style="font-size:25px;color:black;">อีเมลล์ : {{Auth::user()->email}} </p>
+          <p style="font-size:25px;color:black;">อาหารที่แพ้ : {{Auth::user()->food_allergy}} </p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p style="font-size:25px;color:black;">ที่อยู่ : {{$user[0]->address}}</p>
+          <p style="font-size:25px;color:black;">ที่อยู่ : {{Auth::user()->address}}</p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <p style="font-size:25px;color:black;">จังหวัด : {{$user[0]->province}} </p>
+          <p style="font-size:25px;color:black;">จังหวัด : {{Auth::user()->province}} </p>
         </div>
         <div class="col-md-6">
-          <p style="font-size:25px;color:black;">รหัสไปรษณีย์ : {{$user[0]->zipcode}}</p>
+          <p style="font-size:25px;color:black;">รหัสไปรษณีย์ : {{Auth::user()->zipcode}}</p>
         </div>
       </div>
     </div>
