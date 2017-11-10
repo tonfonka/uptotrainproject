@@ -74,7 +74,7 @@
                     <div class="pull-right">
                         <button class="btn btn-default btn-xs btn-filter">
                             <span class="glyphicon glyphicon-filter"></span> Filter</button>
-                    </div>
+                    </div>]
 
                 </div>
                 
@@ -117,6 +117,7 @@
                                ->join('booking','booking.user_id','=','users.id')
                                ->where([['users.id',$boo->user_id],['booking.status','=','success']])->get();
                             ?>
+                            @if($boo->status == 'success')
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
@@ -129,6 +130,7 @@
                             <td>{{$boo->status}}</td>
                             <td>{{$boo->booking_time}}</td>
                         </tr>
+                        @endif
                          @endforeach @endif
                     </tbody>
                 </table>

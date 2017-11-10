@@ -179,7 +179,7 @@ class tripAgencyController extends Controller
                         'tripround' => $tripround
                     );
     
-        return redirect('/agency');
+        return view('agency_tripdetail',$data);
 
     }
 
@@ -345,6 +345,22 @@ function myprofile($id) {
     return view('profileuser.userside');
 
 }
+    function statement(){
+        $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+        $trip = DB::table('trips')->where('travelagency_id',$travelagencies->id)->get();
+
+     
+
+        $data = array(
+
+            'travelagencies' => $travelagencies,
+            'trip' => $trip,
+
+        );
+
+
+        return view('statement',$data);
+    }
 
 }
 

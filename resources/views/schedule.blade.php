@@ -11,6 +11,8 @@
     <link href="/css/uptotrain2.min.css" rel="stylesheet"/>
    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet"/>
 
+   
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
     
@@ -155,28 +157,80 @@
                     </div> 
                 </div>
                 <br><br>
-<section class="bg-light" id="portfolio">
-<?php
+                <br><br>
+                <?php
                 $pic = DB::table('imagegallery')->where('trip_id',$trip->id)->get();
             
             ?>
+           
+<section class="bg-light" id="portfolio">
 
             <div class="row">
                <div class="portfolio-caption">
                         <h2>gallery</h2>
-                    
-                    
-          @foreach($pic as $ps)  
-          
-               <div class="col-md-4 col-sm-3 portfolio-item">
-                        <!-- <img src="/images/{{$ps->image}}" class="img-responsive" alt=""> -->
-                        <img src="/images/{{$ps->image}}" class="img-responsive" alt="" class="card-img-top" >
-                </div>
-         @endforeach
-            </div>
-          </div>
-        </section>
+             
+
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css'>
+<style class="cp-pen-styles">img { max-height: 100% }
+.swiper-container {
        
+        height: 500px;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+      
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      /*width:90%;*/ 
+    }</style></head><body>
+<!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+        @foreach($pic as $ps)  
+            <div class="swiper-slide"><img src="/images/{{$ps->image}}" alt="Tattoo &amp; Piercing" width="650" height="450" style="display: block; border: 0;" ></div>
+            @endforeach
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+    
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js'></script>
+<script >var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+  spaceBetween: 0,
+        //loop: true,
+autoplay: 2500,
+        autoplayDisableOnInteraction: false,
+        slidesPerView: 4,
+        coverflow: {
+            rotate: 30,
+        
+           
+            modifier: 1,
+           
+        }
+    });
+
+//# sourceURL=pen.js
+</script>
+
+        </section>
+       <br><br>
 
 
 
