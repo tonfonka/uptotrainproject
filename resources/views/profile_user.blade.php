@@ -101,7 +101,9 @@
     $round = DB::table('triprounds')->where([['id',$book->tripround_id],['start_date','>',$today]])->orderBy('start_date','asc')->get();
     $roundId = DB::table('triprounds')->select('trip_id')->where('id',$book->tripround_id)->orderBy('start_date','asc')->pluck('trip_id');
     $tripname = DB::table('trips')->where('id',$roundId)->get();
+    $co = $round->count();
 ?>
+@if($co >0)
 <div class="container">
   
 <div class="row">    
@@ -113,7 +115,7 @@
                 </div><!-- card image -->
                 
                 <div class="card-content">
-                <a href="/schedules/{{$tripname[0]->id}}" ><span class="card-title">{{$tripname[0]->trips_name}}</span>                    
+                <a href="/schedules/{{$tripname[0]->id}}" ><span class="card-title">{{$tripname[0]->trips_name}}</span></a>                    
                     <button type="button" id="show" class="btn btn pull-right" aria-label="Left Align">
                         <i class="fa fa-ellipsis-v">Detail</i>
                     </button>
@@ -127,7 +129,7 @@
                     <p>วันเริ่มเดินทาง : {{$round[0]->start_date}}</p>
                     <p>วันสิ้นสุดการเดินทาง :{{$round[0]->departure_date}} </p>
                     <a href="/paysum/{{$book->id}}" ><p>จำนวนคนที่จอง : {{$book->number_booking}}</p></a>
-                    <p>วันเวลาที่จอง :  {{$book->booking_time}}</p>
+                    <p>วันเวลาที่จอง : date('h:i a', strtotime( {{$book->booking_time}})</p>
                     
                 </div><!-- card reveal -->
             </div>
@@ -135,6 +137,7 @@
     </div>
 
 </div>
+@endif
 @endforeach
 <script>
 $(function(){

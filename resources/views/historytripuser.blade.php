@@ -1,8 +1,12 @@
-@extends('layouts.headprofile') @section('title', 'History Trip') @section('history')
+@extends('layouts.headprofile') @section('title', 'profile') @section('content')
+<style>
+	hr {
+		border-color: darkred;
+	}
+</style>
 <link href="{{asset('css/profile/blogttc.css')}}" rel="stylesheet" type="text/css" />
 <style>
-  @import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+
 .card .card-image{
     overflow: hidden;
     -webkit-transform-style: preserve-3d;
@@ -29,7 +33,7 @@
 }
 
 .card{
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Prompt', sans-serif; 
     margin-top: 10px;
     position: relative;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -91,41 +95,55 @@
 }
 
 </style>
+@foreach($userbook as $book)
+<?php
+    $today = date('y/m/d'); 
+    $round = DB::table('triprounds')->where([['id',$book->tripround_id],['start_date','<',$today]])->orderBy('start_date','asc')->get();
+    $roundId = DB::table('triprounds')->select('trip_id')->where('id',$book->tripround_id)->orderBy('start_date','asc')->pluck('trip_id');
+    $tripname = DB::table('trips')->where('id',$roundId)->get();
+    $co = $round->count();
+?>
+@if($co >0)
+
 <div class="container">
- 
-<div class="container">
-    <div class="row">    
-        <div class="col-md-6 col-md-offset-3">
+  
+<div class="row">    
+        <div class="col-md-6 ">
             <div class="card">
                 <div class="card-image">
-                    <img class="img-responsive" src="http://lorempixel.com/555/300/sports">
+                    <img class="img-responsive" src="/images/{{$tripname[0]->image}}">
                     
                 </div><!-- card image -->
                 
                 <div class="card-content">
-                    <span class="card-title">Material Cards</span>                    
-                    <button type="button" id="show" class="btn btn-custom pull-right" aria-label="Left Align">
-                        <i class="fa fa-ellipsis-v"></i>
+                <a href="/schedules/{{$tripname[0]->id}}" ><span class="card-title">{{$tripname[0]->trips_name}}</span>   </a>                 
+                    <button type="button" id="show" class="btn btn pull-right" aria-label="Left Align">
+                        <i class="fa fa-ellipsis-v">Detail</i>
                     </button>
                 </div><!-- card content -->
                 <div class="card-action">
-                    <a href="#" target="new_blank">Link</a>
-                    <a href="#" target="new_blank">Link</a>                    
-                    <a href="#" target="new_blank">Link</a>
-                    <a href="#" target="new_blank">Link</a>
-                    <a href="#" target="new_blank">Link</a>
+                    <a href="/schedules/{{$tripname[0]->id}}" >{{$tripname[0]->trip_description}}</a>
                 </div><!-- card actions -->
                 <div class="card-reveal">
-                    <span class="card-title">Card Title</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                    <span class="card-title">รายละเอียด</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                   <a href="/schedules/{{$tripname[0]->id}}"> <p>ชื่อทริป : {{$tripname[0]->trips_name}}</p></a>
+                    <p>วันเริ่มเดินทาง : {{$round[0]->start_date}}</p>
+                    <p>วันสิ้นสุดการเดินทาง :{{$round[0]->departure_date}} </p>
+                    <a href="/paysum/{{$book->id}}" ><p>จำนวนคนที่จอง : {{$book->number_booking}}</p></a>
+                    <p>วันเวลาที่จอง :  {{$book->booking_time}}</p>
+                    
                 </div><!-- card reveal -->
             </div>
         </div>
     </div>
 </div>
-</div>
+
+@endif
+@endforeach
+
+
 <script>
-  $(function(){
+$(function(){
 
     $('#show').on('click',function(){        
         $('.card-reveal').slideToggle('slow');
@@ -136,5 +154,7 @@
     });
 });
 </script>
+
+
 
 @endsection

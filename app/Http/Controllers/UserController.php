@@ -358,20 +358,20 @@ class UserController extends Controller
                  return view('myagency',$data);
              }            
 
-             function myhistorytripuser($id){
+             function myhistorytripuser(){
                 
                                 $userId = Auth::user()->id; 
-                                $travelagencies = DB::table('travelagency')->where('user_id',$userId)->get();
-                
-                                //$userbook = DB::table('booking')->where('user_id',$userId)->get();
-                                //$triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+                                
+                                $userbook = DB::table('booking')->where([['user_id',Auth::user()->id],['status','=','success']])->get();
+                                $count = $userbook->count();
+                                
                                 $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
-                                   // dd($user);
                                 $data = array(
                                     'user' => $user,
-                                    'travelagencies' => $travelagencies,
-                                    //'triproundbook' => $triproundbook
-                                    
+                                    'userbook' => $userbook,
+                                    'count' => $count,
+                                    // 'tripname' => $tripname,
+                                    //  ' triproundbook' => $triproundbook
                                     
                                 );
                         
