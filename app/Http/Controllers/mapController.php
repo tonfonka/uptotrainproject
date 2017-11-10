@@ -27,6 +27,9 @@ class mapController extends Controller
         );
         return view('map',$data);
     }
-
     
-}
+
+        
+    }
+   
+
