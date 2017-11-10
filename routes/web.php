@@ -127,7 +127,7 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	
 	Route::get('/myprofile/{id}', 'tripAgencyController@myprofile');
 
-	Route::get('/myhistorytrip/{id}', 'UserController@myhistorytripuser');
+	Route::get('/myhistorytrip', 'UserController@myhistorytripuser');
 
 	Route::get('/pdf/{id}','UserController@pdf');
 	Route::get('/statement','tripAgencyController@statement');

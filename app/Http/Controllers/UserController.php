@@ -176,15 +176,14 @@ class UserController extends Controller
         }
 
         $userId = Auth::user()->id; 
-        //dd($userId);
-        $userbook = DB::table('booking')->where('user_id',$userId)->get();
-        $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
-        $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+        $userbook = DB::table('booking')->where([['user_id',Auth::user()->id],['status','=','success']])->get();
+        // $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+         $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
         $data = array(
-            //'user' => $user,
+            'user' => $user,
             'userbook' => $userbook,
             // 'tripname' => $tripname,
-             ' triproundbook' => $triproundbook
+            //  ' triproundbook' => $triproundbook
             
         );
         return view('profile_user',$data);
@@ -266,6 +265,10 @@ class UserController extends Controller
                  return view('commentation',$data);
              }
         function commentstore(Request $request){
+            if ($request->hasFile('image')) {
+            $path = public_path('images');
+            $imgName = 'review_'.str_random(10).$request->file('image')->getClientOriginalName();
+            $request->file('image')->move($path,$imgName);
 
             $path = public_path('images');
             $imgName = 'review_'.str_random(10).$request->file('image')->getClientOriginalName();
@@ -279,6 +282,17 @@ class UserController extends Controller
                             "user_id"=>$request->input("user_id",Auth::user()->id),
                             "image" =>$imgName
                         ]);
+                     }
+                     else{
+                        DB::table('reviewTrip')
+                        ->insertGetId([ 
+                               "rate" =>$request->input('rate'),
+                               "rate_des" =>$request->input('rate_des'),
+                               "trip_id"=>$request->input('trip_id'),
+                               "user_id"=>$request->input("user_id",Auth::user()->id)
+                               
+                           ]);
+                     }
 
             return redirect('/profileuser');
      }
@@ -359,20 +373,20 @@ class UserController extends Controller
                  return view('myagency',$data);
              }            
 
-             function myhistorytripuser($id){
+             function myhistorytripuser(){
                 
                                 $userId = Auth::user()->id; 
-                                $travelagencies = DB::table('travelagency')->where('user_id',$userId)->get();
-                
-                                //$userbook = DB::table('booking')->where('user_id',$userId)->get();
-                                //$triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+                                
+                                $userbook = DB::table('booking')->where([['user_id',Auth::user()->id],['status','=','success']])->get();
+                                $count = $userbook->count();
+                                
                                 $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
-                                   // dd($user);
                                 $data = array(
                                     'user' => $user,
-                                    'travelagencies' => $travelagencies,
-                                    //'triproundbook' => $triproundbook
-                                    
+                                    'userbook' => $userbook,
+                                    'count' => $count,
+                                    // 'tripname' => $tripname,
+                                    //  ' triproundbook' => $triproundbook
                                     
                                 );
                         
