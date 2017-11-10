@@ -47,8 +47,12 @@
                             <div class="view view-first">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
+                                    <?php
+                                            $rate = DB::table('reviewTrip')->where('trip_id',$trip->id)->avg('rate');
+                                        ?>
+                                        
                                     <a  href="/schedules/{{$trip->id}}" name="{{$trip->id}}"><h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3></a>
-                                        <!--<a  href="/tripdetail/{{$trip->id}}" name="{{$trip->id}}">-->
+                                        {{$rate}}/5
                                     </div>
                                 <div>
                                 <div class="table-responsive text-center">
@@ -59,7 +63,7 @@
                                             <th>จำนวนที่จองแล้ว</th>
                                             <th>สถานะการจอง</th>
                                             <th>ยอดเงินรวม</th>
-                                            <th>ยอดเงินที่ได้รับ</th>
+                                            <th>ยอดเงินสุทธิหลังหักค่าใช้จ่าย</th>
                                             <th><center>รายชื่อคนที่จอง</center></th>
                                         </tr>
                                     @foreach($trip->tripRounds as $tripRound)
@@ -83,7 +87,7 @@
                                                 $total = $sumbook->sum('total_cost');
                                                 $id=$tripRound->id;
                                                 $percent =(($sumnumber*100)/($tripRound->amount_seats));
-                                                $net = ($total*96.5)/100;
+                                                $net = ($total*90)/100;
                                             ?> 
                                             <td>
                                                 <div class="progress">

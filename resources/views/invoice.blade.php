@@ -23,7 +23,7 @@
 <p>รายชื่อผู้ร่วมทริป {{$tripName[0]->trips_name}} ทั้งหมด {{$count}}</p>  
 <p>รอบ {{date('d/m/Y', strtotime($tripround->start_date))}} ถึง {{date('d/m/Y', strtotime($tripround->departure_date))}}</p>
                         
-                        <table width="100%" cellspacing="1" >
+                        <table width="100%" frame="border" rules="rows" border="1" >
                        
                             
                             <tr>
@@ -50,12 +50,12 @@
                             <td align="left">
                                 {{$user[0]->name}}
                             </td>
-                            <td align="left">{{$boo->number_children}}</td>
-                            <td align="left">{{$boo->number_adults}}</td>
+                            <td align="right">{{$boo->number_children}}</td>
+                            <td align="right">{{$boo->number_adults}}</td>
                             <td align="left">{{$user[0]->food_allergy}}</td>
                             <td align="left">{{$user[0]->chronic_disease}}</td>
-                            <td align="left">{{$user[0]->phone}}</td>
-                            <td align="left">{{$boo->status}}</td>
+                            <td align="right">{{$user[0]->phone}}</td>
+                            <td align="left"></td>
                         </tr>
                         @endif
                             @endforeach

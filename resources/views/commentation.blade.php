@@ -33,7 +33,9 @@
       </div>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-3" style="padding-top:50px;">
+    <input type="file" name="image" >อัฟรูปสถานที่ที่ถ่านประทับใจ
     <input type="hidden" name="trip_id" value="{{ $tripname->id}}">
+    
     <button type="submit">ส่งความคิดเห็น</button>
     </div>
     </form>

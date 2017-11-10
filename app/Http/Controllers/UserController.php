@@ -43,8 +43,9 @@ class UserController extends Controller
   
         $schedules = schedules::where('trip_id',$id)->get();
         $schedules2 = schedules::where('id',$id)->get();
-        $triprounds = tripround::where('trip_id',$id)->get();
-        
+        $today = date('y/m/d'); 
+       // $triprounds = tripround::where('trip_id',$id)->get();
+        $triprounds = DB::table('triprounds')->where([['trip_id',$id],['start_date','>',$today]])->orderBy('start_date','asc')->get();
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
         $sumbook = $booking->sum('number_booking');
         $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
@@ -266,12 +267,17 @@ class UserController extends Controller
              }
         function commentstore(Request $request){
 
+            $path = public_path('images');
+            $imgName = 'review_'.str_random(10).$request->file('image')->getClientOriginalName();
+            $request->file('image')->move($path,$imgName);
+
                      DB::table('reviewTrip')
                      ->insertGetId([ 
                             "rate" =>$request->input('rate'),
                             "rate_des" =>$request->input('rate_des'),
                             "trip_id"=>$request->input('trip_id'),
                             "user_id"=>$request->input("user_id",Auth::user()->id),
+                            "image" =>$imgName
                         ]);
 
             return redirect('/profileuser');
