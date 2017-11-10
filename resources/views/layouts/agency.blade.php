@@ -80,7 +80,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						เพิ่มทริป					  </a>
             </li>
             <li class="">
-              <a href="">
+              <a href="/statement">
 						ทริปทั้งหมด					  </a>
             </li>
             <li class="">
