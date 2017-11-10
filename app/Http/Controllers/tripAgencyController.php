@@ -154,7 +154,10 @@ class tripAgencyController extends Controller
                 } 
 
    }
-         return redirect('/agency');
+  // $tripId = DB::table('trips')->select('id')->where('trips_name', $request->input('trips_name'))->first();
+        // return view('add_TripRound', ['tripId'=> $tripId->id]);
+        // return redirect('/agency');
+        return view('image',['tripId'=> $tripId]);
     
     }
 
