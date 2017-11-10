@@ -95,7 +95,11 @@
 }
 
 </style>
-@foreach($userbook as $book)
+
+<div class="container">
+  
+<div class="row">   
+  @foreach($userbook as $book)
 <?php
     $today = date('y/m/d'); 
     $round = DB::table('triprounds')->where([['id',$book->tripround_id],['start_date','>',$today]])->orderBy('start_date','asc')->get();
@@ -103,10 +107,7 @@
     $tripname = DB::table('trips')->where('id',$roundId)->get();
     $co = $round->count();
 ?>
-@if($co >0)
-<div class="container">
-  
-<div class="row">    
+@if($co >0) 
         <div class="col-md-6 ">
             <div class="card">
                 <div class="card-image">
@@ -134,11 +135,12 @@
                 </div><!-- card reveal -->
             </div>
         </div>
+        @endif
+@endforeach
     </div>
 
 </div>
-@endif
-@endforeach
+
 <script>
 $(function(){
 
