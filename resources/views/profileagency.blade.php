@@ -80,6 +80,32 @@
 							<td>{{$trip->trip_nnight}}</td>
 							<td>ราคา</td>
 							<td>{{ str_limit($trip->trip_description, $limit = 30, $end = '....') }}</td>
+<td>
+@foreach($review as $reviews)
+@if(($reviews->rate) =='1')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='2')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='3')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='4')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='5')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @endif
+						@endforeach
+</td>
+
 						</tr>
 						@endforeach
 
