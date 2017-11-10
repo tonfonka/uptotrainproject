@@ -74,7 +74,7 @@
                     <div class="pull-right">
                         <button class="btn btn-default btn-xs btn-filter">
                             <span class="glyphicon glyphicon-filter"></span> Filter</button>
-                    </div>
+                    </div>]
 
                 </div>
                 

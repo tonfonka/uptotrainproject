@@ -59,7 +59,7 @@
                                             <th>จำนวนที่จองแล้ว</th>
                                             <th>สถานะการจอง</th>
                                             <th>ยอดเงินรวม</th>
-                                            <th>ยอดเงินที่ได้รับ</th>
+                                            <th>ยอดเงินสุทธิหลังหักค่าใช้จ่าย</th>
                                             <th><center>รายชื่อคนที่จอง</center></th>
                                         </tr>
                                     @foreach($trip->tripRounds as $tripRound)
@@ -83,7 +83,7 @@
                                                 $total = $sumbook->sum('total_cost');
                                                 $id=$tripRound->id;
                                                 $percent =(($sumnumber*100)/($tripRound->amount_seats));
-                                                $net = ($total*96.5)/100;
+                                                $net = ($total*90)/100;
                                             ?> 
                                             <td>
                                                 <div class="progress">
