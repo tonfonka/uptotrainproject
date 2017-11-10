@@ -211,7 +211,7 @@ class UserController extends Controller
 
         // $userId = DB::table('users')->where('id',Auth::user()->id)->first();
         if ($request->hasFile('image')) {
-            $path = public_path('images');
+        $path = public_path('images');
         $imgName = 'Profileuser_'.str_random(10).$request->file('image')->getClientOriginalName();
         $request->file('image')->move($path,$imgName);
         $userId = User::find(Auth::user()->id);
