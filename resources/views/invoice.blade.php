@@ -20,9 +20,10 @@
     </style>
 </head>
 <body>
-<p>รายชื่อผู้ร่วมทริป </p>
-  
-                        <table width="80%" cellspacing="1" >
+<p>รายชื่อผู้ร่วมทริป {{$tripName[0]->trips_name}} ทั้งหมด {{$count}}</p>  
+<p>รอบ {{date('d/m/Y', strtotime($tripround->start_date))}} ถึง {{date('d/m/Y', strtotime($tripround->departure_date))}}</p>
+                        
+                        <table width="100%" cellspacing="1" >
                        
                             
                             <tr>
@@ -33,6 +34,7 @@
                                 <td>อาหารที่แพ้</td>
                                 <td>โรคประจำตัว</td>
                                 <td>เบอร์โทรศัพท์</td>
+                                <td>สถานะ</td>
                             </tr> 
                             @foreach($booking as $boo) 
                           
@@ -40,7 +42,7 @@
                                $user = DB::table('users')
                                ->join('booking','booking.user_id','=','users.id')
                                ->where([['users.id',$boo->user_id],['booking.status','=','success']])->get();
-                              
+                              //$count = $user->count();
                             ?>
                             @if(($boo->status) == 'success')
                             <tr>
@@ -53,6 +55,7 @@
                             <td align="left">{{$user[0]->food_allergy}}</td>
                             <td align="left">{{$user[0]->chronic_disease}}</td>
                             <td align="left">{{$user[0]->phone}}</td>
+                            <td align="left">{{$boo->status}}</td>
                         </tr>
                         @endif
                             @endforeach

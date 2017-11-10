@@ -18,9 +18,9 @@ class UserController extends Controller
     function __construct(){
         
     }
-    function index() {
-        return view('index');
-    }
+    // function index() {
+    // //     return view('index');
+    // // }
 
     function search(){
          $trips = DB::table('trips')->orderBy('id','desc')->paginate(15);
@@ -31,7 +31,7 @@ class UserController extends Controller
     function searchResult(){
         $q = Input::get ( 'q' );
        
-        $trips = DB::table('trips')->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->paginate(15);
+        $trips = DB::table('trips')->where ( 'trips_name', 'LIKE', '%' . $q . '%' )->orWhere('trip_province','LIKE','%' . $q . '%')->paginate(15);
         if (count ( $trips ) > 0)
             return view ( 'tripuser_resultsearch' )->withDetails ( $trips )->withQuery ( $q );
         else
@@ -42,6 +42,7 @@ class UserController extends Controller
     function schedule($id){
   
         $schedules = schedules::where('trip_id',$id)->get();
+        $schedules2 = schedules::where('id',$id)->get();
         $triprounds = tripround::where('trip_id',$id)->get();
         
         $booking =DB::table('booking')->where('tripround_id',$id)->get();
@@ -64,6 +65,7 @@ class UserController extends Controller
         $five = $starfive->count();
         $data = array(
             'schedules' => $schedules,
+            'schedules2' => $schedules2,
             'triprounds' => $triprounds,
             'trip' => $trip,
             'title' => 'Schedules',
@@ -370,14 +372,15 @@ class UserController extends Controller
         //function  pdf(Request $request){
             function  pdf($id){
                 $tripround = DB::table('triprounds')->where('id',$id)->first();
-                $booking = DB::table('booking')->where('tripround_id',$id)->orderBy('id','desc')->get();
+                $booking = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->orderBy('id','desc')->get();
                 $totalChild = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_children');
                 $totalAdult = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_adults');
                 $totalMoney = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('total_cost');
                 $totalNum = DB::table('booking')->where([['tripround_id',$id],['status','=','success']])->sum('number_booking');
-
-   
-        $pdf =PDF::loadView('invoice',compact('tripround','booking'));
+                $trip = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
+                $tripName = DB::table('trips')->where('id',$trip)->get();
+                $count = $booking->count();
+        $pdf =PDF::loadView('invoice',compact('tripround','booking','tripName','count'));
         return $pdf->stream('trip_member.pdf');
         }     
 

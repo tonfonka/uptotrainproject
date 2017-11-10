@@ -36,12 +36,12 @@
         <div>
           <h1>{{$trips->trips_name}}</h1>
           @if($trips->trip_nnight > 0)
-            ระยะเวลา {{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน
+           <p class="item-intro text-muted"> ระยะเวลา {{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
           @else
-            ระยะเวลา {{$trips->trip_nday}} วัน
+           <p class="item-intro text-muted"> ระยะเวลา {{$trips->trip_nday}} วัน</p>
           @endif
-          <p>จังหวัด{{$trips->trip_province}}</p>
-          <p>{{$trips->trip_meal}} มื้อ</p>
+          <p class="item-intro text-muted">จังหวัด{{$trips->trip_province}}</p>
+          <p class="item-intro text-muted">จำนวนมื้ออาหาร {{$trips->trip_meal}} มื้อ</p>
           <h4>รอบวันที่ {{date('d-m-Y', strtotime($triprounds->start_date))}}
                     ถึง {{date('d-m-Y', strtotime($triprounds->departure_date))}}</h4>
            <h4>จำนวนที่นั่งว่าง {{$sum}} คน จากจำนวนที่นั่งทั้งหมด {{$triprounds->amount_seats}}</h4>

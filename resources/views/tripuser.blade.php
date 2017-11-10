@@ -1,6 +1,4 @@
-@extends('layouts.headIndex') 
-@section('title', 'Search Trip') 
-@section('content')
+@extends('layouts.headIndex') @section('title', 'Search Trip') @section('content')
 
 
 <!-- Page Content -->
@@ -26,27 +24,11 @@
     <script src="{{asset('/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 </div>
 @endsection @section('tripuser')
-<div class="container">
+<!--<div class="container">
     <link href="/css/search_tripUser/style.css" rel="stylesheet" type="text/css" />
     <link href="/css/search_tripUser/component.css" rel='stylesheet' type='text/css' />
     <div class="container">
         <div class="products-page">
-            <div class="products">
-                <div class="product-listy">
-                    <h2>All trips</h2>
-                    <ul class="product-list">
-                        <li>
-                            <a href="">New Trips</a>
-                        </li>
-                        <li>
-                            <a href="">Available Tour</a>
-                        </li>
-                        <li>
-                            <a href="">Hot Price</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div class="new-product">
                 <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
                     <div class="cbp-vm-options">
@@ -101,5 +83,68 @@
     <script src="/js/search_tripUser/cbpViewModeSwitch.js" type="text/javascript"></script>
     <script src="/js/search_tripUser/classie.js" type="text/javascript"></script>
 </div>
-<div class="clearfix"></div>
+<div class="clearfix"></div>-->
+
+<section class="bg-light" id="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-right" style="padding-bottom:30px;">
+                <h4 class="section-heading">{{$trips->total()}} total trips</h4>
+                <h4>In this page {{$trips->count()}} trips</h4>
+            </div>
+        </div>
+<div class="row">
+        <div class="row">
+
+            @foreach($trips as $tripuser)
+
+            <div class="col-md-4 col-sm-3 portfolio-item">
+                <?php
+                             $tripagent = DB::table('travelagency')->where('id', $tripuser->travelagency_id)->first();
+                            $tripround = DB::table('triprounds')->where('trip_id', $tripuser->id)->get();
+                        ?>
+                    <a href="/schedule/{{$tripuser->id}}" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+
+                        <div class="pattern">
+                            <img src="/images/{{$tripuser->image}}" alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;"
+                            />
+
+                        </div>
+
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>{{str_limit($tripuser->trips_name, $limit = 35, $end = '....') }}</h4>
+                        <p class="text-muted">{{$tripuser->trip_province}}</p>
+                        <a href="/profileagency/{{$tripuser->travelagency_id}}">
+                            <p class="text-muted">โดยบริษัท {{$tripagent->agency_name_en}}</p>
+                        </a>
+                        @if($tripuser->trip_nnight > 0)
+                        <p class="text-muted">ระยะเวลา {{$tripuser->trip_nday}} วัน {{$tripuser->trip_nnight}} คืน</p>
+                        @else
+                        <p class="text-muted">ระยะเวลา {{$tripuser->trip_nday}} วัน</p>
+                        @endif
+                    </div>
+            </div>
+
+
+            @endforeach
+
+
+        </div>
+</div>
+    </div>
+
+    <div align="center">
+        {{$trips->links()}}
+    </div>
+
+    </div>
+
+</section>
+
 @endsection

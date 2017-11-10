@@ -144,14 +144,14 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: 17px;
     min-height: 100%;
 }
 
 body {
     font: 75%/150% "Prompt", Arial, Helvetica, sans-serif;
     background-color: #fff;
-    color: #838383;
+    color: #343434;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -ms-overflow-style: scrollbar;
@@ -8308,7 +8308,7 @@ body.is-mobile .animated {
     height: 50px;
     line-height: 50px;
     font-weight: bold;
-    color: #d07f00;
+    color: #654908;
 }
 
 #header.style6 #main-menu>ul.menu>li.active>a,

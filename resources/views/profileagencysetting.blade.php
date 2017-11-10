@@ -1,9 +1,8 @@
-@extends('layouts.agency3') 
+@extends('layouts.agency') 
 @section('title', 'Setting') 
 @section('content')
 <link href="{{ asset('/css/profile/blogttc.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('/css/profile_setting/navbar-affix.css') }}" rel="stylesheet" type="text/css" />
-
 <body data-spy="scroll" data-target=".scrollspy">
   <div class="container">
     <div class="row">

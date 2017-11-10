@@ -58,13 +58,15 @@
 				<table class="table">
 					<thead>
 						<tr class="filters">
-							<th class="text-center" style="width:380px;">
+							<th class="text-center">
 								<input type="text" class="form-control" placeholder="ชื่อทริป" disabled>
 							</th>
+							<th class="text-center"><input type="text" class="form-control" placeholder="จังหวัด" disabled></th>
 							<th class="text-center"><input type="text" class="form-control" placeholder="จำนวนวัน" disabled></th>
 							<th class="text-center"><input type="text" class="form-control" placeholder="จำนวนคืน" disabled></th>
+							<th class="text-center"><input type="text" class="form-control" placeholder="ราคา" disabled></th>
 							<th class="text-center"><input type="text" class="form-control" placeholder="รายละเอียด" disabled></th>
-							<th class="text-center"><input type="text" class="form-control" placeholder="รายละเอียด" disabled></th>
+							<th class="text-center"><input type="text" class="form-control" placeholder="" disabled></th>
 						</tr>
 					</thead>
 					<tbody id="myTable">
@@ -73,9 +75,37 @@
 							<td>
 								<a href="/schedules/{{$trip->id}}">{{ str_limit($trip->trips_name, $limit = 30, $end = '....') }}</a>
 							</td>
+							<td>จังหวัด</td>
 							<td>{{$trip->trip_nday}}</td>
 							<td>{{$trip->trip_nnight}}</td>
+							<td>ราคา</td>
 							<td>{{ str_limit($trip->trip_description, $limit = 30, $end = '....') }}</td>
+<td>
+@foreach($review as $reviews)
+@if(($reviews->rate) =='1')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='2')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='3')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='4')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews->rate) =='5')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @endif
+						@endforeach
+</td>
+
 						</tr>
 						@endforeach
 

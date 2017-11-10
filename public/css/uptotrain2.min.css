@@ -28,20 +28,23 @@ h5,
 h6 {
     font-family: "Prompt", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
-    font-weight: 700
+    font-weight: 700;
 }
 
 .text-muted {
-    color: #777
+    font-family: "Prompt";
+    color: #777;
+    font-size: 18px;
 }
 
 .text-primary,
 a {
-    color: #fed136
+    color: #3d3c49
 }
 
 p {
-    font-size: 14px;
+    font-family: "Prompt";
+    font-size: 16px;
     line-height: 1.75
 }
 
@@ -449,7 +452,7 @@ header .intro-text .intro-heading {
 
 #portfolio .portfolio-item .portfolio-caption p,
 section h3.section-subheading {
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Prompt", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic
 }
 
@@ -472,7 +475,7 @@ section h3.section-subheading {
 
 @media (min-width:768px) {
     section {
-        padding: 150px 0
+        padding: 0px 0
     }
 }
 
@@ -482,15 +485,16 @@ section h3.section-subheading {
 }
 
 #portfolio .portfolio-item {
-    margin: 0 0 15px;
+    margin: 0 0 0px;
     right: 0
 }
 
 #portfolio .portfolio-item .portfolio-link {
     display: block;
     position: relative;
-    max-width: 400px;
-    margin: 0 auto
+    max-width: 350px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
@@ -501,11 +505,13 @@ section h3.section-subheading {
     opacity: 0;
     transition: all ease .5s;
     -webkit-transition: all ease .5s;
-    -moz-transition: all ease .5s
+    -moz-transition: all ease .5s;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover:hover {
-    opacity: 1
+    opacity: 1;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
@@ -551,9 +557,10 @@ footer ul.quicklinks {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif
 }
 
-#portfolio * {
+
+/*#portfolio * {
     z-index: 2
-}
+}*/
 
 @media (min-width:767px) {
     #portfolio .portfolio-item {
@@ -1438,4 +1445,19 @@ span.round-tab:hover {
 
 .list-group-item-text {
     margin: 0 0 11px;
+}
+
+@media only screen and (max-width: 599px) {
+    div[class="pattern"] {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 450px;
+    }
+    div[class="pattern"] img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -300px;
+    }
 }

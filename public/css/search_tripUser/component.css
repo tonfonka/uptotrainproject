@@ -21,7 +21,7 @@
 }
 
 a.cbp-vm-grid.cbp-vm-selected {
-    background: url(../img/search_tripUser/grid.png)no-repeat;
+    background: url("../img/search_tripUser/grid_view.png")no-repeat;
 }
 
 .cbp-vm-options a:hover,
@@ -107,11 +107,11 @@ a.cbp-vm-grid.cbp-vm-selected {
 /* Common icon styles */
 
 .cbp-vm-grid {
-    background: url(../img/search_tripUser/grid_view.png)no-repeat;
+    background: url("../img/search_tripUser/grid_view.png")no-repeat;
 }
 
 .cbp-vm-list {
-    background: url(../img/search_tripUser/list_view.png)no-repeat;
+    background: url("../img/search_tripUser/list_view.png")no-repeat;
 }
 
 .cbp-vm-add:before {
@@ -142,8 +142,8 @@ a.cbp-vm-grid.cbp-vm-selected {
     max-width: 300px;
     min-height: 20px;
     margin: 0;
-    color: #999;
-    font-size: 0.9em;
+    color: #727272;
+    font-size: 1.2em;
 }
 
 .cbp-vm-view-grid .cbp-vm-price {
