@@ -133,3 +133,4 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('/statement','tripAgencyController@statement');
 
 
+

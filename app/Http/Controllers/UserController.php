@@ -270,6 +270,10 @@ class UserController extends Controller
             $imgName = 'review_'.str_random(10).$request->file('image')->getClientOriginalName();
             $request->file('image')->move($path,$imgName);
 
+            $path = public_path('images');
+            $imgName = 'review_'.str_random(10).$request->file('image')->getClientOriginalName();
+            $request->file('image')->move($path,$imgName);
+
                      DB::table('reviewTrip')
                      ->insertGetId([ 
                             "rate" =>$request->input('rate'),
