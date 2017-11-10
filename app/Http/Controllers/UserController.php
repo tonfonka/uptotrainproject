@@ -176,15 +176,14 @@ class UserController extends Controller
         }
 
         $userId = Auth::user()->id; 
-        //dd($userId);
-        $userbook = DB::table('booking')->where('user_id',$userId)->get();
-        $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
-        $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
+        $userbook = DB::table('booking')->where([['user_id',Auth::user()->id],['status','=','success']])->get();
+        // $triproundbook = DB::table('booking')->select('tripround_id')->where('user_id',$userId)->pluck('tripround_id');
+         $user = DB::table('users')->where('id',$userId)->first(); //ข้อมูล userคนนั้น 
         $data = array(
-            //'user' => $user,
+            'user' => $user,
             'userbook' => $userbook,
             // 'tripname' => $tripname,
-             ' triproundbook' => $triproundbook
+            //  ' triproundbook' => $triproundbook
             
         );
         return view('profile_user',$data);
