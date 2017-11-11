@@ -37,7 +37,7 @@
                                         <td>tel1</td>
                                         <td>tel2</td>
                                         <td>email</td>
-                                        <td><center><i class="fa fa-check-square-o fa-2x" aria-hidden="true"></i></center></td>
+                                        <td><button class="btn btn-success">Approve</button>  <button class="btn btn-danger">Deny</button></td>
                                     </tr>
                                 </thead>
                                 </table>
