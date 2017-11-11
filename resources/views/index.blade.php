@@ -59,7 +59,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
-            @elseif(Auth::user()->role =='travel agency')
+            @elseif((Auth::user()->role =='travel agency') &&((Auth::user()->adminconfirm == '1')))
             <?php
                 $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
             ?>
@@ -79,6 +79,27 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
+                @elseif((Auth::user()->role =='travel agency') &&((Auth::user()->adminconfirm == '0')))
+            <?php
+                $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+            ?>
+             <div class="intro-heading">Welcome</div>
+                <div class="intro-heading">{{$agencyName[0]->agency_name_en}}</div>
+
+                <div class="intro-lead-in">Do you have a new trip to offer?</div>
+                <br>
+                <br>
+                <a href="{{ url('/waitapprove') }}" class="page-scroll btn btn-xl">
+                    My profile
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                    LOG OUT
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+
                 @endif
         </div>
     </div>
@@ -219,25 +240,26 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <form name="sentMessage" id="contactForm" novalidate>
+                <form  role="form" action="/contactus" method="POST" name="id" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                <input type="text" class="form-control" placeholder="Your Name *" id="name"  name="name" required data-validation-required-message="Please enter your name.">
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                <input type="email" name= "email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
-                                <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" name="phone" required data-validation-required-message="Please enter your phone number.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                <textarea class="form-control" placeholder="Your Message *" id="description" name="description" required data-validation-required-message="Please enter a message."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>

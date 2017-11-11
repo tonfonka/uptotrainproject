@@ -35,6 +35,15 @@ class tripAgencyController extends Controller
         if(Auth::user()->role != "travel agency"){
             return redirect('/hello');
         }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm == '0'){
+                 return redirect('/waitapprove');
+            }else 
+                return redirect('/agency');
+           
+        }
+        
 
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         
@@ -162,9 +171,17 @@ class tripAgencyController extends Controller
     }
 
    function showdetailtrip($id) {
-            if(Auth::user()->role != "travel agency"){
-                return redirect('/hello');
-            }
+    if(Auth::user()->role != "travel agency"){
+        return redirect('/hello');
+    }
+    elseif(Auth::user()->role == "travel agency"){
+
+        if(Auth::user()->adminconfirm == '0'){
+             return redirect('/waitapprove');
+        }else 
+            return redirect('/agency');
+       
+    }
             $userId = Auth::user()->id;
             //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
             //$travelagencies = travelagency::where([['user_id', Auth::user()->id],['trips.id',$id]])->first();
@@ -187,6 +204,14 @@ class tripAgencyController extends Controller
     function shownumber($id) {
         if(Auth::user()->role != "travel agency"){
             return redirect('/hello');
+        }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm == '0'){
+                 return redirect('/waitapprove');
+            }else 
+                return redirect('/agency');
+           
         }
         $userId = Auth::user()->id;
          $travelagencies =  DB::table('travelagency')->where('user_id', Auth::user()->id)->first();
@@ -338,6 +363,17 @@ function myprofile($id) {
 
 }
     function statement(){
+        if(Auth::user()->role != "travel agency"){
+            return redirect('/hello');
+        }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm == '0'){
+                 return redirect('/waitapprove');
+            }else 
+                return redirect('/agency');
+           
+        }
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         $trip = DB::table('trips')->where('travelagency_id',$travelagencies->id)->get();
 
@@ -352,6 +388,47 @@ function myprofile($id) {
 
 
         return view('statement',$data);
+    }
+    function reviewtrip($id){
+        if(Auth::user()->role != "travel agency"){
+            return redirect('/hello');
+        }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm == '0'){
+                 return redirect('/waitapprove');
+            }else 
+                return redirect('/agency');
+           
+        }
+        $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+        $trip = DB::table('trips')->where('id',$id)->first();
+        $review = DB::table('reviewTrip')->where('trip_id',$id)->orderBy('updated_at','desc')->get();
+        $alluser = $review->count();
+        $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
+        $trip = trip::where('id',$id)->first();
+        $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();
+        $one = $starone->count();
+        $startwo =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','2']])->get();
+        $two = $startwo->count();
+        $starthree =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','3']])->get();
+        $three = $starthree->count();
+        $starfour =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','4']])->get();
+        $four = $starfour->count();
+        $starfive =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','5']])->get();
+        $five = $starfive->count();
+        $data = array(
+            'travelagencies' =>$travelagencies,
+            'review' => $review,
+            'trip' =>$trip,
+            'one' =>$one,
+            'two' => $two,
+            'three' =>$three,
+            'four' => $four,
+            'five' => $five,
+            'alluser' => $alluser
+        );
+        return view('reviewtrip',$data);
     }
 
 }
