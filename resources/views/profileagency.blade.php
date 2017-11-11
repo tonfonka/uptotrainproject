@@ -73,7 +73,7 @@
 						@foreach($trips as $trip)
 						<?php
 								$tripround = DB::table('triprounds')->where('trip_id',$trip->id)->min('price_adult');
-								$review = DB::table('reviewTrip')->where('trip_id',$trip->id)->avg('rate');
+								$reviews = DB::table('reviewTrip')->where('trip_id',$trip->id)->avg('rate');
 
 						?>
 						<tr class="">
@@ -86,29 +86,29 @@
 							<td>{{$tripround}}</td>
 							<td>{{ str_limit($trip->trip_description, $limit = 30, $end = '....') }}</td>
 <td>
-						@foreach($review as $reviews)
-						@if(($reviews->rate) <'1')
+						
+						@if(($reviews >='0')&&($reviews <'1.75')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            @elseif(($reviews->rate) =='2')
-            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            @elseif(($reviews->rate) =='3')
+            @elseif(($reviews >='1.75')&&($reviews <'2.75')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            @elseif(($reviews->rate) =='4')
+            @elseif(($reviews >='2.75')&&($reviews <'3.75')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews >='3.75')&&($reviews <'4.75')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            @elseif(($reviews->rate) =='5')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews >='4.75')&&($reviews <='5')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             @endif
-						@endforeach
+					
 </td>
 
 						</tr>
