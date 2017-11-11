@@ -143,6 +143,17 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 // 		return redirect('task');
 // });
 Route::resource('task','taskController');
+
 //bookingsumpdf
 Route::get('/bookingsumpdf/{id}','pdfController@bookingsumpdf');
 Route::get('/schedulepdf/{id}','pdfController@schedulepdf');
+
+
+	Route::get('/historytripusertest', function () {
+			return view('historytripusertest');
+	});
+
+	Route::get('/waitapprove', function () {
+			return view('waitapprove');
+	});
+
