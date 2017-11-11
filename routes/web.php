@@ -168,6 +168,6 @@ Route::get('/schedulepdf/{id}','pdfController@schedulepdf');
 });
 
 
-Route::get('/ad', function () {
+Route::get('/admin', function () {
 	return view('admin.admin_index');
 });
