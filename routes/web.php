@@ -72,14 +72,14 @@ Route::get('/checkRole', function(){
 		}else if(Auth::user()->role == "travel agency"){
 			if(Auth::user()->adminconfirm == '0'){
 				//ส่งไปหน้าสักหน้นุงแล้วบอกว่ารอการ approve จาก admin 
-				return redirect('/agency');
+				return redirect('/waitapprove');
 			}
 			else {
 				return redirect('/agency');
 			}
 			
-		}else if(Auth::user()->role == "user"){
-			return redirect('/home');
+		}else if(Auth::user()->role == "admin"){
+			return redirect('/task');
 		}
 	}
 });
@@ -156,4 +156,9 @@ Route::get('/schedulepdf/{id}','pdfController@schedulepdf');
 	Route::get('/waitapprove', function () {
 			return view('waitapprove');
 	});
+	Route::get('/contactus', function () {
+		return view('contactus');
+});
+Route::post('/contactus','adminController@contactus');
+
 

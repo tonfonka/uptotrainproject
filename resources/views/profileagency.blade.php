@@ -35,7 +35,10 @@
 		<h3 class="agileits-title" style="font-size:35px;">{{$travelagencies->agency_name_th}}</h3>
 		<div class="about-grids">
 			<div class="col-md-5 welcome-w3right">
-				<img src="/img/img4.jpg" class="img-responsive" alt="" />
+			<?php
+			$img = DB::table('users')->where('id',$travelagencies->id)->get();
+			?>
+				<img src="/images/{{$img[0]->image}}" class="img-responsive" alt="" />
 			</div>
 			<div class="col-md-7 welcome-w3left">
 				<h4>{{$travelagencies->agency_description}}</h4>
