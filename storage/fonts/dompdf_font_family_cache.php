@@ -80,4 +80,7 @@
   'thsarabun' => array(
     'normal' => $fontDir . '\844daa0ad6046175885ee183087cdeaf',
   ),
+  'prompt' => array(
+    'normal' => $fontDir . '\e99798b81957b8f1f70f5eecc5095200',
+  ),
 ) ?>
