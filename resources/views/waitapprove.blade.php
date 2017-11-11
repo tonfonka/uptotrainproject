@@ -26,7 +26,7 @@
 						<h1>Wait Approve</h1>
 						<p>โปรดการยืนยันและตรวจสอบจากเจ้าหน้าที่
 								<br> เพิ่มเติมโทร 02-9999999</p>
-						<button type="button" class="redo btn">Ok</button>
+					<a href="/">	<button type="button" class="redo btn">Ok</button></a>
 					<span class="change">-- UP TO  TRAIN --</span>
 				</div>
 				<!--/.success-->

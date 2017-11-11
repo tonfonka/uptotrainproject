@@ -59,7 +59,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
-            @elseif(Auth::user()->role =='travel agency')
+            @elseif((Auth::user()->role =='travel agency') &&((Auth::user()->adminconfirm == '1')))
             <?php
                 $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
             ?>
@@ -79,6 +79,27 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
+                @elseif((Auth::user()->role =='travel agency') &&((Auth::user()->adminconfirm == '0')))
+            <?php
+                $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+            ?>
+             <div class="intro-heading">Welcome</div>
+                <div class="intro-heading">{{$agencyName[0]->agency_name_en}}</div>
+
+                <div class="intro-lead-in">Do you have a new trip to offer?</div>
+                <br>
+                <br>
+                <a href="{{ url('/waitapprove') }}" class="page-scroll btn btn-xl">
+                    My profile
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                    LOG OUT
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+
                 @endif
         </div>
     </div>

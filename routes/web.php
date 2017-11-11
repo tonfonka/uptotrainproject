@@ -67,7 +67,7 @@ Route::get('/checkRole', function(){
 	if(Auth::guest()){
 		return redirect('/home');
 	}else{
-		if(Auth::user()->role == "admin"){
+		if(Auth::user()->role == "user"){
 			return redirect('/home');
 		}else if(Auth::user()->role == "travel agency"){
 			if(Auth::user()->adminconfirm == '0'){
@@ -79,7 +79,7 @@ Route::get('/checkRole', function(){
 			}
 			
 		}else if(Auth::user()->role == "admin"){
-			return redirect('/task');
+			return redirect('/admin');
 		}
 	}
 });

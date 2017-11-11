@@ -45,10 +45,12 @@
                 @if(count($trip->tripRounds) > 0 )
                 <?php
                 $rate = DB::table('reviewTrip')->where('trip_id',$trip->id)->avg('rate');
+                $rates = DB::table('reviewTrip')->where('trip_id',$trip->id)->get();
                  $triprounds = DB::table('triprounds')
                   ->where([['trip_id',$trip->id],['start_date','>',$today]])
                   ->orderBy('start_date','asc')->get();
                   $count = $triprounds->count();
+                  $reviewall = $rates->count();
                 ?>
                 @if($count >0)
                     <li>
@@ -59,7 +61,7 @@
                                     
                                         
                                     <a  href="/schedules/{{$trip->id}}" name="{{$trip->id}}"><h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3></a>
-                                        <a href="/review/{{$trip->id}}"><h4>ดูความคิดเห็น</h4></a>
+                                        <a href="/review/{{$trip->id}}"><h4>ดูความคิดเห็น({{$reviewall}})</h4></a>
                                     </div>
                                 <div>
                                 <div class="table-responsive text-center">
