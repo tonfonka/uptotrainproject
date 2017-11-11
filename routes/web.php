@@ -174,6 +174,11 @@ Route::get('/review/{id}','tripAgencyController@reviewtrip');
 });
 
 
-Route::get('/ad', function () {
-	return view('admin.admin_index');
+Route::get('/admin/approve', function () {
+	return view('admin.admin_approve');
 });
+
+Route::get('/ad','adminController@index');
+Route::get('/approveagency','adminController@approveagency');
+Route::post('/approveagency','adminController@approveagencystore');
+
