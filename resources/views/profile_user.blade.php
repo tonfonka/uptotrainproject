@@ -116,9 +116,10 @@
                 </div><!-- card image -->
                 
                 <div class="card-content">
-                <a href="/schedules/{{$tripname[0]->id}}" ><span class="card-title">{{$tripname[0]->trips_name}}</span></a>                    
-                    <button type="button" id="show" class="btn btn pull-right" aria-label="Left Align">
-                        <i class="fa fa-ellipsis-v">Detail</i>
+                <a href="/schedules/{{$tripname[0]->id}}" ><span class="card-title">{{$tripname[0]->trips_name}}</span></a>    
+                                
+                    <button type="button" id="show" class="btn btn pull-right" aria-label="Left Align" value="{{ $tripname[0]->id }}">
+                        Detail
                     </button>
                 </div><!-- card content -->
                 <div class="card-action">

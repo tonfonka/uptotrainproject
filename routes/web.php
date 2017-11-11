@@ -139,5 +139,7 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('/pdf/{id}','UserController@pdf');
 	Route::get('/statement','tripAgencyController@statement');
 
-
-
+// 	Route::get('/admin', function () {
+// 		return redirect('task');
+// });
+Route::resource('task','taskController');

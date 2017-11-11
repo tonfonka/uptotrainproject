@@ -94,7 +94,7 @@
                                     <li>
                                 @endif
                             <div class="timeline-image">
-                                <img class="img-circle img-responsive" style="" src="/img/about/1.jpg" alt="">
+                                
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
