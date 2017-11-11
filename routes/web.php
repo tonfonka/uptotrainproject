@@ -143,3 +143,5 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 // 		return redirect('task');
 // });
 Route::resource('task','taskController');
+//bookingsumpdf
+Route::get('/bookingsumpdf/{id}','pdfController@bookingsumpdf');
