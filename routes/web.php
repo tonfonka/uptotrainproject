@@ -38,6 +38,11 @@ Route::get('/agreement',function(){
 
 Route::get('/search', 'UserController@search');
 Route::post ( '/searcht', 'UserController@searchResult' );
+
+Route::get('/searchPlace', 'UserController@searchPlace');
+Route::post ( '/searchp', 'UserController@searchPlaceResult' );
+
+
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
@@ -163,3 +168,12 @@ Route::post('/contactus','adminController@contactus');
 Route::get('/review/{id}','tripAgencyController@reviewtrip');
 
 
+
+	Route::get('/s', function () {
+		return view('searchPlace');
+});
+
+
+Route::get('/ad', function () {
+	return view('admin.admin_index');
+});

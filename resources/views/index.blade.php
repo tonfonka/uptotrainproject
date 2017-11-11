@@ -159,8 +159,8 @@
     </div>
 </section>
 <!-- Portfolio Grid -->
-<section class="bg-light" id="portfolio" >
-    <div class="container " >
+<section class="bg-light" id="portfolio">
+    <div class="container ">
         <div class="row">
             <div class="col-lg-12 text-center" style="padding-bottom:30px;">
                 <h2 class="section-heading">Highlight Trip</h2>
@@ -177,10 +177,10 @@
                             </div>
                         </div>
                         <div class="pattern">
-                            <img src="images/{{$t->image}}"  alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;">
+                            <img src="images/{{$t->image}}" alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;">
                         </div>
                     </a>
-                    <div class="portfolio-caption" >
+                    <div class="portfolio-caption">
                         <h4>{{ $t->trips_name }}</h4>
                         <p class="text-muted">{{$t->trip_province}}</p>
                     </div>
@@ -208,34 +208,26 @@
                         <!-- Project Details Go Here -->
                         <h1>{{ $t->trips_name }}</h1>
                         @if($t->trip_nnight > 0)
-            <p class="item-intro text-muted">ระยะเวลา {{ $t->trip_nday }} วัน {{ $t->trip_nnight }} คืน</p>
-            @else
-            <p class="item-intro text-muted">ระยะเวลา {{ $t->trip_nday }} วัน</p>
-            @endif
-            <p class="item-intro text-muted">จังหวัด{{$t->trip_province}}</p>
-          <p class="item-intro text-muted">จำนวนมื้ออาหาร {{$t->trip_meal}} มื้อ</p>
-            
-            <img class="img-responsive img-centered" style="height:400px;width:750px;" src="/images/{{$t->image}}" alt="">
-            <p class="text-muted" style="padding-top:20px;">{{$t->trip_description}}</p>
-            <br><br>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">แผนการเดินทางท่องเที่ยว</h2>
-                        <h3 class="section-subheading text-muted">" ไปไหนบ้างนะ "</h3>
-                    </div>
-                </div>
+                        <p class="item-intro text-muted">ระยะเวลา {{ $t->trip_nday }} วัน {{ $t->trip_nnight }} คืน</p>
+                        @else
+                        <p class="item-intro text-muted">ระยะเวลา {{ $t->trip_nday }} วัน</p>
+                        @endif
+                        <p class="item-intro text-muted">จังหวัด{{$t->trip_province}}</p>
+                        <p class="item-intro text-muted">จำนวนมื้ออาหาร {{$t->trip_meal}} มื้อ</p>
 
-                            
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close This</button>
-                        </div>
+                        <img class="img-responsive img-centered" style="height:400px;width:750px;" src="/images/{{$t->image}}" alt="">
+                        <p class="text-muted" style="padding-top:20px;">{{$t->trip_description}}</p>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Close This</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endforeach
 <!-- Contact Section -->
 <section id="contact">

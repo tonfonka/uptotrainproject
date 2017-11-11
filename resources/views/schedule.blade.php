@@ -103,7 +103,8 @@
                                     @else
                                     <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
                                     @endif
-                                    <h4><a  data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>
+                                    <!-- <h4><a  data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>-->
+                                    <h4>{{ $schedule->schedule_place }}</h4>
                                 </div>
                                 <div class="timeline-body">
                                     <p class="text-muted">{{ $schedule->schedule_description }}</p>
@@ -148,7 +149,7 @@
                             <!--end Modal-->
                             @endforeach
                             <li class="timeline-inverted">
-                                <div class="timeline-image">
+                                <div class="timeline-image2">
                                     <h4>Booking</h4>
                                     <h4>now</h4>
                                 </div>
