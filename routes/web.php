@@ -79,7 +79,7 @@ Route::get('/checkRole', function(){
 			}
 			
 		}else if(Auth::user()->role == "admin"){
-			return redirect('/admin');
+			return redirect('/ad');
 		}
 	}
 });

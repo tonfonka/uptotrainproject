@@ -297,6 +297,17 @@ class UserController extends Controller
             return redirect('/profileuser');
      }
             function profileagencysetting(){
+                if(Auth::user()->role != "travel agency"){
+                    return redirect('/hello');
+                }
+                elseif(Auth::user()->role == "travel agency"){
+        
+                    if(Auth::user()->adminconfirm == '0'){
+                         return redirect('/waitapprove');
+                    }else 
+                        return redirect('/agency');
+                   
+                }
 
                 $userId = Auth::user()->id;
                 $travelagencies =  DB::table('travelagency')->where('user_id', Auth::user()->id)->first();
