@@ -24,7 +24,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Data;
 use PDF;
 use Yajra\Datatables\Facades\Datatables;
-use User;
+use App\User;
+use App\contactus;
 
 class adminController extends Controller
 {
@@ -49,7 +50,6 @@ class adminController extends Controller
         return view('');
     }
     function readcontact(Request $request){
-
         $contact = User::find($id);
         $contact->admin_read = '1';
         $user->save();
@@ -63,16 +63,19 @@ class adminController extends Controller
 
 
     function approveagency(){
-        $agency = DB::table('users')->where([['role','travel agency'],['adminconfirm','=','0']])->get();
+        $agencys = DB::table('users')
+        ->join('travelagency','travelagency.user_id','=','users.id')
+        ->where([['users.role','travel agency'],['users.adminconfirm','=','0']])->get();
         
         $data = array(
-            'agency' =>$agency,
+            'agencys' =>$agencys,
         );
-        return view('',$data);
+        return view('admin.admin_approve',$data);
 
     }
     function approveagencystore(Request $request){
-        
+        $id = $request->user_id;
+        //dd($id);
         $user = User::find($id);
         $user->adminconfirm = '1';
         $user->save();
