@@ -99,6 +99,21 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
+                @elseif(Auth::user()->role == 'admin' )
+            <div class="intro-heading">Welcome - {{Auth::user()->name}}</div>
+            <div class="intro-lead-in">Are you looking for a Trip ?</div>
+            <br>
+            <br>
+            <a href="{{ url('/ad') }}" class="page-scroll btn btn-xl">
+                admin system
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                LOG OUT
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
 
                 @endif
         </div>
