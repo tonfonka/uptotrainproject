@@ -70,7 +70,14 @@ Route::get('/checkRole', function(){
 		if(Auth::user()->role == "admin"){
 			return redirect('/home');
 		}else if(Auth::user()->role == "travel agency"){
-			return redirect('/agency');
+			if(Auth::user()->adminconfirm == '0'){
+				//ส่งไปหน้าสักหน้นุงแล้วบอกว่ารอการ approve จาก admin 
+				return redirect('/agency');
+			}
+			else {
+				return redirect('/agency');
+			}
+			
 		}else if(Auth::user()->role == "user"){
 			return redirect('/home');
 		}
@@ -132,6 +139,11 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('/pdf/{id}','UserController@pdf');
 	Route::get('/statement','tripAgencyController@statement');
 
+// 	Route::get('/admin', function () {
+// 		return redirect('task');
+// });
+Route::resource('task','taskController');
+
 	Route::get('/historytripusertest', function () {
 			return view('historytripusertest');
 	});
@@ -139,3 +151,4 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('/waitapprove', function () {
 			return view('waitapprove');
 	});
+
