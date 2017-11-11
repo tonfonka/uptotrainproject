@@ -28,7 +28,15 @@ class showtripController extends Controller
     {
         if(Auth::user()->role != "travel agency"){
             return redirect('/hello');
-            }
+        }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm == '0'){
+                 return redirect('/waitapprove');
+            }else 
+                return redirect('/agency');
+           
+        }
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         
         $data=array(

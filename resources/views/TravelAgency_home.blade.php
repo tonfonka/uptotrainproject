@@ -22,7 +22,8 @@
             <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-list">
             <!-- Show trip here-->
             <?php
-                $today =date("d-m-y");
+                $today =date("y/m/d");
+                //dd($today);
             ?>
             <ul>
             <div class="row">
@@ -42,17 +43,25 @@
                 </div>
                 @foreach($travelagencies->trips as $trip)
                 @if(count($trip->tripRounds) > 0 )
+                <?php
+                $rate = DB::table('reviewTrip')->where('trip_id',$trip->id)->avg('rate');
+                $rates = DB::table('reviewTrip')->where('trip_id',$trip->id)->get();
+                 $triprounds = DB::table('triprounds')
+                  ->where([['trip_id',$trip->id],['start_date','>',$today]])
+                  ->orderBy('start_date','asc')->get();
+                  $count = $triprounds->count();
+                  $reviewall = $rates->count();
+                ?>
+                @if($count >0)
                     <li>
                         <div class="simpleCart_shelfItem">
                             <div class="view view-first">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                    <?php
-                                            $rate = DB::table('reviewTrip')->where('trip_id',$trip->id)->avg('rate');
-                                        ?>
+                                    
                                         
                                     <a  href="/schedules/{{$trip->id}}" name="{{$trip->id}}"><h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3></a>
-                                        {{$rate}}/5
+                                        <a href="/review/{{$trip->id}}"><h4>ดูความคิดเห็น({{$reviewall}})</h4></a>
                                     </div>
                                 <div>
                                 <div class="table-responsive text-center">
@@ -66,10 +75,7 @@
                                             <th>ยอดเงินสุทธิหลังหักค่าใช้จ่าย</th>
                                             <th><center>รายชื่อคนที่จอง</center></th>
                                         </tr>
-                                    @foreach($trip->tripRounds as $tripRound)
-                                    <?php                         
-                                        $order = $tripRound->orderBy('start_date')->get();
-                                    ?> 
+                                    @foreach($triprounds as $tripRound)
                                         <tr>
                                             <td>{{date('d/m/Y', strtotime($tripRound->start_date))}} -  {{date('d/m/Y', strtotime($tripRound->departure_date))}}</td>
                                             <td>{{$tripRound->amount_seats}}</td> 
@@ -111,14 +117,16 @@
                                                     <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
                                                 </a>
                                             </td>
-                                            @endif
-                                        </tr>
+                                        </tr>  
+                                        @endif
                                     @endforeach
+                                   
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </li>
+                    @endif
                 @endif
                 @endforeach
             </ul>
