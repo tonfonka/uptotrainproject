@@ -110,7 +110,7 @@
                                     <i class="fa fa-comment fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge">{{$countcontact}}</div>
                                     <div>New Message!</div>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                     <i class="fa fa-legal fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
+                                    <div class="huge">{{$countagency}}</div>
                                     <div>New Appore!</div>
                                 </div>
                             </div>

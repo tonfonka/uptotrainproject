@@ -24,6 +24,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Data;
 use PDF;
 use Yajra\Datatables\Facades\Datatables;
+use User;
 
 class adminController extends Controller
 {
@@ -37,4 +38,57 @@ class adminController extends Controller
         ]);
         return redirect('/contactus');
     }
+
+    function usercontact(){
+        $contact = DB::table('contactUS')->where('admin_read','0')->get();
+        
+        $data = array(
+            'contact' =>$contact,
+        );
+
+        return view('');
+    }
+    function readcontact(Request $request){
+
+        $contact = User::find($id);
+        $contact->admin_read = '1';
+        $user->save();
+        
+        $data = array(
+            'contact' =>$contact,
+        );
+
+        return view('');
+    }
+
+
+    function approveagency(){
+        $agency = DB::table('users')->where([['role','travel agency'],['adminconfirm','=','0']])->get();
+        
+        $data = array(
+            'agency' =>$agency,
+        );
+        return view('',$data);
+
+    }
+    function approveagencystore(Request $request){
+        
+        $user = User::find($id);
+        $user->adminconfirm = '1';
+        $user->save();
+        return redirect('/approveagency');
+    }
+    function index(){
+        
+        $agency = DB::table('users')->where([['role','travel agency'],['adminconfirm','=','0']])->get();
+        $countagency = $agency->count();
+        $countcontact = DB::table('contactUS')->where('admin_read','0')->count();
+        $data = array(
+            'agency' => $agency,
+            'countagency' => $countagency,
+            'countcontact' => $countcontact,
+        );
+        return view('admin.admin_index',$data);
+    }
+
 }
