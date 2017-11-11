@@ -145,6 +145,7 @@
                                         <p>จำนวนคนที่จอง : {{$book->number_booking}}</p>
                                     </a>
                                     <p>วันเวลาที่จอง : {{$book->booking_time}}</p>
+                                    <a href="/schedulepdf/{{$tripname[0]->id}}"><p>พิมพ์ตารางกิจกรรม</p></a>
                                 </div>
                                 <!-- card reveal -->
                             </div>
@@ -162,7 +163,7 @@
                         <script src="{{asset('/js/jquery-2.2.3.min.js')}}"></script>
 
                 </div>
-                
+             
             </div>
         </div>
     </div>

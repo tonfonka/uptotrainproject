@@ -175,7 +175,7 @@
                                 <div class="row">
                                     <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">วันที่</label>
-                                        <input class="form-control" name='schedule_day[]' type="text" value="1" onChange="mySday()">
+                                        <input class="form-control" name='schedule_day[]' type="text"  onChange="mySday()">
                                     </div>
                                     <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">เวลา</label>
