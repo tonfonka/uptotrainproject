@@ -59,7 +59,7 @@
                                     
                                         
                                     <a  href="/schedules/{{$trip->id}}" name="{{$trip->id}}"><h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3></a>
-                                        {{$rate}}/5
+                                        <a href="/review/{{$trip->id}}"><h4>ดูความคิดเห็น</h4></a>
                                     </div>
                                 <div>
                                 <div class="table-responsive text-center">
