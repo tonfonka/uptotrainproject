@@ -38,21 +38,21 @@ class UserController extends Controller
             return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
    }
 
-//    function searchPlace(){
-//     $place = DB::table('attraction')->orderBy('id','desc')->paginate(15);
+   function searchPlace(){
+    $place = DB::table('attraction')->orderBy('id','desc')->paginate(15);
     
-//    return view('searchPlace',['place'=>$places]);
-// }
+   return view('searchPlace',['place'=>$places]);
+}
 
-// function searchPlaceResult(){
-//    $p = Input::get ( 'p' );
+function searchPlaceResult(){
+   $p = Input::get ( 'p' );
   
-//    $place = DB::table('attraction')->where ( 'attraction_Name', 'LIKE', '%' . $p . '%' )->orWhere('Attraction_Province','LIKE','%' . $p . '%')->paginate(15);
-//    if (count ( $place ) > 0)
-//        return view ( 'searchPlaceResult' )->withDetails ( $place )->withQuery ( $p );
-//    else
-//        return view ( 'searchPlaceResult' )->withMessage ( 'No Details found. Try to search again !' );
-// }
+   $place = DB::table('attraction')->where ( 'attraction_Name', 'LIKE', '%' . $p . '%' )->orWhere('Attraction_Province','LIKE','%' . $p . '%')->paginate(15);
+   if (count ( $place ) > 0)
+       return view ( 'searchPlaceResult' )->withDetails ( $place )->withQuery ( $p );
+   else
+       return view ( 'searchPlaceResult' )->withMessage ( 'No Details found. Try to search again !' );
+}
 
 
     function schedule($id){

@@ -35,10 +35,10 @@
 
   <!-- add -->
    <!-- DataTables CSS -->
-    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="{{asset('vendor/bootstrapAdmin/datatables-plugins/dataTables.bootstrap.css')}}" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="{{asset('vendor/bootstrapAdmin/datatables-responsive/dataTables.responsive.css')}}" rel="stylesheet">
   <!-- add end -->
 
 </head>
@@ -170,12 +170,12 @@
 
  <!-- add -->
   <!-- DataTables JavaScript -->
-    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="{{asset('vendor/bootstrapAdmin/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrapAdmin/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrapAdmin/datatables-responsive/dataTables.responsive.js')}}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="{{asset('js/admin/js/sb-admin-2.js')}}"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

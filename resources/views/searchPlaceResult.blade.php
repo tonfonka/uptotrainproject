@@ -23,97 +23,87 @@
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/tether/tether.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-@endsection 
-@section('tripuser')
-<style>
-    /* Image Center Crop Pattern CSS */
+@endsection @section('tripuser')
 
-    @media only screen and (max-width: 599px) {
-        div[class="pattern"] {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            height: 450px;
-        }
-        div[class="pattern"] img {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            margin-left: -300px;
-        }
-    }
-</style>
 <section class="bg-light" id="portfolio">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-right" style="padding-bottom:30px;">
-            @if(isset($details))
+                @if(isset($details))
                 <h4 class="section-heading">{{$details->total()}} total places</h4>
                 <h4>In this page {{$details->count()}} places</h4>
             </div>
         </div>
- <div class="row">
-  <div class="col-lg-12 text-left" style="padding-bottom:30px;">
-   <h4 class="section-heading">The Search results for your destination <b> {{ $query }} </b> are :</h4>
-  </div>
-</div>
         <div class="row">
-
-           @foreach($details as $trips)
-                        <?php
-                         $a = $trips->travelagency_id;
-                         //echo $a ;
-                         $t = DB::table('travelagency')->where('id',$a)->get();
-
-                         ?>
-
-            <div class="col-md-4 col-sm-3 portfolio-item">
-             
-                    <a href="/schedule/{{$trips->id}}" class="portfolio-link" data-toggle="modal">
+            <div class="col-lg-12 text-left" style="padding-bottom:30px;">
+                <h4 class="section-heading">The Search results for your destination
+                    <b> {{ $query }} </b> are :</h4>
+            </div>
+        </div>
+        <section class="bg-light" id="portfolio">
+            <div class="container">
+                @foreach($details as $trips)
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal{{$p->id}}">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-
-                        <div class="pattern">
-                            <img src="/images/{{$trips->image}}" alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;"
-                            />
-
-                        </div>
-
+                        <!--<img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">-->
+                        <img src="/images/" alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;" />
                     </a>
                     <div class="portfolio-caption">
-                        <h4>{{str_limit($trips->trips_name, $limit = 35, $end = '....') }}</h4>
-                        <p class="text-muted">{{$trips->trip_province}}</p>
-                        <a href="/profileagency/{{$trips->travelagency_id}}">
-                            <p class="text-muted">โดยบริษัท {{$t[0]->agency_name_en}}</p>
-                        </a>
-                        @if($trips->trip_nnight > 0)
-                        <p class="text-muted">ระยะเวลา {{$trips->trip_nday}} วัน {{$trips->trip_nnight}} คืน</p>
-                        @else
-                        <p class="text-muted">ระยะเวลา {{$trips->trip_nday}} วัน</p>
-                        @endif
+                        <h4>{{str_limit($p->attraction_Name, $limit = 35, $end = '....')}} </h4>
+                        <p class="text-muted">{{$p->Attraction_Province}}</p>
                     </div>
+                </div>
+
+
+                @endforeach 
+                @foreach($place as $p)
+                <!-- Modal 1 -->
+                <div class="portfolio-modal modal fade" id="portfolioModal{{$p->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="close-modal" data-dismiss="modal">
+                                <div class="lr">
+                                    <div class="rl"></div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12 mx-auto">
+                                        <div class="modal-body">
+                                            <!-- Project Details Go Here -->
+                                            <h2>{{$p->attraction_Name}}</h2>
+                                            <p class="item-intro text-muted">อำเภอ {{$p->Attraction_City}} จังหวัด {{$p->Attraction_Province}}</p>
+                                            <img class="img-fluid d-block mx-auto" src="" alt="">
+                                            <p>{{$p->attraction_Description}}</p>
+                                            <ul class="list-inline">
+                                                <li>เวลาเปิดทำการ : attraction_Time_Open</li>
+                                                <li>เวลาปิดทำการ : Attraction_Time_Closed</li>
+                                                <li>เบอร์โทรศัพท์ติดต่อ : Attraction_Tel</li>
+                                            </ul>
+                                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                                <i class="fa fa-times"></i>
+                                                Close Project</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach 
+                @elseif(isset($message))
+                <p>{{ $message }}</p>
+                @endif
             </div>
-
-
-            @endforeach
-
-
-        </div>
- @elseif(isset($message))
-                    <p>{{ $message }}</p>
-                    @endif
+        </section>
     </div>
-
-  
-
-    </div>
-
 </section>
 
 
-                
 
     @endsection
