@@ -132,5 +132,10 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('/pdf/{id}','UserController@pdf');
 	Route::get('/statement','tripAgencyController@statement');
 
+	Route::get('/historytripusertest', function () {
+			return view('historytripusertest');
+	});
 
-
+	Route::get('/waitapprove', function () {
+			return view('waitapprove');
+	});
