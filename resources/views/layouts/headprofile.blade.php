@@ -81,7 +81,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						ข้อมูลการจอง					  </a>
             </li>
             <li class="">
-              <a href="/myhistorytrip/{{Auth::user()->id}}">
+              <a href="/myhistorytrip">
 						ประวัติการจอง					  </a>
             </li>
             <li class="">

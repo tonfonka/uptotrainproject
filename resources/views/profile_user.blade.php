@@ -97,195 +97,50 @@
 </style>
 
 <div class="container">
-	<!--<div class="blog-page blog-content-1">
-		<div class="row">
-			<div class="col-md-12" style="padding-top: 50px;">
-				<h2>กิจกรรมของฉัน</h2>
-				<div class="travelo-box">
-					<div class="row">
-						<div class="col-md-5 col-sm-5 col-xs-5" style="border-style:solid;border-width: 1px;padding-top:15px;">
-							<h4>ประวัติการท่องเที่ยว</h4>
-							<div class="image-box">
-								<article class="box" style="padding-top: 50px; padding-left:0px;">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="text-center">
-												<img src="/images/" alt="" width="350" alt="avatar">
-											</div>
-										</div>
-										<div class="col-md-8">
-											<h4>
-												<?php
-										$triproundbook = DB::table('booking')
-																				->select('tripround_id')
-																				->where('user_id',Auth::user()->id)
-																				->pluck('tripround_id');
-										$tripbook = DB::table('booking')->where('user_id',Auth::user()->id)->get();
-										$user = DB::table('users')->where('id',Auth::user()->id)->first(); 
-										$count = $triproundbook->count();	
-										$today = date("Y-m-d");  
-									if($count>0){
-										for($i=0;$i<$count;$i++){
-													$tripname = DB::table('trips')
-													->select(['trips.id','trips_name','triprounds.start_date','triprounds.departure_date','trips.id','booking.status'])
-													->join('triprounds','trips.id','=','triprounds.trip_id')
-													->join('booking','triprounds.id','=','booking.tripround_id')
-													->where('triprounds.id',$triproundbook[$i])
-													->orderBy ('triprounds.start_date' , 'asc')->get();
-													if(($tripname[0]->start_date)<=$today){												
-													echo '<a href="/schedules/'.$tripname[0]->id.'">'.($tripname[0]->trips_name).'</a><br>';
-													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
-													echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
-													echo '<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a><br>';
-													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time))."<br>"; 
-													echo '<a href="/comment/'.$tripname[0]->id.'">'.'review Trip'.'</a><br>';
-													echo "<hr>";
-
-												
-												}
-																								
-										}
-									}
-									else
-										echo "ไม่มีรายการ";
-										?>
-											</h4>
-											<!-- {{$triproundbook}}<br>
-										</div>
-								</article>
-								<label class="price-wrapper">
-									<span class="price-per-unit"> </span>
-								</label>
-								</div>
-							</div>
-							<div class="col-md-1 col-sm-1 col-xs-1"></div>
-							<div class="col-md-6 col-sm-6 col-xs-6" style="border-style:solid;border-width: 1px;padding-top:15px;">
-								<h4>ทริปที่ได้ทำการจอง</h4>
-								<div class="image-box">
-									<article class="box" style="padding-top: 50px; padding-left:0px;">
-										<div class="row">
-											<div class="col-md-4">
-												<div class="text-center">
-													<img src="/images/" alt="" width="350" alt="avatar">
-												</div>
-											</div>
-											<div class="col-md-8">
-												<h4>
-													<?php
-									
-									if($count>0){
-										for($i=0;$i<$count;$i++){
-													$tripname = DB::table('trips')
-																									->select(['trips_name','triprounds.start_date','triprounds.departure_date','trips.id','booking.status'])
-																									->join('triprounds','trips.id','=','triprounds.trip_id')
-																									->join('booking','triprounds.id','=','booking.tripround_id')
-																									->where('triprounds.id',$triproundbook[$i])
-																									->orderBy ('triprounds.start_date' , 'asc') 
-																									->limit(1)
-             																			->get();
-																									//cast([date] as datetime)
-																									
+  
+<div class="row">   
+  @foreach($userbook as $book)
+<?php
+    $today = date('y/m/d'); 
+    $round = DB::table('triprounds')->where([['id',$book->tripround_id],['start_date','>',$today]])->orderBy('start_date','asc')->get();
+    $roundId = DB::table('triprounds')->select('trip_id')->where('id',$book->tripround_id)->orderBy('start_date','asc')->pluck('trip_id');
+    $tripname = DB::table('trips')->where('id',$roundId)->get();
+    $co = $round->count();
+?>
+@if($co >0) 
+        <div class="col-md-6 ">
+            <div class="card">
+                <div class="card-image">
+                    <img class="img-responsive" src="/images/{{$tripname[0]->image}}">
+                    
+                </div><!-- card image -->
                 
-													
-													if(($tripname[0]->start_date)>=$today){	
-													echo '<a href="/schedules/'.$tripname[0]->id.'">'."ชื่อทริป : ".($tripname[0]->trips_name).'</a><br>';												
-													echo "วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date))."<br>";
-												  echo "วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date))."<br>";
-													echo '<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a><br>';
-													echo "วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time))."<br>";
-													echo "สถานะการจอง : ";
-													if($tripname[0]->status != 'success'){
-														echo "การจองไม่สำเร็จ";
-													}else{
-															echo "จ่ายเงินสำเร็จแล้ว";
-													}
-													echo "<br>";
-													echo "<hr>";
-												}																
-										}
-									}
-									else
-										echo "ไม่มีรายการ";
-										?>
-												</h4>
-											</div>
-											<div class="col-md-12 text-center">
-												<ul class="pagination pagination-lg pager" id="myPager"></ul>
-											</div>
-									</article>
-									<label class="price-wrapper">
-										<span class="price-per-unit"> </span>
-									</label>
+                <div class="card-content">
+                <a href="/schedules/{{$tripname[0]->id}}" ><span class="card-title">{{$tripname[0]->trips_name}}</span></a>                    
+                    <button type="button" id="show" class="btn btn pull-right" aria-label="Left Align">
+                        <i class="fa fa-ellipsis-v">Detail</i>
+                    </button>
+                </div><!-- card content -->
+                <div class="card-action">
+                    <a href="/schedules/{{$tripname[0]->id}}" >{{$tripname[0]->trip_description}}</a>
+                </div><!-- card actions -->
+                <div class="card-reveal">
+                    <span class="card-title">รายละเอียด</span> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                   <a href="/schedules/{{$tripname[0]->id}}"> <p>ชื่อทริป : {{$tripname[0]->trips_name}}</p></a>
+                    <p>วันเริ่มเดินทาง : {{$round[0]->start_date}}</p>
+                    <p>วันสิ้นสุดการเดินทาง :{{$round[0]->departure_date}} </p>
+                    <a href="/paysum/{{$book->id}}" ><p>จำนวนคนที่จอง : {{$book->number_booking}}</p></a>
+                    <p>วันเวลาที่จอง : {{$book->booking_time}}</p>
+                    
+                </div><!-- card reveal -->
+            </div>
+        </div>
+        @endif
+@endforeach
+    </div>
 
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>-->
-
-
-     <?php
-				if($count>0){
-					for($i=0;$i<$count;$i++){
-						$tripname = DB::table('trips')
-							->select(['trips_name','triprounds.start_date','triprounds.departure_date','trips.id','booking.status'])
-							->join('triprounds','trips.id','=','triprounds.trip_id')
-							->join('booking','triprounds.id','=','booking.tripround_id')
-							->where('triprounds.id',$triproundbook[$i])
-							->orderBy ('triprounds.start_date' , 'asc') 
-          		->get();
-							//cast([date] as datetime)		
-
-						if(($tripname[0]->start_date)>=$today){	
-							echo '<div class="container">';
-							echo '<div class="row">';
-							echo '<div class="col-md-6 col-md-offset-3">';
-							echo 			'<div class="card">';
-							echo          '<div class="card-image">'.'<img class="img-responsive" src="http://lorempixel.com/555/300/sports">';
-							echo					'</div>';
-							echo          '<div class="card-content">';
-							echo              '<span class="card-title">'.($tripname[0]->trips_name).'</span>';                    
-							echo              '<button type="button" id="show" class="btn btn pull-right" aria-label="Left Align">'."review".'</button>';
-							echo					'</div>';
-							echo          '<div class="card-action">';
-							echo             '<a href="#" target="new_blank">'."Link".'</a>';
-							echo					'</div>';
-      				echo          '<div class="card-reveal">';
-      				echo              '<span class="card-title">'.'<a href="/schedules/'.$tripname[0]->id.'">'.($tripname[0]->trips_name).'</a>';
-							echo							'</span>';
-							echo							'<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
-							echo								'<span aria-hidden="true">'."×".'</span>';
-							echo							'</button>';		
-							echo 							'<p>'."วันเริ่มเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->start_date)).'<br>';
-							echo 							"วันสิ้นสุดการเดินทาง : ".date('d/m/Y', strtotime($tripname[0]->departure_date)).'<br>';
-							echo 							'<a href="/paysum/'.$tripbook[$i]->id.'">'."จำนวนคนที่จอง : ".($tripbook[$i]->number_booking).'</a>'.'<br>';
-							echo 							"วันเวลาที่จอง : ".date('d/m/Y', strtotime($tripbook[$i]->booking_time)).'&nbsp'.date('h:i a', strtotime($tripbook[$i]->booking_time)).'<br>';
-							echo 							"สถานะการจอง : ";
-																if($tripname[0]->status != 'success'){
-																	echo "การจองไม่สำเร็จ";
-																	echo '</p>';
-																}else{
-																		echo "จ่ายเงินสำเร็จแล้ว";
-																		echo '</p>';
-																}
-							echo 					'</div>';	
-							echo 				'</div>';
-							echo '</div>';
-							echo '</div>';
-							echo '</div>';
-												}	
-																												
-										}
-									}
-									else
-										echo "ไม่มีรายการ";
-										?>
-  </div>
 </div>
+
 <script>
 $(function(){
 

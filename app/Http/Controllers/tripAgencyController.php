@@ -340,8 +340,6 @@ function showUserDetail($id) {
     return view('profileuser.agency_userinfo',$data);
 }
 function myprofile($id) {
-    
-     
     return view('profileuser.userside');
 
 }

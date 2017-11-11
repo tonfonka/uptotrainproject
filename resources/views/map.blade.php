@@ -1,14 +1,10 @@
 <head>
   <style>
-    #map_wrapper {
-      height: 400px;
-    }
-
-    #map_canvas {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
 </head>
 
 <body>
