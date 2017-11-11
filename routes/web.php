@@ -180,3 +180,6 @@ Route::get('/admin', function () {
 Route::get('/admin/approve', function () {
 	return view('admin.admin_approve');
 });
+Route::get('/admin/message', function () {
+	return view('admin.admin_message');
+});
