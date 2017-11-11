@@ -32,5 +32,12 @@ class pdfController extends Controller
             $pdf =PDF::loadView('bookingsumpdf',compact('mbook','book','nu','u','triprounds','tr','user','trip'));
             return $pdf->stream('bookingsum.pdf');
             }     
+    function  schedulepdf($id){
+        $schedule = DB::table('schedules')->where('trip_id',$id)->get();
+        $trip = DB::table('trips')->where('id',$id)->first();
+                    
+        $pdf =PDF::loadView('schedulepdf',compact('schedule','trip'));
+        return $pdf->stream('schedule.pdf');
+    }     
 
 }

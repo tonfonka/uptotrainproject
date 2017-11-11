@@ -145,3 +145,4 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 Route::resource('task','taskController');
 //bookingsumpdf
 Route::get('/bookingsumpdf/{id}','pdfController@bookingsumpdf');
+Route::get('/schedulepdf/{id}','pdfController@schedulepdf');

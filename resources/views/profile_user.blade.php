@@ -130,8 +130,9 @@
                    <a href="/schedules/{{$tripname[0]->id}}"> <p>ชื่อทริป : {{$tripname[0]->trips_name}}</p></a>
                     <p>วันเริ่มเดินทาง : {{$round[0]->start_date}}</p>
                     <p>วันสิ้นสุดการเดินทาง :{{$round[0]->departure_date}} </p>
-                    <a href="/paysum/{{$book->id}}" ><p>จำนวนคนที่จอง : {{$book->number_booking}}</p></a>
+                    <a href="/paysum/{{$book->id}}"><p>จำนวนคนที่จอง : {{$book->number_booking}}</p></a>
                     <p>วันเวลาที่จอง : {{$book->booking_time}}</p>
+                    <a href="/schedulepdf/{{$tripname[0]->id}}"><p>พิมพ์ตารางกิจกรรม</p></a>
                     
                 </div><!-- card reveal -->
             </div>
