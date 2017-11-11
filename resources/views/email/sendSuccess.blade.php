@@ -6,8 +6,8 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300|Montserrat' rel='stylesheet' type='text/css'>
   
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
-      <link rel="stylesheet" href="css/success/success.css">
+<link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+      <link rel="stylesheet" href="{{asset('/css/success/success.css')}}">
 
   
 </head>

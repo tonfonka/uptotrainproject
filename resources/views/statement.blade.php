@@ -12,9 +12,10 @@
 </div>
 <!-- /.row -->
 @endsection @section('content')
-<div class="container" style="padding-top:30px;">
+
     <link href=" {{ URL::asset('css/search_tripUser/style.css') }}" rel="stylesheet">
     <link href=" {{ URL::asset('css/search_tripUser/component.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
     <style>
     .filterable {
         margin-top: 15px;
@@ -48,7 +49,7 @@
 
 <div class="container" style="padding-top:30px;">
     <div class="container" style="font-family:Prompt;">
-        <div class="row">
+       
             <div class="panel panel-primary filterable">
                 <div class="panel-heading">
                     <h3 class="panel-title">Statement</h3>
@@ -62,7 +63,7 @@
 
                 </div>
     
-                            <table class="table">
+                            <table class="table" style="font-family:"Prompt";">
                                 <thead>
                                     <tr class="filters">
                                         <th class="text-center">
@@ -137,7 +138,7 @@
         </div>
 
         <!-- end products-page -->
-    </div>
+  
     <!-- end container -->
 
 
@@ -305,5 +306,5 @@
 
         });
     </script>
-</div>
+
     @endsection
