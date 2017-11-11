@@ -23,7 +23,7 @@
         transition: all 0.4s ease;
     }
 
-    
+
     .card {
         font-family: 'Prompt', sans-serif;
         margin-top: 10px;
@@ -91,70 +91,83 @@
 </style>
 
 <div class="container">
+    <div class="blog-page blog-content-1">
+        <div class="row">
+            <div class="col-md-12" style="padding-top: 50px;">
+                <h2>กิจกรรมของฉัน</h2>
 
-    <div class="row">
-        @foreach($userbook as $book)
-        <?php
+                <div class="row" style="
+    padding-bottom: 50px;
+    padding-top: 50px;">
+                    @foreach($userbook as $book)
+                    <?php
     $today = date('y/m/d'); 
     $round = DB::table('triprounds')->where([['id',$book->tripround_id],['start_date','>',$today]])->orderBy('start_date','asc')->get();
     $roundId = DB::table('triprounds')->select('trip_id')->where('id',$book->tripround_id)->orderBy('start_date','asc')->pluck('trip_id');
     $tripname = DB::table('trips')->where('id',$roundId)->get();
     $co = $round->count();
         ?>
-            @if($co >0)
-            <div class="col-md-4 ">
-                <div class="card">
-                    <div class="card-image">
-                        <img  class="responsive" height="250" src="/images/{{$tripname[0]->image}}">
-                    </div>
-                    <!-- card image -->
+                        @if($co >0)
+                        <div class="col-md-4 ">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img class="responsive" height="250" src="/images/{{$tripname[0]->image}}">
+                                </div>
+                                <!-- card image -->
 
-                    <div class="card-content">
-                        <a href="/schedules/{{$tripname[0]->id}}">
-                            <span class="card-title">{{$tripname[0]->trips_name}}</span>
-                        </a>
+                                <div class="card-content">
+                                    <a href="/schedules/{{$tripname[0]->id}}">
+                                        <span class="card-title">{{str_limit($tripname[0]->trips_name, $limit = 27, $end = '....') }}</span>
+                                    </a>
 
-                        
-                    </div>
-                    <!-- card content -->
-                    <div class="card-action">
-                        <a href="/schedules/{{$tripname[0]->id}}">{{str_limit($tripname[0]->trip_description, $limit = 30, $end = '....') }}</a>
-                        <button type="button" data-id="show" class="btn btn pull-right" aria-label="Left Align" value="show">
-                            Detail
-                        </button>
-                    </div>
-                    <!-- card actions -->
-                    <div class="card-reveal">
-                        <span class="card-title">รายละเอียด</span>
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <a href="/schedules/{{$tripname[0]->id}}">
-                            <p>ชื่อทริป : {{$tripname[0]->trips_name}}</p>
-                        </a>
-                        <p>วันเริ่มเดินทาง : {{$round[0]->start_date}}</p>
-                        <p>วันสิ้นสุดการเดินทาง :{{$round[0]->departure_date}} </p>
-                        <a href="/paysum/{{$book->id}}">
-                            <p>จำนวนคนที่จอง : {{$book->number_booking}}</p>
-                        </a>
-                        <p>วันเวลาที่จอง : {{$book->booking_time}}</p>
-                    </div>
-                    <!-- card reveal -->
+
+                                </div>
+                                <!-- card content -->
+                                <div class="card-action">
+                                    <a href="/schedules/{{$tripname[0]->id}}">{{str_limit($tripname[0]->trip_description, $limit = 30, $end = '....') }}
+                                    </a>
+                                    <button type="button" data-id="show" class="btn btn pull-right" aria-label="Left Align" value="show">
+                                        Detail
+                                    </button>
+                                </div>
+                                <!-- card actions -->
+                                <div class="card-reveal">
+                                    <span class="card-title">รายละเอียด</span>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    <a href="/schedules/{{$tripname[0]->id}}">
+                                        <p>ชื่อทริป : {{$tripname[0]->trips_name}}</p>
+                                    </a>
+                                    <p>วันเริ่มเดินทาง : {{$round[0]->start_date}}</p>
+                                    <p>วันสิ้นสุดการเดินทาง :{{$round[0]->departure_date}} </p>
+                                    <a href="/paysum/{{$book->id}}">
+                                        <p>จำนวนคนที่จอง : {{$book->number_booking}}</p>
+                                    </a>
+                                    <p>วันเวลาที่จอง : {{$book->booking_time}}</p>
+                                </div>
+                                <!-- card reveal -->
+                            </div>
+                        </div>
+                        @endif @endforeach
+                        <script>
+                            $(function () {
+                                $('[data-id="show"], .close').on('click', function () {
+                                    $(this).closest('.card').find('.card-reveal').slideToggle(
+                                        'slow');
+                                });
+
+                            });
+                        </script>
+                        <script src="{{asset('/js/jquery-2.2.3.min.js')}}"></script>
+
                 </div>
+                
             </div>
-            @endif @endforeach
-            <script>
-                $(function () {
-                   $('[data-id="show"], .close').on('click', function() {
-    $(this).closest('.card').find('.card-reveal').slideToggle('slow');
-});
-                    
-                });
-
-               
-            </script>
-<script src="{{asset('/js/jquery-2.2.3.min.js')}}"></script>
-
+        </div>
     </div>
 </div>
+
 
 
 
