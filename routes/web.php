@@ -135,3 +135,7 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('/historytripusertest', function () {
 			return view('historytripusertest');
 	});
+
+	Route::get('/waitapprove', function () {
+			return view('waitapprove');
+	});
