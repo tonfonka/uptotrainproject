@@ -177,3 +177,6 @@ Route::get('/review/{id}','tripAgencyController@reviewtrip');
 Route::get('/admin', function () {
 	return view('admin.admin_index');
 });
+Route::get('/admin/approve', function () {
+	return view('admin.admin_approve');
+});
