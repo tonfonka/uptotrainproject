@@ -179,7 +179,16 @@ Route::get('/denyeagency',function(){
 	return redirect('/approveagency');
 });
 Route::post('/denyeagency','adminController@denyagencystore');
+Route::get('/deny','adminController@deny');
+Route::post('/deny','adminController@approveagencystore');
 
+
+// Route::get('/agencymanage', function () {
+// 	return view('admin.admin_travelagency_manage');
+// });
+// Route::get('/viewagency', function () {
+// 	return view('admin.admin_travelagency_view');
+// });
 
 
 
@@ -199,8 +208,11 @@ Route::get('/userblacklist', function () {
 Route::get('/viewuser', function () {
 	return view('admin.admin_user_view');
 });
+
 Route::get('/agencymanage','adminController@travelagency');
 Route::get('/viewagency/{id}','adminController@viewagency');
+Route::get('/viewuser/{id}','adminController@viewuser');
+Route::get('/usermanage','adminController@usermanage');
 
 // function () {
 // 	return view('admin.admin_travelagency_manage');

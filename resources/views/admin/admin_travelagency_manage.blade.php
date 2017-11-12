@@ -31,8 +31,8 @@
                                 @foreach($agency as $agencys)
                                     <tr class="">
                                         <td>{{$agencys->name}}</td>
-                                        <td>{{$agencys->	agency_name_en}}</td>
-                                        <td>{{$agencys->	agency_name_th}}</td>
+                                        <td>{{$agencys->agency_name_en}}</td>
+                                        <td>{{$agencys->agency_name_th}}</td>
                                         <td class="center">{{$agencys->email}}</td>
                                         <td class="center">{{$agencys->agency_email}}</td>
                                         <?php
@@ -41,7 +41,12 @@
                                         ?>
                                        <td><a href="/viewagency/{{$id->id}}"> <button class="btn btn-success">view</button></a>
                                         &nbsp;&nbsp;
-                                        <button type="button" class="btn btn-danger">Block</button></td>
+                                        <form role="form" action="/denyeagency" method="POST" name="id" enctype="multipart/form-data"> 
+                                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                       <input type="hidden" name="user_id" value="{{$agencys->user_id}}">
+                                  <td><button type="submit" class="btn btn-danger" name="user_id" value="{{$agencys->user_id}}">Deny</button></td>
+                               </tr>
+                               </form>
                                         
                                     </tr>
                                  @endforeach   
