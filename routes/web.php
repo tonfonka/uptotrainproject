@@ -183,9 +183,12 @@ Route::post('/denyeagency','adminController@denyagencystore');
 
 
 
-Route::get('/agencymanage', function () {
-	return view('admin.admin_travelagency_manage');
-});
-Route::get('/viewagency', function () {
-	return view('admin.admin_travelagency_view');
-});
+Route::get('/agencymanage','adminController@travelagency');
+Route::get('/viewagency/{id}','adminController@viewagency');
+
+// function () {
+// 	return view('admin.admin_travelagency_manage');
+// });
+// Route::get('/viewagency', function () {
+// 	return view('admin.admin_travelagency_view');
+// });

@@ -21,21 +21,30 @@
                                         <th>ID</th>
                                         <th>Name(EN)</th>
                                         <th>Name(TH)</th>
-                                        <th>E-mail</th>
+                                        <th>E-mail login</th>
+                                        <th>E-mail agency</th>
                                         <th>Manage</th>
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($agency as $agencys)
                                     <tr class="">
-                                        <td>เลขไอดี</td>
-                                        <td>ชื่ออังกฤษ</td>
-                                        <td>ชื่อไทย</td>
-                                        <td class="center">เมล</td>
-                                        <td><button class="btn btn-success">view</button></td>
+                                        <td>{{$agencys->name}}</td>
+                                        <td>{{$agencys->	agency_name_en}}</td>
+                                        <td>{{$agencys->	agency_name_th}}</td>
+                                        <td class="center">{{$agencys->email}}</td>
+                                        <td class="center">{{$agencys->agency_email}}</td>
+                                        <?php
+                                        $id = DB::table('travelagency')->where('id',$agencys->id)->first();
+
+                                        ?>
+                                       <td><a href="/viewagency/{{$id->id}}"> <button class="btn btn-success">view</button></a>
+                                        &nbsp;&nbsp;
+                                        <button type="button" class="btn btn-danger">Block</button></td>
                                         
                                     </tr>
-                                    
+                                 @endforeach   
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

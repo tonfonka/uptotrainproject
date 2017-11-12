@@ -130,5 +130,27 @@ class adminController extends Controller
         );
         
     }
+    function travelagency(){ 
+          $agency = DB::table('users')
+         ->join('travelagency','travelagency.user_id','=','users.id')
+         ->get();
+         $countagency = $agency->count();
+        // $countcontact = DB::table('contactUS')->where('admin_read','0')->count();
+        $data = array(
+            'agency' => $agency,
+            'countagency' => $countagency,
+        );
+        return view('admin.admin_travelagency_manage',$data);
+    }
+    function viewagency($id){ 
+        $agency = DB::table('travelagency')
+       ->where('id',$id)
+       ->first();
+      $data = array(
+          'agency' => $agency,
+          
+      );
+      return view('admin.admin_travelagency_view',$data);
+  }
 
 }
