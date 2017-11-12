@@ -168,18 +168,11 @@ Route::post('/contactus','adminController@contactus');
 Route::get('/review/{id}','tripAgencyController@reviewtrip');
 
 
-
-
-Route::get('/admin/approve', function () {
-	return view('admin.admin_approve');
-});
-Route::get('/admin/message/new', function () {
-	return view('admin.admin_message_new');
-});
-Route::get('/admin/message/old', function () {
-	return view('admin.admin_message_old');
-});
 Route::get('/ad','adminController@index');
+Route::get('/messagenew','adminController@usercontact');
+Route::post('/messagenew','adminController@readcontact');
+Route::get('/messageold','adminController@messageold');
 Route::get('/approveagency','adminController@approveagency');
 Route::post('/approveagency','adminController@approveagencystore');
+
 

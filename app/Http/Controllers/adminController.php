@@ -47,25 +47,35 @@ class adminController extends Controller
             'contact' =>$contact,
         );
 
-        return view('');
+        return view('admin.admin_message_new',$data);
     }
-    function readcontact(Request $request){
-        $contact = User::find($id);
-        $contact->admin_read = '1';
-        $user->save();
+    function messageold(){
+        $contact = DB::table('contactUS')->where('admin_read','1')->get();
         
         $data = array(
             'contact' =>$contact,
         );
 
-        return view('');
+        return view('admin.admin_message_old',$data);
+    }
+    function readcontact(Request $request){
+        $id = $request->input('admin_read');
+        $contact = contactus::find($id);
+        $contact->admin_read = '1';
+        $contact->save();
+        
+        $data = array(
+            'contact' =>$contact,
+        );
+
+        return redirect('/messagenew');
     }
 
 
     function approveagency(){
         $agencys = DB::table('users')
         ->join('travelagency','travelagency.user_id','=','users.id')
-        ->where([['users.role','=','travel agency'],['users.adminconfirm','=','0']])->get();
+        ->where([['users.role','=','travel%'],['users.adminconfirm','=','0']])->get();
         $data = array(
             'agencys' =>$agencys,
         );
@@ -74,7 +84,6 @@ class adminController extends Controller
     }
     function approveagencystore(Request $request){
         $id = $request->input('user_id');
-       // dd($id);
         $user = User::find($request->user_id);
         $user->adminconfirm = '1';
         $user->save();
@@ -82,7 +91,9 @@ class adminController extends Controller
     }
     function index(){
         
-        $agency = DB::table('users')->where([['role','travel agency'],['adminconfirm','=','0']])->get();
+        $agency = DB::table('users')
+        ->join('travelagency','travelagency.user_id','=','users.id')
+        ->where([['users.role','=','travel%'],['users.adminconfirm','=','0']])->get();
         $countagency = $agency->count();
         $countcontact = DB::table('contactUS')->where('admin_read','0')->count();
         $data = array(

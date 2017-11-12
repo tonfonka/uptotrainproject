@@ -90,7 +90,7 @@
           <ul class="nav" id="side-menu">
 
             <li>
-              <a href="index.html">
+              <a href="/ad">
                 <i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
@@ -100,10 +100,10 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="flot.html">New</a>
+                  <a href="/messagenew">New</a>
                 </li>
                 <li>
-                  <a href="morris.html">Old</a>
+                  <a href="/messageold">Old</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
@@ -115,7 +115,7 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="flot.html">Apporve</a>
+                  <a href="/approveagency">Apporve</a>
                 </li>
                 <li>
                   <a href="morris.html">Trip</a>

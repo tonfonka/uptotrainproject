@@ -27,14 +27,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="">
-                                        <td>crate_at</td>
-                                        <td>ชื่อ</td>
-                                        <td>test01@hotmail.com</td>
-                                        <td class="center">029999999</td>
-                                        <td class="center">สวัสดีครับทดสอบระบบ</td>
-                                        
-                                    </tr>
+                                @foreach($contact as $contacts)
+                                <tr class="">
+                                    <td>{{$contacts->created_at}}</td>
+                                    <td>{{$contacts->name}}</td>
+                                    <td>{{$contacts->email}}</td>
+                                    <td class="center">{{$contacts->phone}}</td>
+                                    <td class="center">{{$contacts->description}}</td>
+                                    <td><button class="btn btn-success" id="{{$contacts->id}}" value="{{$contacts->id}}">read</button></td>
+                                </tr>
+                                @endforeach
                                     
                                 </tbody>
                             </table>
