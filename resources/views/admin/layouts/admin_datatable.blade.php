@@ -100,10 +100,10 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="flot.html">ยังไม่ได้อ่าน</a>
+                  <a href="flot.html">New</a>
                 </li>
                 <li>
-                  <a href="morris.html">อ่านแล้ว</a>
+                  <a href="morris.html">Old</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
