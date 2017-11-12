@@ -91,7 +91,7 @@
                             </div>
                             <div class="form-group">
                               <label>Facebook</label>
-                              <inputtype="text" id="agency_fb" name="agency_fb" class="form-control" value="www.facebook.com/">
+                              <input type="text" id="agency_fb" name="agency_fb" class="form-control" value="www.facebook.com/">
                             </div>
                             <div class="form-group">
                               <label for="exampleTextarea">Address</label>
