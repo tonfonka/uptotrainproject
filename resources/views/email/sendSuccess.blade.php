@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>UP TO TRAIN</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300|Montserrat' rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet prefetch" href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' />
-<link href='https://fonts.googleapis.com/css?family=Prompt' rel="stylesheet">
-      <link rel="stylesheet" href="{{asset('/css/success/success.css')}}">
+ 
+ <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet" >
+      <link rel="stylesheet" href="{{URL::asset('/css/success/success.css')}}" >
 
   
 </head>
