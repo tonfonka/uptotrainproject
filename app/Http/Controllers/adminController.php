@@ -65,8 +65,7 @@ class adminController extends Controller
     function approveagency(){
         $agencys = DB::table('users')
         ->join('travelagency','travelagency.user_id','=','users.id')
-        ->where([['users.role','travel agency'],['users.adminconfirm','=','0']])->get();
-        
+        ->where([['users.role','=','travel agency'],['users.adminconfirm','=','0']])->get();
         $data = array(
             'agencys' =>$agencys,
         );
@@ -74,9 +73,9 @@ class adminController extends Controller
 
     }
     function approveagencystore(Request $request){
-        $id = $request->user_id;
-        //dd($id);
-        $user = User::find($id);
+        $id = $request->input('user_id');
+       // dd($id);
+        $user = User::find($request->user_id);
         $user->adminconfirm = '1';
         $user->save();
         return redirect('/approveagency');

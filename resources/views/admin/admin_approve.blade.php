@@ -40,9 +40,12 @@
                                         <td>{{$agency->agency_tel1}}</td>
                                         <td>{{$agency->agency_tel2}}</td>
                                         <td>{{$agency->agency_email}}</td>
-                                        <input type="hidden" name="user_id" id="user_id" value="{{$agency->user_id}}">
-                                        <td><input type="hidden" name="user_id" value="{{$agency->user_id}}"><button type="submit" class="btn btn-success" name="user_id">Approve</button> 
-                                        <button type="" class="btn btn-danger">Deny</button></td>
+                                        
+                                        <td><input type="hidden" name="user_id" value="{{$agency->user_id}}">
+                                        <button type="submit" class="btn btn-success" name="user_id" value="{{$agency->user_id}}" >
+                                        Approve
+                                        </button> </td>
+                                       <td> <button type="button" class="btn btn-danger">Deny</button></td>
                                     </tr>
                                     @endforeach
                                 </thead>
