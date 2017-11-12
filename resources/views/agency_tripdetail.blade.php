@@ -41,11 +41,13 @@
                                 <th>สถานะการจอง</th>
                                 <th>จำนวนที่นั่ง</th>
                                 <th>ยอดเงินรวม</th>
+                                <th>ยอดเงินสุทธิหลังหักค่าใช้จ่าย</th>
                                 <th>
                                     <center>รายชื่อคนที่จอง</center>
                                 </th>
                             </tr>
                             @foreach($tripround as $tripRound)
+                           
                             <tr>
                                 <td>{{date('d/m/Y', strtotime($tripRound->start_date))}} </a>
                                 </td>
@@ -59,6 +61,7 @@
                                             $total = $sumbook->sum('total_cost');
                                             $id=$tripRound->id;
                                             $percent =(($sumnumber*100)/($tripRound->amount_seats));
+                                            $net = ($total*90)/100;
                                 ?> 
                                 <td>
                                     <div class="progress">
@@ -71,13 +74,24 @@
                                
                                 <td>{{$sumnumber}}/{{$tripRound->amount_seats}}</td>
                                 <td> {{$total}}</td>
-                                <td>
-                                    <center>
-                                        <a href="/shownumber/{{$tripRound->id}}" name ={{$id}}>
-                                            <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
-                                        </a>
-                                    </center>
-                                </td>
+                                <td>{{$net}}</td>
+                               
+                                @if($percent == 0 )
+                                <td style="align:center;">
+                                                                                
+                                                                                    <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
+                                                                                
+                                                                            </td>
+                                                                            
+                                                                            @else
+                                                                            <td style="align:center;">
+                                                                                <a href="/shownumber/{{$tripRound->id}}" name ={{$id}}>
+                                                                                    <i class="fa fa fa-user fa-lg" aria-hidden="true" ></i>
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>  
+                                                                        @endif
+                               
                             </tr>
                             @endforeach
                         </table>
