@@ -43,13 +43,13 @@ class UserController extends Controller
     $place = Attraction::orderBy('attraction_id','desc')->paginate(15);
     
    return view('searchPlace',['place'=>$place]);
-}
+    }
 
 function searchPlaceResult(){
-   $p = Input::get ( 'p' );
-   $place = Attraction::where ( 'attraction_Name', 'LIKE', '%' . $p . '%' )->orWhere('Attraction_Province','LIKE','%' . $p . '%')->paginate(15);
+   $a = Input::get ( 'a' );
+   $place =DB::table('attraction')->where ( 'attraction_Name', 'LIKE', '%' . $a . '%' )->orWhere('Attraction_Province','LIKE','%' . $a . '%')->paginate(15);
    if (count ( $place ) > 0)
-       return view ( 'searchPlaceResult' )->withDetails ( $place )->withQuery ( $p );
+       return view ( 'searchPlaceResult' )->withDetails ( $place )->withQuery ( $a );
    else
        return view ( 'searchPlaceResult' )->withMessage ( 'No Details found. Try to search again !' );
 }
@@ -66,8 +66,9 @@ function searchPlaceResult(){
         $sumbook = $booking->sum('number_booking');
         $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
         $agen = DB::table('travelagency')->where('id',$n)->get();
-        $review = DB::table('reviewTrip')->where('trip_id',$id)->get();
-        $alluser = $review->count();
+        $reviews = DB::table('reviewTrip')->where('trip_id',$id)->get();
+        $review = DB::table('reviewTrip')->where([['trip_id',$id],['status','=','0']])->get();
+        $alluser = $reviews->count();
         $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
         $trip = trip::where('id',$id)->first();
         $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();
@@ -320,9 +321,7 @@ function searchPlaceResult(){
         
                     if(Auth::user()->adminconfirm == '0'){
                          return redirect('/waitapprove');
-                    }else 
-                        return redirect('/agency');
-                   
+                    }
                 }
 
                 $userId = Auth::user()->id;

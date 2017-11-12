@@ -179,30 +179,32 @@ Route::get('/denyeagency',function(){
 	return redirect('/approveagency');
 });
 Route::post('/denyeagency','adminController@denyagencystore');
+Route::get('/deny','adminController@deny');
+Route::post('/deny','adminController@approveagencystore');
 
+// Route::get('/agencymanage', function () {
+// 	return view('admin.admin_travelagency_manage');
+// });
+// Route::get('/viewagency', function () {
+// 	return view('admin.admin_travelagency_view');
+// });
 
-
-
-<<<<<<< HEAD
-Route::get('/agencymanage', function () {
-	return view('admin.admin_travelagency_manage');
-});
-Route::get('/viewagency', function () {
-	return view('admin.admin_travelagency_view');
-});
-
-Route::get('/usermanage', function () {
-	return view('admin.admin_user_manage');
-});
+// Route::get('/usermanage', function () {
+// 	return view('admin.admin_user_manage');
+// });
 Route::get('/userblacklist', function () {
 	return view('admin.admin_user_blacklist');
 });
-Route::get('/viewuser', function () {
-	return view('admin.admin_user_view');
-});
-=======
+// Route::get('/viewuser', function () {
+// 	return view('admin.admin_user_view');
+// });
 Route::get('/agencymanage','adminController@travelagency');
 Route::get('/viewagency/{id}','adminController@viewagency');
+Route::get('/agencymanage','adminController@travelagency');
+Route::get('/viewagency/{id}','adminController@viewagency');
+Route::get('/viewuser/{id}','adminController@viewuser');
+Route::get('/usermanage','adminController@usermanage');
+
 
 // function () {
 // 	return view('admin.admin_travelagency_manage');
@@ -210,4 +212,3 @@ Route::get('/viewagency/{id}','adminController@viewagency');
 // Route::get('/viewagency', function () {
 // 	return view('admin.admin_travelagency_view');
 // });
->>>>>>> 09f4dcfa2b31e5838e781da3b367fe208d1ccea0
