@@ -168,6 +168,7 @@ Route::post('/contactus','adminController@contactus');
 Route::get('/review/{id}','tripAgencyController@reviewtrip');
 Route::post('/review/{id}','adminController@bancomment');
 
+
 Route::get('/ad','adminController@index');
 Route::get('/messagenew','adminController@usercontact');
 Route::post('/messagenew','adminController@readcontact');
@@ -181,3 +182,10 @@ Route::post('/denyeagency','adminController@denyagencystore');
 
 
 
+
+Route::get('/agencymanage', function () {
+	return view('admin.admin_travelagency_manage');
+});
+Route::get('/viewagency', function () {
+	return view('admin.admin_travelagency_view');
+});

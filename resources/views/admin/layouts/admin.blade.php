@@ -112,7 +112,10 @@
                   <a href="/approveagency">Apporve</a>
                 </li>
                 <li>
-                  <a href="#">Trip</a>
+                  <a href="/agencymanage">Agency Manage</a>
+                </li>
+                <li>
+                  <a href="#">Trip Manage</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
