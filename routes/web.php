@@ -169,10 +169,6 @@ Route::get('/review/{id}','tripAgencyController@reviewtrip');
 
 
 
-	Route::get('/s', function () {
-		return view('searchPlace');
-});
-
 
 Route::get('/admin/approve', function () {
 	return view('admin.admin_approve');
