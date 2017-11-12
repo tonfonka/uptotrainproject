@@ -93,10 +93,10 @@
               <ul class="nav nav-second-level">
                 <li>
 
-                  <a href="#">ยังไม่ได้อ่าน</a>
+                  <a href="#">New</a>
                 </li>
                 <li>
-                  <a href="#">อ่านแล้ว</a>
+                  <a href="#">Old</a>
 
                 </li>
               </ul>
@@ -112,7 +112,10 @@
                   <a href="/approveagency">Apporve</a>
                 </li>
                 <li>
-                  <a href="#">Trip</a>
+                  <a href="/agencymanage">Agency Manage</a>
+                </li>
+                <li>
+                  <a href="#">Trip Manage</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

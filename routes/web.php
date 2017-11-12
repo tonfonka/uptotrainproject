@@ -179,7 +179,14 @@ Route::get('/admin/message/new', function () {
 Route::get('/admin/message/old', function () {
 	return view('admin.admin_message_old');
 });
-Route::get('/ad','adminController@index');
+Route::get('/admin','adminController@index');
 Route::get('/approveagency','adminController@approveagency');
 Route::post('/approveagency','adminController@approveagencystore');
 
+
+Route::get('/agencymanage', function () {
+	return view('admin.admin_travelagency_manage');
+});
+Route::get('/viewagency', function () {
+	return view('admin.admin_travelagency_view');
+});
