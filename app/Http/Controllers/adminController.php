@@ -224,7 +224,7 @@ function trashcomment(){
   $data = array(
       'review' => $review,
   );
-  return view('admin.admin_report_comment',$data);
+  return view('admin.admin_trash_comment',$data);
 }
 
 }

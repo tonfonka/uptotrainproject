@@ -42,12 +42,7 @@
                                         <td>{{$tripname[0]->trips_name}}</td>
                                         <td>{{$agency[0]->agency_name_en}}</td>
                                         <td class="center">{{$reviews->rate}}</td>
-                                        <td class="center">{{$reviews->rate_des}}</td>
-                                      
-                                      
-
-                                        
-                                            
+                                        <td class="center">{{$reviews->rate_des}}</td>           
                                   <td><button type="button" class="btn btn-danger" >Trash</button></td>
                                </tr>
                                </form>
