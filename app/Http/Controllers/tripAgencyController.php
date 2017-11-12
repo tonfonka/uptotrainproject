@@ -39,8 +39,7 @@ class tripAgencyController extends Controller
 
             if(Auth::user()->adminconfirm == '0'){
                  return redirect('/waitapprove');
-            }else 
-                return redirect('/agency');
+            }
            
         }
         
@@ -178,8 +177,7 @@ class tripAgencyController extends Controller
 
         if(Auth::user()->adminconfirm == '0'){
              return redirect('/waitapprove');
-        }else 
-            return redirect('/agency');
+        }
        
     }
             $userId = Auth::user()->id;
@@ -209,8 +207,7 @@ class tripAgencyController extends Controller
 
             if(Auth::user()->adminconfirm == '0'){
                  return redirect('/waitapprove');
-            }else 
-                return redirect('/agency');
+            }
            
         }
         $userId = Auth::user()->id;
@@ -368,10 +365,9 @@ function myprofile($id) {
         }
         elseif(Auth::user()->role == "travel agency"){
 
-            if(Auth::user()->adminconfirm == '0'){
+            if(Auth::user()->adminconfirm != '1'){
                  return redirect('/waitapprove');
-            }else 
-                return redirect('/agency');
+            }
            
         }
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
@@ -395,15 +391,14 @@ function myprofile($id) {
         }
         elseif(Auth::user()->role == "travel agency"){
 
-            if(Auth::user()->adminconfirm == '0'){
+            if(Auth::user()->adminconfirm != '1'){
                  return redirect('/waitapprove');
-            }else 
-                return redirect('/agency');
+            }
            
         }
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         $trip = DB::table('trips')->where('id',$id)->first();
-        $review = DB::table('reviewTrip')->where('trip_id',$id)->orderBy('updated_at','desc')->get();
+        $review = DB::table('reviewTrip')->where([['trip_id',$id],['status','=','0']])->orderBy('updated_at','desc')->get();
         $alluser = $review->count();
         $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
         $trip = trip::where('id',$id)->first();

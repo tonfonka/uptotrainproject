@@ -82,7 +82,7 @@
           <ul class="nav" id="side-menu">
 
             <li>
-              <a href="index.html">
+              <a href="/ad">
                 <i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
@@ -93,10 +93,10 @@
               <ul class="nav nav-second-level">
                 <li>
 
-                  <a href="#">New</a>
+                  <a href="/messagenew">ยังไม่ได้อ่าน</a>
                 </li>
                 <li>
-                  <a href="#">Old</a>
+                  <a href="/messageold">อ่านแล้ว</a>
 
                 </li>
               </ul>
