@@ -82,7 +82,7 @@
           <ul class="nav" id="side-menu">
 
             <li>
-              <a href="index.html">
+              <a href="/ad">
                 <i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
@@ -93,10 +93,10 @@
               <ul class="nav nav-second-level">
                 <li>
 
-                  <a href="#">ยังไม่ได้อ่าน</a>
+                  <a href="/messagenew">ยังไม่ได้อ่าน</a>
                 </li>
                 <li>
-                  <a href="#">อ่านแล้ว</a>
+                  <a href="/messageold">อ่านแล้ว</a>
 
                 </li>
               </ul>
@@ -112,7 +112,13 @@
                   <a href="/approveagency">Apporve</a>
                 </li>
                 <li>
-                  <a href="#">Trip</a>
+                  <a href="/agencymanage">Agency Manage</a>
+                </li>
+                <li>
+                  <a href="#">Trip Manage</a>
+                </li>
+                <li>
+                  <a href="#">Blacklist</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
@@ -124,10 +130,10 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="#">Blacklist User</a>
+                  <a href="#">User Manage</a>
                 </li>
                 <li>
-                  <a href="#">Delete comment</a>
+                  <a href="#">Blacklist</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

@@ -2,7 +2,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Old Message</h1>
+                    <h1 class="page-header">User</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -11,32 +11,31 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            ข้อความที่เคยเห็นแล้ว
+                            User Manage System
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Time</th>
+                                        <th>ID</th>
+                                        <th>Firstname</th>
+                                        <th>Lastname</th>
                                         <th>Name</th>
                                         <th>E-mail</th>
-                                        <th>Phone</th>
-                                        <th>Message</th>
-                                        
+                                        <th>Manage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($contact as $contacts)
-                                <tr class="">
-                                    <td>{{$contacts->created_at}}</td>
-                                    <td>{{$contacts->name}}</td>
-                                    <td>{{$contacts->email}}</td>
-                                    <td class="center">{{$contacts->phone}}</td>
-                                    <td class="center">{{$contacts->description}}</td>
-                                    <td><button class="btn btn-success" id="{{$contacts->id}}" value="{{$contacts->id}}">read</button></td>
-                                </tr>
-                                @endforeach
+                                    <tr class="">
+                                        <td>เลขไอดี</td>
+                                        <td>ชื่อจริง</td>
+                                        <td>นามสกุล</td>
+                                        <td>name</td>
+                                        <td>E-mail</td>
+                                        <td><button class="btn btn-success">View</button>&nbsp;&nbsp;
+                  <button type="button" class="btn btn-danger">Block</button></td>   
+                                    </tr>
                                     
                                 </tbody>
                             </table>

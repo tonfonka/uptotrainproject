@@ -14,6 +14,8 @@
                             ข้อความที่ยังไม่ได้อ่าน
                         </div>
                         <!-- /.panel-heading -->
+                        <form role="form" action="/messagenew" method="POST" name="id" enctype="multipart/form-data"> 
+                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
@@ -27,21 +29,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($contact as $contacts)
                                     <tr class="">
-                                        <td>crate_at</td>
-                                        <td>ชื่อ</td>
-                                        <td>test01@hotmail.com</td>
-                                        <td class="center">029999999</td>
-                                        <td class="center">สวัสดีครับทดสอบระบบ</td>
-                                        <td><button class="btn btn-success">read</button></td>
+                                        <td>{{$contacts->created_at}}</td>
+                                        <td>{{$contacts->name}}</td>
+                                        <td>{{$contacts->email}}</td>
+                                        <td class="center">{{$contacts->phone}}</td>
+                                        <td class="center">{{$contacts->description}}</td>
+                                        <input type="hidden" name="admin_read" id="admin_read" value="{{$contacts->id}}">
+                                        <td>
+                                        <button type="submit" class="btn btn-success"  name="admin_read" value="{{$contacts->id}}">read</button></td>
                                     </tr>
-                                    
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
                             
                         </div>
                         <!-- /.panel-body -->
+                        </form>
                     </div>
                     <!-- /.panel -->
                 </div>

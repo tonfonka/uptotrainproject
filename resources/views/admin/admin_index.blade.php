@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="/messagenew">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right">
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <a href="#">
+        <a href="/approveagency">
             <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right">

@@ -8,7 +8,7 @@ class contactus extends Model
 {
     protected $table = 'contactUS';
     
-        protected $fillable = ['name','email','admin_read'];
+        protected $fillable = ['name','email','phone','admin_read','updated_at'];
         protected $primarykey = 'id';
 
 }

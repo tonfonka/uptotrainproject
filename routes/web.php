@@ -26,7 +26,7 @@ Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
 
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
-Route::post('/agency', 'UserController@regisagency');
+Route::post('/waitapprove', 'UserController@regisagency');
 //Route::post('/agency','tripAgencyController@tripstore');
 Route::post('/image','tripAgencyController@tripstore');
 Route::get('/image','imageController@viewimage');
@@ -166,20 +166,48 @@ Route::get('/schedulepdf/{id}','pdfController@schedulepdf');
 });
 Route::post('/contactus','adminController@contactus');
 Route::get('/review/{id}','tripAgencyController@reviewtrip');
+Route::post('/review/{id}','adminController@bancomment');
 
 
-
-
-Route::get('/admin/approve', function () {
-	return view('admin.admin_approve');
-});
-Route::get('/admin/message/new', function () {
-	return view('admin.admin_message_new');
-});
-Route::get('/admin/message/old', function () {
-	return view('admin.admin_message_old');
-});
 Route::get('/ad','adminController@index');
+Route::get('/messagenew','adminController@usercontact');
+Route::post('/messagenew','adminController@readcontact');
+Route::get('/messageold','adminController@messageold');
 Route::get('/approveagency','adminController@approveagency');
 Route::post('/approveagency','adminController@approveagencystore');
+Route::get('/denyeagency',function(){
+	return redirect('/approveagency');
+});
+Route::post('/denyeagency','adminController@denyagencystore');
 
+
+
+
+<<<<<<< HEAD
+Route::get('/agencymanage', function () {
+	return view('admin.admin_travelagency_manage');
+});
+Route::get('/viewagency', function () {
+	return view('admin.admin_travelagency_view');
+});
+
+Route::get('/usermanage', function () {
+	return view('admin.admin_user_manage');
+});
+Route::get('/userblacklist', function () {
+	return view('admin.admin_user_blacklist');
+});
+Route::get('/viewuser', function () {
+	return view('admin.admin_user_view');
+});
+=======
+Route::get('/agencymanage','adminController@travelagency');
+Route::get('/viewagency/{id}','adminController@viewagency');
+
+// function () {
+// 	return view('admin.admin_travelagency_manage');
+// });
+// Route::get('/viewagency', function () {
+// 	return view('admin.admin_travelagency_view');
+// });
+>>>>>>> 09f4dcfa2b31e5838e781da3b367fe208d1ccea0
