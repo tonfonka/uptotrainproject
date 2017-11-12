@@ -33,6 +33,14 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+  <!-- add -->
+   <!-- DataTables CSS -->
+    <link href="{{asset('vendor/bootstrapAdmin/datatables-plugins/dataTables.bootstrap.css')}}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="{{asset('vendor/bootstrapAdmin/datatables-responsive/dataTables.responsive.css')}}" rel="stylesheet">
+  <!-- add end -->
+
 </head>
 
 <body>
@@ -92,12 +100,10 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-
-                  <a href="#">ยังไม่ได้อ่าน</a>
+                  <a href="flot.html">New</a>
                 </li>
                 <li>
-                  <a href="#">อ่านแล้ว</a>
-
+                  <a href="morris.html">Old</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
@@ -109,10 +115,10 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="/approveagency">Apporve</a>
+                  <a href="flot.html">Apporve</a>
                 </li>
                 <li>
-                  <a href="#">Trip</a>
+                  <a href="morris.html">Trip</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
@@ -124,10 +130,10 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="#">Blacklist User</a>
+                  <a href="flot.html">Blacklist User</a>
                 </li>
                 <li>
-                  <a href="#">Delete comment</a>
+                  <a href="morris.html">Delete comment</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
@@ -161,6 +167,26 @@
 
   <!-- Custom Theme JavaScript -->
   <script src="{{asset('/js/admin/sb-admin-2.js')}}"></script>
+
+ <!-- add -->
+  <!-- DataTables JavaScript -->
+    <script src="{{asset('vendor/bootstrapAdmin/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrapAdmin/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrapAdmin/datatables-responsive/dataTables.responsive.js')}}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{asset('js/admin/js/sb-admin-2.js')}}"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
+
+    <!-- add end-->
 
 </body>
 
