@@ -117,7 +117,7 @@
                 </div>
               </div>
               <input type="hidden" name="user_id" value="{{ $userId }}">
-              <button type="submit" class="login-button">Submit</button>
+              <button type="submit" class="login-button" name="user_id" value="{{ $userId }}" >Submit</button>
             </div>
             <div class="etc-login-form">
               <p>already have an account?
