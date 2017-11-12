@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'support@uptotrain.me'),
-        'name' => env('MAIL_FROM_NAME', 'Please Verify Email Account'),
+        'name' => env('MAIL_FROM_NAME', 'UP TO TRAIN'),
     ],
 
     /*

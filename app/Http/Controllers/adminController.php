@@ -83,6 +83,16 @@ class adminController extends Controller
         return view('admin.admin_approve',$data);
 
     }
+    function deny(){
+        $agencys = DB::table('users')
+        ->join('travelagency','travelagency.user_id','=','users.id')
+        ->where([['users.role','=','travel agency'],['users.adminconfirm','=','3']])->get();
+        $data = array(
+            'agencys' =>$agencys,
+        );
+        return view('admin.admin_deny',$data);
+
+    }
     function approveagencystore(Request $request){
         $id = $request->input('user_id');
         $user = User::find($request->user_id);
@@ -103,6 +113,7 @@ class adminController extends Controller
             
         //     return redirect(url('learnercoursestatus'));
         }
+
     function index(){ 
         $agency = DB::table('users')
         ->join('travelagency','travelagency.user_id','=','users.id')
@@ -133,6 +144,7 @@ class adminController extends Controller
     function travelagency(){ 
           $agency = DB::table('users')
          ->join('travelagency','travelagency.user_id','=','users.id')
+         ->where('users.adminconfirm','=','1')
          ->get();
          $countagency = $agency->count();
         // $countcontact = DB::table('contactUS')->where('admin_read','0')->count();
@@ -152,5 +164,28 @@ class adminController extends Controller
       );
       return view('admin.admin_travelagency_view',$data);
   }
+  function usermanage(){ 
+    $user = DB::table('users')
+    ->where('role','=','user')
+   
+   ->get();
+   
+  $data = array(
+      'user' => $user,
+  );
+  return view('admin.admin_user_manage',$data);
+}
+function viewuser($id){ 
+    $user = DB::table('users')
+    ->where('id',$id)
+
+   ->first();
+   
+  $data = array(
+      'user' => $user,
+  );
+  return view('admin.admin_user_view',$data);
+}
+
 
 }
