@@ -26,7 +26,7 @@ Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
 
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
-Route::post('/agency', 'UserController@regisagency');
+Route::post('/waitapprove', 'UserController@regisagency');
 //Route::post('/agency','tripAgencyController@tripstore');
 Route::post('/image','tripAgencyController@tripstore');
 Route::get('/image','imageController@viewimage');

@@ -39,8 +39,7 @@ class tripAgencyController extends Controller
 
             if(Auth::user()->adminconfirm == '0'){
                  return redirect('/waitapprove');
-            }else 
-                return redirect('/agency');
+            }
            
         }
         
@@ -178,8 +177,7 @@ class tripAgencyController extends Controller
 
         if(Auth::user()->adminconfirm == '0'){
              return redirect('/waitapprove');
-        }else 
-            return redirect('/agency');
+        }
        
     }
             $userId = Auth::user()->id;
@@ -209,8 +207,7 @@ class tripAgencyController extends Controller
 
             if(Auth::user()->adminconfirm == '0'){
                  return redirect('/waitapprove');
-            }else 
-                return redirect('/agency');
+            }
            
         }
         $userId = Auth::user()->id;
@@ -368,10 +365,9 @@ function myprofile($id) {
         }
         elseif(Auth::user()->role == "travel agency"){
 
-            if(Auth::user()->adminconfirm == '0'){
+            if(Auth::user()->adminconfirm != '1'){
                  return redirect('/waitapprove');
-            }else 
-                return redirect('/agency');
+            }
            
         }
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
@@ -395,10 +391,9 @@ function myprofile($id) {
         }
         elseif(Auth::user()->role == "travel agency"){
 
-            if(Auth::user()->adminconfirm == '0'){
+            if(Auth::user()->adminconfirm != '1'){
                  return redirect('/waitapprove');
-            }else 
-                return redirect('/agency');
+            }
            
         }
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
