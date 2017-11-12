@@ -26,6 +26,7 @@ use PDF;
 use Yajra\Datatables\Facades\Datatables;
 use App\User;
 use App\contactus;
+use App\review;
 
 class adminController extends Controller
 {
@@ -102,8 +103,7 @@ class adminController extends Controller
             
         //     return redirect(url('learnercoursestatus'));
         }
-    function index(){
-        
+    function index(){ 
         $agency = DB::table('users')
         ->join('travelagency','travelagency.user_id','=','users.id')
         ->where([['users.role','=','travel agency'],['users.adminconfirm','=','0']])->get();
@@ -115,6 +115,20 @@ class adminController extends Controller
             'countcontact' => $countcontact,
         );
         return view('admin.admin_index',$data);
+    }
+    function bancomment(Request $request,$id){
+
+        $id = $request->input('status');
+        $tripid = $request->input('trip_id');
+        $review = review::find($id);
+        $review->status = '1';
+        $review->save();
+
+        return redirect()->action(
+
+            'tripAgencyController@reviewtrip', ['tripid' => $tripid]
+        );
+        
     }
 
 }

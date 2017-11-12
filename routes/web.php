@@ -166,7 +166,7 @@ Route::get('/schedulepdf/{id}','pdfController@schedulepdf');
 });
 Route::post('/contactus','adminController@contactus');
 Route::get('/review/{id}','tripAgencyController@reviewtrip');
-
+Route::post('/review/{id}','adminController@bancomment');
 
 Route::get('/ad','adminController@index');
 Route::get('/messagenew','adminController@usercontact');

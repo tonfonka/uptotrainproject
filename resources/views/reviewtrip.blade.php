@@ -92,6 +92,13 @@
         {{$reviews->rate_des}}
 
         </div><!-- /panel-body -->
+      <form role="form" action="/review/{{$trip->id}}" method="POST" name="id" enctype="multipart/form-data">
+      <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+      <input type="hidden" name="status" value="{{$reviews->id}}">
+      <input type="hidden" name="trip_id" value="{{$trip->id}}">
+      <td><button type="submit" class="btn btn-danger" name="status" value="{{$reviews->id}}">BAN</button></td>
+      </tr>
+      </form>
 
     </div><!-- /panel panel-default -->
 </div><!-- /col-sm-5 -->
