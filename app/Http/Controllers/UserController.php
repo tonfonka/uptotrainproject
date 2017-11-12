@@ -13,6 +13,7 @@ use Response;
 use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use PDF;
+use App\Attraction;
 class UserController extends Controller
 {
     function __construct(){
@@ -39,15 +40,14 @@ class UserController extends Controller
    }
 
    function searchPlace(){
-    $place = DB::table('attraction')->orderBy('id','desc')->paginate(15);
+    $place = Attraction::orderBy('attraction_id','desc')->paginate(15);
     
-   return view('searchPlace',['place'=>$places]);
+   return view('searchPlace',['place'=>$place]);
 }
 
 function searchPlaceResult(){
    $p = Input::get ( 'p' );
-  
-   $place = DB::table('attraction')->where ( 'attraction_Name', 'LIKE', '%' . $p . '%' )->orWhere('Attraction_Province','LIKE','%' . $p . '%')->paginate(15);
+   $place = Attraction::where ( 'attraction_Name', 'LIKE', '%' . $p . '%' )->orWhere('Attraction_Province','LIKE','%' . $p . '%')->paginate(15);
    if (count ( $place ) > 0)
        return view ( 'searchPlaceResult' )->withDetails ( $place )->withQuery ( $p );
    else
