@@ -138,6 +138,22 @@
               </ul>
               <!-- /.nav-second-level -->
             </li>
+            <li>
+              <a href="#">
+                <i class="fa  fa-child fa-fw"></i> Report
+                <span class="fa arrow"></span>
+              </a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <a href="/reportcomment">Comment</a>
+                </li>
+                <li>
+                  <a href="/trashcomment">Trash</a>
+                </li>
+              </ul>
+              <!-- /.nav-second-level -->
+            </li>
+
 
           </ul>
         </div>

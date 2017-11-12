@@ -205,6 +205,15 @@ Route::get('/viewagency/{id}','adminController@viewagency');
 Route::get('/viewuser/{id}','adminController@viewuser');
 Route::get('/usermanage','adminController@usermanage');
 
+Route::get('/reportcomment','adminController@reportcomment');
+Route::post('/reportcomment','adminController@ignorecomment');
+
+Route::get('/deletecomment',function(){
+		return redirect('/reportcomment');
+});
+
+Route::post('/deletecomment','adminController@deletecomment');
+Route::get('/trashcomment','adminController@trashcomment');
 
 // function () {
 // 	return view('admin.admin_travelagency_manage');

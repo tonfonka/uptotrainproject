@@ -187,5 +187,44 @@ function viewuser($id){
   return view('admin.admin_user_view',$data);
 }
 
+function reportcomment(){ 
+    $review = DB::table('reviewTrip')
+    ->where('status','=','1')
+   ->get();
+   
+  $data = array(
+      'review' => $review,
+  );
+  return view('admin.admin_report_comment',$data);
+}
+function ignorecomment(Request $request){ 
+
+        $id = $request->input('id');
+        $review = review::find($id);
+        $review->status = '0';
+        $review->save();
+
+        return redirect('/reportcomment');
+}
+function deletecomment(Request $request){ 
+
+    $id = $request->input('id');
+    $review = review::find($id);
+    $review->status = '3';
+    $review->save();
+   
+  
+  return redirect('/deletecomment');
+}
+function trashcomment(){ 
+    $review = DB::table('reviewTrip')
+    ->where('status','=','3')
+   ->get();
+   
+  $data = array(
+      'review' => $review,
+  );
+  return view('admin.admin_report_comment',$data);
+}
 
 }
