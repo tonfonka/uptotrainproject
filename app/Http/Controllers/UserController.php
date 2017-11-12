@@ -185,7 +185,7 @@ function searchPlaceResult(){
             "agency_description"=>$request->input("agency_description"),
             "user_id"=>$request->input('user_id')
             ]);
-            return redirect('/agency');
+            return redirect('/waitapprove');
     }
     function profileuser(){
         if(Auth::user()->role != "user"){

@@ -95,7 +95,6 @@ Route::get('/checkregis', function(){
 		if(Auth::user()->role == "admin"){
 			return redirect('/home');
 		}else if(Auth::user()->role == "travel agency"){
-
 			if(Auth::user()->adminconfirm == '0'){
 				//ส่งไปหน้าสักหน้นุงแล้วบอกว่ารอการ approve จาก admin 
 				return redirect('/waitapprove');

@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <!-- add -->
-    <form action="/agency" method="POST" role="form" name="id" enctype="multipart/form-data">
+    <form action="/waitapprove" method="POST" role="form" name="id" enctype="multipart/form-data">
       <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> {{ csrf_field() }}
       <div id="page-wrapper">
         <div class="row">
