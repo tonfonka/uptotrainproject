@@ -64,7 +64,17 @@
                 <a href="/agreement">Agreement</a>
               </li>
               <li>
-                <a href="/search">Search</a>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/search">Tours</a></li>
+                    <li><a href="/searchPlace">สถานที่ท่องเที่ยว</a>
+              
+                    </li>
+                  </ul>
+                </li>
+
+
               </li>
                 @if(Auth::guest())
                   <li><a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a></li>

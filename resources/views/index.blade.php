@@ -59,7 +59,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
-            @elseif(Auth::user()->role =='travel agency')
+            @elseif((Auth::user()->role =='travel agency') &&((Auth::user()->adminconfirm == '1')))
             <?php
                 $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
             ?>
@@ -79,6 +79,42 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
+                @elseif((Auth::user()->role =='travel agency') &&((Auth::user()->adminconfirm == '0')))
+            <?php
+                $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+            ?>
+             <div class="intro-heading">Welcome</div>
+                <div class="intro-heading">{{$agencyName[0]->agency_name_en}}</div>
+
+                <div class="intro-lead-in">Do you have a new trip to offer?</div>
+                <br>
+                <br>
+                <a href="{{ url('/waitapprove') }}" class="page-scroll btn btn-xl">
+                    My profile
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                    LOG OUT
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+                @elseif(Auth::user()->role == 'admin' )
+            <div class="intro-heading">Welcome - {{Auth::user()->name}}</div>
+            <div class="intro-lead-in">Are you looking for a Trip ?</div>
+            <br>
+            <br>
+            <a href="{{ url('/ad') }}" class="page-scroll btn btn-xl">
+                admin system
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
+                LOG OUT
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+
                 @endif
         </div>
     </div>
@@ -138,8 +174,8 @@
     </div>
 </section>
 <!-- Portfolio Grid -->
-<section class="bg-light" id="portfolio" >
-    <div class="container " >
+<section class="bg-light" id="portfolio">
+    <div class="container ">
         <div class="row">
             <div class="col-lg-12 text-center" style="padding-bottom:30px;">
                 <h2 class="section-heading">Highlight Trip</h2>
@@ -156,10 +192,10 @@
                             </div>
                         </div>
                         <div class="pattern">
-                            <img src="images/{{$t->image}}"  alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;">
+                            <img src="images/{{$t->image}}" alt="Tattoo &amp; Piercing" width="350" height="250" style="display: block; border: 0;">
                         </div>
                     </a>
-                    <div class="portfolio-caption" >
+                    <div class="portfolio-caption">
                         <h4>{{ $t->trips_name }}</h4>
                         <p class="text-muted">{{$t->trip_province}}</p>
                     </div>
@@ -187,34 +223,26 @@
                         <!-- Project Details Go Here -->
                         <h1>{{ $t->trips_name }}</h1>
                         @if($t->trip_nnight > 0)
-            <p class="item-intro text-muted">ระยะเวลา {{ $t->trip_nday }} วัน {{ $t->trip_nnight }} คืน</p>
-            @else
-            <p class="item-intro text-muted">ระยะเวลา {{ $t->trip_nday }} วัน</p>
-            @endif
-            <p class="item-intro text-muted">จังหวัด{{$t->trip_province}}</p>
-          <p class="item-intro text-muted">จำนวนมื้ออาหาร {{$t->trip_meal}} มื้อ</p>
-            
-            <img class="img-responsive img-centered" style="height:400px;width:750px;" src="/images/{{$t->image}}" alt="">
-            <p class="text-muted" style="padding-top:20px;">{{$t->trip_description}}</p>
-            <br><br>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">แผนการเดินทางท่องเที่ยว</h2>
-                        <h3 class="section-subheading text-muted">" ไปไหนบ้างนะ "</h3>
-                    </div>
-                </div>
+                        <p class="item-intro text-muted">ระยะเวลา {{ $t->trip_nday }} วัน {{ $t->trip_nnight }} คืน</p>
+                        @else
+                        <p class="item-intro text-muted">ระยะเวลา {{ $t->trip_nday }} วัน</p>
+                        @endif
+                        <p class="item-intro text-muted">จังหวัด{{$t->trip_province}}</p>
+                        <p class="item-intro text-muted">จำนวนมื้ออาหาร {{$t->trip_meal}} มื้อ</p>
 
-                            
-
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close This</button>
-                        </div>
+                        <img class="img-responsive img-centered" style="height:400px;width:750px;" src="/images/{{$t->image}}" alt="">
+                        <p class="text-muted" style="padding-top:20px;">{{$t->trip_description}}</p>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Close This</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endforeach
 <!-- Contact Section -->
 <section id="contact">
@@ -227,25 +255,26 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <form name="sentMessage" id="contactForm" novalidate>
+                <form  role="form" action="/contactus" method="POST" name="id" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                <input type="text" class="form-control" placeholder="Your Name *" id="name"  name="name" required data-validation-required-message="Please enter your name.">
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                <input type="email" name= "email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
-                                <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" name="phone" required data-validation-required-message="Please enter your phone number.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                <textarea class="form-control" placeholder="Your Message *" id="description" name="description" required data-validation-required-message="Please enter a message."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>

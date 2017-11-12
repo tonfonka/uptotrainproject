@@ -35,7 +35,10 @@
 		<h3 class="agileits-title" style="font-size:35px;">{{$travelagencies->agency_name_th}}</h3>
 		<div class="about-grids">
 			<div class="col-md-5 welcome-w3right">
-				<img src="/img/img4.jpg" class="img-responsive" alt="" />
+			<?php
+			$img = DB::table('users')->where('id',$travelagencies->id)->get();
+			?>
+				<img src="/images/{{$img[0]->image}}" class="img-responsive" alt="" />
 			</div>
 			<div class="col-md-7 welcome-w3left">
 				<h4>{{$travelagencies->agency_description}}</h4>
@@ -66,44 +69,49 @@
 							<th class="text-center"><input type="text" class="form-control" placeholder="จำนวนคืน" disabled></th>
 							<th class="text-center"><input type="text" class="form-control" placeholder="ราคา" disabled></th>
 							<th class="text-center"><input type="text" class="form-control" placeholder="รายละเอียด" disabled></th>
-							<th class="text-center"><input type="text" class="form-control" placeholder="" disabled></th>
+							<th class="text-center"><input type="text" class="form-control" placeholder="Rate" disabled></th>
 						</tr>
 					</thead>
 					<tbody id="myTable">
 						@foreach($trips as $trip)
+						<?php
+								$tripround = DB::table('triprounds')->where('trip_id',$trip->id)->min('price_adult');
+								$reviews = DB::table('reviewTrip')->where('trip_id',$trip->id)->avg('rate');
+
+						?>
 						<tr class="">
 							<td>
 								<a href="/schedules/{{$trip->id}}">{{ str_limit($trip->trips_name, $limit = 30, $end = '....') }}</a>
 							</td>
-							<td>จังหวัด</td>
+							<td>{{$trip->trip_province}}</td>
 							<td>{{$trip->trip_nday}}</td>
 							<td>{{$trip->trip_nnight}}</td>
-							<td>ราคา</td>
+							<td>{{$tripround}}</td>
 							<td>{{ str_limit($trip->trip_description, $limit = 30, $end = '....') }}</td>
 <td>
-@foreach($review as $reviews)
-@if(($reviews->rate) =='1')
+						
+						@if(($reviews >='0')&&($reviews <'1.75')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            @elseif(($reviews->rate) =='2')
-            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            @elseif(($reviews->rate) =='3')
+            @elseif(($reviews >='1.75')&&($reviews <'2.75')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            @elseif(($reviews->rate) =='4')
+            @elseif(($reviews >='2.75')&&($reviews <'3.75')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews >='3.75')&&($reviews <'4.75')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
-            @elseif(($reviews->rate) =='5')
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
+            @elseif(($reviews >='4.75')&&($reviews <='5')){{$reviews}}
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             <li class="glyphicon glyphicon-star" style="color:yellow" ></li>
             @endif
-						@endforeach
+					
 </td>
 
 						</tr>

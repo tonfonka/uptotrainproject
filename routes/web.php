@@ -26,7 +26,7 @@ Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
 
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
-Route::post('/agency', 'UserController@regisagency');
+Route::post('/waitapprove', 'UserController@regisagency');
 //Route::post('/agency','tripAgencyController@tripstore');
 Route::post('/image','tripAgencyController@tripstore');
 Route::get('/image','imageController@viewimage');
@@ -38,6 +38,11 @@ Route::get('/agreement',function(){
 
 Route::get('/search', 'UserController@search');
 Route::post ( '/searcht', 'UserController@searchResult' );
+
+Route::get('/searchPlace', 'UserController@searchPlace');
+Route::post ( '/searchp', 'UserController@searchPlaceResult' );
+
+
 Route::get('/schedule/{id}','UserController@schedule');
 Route::get('/schedules/{id}','UserController@schedules');
 Route::get('/booking/{id}','UserController@booking')->middleware('auth');
@@ -67,12 +72,19 @@ Route::get('/checkRole', function(){
 	if(Auth::guest()){
 		return redirect('/home');
 	}else{
-		if(Auth::user()->role == "admin"){
+		if(Auth::user()->role == "user"){
 			return redirect('/home');
 		}else if(Auth::user()->role == "travel agency"){
-			return redirect('/agency');
-		}else if(Auth::user()->role == "user"){
-			return redirect('/home');
+			if(Auth::user()->adminconfirm == '0'){
+				//ส่งไปหน้าสักหน้นุงแล้วบอกว่ารอการ approve จาก admin 
+				return redirect('/waitapprove');
+			}
+			else {
+				return redirect('/agency');
+			}
+			
+		}else if(Auth::user()->role == "admin"){
+			return redirect('/ad');
 		}
 	}
 });
@@ -132,6 +144,16 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('/pdf/{id}','UserController@pdf');
 	Route::get('/statement','tripAgencyController@statement');
 
+// 	Route::get('/admin', function () {
+// 		return redirect('task');
+// });
+Route::resource('task','taskController');
+
+//bookingsumpdf
+Route::get('/bookingsumpdf/{id}','pdfController@bookingsumpdf');
+Route::get('/schedulepdf/{id}','pdfController@schedulepdf');
+
+
 	Route::get('/historytripusertest', function () {
 			return view('historytripusertest');
 	});
@@ -139,3 +161,53 @@ Route::get('/myagency/{id}', 'UserController@myagency');
 	Route::get('/waitapprove', function () {
 			return view('waitapprove');
 	});
+	Route::get('/contactus', function () {
+		return view('contactus');
+});
+Route::post('/contactus','adminController@contactus');
+Route::get('/review/{id}','tripAgencyController@reviewtrip');
+Route::post('/review/{id}','adminController@bancomment');
+
+
+Route::get('/ad','adminController@index');
+Route::get('/messagenew','adminController@usercontact');
+Route::post('/messagenew','adminController@readcontact');
+Route::get('/messageold','adminController@messageold');
+Route::get('/approveagency','adminController@approveagency');
+Route::post('/approveagency','adminController@approveagencystore');
+Route::get('/denyeagency',function(){
+	return redirect('/approveagency');
+});
+Route::post('/denyeagency','adminController@denyagencystore');
+
+
+
+
+<<<<<<< HEAD
+Route::get('/agencymanage', function () {
+	return view('admin.admin_travelagency_manage');
+});
+Route::get('/viewagency', function () {
+	return view('admin.admin_travelagency_view');
+});
+
+Route::get('/usermanage', function () {
+	return view('admin.admin_user_manage');
+});
+Route::get('/userblacklist', function () {
+	return view('admin.admin_user_blacklist');
+});
+Route::get('/viewuser', function () {
+	return view('admin.admin_user_view');
+});
+=======
+Route::get('/agencymanage','adminController@travelagency');
+Route::get('/viewagency/{id}','adminController@viewagency');
+
+// function () {
+// 	return view('admin.admin_travelagency_manage');
+// });
+// Route::get('/viewagency', function () {
+// 	return view('admin.admin_travelagency_view');
+// });
+>>>>>>> 09f4dcfa2b31e5838e781da3b367fe208d1ccea0

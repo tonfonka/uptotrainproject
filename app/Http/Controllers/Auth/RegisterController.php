@@ -128,14 +128,14 @@ class RegisterController extends Controller
 
             if($user->role == "user"){
             user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
-            return view('email.userSendSuccess');
+            return view('email.sendSuccess');
             }elseif($user->role == "travel agency"){
             user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
             $userId = $user->id;
             return view('regis_agency',['userId'=>$userId]);
             }
         }else{
-            return 'user not found';
+            return view('email.usernotfound');;
         }
     }
 }
