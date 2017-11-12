@@ -130,7 +130,7 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="#">User Manage</a>
+                  <a href="/usermanage">User Manage</a>
                 </li>
                 <li>
                   <a href="#">Blacklist</a>

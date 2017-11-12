@@ -152,5 +152,28 @@ class adminController extends Controller
       );
       return view('admin.admin_travelagency_view',$data);
   }
+  function usermanage(){ 
+    $user = DB::table('users')
+    ->where('role','=','user')
+   
+   ->get();
+   
+  $data = array(
+      'user' => $user,
+  );
+  return view('admin.admin_user_manage',$data);
+}
+function viewuser($id){ 
+    $user = DB::table('users')
+    ->where('id',$id)
+
+   ->first();
+   
+  $data = array(
+      'user' => $user,
+  );
+  return view('admin.admin_user_view',$data);
+}
+
 
 }

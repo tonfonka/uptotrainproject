@@ -31,8 +31,8 @@
                                 @foreach($agency as $agencys)
                                     <tr class="">
                                         <td>{{$agencys->name}}</td>
-                                        <td>{{$agencys->	agency_name_en}}</td>
-                                        <td>{{$agencys->	agency_name_th}}</td>
+                                        <td>{{$agencys->agency_name_en}}</td>
+                                        <td>{{$agencys->agency_name_th}}</td>
                                         <td class="center">{{$agencys->email}}</td>
                                         <td class="center">{{$agencys->agency_email}}</td>
                                         <?php
