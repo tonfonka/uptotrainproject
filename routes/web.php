@@ -179,8 +179,8 @@ Route::get('/denyeagency',function(){
 	return redirect('/approveagency');
 });
 Route::post('/denyeagency','adminController@denyagencystore');
-
-
+Route::get('/deny','adminController@deny');
+Route::post('/deny','adminController@approveagencystore');
 
 
 // Route::get('/agencymanage', function () {

@@ -93,10 +93,10 @@
               <ul class="nav nav-second-level">
                 <li>
 
-                  <a href="/messagenew">ยังไม่ได้อ่าน</a>
+                  <a href="/messagenew">New</a>
                 </li>
                 <li>
-                  <a href="/messageold">อ่านแล้ว</a>
+                  <a href="/messageold">Old</a>
 
                 </li>
               </ul>
@@ -118,7 +118,7 @@
                   <a href="#">Trip Manage</a>
                 </li>
                 <li>
-                  <a href="#">Blacklist</a>
+                  <a href="/deny">Blacklist</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

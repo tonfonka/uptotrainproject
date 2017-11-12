@@ -124,7 +124,7 @@
                   <a href="#">Trip Manage</a>
                 </li>
                 <li>
-                  <a href="#">Blacklist</a>
+                  <a href="/deny">Blacklist</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
