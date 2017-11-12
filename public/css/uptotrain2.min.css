@@ -37,6 +37,19 @@ h6 {
     font-size: 18px;
 }
 
+.text-muted2 {
+    font-family: "Prompt";
+    color: #2f3130;
+    font-size: 18px;
+}
+
+.text-muted3 {
+    font-family: "Prompt";
+    color: #2f3130;
+    font-size: 22px;
+    font-weight: bold;
+}
+
 .text-primary,
 a {
     color: #3d3c49
