@@ -1,12 +1,17 @@
 @extends('layouts.authen')
+@section('title', 'login')
 @section('content')
 <div class="container" style="padding-top:50px;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-@if(session('status'))
-{{session('status')}}
+        @if(session('status'))
+<div class="alert alert-info">
+    <strong>{{session('status')}}</strong> 
+  </div>
+
 @endif
+
+            <div class="panel panel-default">
 
                 <div class="panel-heading">Login</div>
 

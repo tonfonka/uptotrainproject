@@ -33,8 +33,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
   <!-- //js -->
   <!-- web-fonts -->
-  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
-    rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
   <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 </head>
@@ -82,8 +81,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						ข้อมูลการจอง					  </a>
             </li>
             <li class="">
-              <a href="">
-						รายงาน					  </a>
+              <a href="/myhistorytrip">
+						ประวัติการจอง					  </a>
             </li>
             <li class="">
               <a href="/profileusersetting/{{Auth::user()->id}}">
@@ -110,7 +109,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                   </div>
                   <h3>
 
-                    ยินดีต้อนรับ {{Auth::user()->name}} <a href="/profileusersetting" class="btn btn-no-bg tooltips" title="แก้ไขการตั้งค่าของท่าน"><i class="fa fa-gear fa-2x font-yellow" style="margin-left: -5px;text-shadow: 2px 2px 1px #444;"></i></a>
+                    ยินดีต้อนรับ {{Auth::user()->name}} 
 
                   </h3>
                 </div>
@@ -128,7 +127,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
   @yield('content')
-  
+  @yield('history')
   <!-- footer start here -->
   <div class="footer-agile">
     <div class="container">

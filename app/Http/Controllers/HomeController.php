@@ -18,15 +18,22 @@ class HomeController extends Controller
         $trips = DB::table('trips')
         ->join('triprounds','triprounds.trip_id','=','trips.id')
         ->join('travelagency','travelagency.id','=','trips.travelagency_id')
-        ->join('stations',function ($join){
-            $join->on('trips.source_id','=','stations.id')
-            ->orOn('trips.destination_id','=','stations.id');
+        // ->join('stations',function ($join){
+        //     $join->on('trips.source_id','=','stations.id')
+        //     ->orOn('trips.destination_id','=','stations.id');
             
-        })
+        // })
+        
+        // ->skip(0)
+        // 
+        ->inRandomOrder()
+        //->orderBy('trips.id','desc')
+        ->take(3)
         ->get();
         return view('index',['trips'=> $trips]);
         
     }
+   
     /**
      * Show the form for creating a new resource.
      *

@@ -113,6 +113,12 @@
                                 <tr>
                                     <td>{{$user[0]->email}}</td>
                                 </tr>
+                                <tr>
+                                <td>{{$user[0]->address}}
+                                    {{$user[0]->province}}
+                                    {{$user[0]->zipcode}}
+                                    </td>
+                                </td>
                             </table>
                         </td>
                     </tr>
@@ -124,7 +130,12 @@
                     </tr>
                     <tr class="details">
                         <td colspan="3">
-                            {{$trip[0]->trips_name}} ( {{$trip[0]->trip_nday}} วัน {{$trip[0]->trip_nnight}} คืน )
+                            @if($trip[0]->trip_nnight == 0)
+
+                            {{$trip[0]->trips_name}} ( {{$trip[0]->trip_nday}} วัน )
+                            @else
+                             {{$trip[0]->trips_name}} ( {{$trip[0]->trip_nday}} วัน {{$trip[0]->trip_nnight}} คืน )
+                            @endif
                         </td>
                         <td>
                             {{date('d/m/Y', strtotime($tripround[0]->start_date))}} ถึง {{date('d/m/Y', strtotime($tripround[0]->departure_date))}}

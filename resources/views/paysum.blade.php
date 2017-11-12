@@ -116,6 +116,12 @@
                                 <tr>
                                     <td>{{$user[0]->email}}</td>
                                 </tr>
+                                <tr>
+                                    <td>{{$user[0]->address}}
+                                    {{$user[0]->province}}
+                                    {{$user[0]->zipcode}}
+                                    </td>
+                                </tr>
                             </table>
                         </td>
                     </tr>
@@ -169,6 +175,7 @@ $total_c = $num_c * $price_c;
                         <td align="center">{{$book->total_cost}}</td>
                     </tr>
                 </table>
+                <button  class="btn btn-primary"><a href='/bookingsumpdf/{{$book->id}}'>พิมพ์ใบรายการสั้งซื้อ</a></button>
             </div><br><br>
         </div>
     </div>

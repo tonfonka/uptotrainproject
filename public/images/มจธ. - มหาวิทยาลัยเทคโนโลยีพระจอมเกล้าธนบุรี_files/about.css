@@ -1,0 +1,102 @@
+#dtl_img {
+	margin: 0px;
+	padding: 0px;
+	width: 250px;	
+}
+
+#dtl_img ul{
+	margin: 0px;
+	padding: 0px;	
+}
+
+#dtl_img li{
+	padding: 4px;
+	text-align: center;
+	height: 180px;
+	width: 240px;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #CCCCCC;
+	list-style-type: none;
+}
+.tab_heading {
+	font-family: "MS Sans Serif";
+	font-size: 14px;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+	background-image: url(../IMAGES/thai/SHARE/IMG/grx_hdtab.jpg);
+	background-repeat: no-repeat;
+	text-align: left;
+	margin: 0px;
+	height: 20px;
+	width: 330px;
+	padding: 0px 10px;
+}
+
+.inorder {
+	margin: 0px;
+	width: 340px;
+	padding: 5px;
+	font-family: "MS Sans Serif";
+	font-size: 14px;
+	line-height: normal;
+	color: #666666;
+	text-decoration: none;
+}
+
+.inorder ul {
+	margin: 0px;
+	padding: 0px;
+	width: 350px;
+}
+
+.inorder li {
+	margin: 0px;
+	width: auto;
+	padding: 0px 0px 0px 0px;
+	margin-left: 10px;
+	list-style-type: disc;
+}
+
+.inorder a {
+	font-family: "MS Sans Serif";
+	font-size: 14px;
+	line-height: normal;
+	color: #666666;
+	text-decoration: none;
+}
+
+.inorder a:hover {
+	color: #BF272D;
+	text-decoration: underline;
+}
+
+#major_img {
+	padding: 4px;
+	margin: 0px;
+	text-align: center;
+	height: 180px;
+	width: 240px;
+	border: 1px solid #CCCCCC;
+}
+#dtl02_img {
+
+	margin: 0px;
+	padding: 0px;
+	width: 250px;
+}
+#dtl02_img ul {
+
+	margin: 0px;
+	padding: 0px;
+}
+#dtl02_img li {
+
+	padding: 4px;
+	text-align: center;
+	height: 240px;
+	width: 180px;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #CCCCCC;
+	list-style-type: none;
+}

@@ -20,8 +20,9 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Datatables;
-
+use App\Data;
+use PDF;
+use Yajra\Datatables\Facades\Datatables;
 
 
 
@@ -34,6 +35,14 @@ class tripAgencyController extends Controller
         if(Auth::user()->role != "travel agency"){
             return redirect('/hello');
         }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm == '0'){
+                 return redirect('/waitapprove');
+            }
+           
+        }
+        
 
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         
@@ -153,14 +162,24 @@ class tripAgencyController extends Controller
                 } 
 
    }
-         return redirect('/agency');
+  // $tripId = DB::table('trips')->select('id')->where('trips_name', $request->input('trips_name'))->first();
+        // return view('add_TripRound', ['tripId'=> $tripId->id]);
+        // return redirect('/agency');
+        return view('image',['tripId'=> $tripId]);
     
     }
 
    function showdetailtrip($id) {
-            if(Auth::user()->role != "travel agency"){
-                return redirect('/hello');
-            }
+    if(Auth::user()->role != "travel agency"){
+        return redirect('/hello');
+    }
+    elseif(Auth::user()->role == "travel agency"){
+
+        if(Auth::user()->adminconfirm == '0'){
+             return redirect('/waitapprove');
+        }
+       
+    }
             $userId = Auth::user()->id;
             //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
             //$travelagencies = travelagency::where([['user_id', Auth::user()->id],['trips.id',$id]])->first();
@@ -175,7 +194,7 @@ class tripAgencyController extends Controller
                         'tripround' => $tripround
                     );
     
-        return redirect('/agency');
+        return view('agency_tripdetail',$data);
 
     }
 
@@ -183,6 +202,13 @@ class tripAgencyController extends Controller
     function shownumber($id) {
         if(Auth::user()->role != "travel agency"){
             return redirect('/hello');
+        }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm == '0'){
+                 return redirect('/waitapprove');
+            }
+           
         }
         $userId = Auth::user()->id;
          $travelagencies =  DB::table('travelagency')->where('user_id', Auth::user()->id)->first();
@@ -193,7 +219,7 @@ class tripAgencyController extends Controller
         $round = DB::table('triprounds')->select('trip_id')->where('id',$id)->pluck('trip_id');
         $trips = DB::table('trips')->where('id',$round)->get();
         //dd($trips);
-        $booking = DB::table('booking')->where('tripround_id',$id)->get();
+        $booking = DB::table('booking')->where('tripround_id',$id)->orderBy('id','desc')->get();
         
         $book = DB::table('booking')->select('user_id')->where('tripround_id',$id)->pluck('user_id');
         $count = $book->count();
@@ -224,6 +250,8 @@ class tripAgencyController extends Controller
     return view('agency_tripmember',$data);
 
 }
+
+
 
 
     public function imageindex()
@@ -279,22 +307,125 @@ class tripAgencyController extends Controller
 
     function showAgencyDetail($id) {
        
-        //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
-        //$travelagencies = travelagency::where([['user_id', Auth::user()->id],['trips.id',$id]])->first();
         $travelagencies =  DB::table('travelagency')->where('id',$id )->first();
         $trips = DB::table('trips')->where('travelagency_id',$id)->get();
-        //$trip = DB::table('trips')->where([['id',$id],['travelagency_id', Auth::user()->id]])->get();
-        //$trips = DB::table('trips')->where('id',$id)->get();
-        //$tripround = DB::table('triprounds')->where('trip_id',$id)->get();
-        //dd($trips);
+        // $review = DB::table('reviewTrip')->where('trip_id',$id)->get();
+        // $alluser = $review->count();
+        // $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
+        // $trip = trip::where('id',$id)->first();
+        // $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();
+        // $one = $starone->count();
+        // $startwo =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','2']])->get();
+        // $two = $startwo->count();
+        // $starthree =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','3']])->get();
+        // $three = $starthree->count();
+        // $starfour =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','4']])->get();
+        // $four = $starfour->count();
+        // $starfive =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','5']])->get();
+        // $five = $starfive->count();
                 $data = array(
                     'travelagencies' => $travelagencies,
                     'trips' => $trips,
-                    //'tripround' => $tripround
+                    // 'tripround' => $tripround
+                    // 'review' =>$review,
+                    // 'one' =>$one,
+                    // 'two' => $two,
+                    // 'three' =>$three,
+                    // 'four' => $four,
+                    // 'five' => $five,
+                    // 'alluser' => $alluser
                 );
     return view('profileagency',$data);
 
 }
-
+function showUserDetail($id) {
     
+     //$agen = DB::table('travelagency')->select('id')->where('user_id',$userId)->get();
+     $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+     $user =  DB::table('users')->where('id',$id )->get();
+     //$trips = DB::table('trips')->where('travelagency_id',$id)->get();
+     //$trip = DB::table('trips')->where([['id',$id],['travelagency_id', Auth::user()->id]])->get();
+     //$trips = DB::table('trips')->where('id',$id)->get();
+     //$tripround = DB::table('triprounds')->where('trip_id',$id)->get();
+     //dd($trips);
+             $data = array(
+                 'travelagencies' => $travelagencies,
+                 'user' => $user,
+                 //'tripround' => $tripround
+             );
+    return view('profileuser.agency_userinfo',$data);
 }
+function myprofile($id) {
+    return view('profileuser.userside');
+
+}
+    function statement(){
+        if(Auth::user()->role != "travel agency"){
+            return redirect('/hello');
+        }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm != '1'){
+                 return redirect('/waitapprove');
+            }
+           
+        }
+        $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+        $trip = DB::table('trips')->where('travelagency_id',$travelagencies->id)->get();
+
+     
+
+        $data = array(
+
+            'travelagencies' => $travelagencies,
+            'trip' => $trip,
+
+        );
+
+
+        return view('statement',$data);
+    }
+    function reviewtrip($id){
+        if(Auth::user()->role != "travel agency"){
+            return redirect('/hello');
+        }
+        elseif(Auth::user()->role == "travel agency"){
+
+            if(Auth::user()->adminconfirm != '1'){
+                 return redirect('/waitapprove');
+            }
+           
+        }
+        $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+        $trip = DB::table('trips')->where('id',$id)->first();
+        $review = DB::table('reviewTrip')->where([['trip_id',$id],['status','=','0']])->orderBy('updated_at','desc')->get();
+        $r = DB::table('reviewTrip')->where('trip_id',$id)->orderBy('updated_at','desc')->get();
+        $alluser = $r->count();
+        $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
+        $trip = trip::where('id',$id)->first();
+        $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();
+        $one = $starone->count();
+        $startwo =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','2']])->get();
+        $two = $startwo->count();
+        $starthree =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','3']])->get();
+        $three = $starthree->count();
+        $starfour =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','4']])->get();
+        $four = $starfour->count();
+        $starfive =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','5']])->get();
+        $five = $starfive->count();
+        $data = array(
+            'travelagencies' =>$travelagencies,
+            'review' => $review,
+            'trip' =>$trip,
+            'one' =>$one,
+            'two' => $two,
+            'three' =>$three,
+            'four' => $four,
+            'five' => $five,
+            'alluser' => $alluser
+        );
+        return view('reviewtrip',$data);
+    }
+
+}
+

@@ -85,6 +85,7 @@ class RegisterController extends Controller
         ]);
        // $userId = DB::table('users')->where('role', $data['role'])->first();
         //return view('regis_agen', ['userId'=> $userId->id]);
+        
         $thisUser = User::findOrFail($user->id);
         $this->sendEmail($thisUser);
         return $user;
@@ -121,13 +122,20 @@ class RegisterController extends Controller
         return view('regis_agency',['userId'=> $userId]);
     }
 
-    public function sendEmailDone($email,$verifyToken){
-        $user = User::where(['email'=>$email,'verifyToken'=>$verifyToken])->first();
+    public function sendEmailDone($email,$verifyToken,$id){
+        $user = User::where(['email'=>$email,'verifyToken'=>$verifyToken,'id'=>$id])->first(); 
         if($user){
+
+            if($user->role == "user"){
             user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
             return view('email.sendSuccess');
+            }elseif($user->role == "travel agency"){
+            user::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['status'=>1,'verifyToken'=>NULL]);
+            $userId = $user->id;
+            return view('regis_agency',['userId'=>$userId]);
+            }
         }else{
-            return 'user not found';
+            return view('email.usernotfound');;
         }
     }
 }

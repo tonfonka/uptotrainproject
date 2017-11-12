@@ -1,11 +1,8 @@
-@extends('layouts.headprofile') @section('title', 'setting') @section('content')
-
-
-
+@extends('layouts.headprofile') 
+@section('title', 'setting') 
+@section('content')
 <link href="{{ URL::asset('/css/profile/blogttc.css') }}" rel="stylesheet" type="text/css" />
-
 <link href="{{ URL::asset('/css/profile_setting/navbar-affix.css') }}" rel="stylesheet" type="text/css" />
-
 <body data-spy="scroll" data-target=".scrollspy">
 	<div class="container">
 		<div class="row">
@@ -22,7 +19,7 @@
 					</li>
 				</ul>
 			</div>
-			<form class="form-horizontal" role="form" action="/profileuser" method="POST" name="id" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" action="/myprofile/{{Auth::user()->id}}" method="POST" name="id" enctype="multipart/form-data">
 				<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 				<div class="col-md-9">
 					<section id="edit-avatar" style="height:200px;">

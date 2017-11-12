@@ -9,7 +9,7 @@
   <meta name="author" content="">
 
   <!-- Bootstrap Core CSS -->
-  <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
+  <link href="{{ URL::asset('/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet" />
 
   <!-- Custom Fonts -->
   <link href="{{ URL::asset('/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@
     rel='stylesheet' type='text/css'>
   <link href="//fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
-
+  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -57,9 +57,10 @@
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-            <a class="navbar-brand page-scroll" href="home">Up To Train</a>
+              <span class="sr-only">Toggle navigation</span> Menu
+              <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="/">Up To Train</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,35 +68,57 @@
             <ul class="nav navbar-nav navbar-right" style="padding-top:0px;">
 
               <li>
-                <a href="agreement">Agreement</a>
+                <a href="/agreement">Agreement</a>
               </li>
               <li>
-                <a href="search">Search</a>
+                <a href="/search">Search</a>
               </li>
-              
-
-                @if(Auth::guest())
-            <li><a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a></li>
-            @else
-            <li><a href="profile"><span class="glyphicon glyphicon-menu-right"></span>welcome</a></li>
-            <li><a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" class="page-scroll btn btn-xl">
-                        LOG OUT
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form></li>
-            @endif
-              
+              @if(Auth::guest())
+              <li>
+                <a href="{{ url('/login')}}" class="page-scroll btn btn-xl">LOG IN</a>
+              </li>
+              @elseif(Auth::user()->role == 'user' )
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                {{Auth::user()->name}}<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="/profileuser">My profile</a>
+                  </li>
+                  <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">LOG OUT</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                    </form>
+                  </li>
+                </ul>
+              </li>
+              @elseif(Auth::user()->role =='travel agency')
+              <?php
+                    $agencyName = DB::table('travelagency')->where('user_id',Auth::user()->id)->get();
+                ?>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$agencyName[0]->agency_name_en}}<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                      <a href="/agency">My profile</a>
+                    </li>
+                    <li>
+                      <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">LOG OUT</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                      </form>
+                    </li>
+                  </ul>
+                </li>
+                @endif
             </ul>
-
           </div>
         </div>
         <!-- /.container-fluid -->
       </nav>
-
     </div>
     <!-- //header -->
     <div class="banner-text">
@@ -109,12 +132,12 @@
 
 
   @yield('content') 
-  @yield('tripuser')
+  @yield('tripuser') 
   @yield('schedule')
 
-  
+
   <!-- swipe box js -->
-  <script src="js/jquery.swipebox.min.js"></script>
+  <script src="{{asset('/js/jquery.swipebox.min.js')}}"></script>
   <script type="text/javascript">
     jQuery(function ($) {
       $(".swipebox").swipebox();
@@ -122,8 +145,8 @@
   </script>
   <!-- //swipe box js -->
   <!-- start-smooth-scrolling -->
-  <script type="text/javascript" src="js/move-top.js"></script>
-  <script type="text/javascript" src="js/easing.js"></script>
+  <script type="text/javascript" src="{{asset('/js/move-top.js')}}"></script>
+  <script type="text/javascript" src="{{asset('/js/easing.js')}}"></script>
   <script type="text/javascript">
     jQuery(document).ready(function ($) {
       $(".scroll").click(function (event) {
@@ -151,7 +174,8 @@
       });
     });
   </script>
-  <script src="js/bootstrap2.js"></script>
+ <script src="{{ asset('/js/jquery-2.2.3.min.js') }}"></script>
+
 </body>
 
 </html>

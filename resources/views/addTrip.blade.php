@@ -13,9 +13,10 @@
 </div>
 @endsection
 @section('content')
-  <link href="css/uptotrain.min.css" rel="stylesheet">
-  <link href="css/login.css" rel="stylesheet">
+ 
 <div class="container">
+ <link href="css/uptotrain.min.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
     <div class="row">
         <div class="wizard">
             <div class="wizard-inner">
@@ -53,7 +54,7 @@
             <script>
             
             </script>
-            <form role="form" action="/agency" method="POST" name="id" enctype="multipart/form-data">
+            <form role="form" action="/image" method="POST" name="id" enctype="multipart/form-data">
             
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                 <div class="tab-content">
@@ -62,40 +63,64 @@
                         <ul class="errorMessages"></ul>
                         <div class="step1">
                             <div class="row">
-                                <div class="col-md-6" style="padding-top:20px;padding-bottom:20px;">
-                                    <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Trip Name</label>
-                                    <input type="text" class="form-control" name="trips_name" id="tripName" placeholder="Trip Name" onChange="myTripname()" required>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12"style="padding-top:20px;padding-bottom:20px;">
+                                            <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Trip Name</label>
+                                            <input type="text" class="form-control" name="trips_name" id="tripName" placeholder="Trip Name" onChange="myTripname()" required>
+                                        </div>
+                                        <div class="col-md-12" style="padding-top:20px;padding-bottom:20px;">
+                                            <label for="tripdescription" style="margin-bottom:13px;font-size:1.3em;">Description</label>
+                                            <textarea rows="5" cols="10" class="form-control" name="trip_description" id="tripdescription" required data-validation-required-message="Please enter your description"
+                                             maxlength="999" style="resize:none" onChange="myTripdescription()"></textarea>
+                                            </div>
+                                    </div>
                                 </div>
-                                 <div class="col-md-5">
-                                        <strong>Image:</strong>
-                                        <input type="file" name="image" id="image" class="form-control">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6" style="padding-top:20px;padding-bottom:20px;">
+                                                <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
+                                                <input type="text" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>
+                                                </div>
 
-                                    </div> 
-                                <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
-                                    <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
-                                    <input type="text" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>
-                                </div>
-                                <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
-                                    <label for="tripNight" style="margin-bottom:13px;font-size:1.3em;">Night(s)</label>
-                                    <input type="text" class="form-control" name="trip_nnight" id="tripNight" placeholder="Night(s)" onChange="myTripnight()" required>
-                                </div>
-                                <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
-                                    <label for="tripMeal" style="margin-bottom:13px;font-size:1.3em;">Meal(s)</label>
-                                    <input type="text" class="form-control" name="trip_meal" id="tripMeal" placeholder="Meal(s)" onChange="myTripmeal()" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6" style="padding-bottom:20px;">
-                                    <label for="tripdescription" style="margin-bottom:13px;font-size:1.3em;">Description</label>
-                                    <textarea rows="5" cols="10" class="form-control" name="trip_description" id="tripdescription" required data-validation-required-message="Please enter your description"
-                                        maxlength="999" style="resize:none" onChange="myTripdescription()"></textarea>
-                                </div>
+                                                <div class="col-md-6" style="padding-top:20px;padding-bottom:20px;">
+                                                <label for="tripNight" style="margin-bottom:13px;font-size:1.3em;">Night(s)</label>
+                                                <input type="text" class="form-control" name="trip_nnight" id="tripNight" placeholder="Night(s)" onChange="myTripnight()" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <div class="col-md-3" style="padding-bottom:20px;">
-                                    <label for="tripPro" style="margin-bottom:13px;font-size:1.3em;">Province</label>
-                                    <input type="text" class="form-control" name="trip_province" id="tripPro" placeholder="จังหวัด" onChange="myTrippro()" required>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class ="row">
+                                                <div class="col-md-6">
+                                                <label for="tripMeal" style="margin-bottom:13px;font-size:1.3em;">Meal(s)</label>
+                                                <input type="text" class="form-control" name="trip_meal" id="tripMeal" placeholder="Meal(s)" onChange="myTripmeal()" required>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Image:</label>
+                                                <input type="file" name="image" id="image" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top:20px;padding-bottom:20px;">
+                                                <div class="col-md-6" style="padding-bottom:20px;">
+                                                    <label for="tripPro" style="margin-bottom:13px;font-size:1.3em;">Province</label>
+                                                    <input type="text" class="form-control" name="trip_province" id="tripPro" placeholder="จังหวัด" onChange="myTrippro()" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div> 
+                                
+                              
+                                
                             </div>
+                            
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">continue</button></li>
@@ -148,26 +173,26 @@
                             <div class="col-md-12" id='days'>
                                 <label>รายละเอียดทัวร์</label>
                                 <div class="row">
-                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">วันที่</label>
-                                        <input class="form-control" name='schedule_day[]' type="text" value="1" onChange="mySday()">
+                                        <input class="form-control" name='schedule_day[]' type="text"  onChange="mySday()">
                                     </div>
-                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">เวลา</label>
                                         <input class="form-control" name='schedule_time[]' type="time" onChange="myStime()">
                                     </div>
-                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">สถานที่</label>
                                         <input class="form-control" name='schedule_place[]' type="text" onChange="mySplace()">
                                     </div>
-                                    <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
+                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รายละเอียด</label>
                                         <input class="form-control" name='schedule_description[]' type="text" onChange="mySdes()">
                                     </div>
-                                    <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
+                                    <!-- <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รูปภาพกิจกรรม</label>
                                         <input class="form-control" name='pic[]' type="file" onChange="mySdes()">
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <label><button type="button" class="btn btn-primary" id='nextday'>เพิ่มกิจกรรมถัดไป</button></label>
@@ -180,9 +205,9 @@
                     <div class="tab-pane" role="tabpanel" id="complete">
                         <h3>Complete</h3>
                         <p>You have successfully completed all steps.</p>
-
+<div class="table-responsive text-center">
                         <table class="table">
-                            <tr >
+                            <tr>
                                 <td style="margin-bottom:13px;font-size:1.3em;"> ชื่อทริป : </td>
                                 <td id="name"></td>
                             </tr>
@@ -204,8 +229,44 @@
                                 <td id="tripdes"></td>
                             </tr>
                         </table>
+                        </div>
                         <hr>
-                        <div class="row" >
+                         <div class="table-responsive text-center">
+                            <table class="table">
+                            <tr>
+                                <th><label style="margin-bottom:13px;font-size:1em;width:150px;">วันเริ่มเดินทาง</label></td>
+                                <th><label style="margin-bottom:13px;font-size:1em;width:180px;">วันสิ้นสุดการเดินทาง</label></td>
+                                <th><label style="margin-bottom:13px;font-size:1em;width:150px;">ราคาของเด็ก</label></th>
+                                <th> <label style="margin-bottom:13px;font-size:1em;width:150px;">ราคาของผู้ใหญ่</label></th>
+                                <th><label style="margin-bottom:13px;font-size:1em;width:150px;">จำนวนที่นั่งทั้งหมด </label></th>
+                            </tr>
+                            <tr>
+                                <td><p id="startdate"></p></td>
+                                <td><p id="depdate"></p></td>
+                                <td><p id="pchild"></p></td>
+                                <td><p id="padult"></p></td>
+                                <td><p id="aseat"></p></td>
+                            </tr>
+                            </table>
+                        </div>
+                        <div class="table-responsive text-center">
+                            <table class="table">
+                            <tr>
+                                <th><label  style="margin-bottom:13px;font-size:1.3em;">วันที่</label></td>
+                                <th><label  style="margin-bottom:13px;font-size:1.3em;">เวลา</label></td>
+                                <th><label  style="margin-bottom:13px;font-size:1.3em;">สถานที่</label></th>
+                                <th> <label  style="margin-bottom:13px;font-size:1.3em;">รายละเอียด</label></th>
+                            </tr>
+                            <tr>
+                                <td> <p id="date"></p></td>
+                                <td> <p id="time"></p></td>
+                                <td><p id="pleace"></p></td>
+                                <td><p id="desa"></p></td>
+                               
+                            </tr>
+                            </table>
+                        </div>
+                        <!--<div class="row" >
                             <div class="col-md-3" >
                                 <label style="margin-bottom:13px;font-size:1.3em;width:150px;">วันเริ่มเดินทาง</label>
 
@@ -254,7 +315,7 @@
                                 <p id="desa"></p>
                             </div>
 
-                        </div>
+                        </div>-->
                         <br>
 
                         <ul class="list-inline pull-right">
