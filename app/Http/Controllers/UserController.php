@@ -13,6 +13,7 @@ use Response;
 use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use PDF;
+use App\Attraction;
 class UserController extends Controller
 {
     function __construct(){
@@ -37,6 +38,21 @@ class UserController extends Controller
         else
             return view ( 'tripuser_resultsearch' )->withMessage ( 'No Details found. Try to search again !' );
    }
+
+   function searchPlace(){
+    $place = Attraction::orderBy('attraction_id','desc')->paginate(15);
+    
+   return view('searchPlace',['place'=>$place]);
+}
+
+function searchPlaceResult(){
+   $p = Input::get ( 'p' );
+   $place = Attraction::where ( 'attraction_Name', 'LIKE', '%' . $p . '%' )->orWhere('Attraction_Province','LIKE','%' . $p . '%')->paginate(15);
+   if (count ( $place ) > 0)
+       return view ( 'searchPlaceResult' )->withDetails ( $place )->withQuery ( $p );
+   else
+       return view ( 'searchPlaceResult' )->withMessage ( 'No Details found. Try to search again !' );
+}
 
 
     function schedule($id){
@@ -297,6 +313,17 @@ class UserController extends Controller
             return redirect('/profileuser');
      }
             function profileagencysetting(){
+                if(Auth::user()->role != "travel agency"){
+                    return redirect('/hello');
+                }
+                elseif(Auth::user()->role == "travel agency"){
+        
+                    if(Auth::user()->adminconfirm == '0'){
+                         return redirect('/waitapprove');
+                    }else 
+                        return redirect('/agency');
+                   
+                }
 
                 $userId = Auth::user()->id;
                 $travelagencies =  DB::table('travelagency')->where('user_id', Auth::user()->id)->first();
