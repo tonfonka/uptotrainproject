@@ -399,7 +399,8 @@ function myprofile($id) {
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         $trip = DB::table('trips')->where('id',$id)->first();
         $review = DB::table('reviewTrip')->where([['trip_id',$id],['status','=','0']])->orderBy('updated_at','desc')->get();
-        $alluser = $review->count();
+        $r = DB::table('reviewTrip')->where('trip_id',$id)->orderBy('updated_at','desc')->get();
+        $alluser = $r->count();
         $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
         $trip = trip::where('id',$id)->first();
         $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();

@@ -96,7 +96,7 @@
       <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
       <input type="hidden" name="status" value="{{$reviews->id}}">
       <input type="hidden" name="trip_id" value="{{$trip->id}}">
-      <td><button type="submit" class="btn btn-danger" name="status" value="{{$reviews->id}}">BAN</button></td>
+      <td><button type="submit" class="btn btn-danger" name="status" value="{{$reviews->id}}">Report</button></td>
       </tr>
       </form>
 
