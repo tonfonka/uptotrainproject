@@ -43,13 +43,13 @@ class UserController extends Controller
     $place = Attraction::orderBy('attraction_id','desc')->paginate(15);
     
    return view('searchPlace',['place'=>$place]);
-}
+    }
 
 function searchPlaceResult(){
-   $p = Input::get ( 'p' );
-   $place = Attraction::where ( 'attraction_Name', 'LIKE', '%' . $p . '%' )->orWhere('Attraction_Province','LIKE','%' . $p . '%')->paginate(15);
+   $a = Input::get ( 'a' );
+   $place =DB::table('attraction')->where ( 'attraction_Name', 'LIKE', '%' . $a . '%' )->orWhere('Attraction_Province','LIKE','%' . $a . '%')->paginate(15);
    if (count ( $place ) > 0)
-       return view ( 'searchPlaceResult' )->withDetails ( $place )->withQuery ( $p );
+       return view ( 'searchPlaceResult' )->withDetails ( $place )->withQuery ( $a );
    else
        return view ( 'searchPlaceResult' )->withMessage ( 'No Details found. Try to search again !' );
 }

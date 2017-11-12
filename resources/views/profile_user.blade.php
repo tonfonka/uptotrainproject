@@ -136,16 +136,16 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
-                                    <a href="/schedules/{{$tripname[0]->id}}">
-                                        <p>ชื่อทริป : {{$tripname[0]->trips_name}}</p>
-                                    </a>
+                                   
+                                        <p> <a href="/schedules/{{$tripname[0]->id}}">ชื่อทริป : {{$tripname[0]->trips_name}} </a></p>
+                                   
                                     <p>วันเริ่มเดินทาง : {{date('d/m/Y', strtotime($round[0]->start_date))}}</p>
                                     <p>วันสิ้นสุดการเดินทาง :{{date('d/m/Y', strtotime($round[0]->departure_date))}}</p>
-                                    <a href="/paysum/{{$book->id}}">
-                                        <p>จำนวนคนที่จอง : {{$book->number_booking}}</p>
-                                    </a>
+                                    
+                                        <p><a href="/paysum/{{$book->id}}">จำนวนคนที่จอง : {{$book->number_booking}} </a></p>
+                                   
                                     <p>วันเวลาที่จอง : {{date('d/m/Y', strtotime($book->booking_time))}}</p>
-                                    <a href="/schedulepdf/{{$tripname[0]->id}}"><p>พิมพ์ตารางกิจกรรม</p></a>
+                                    <p><a href="/schedulepdf/{{$tripname[0]->id}}"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  พิมพ์ตารางกิจกรรม</a></p>
                                 </div>
                                 <!-- card reveal -->
                             </div>
