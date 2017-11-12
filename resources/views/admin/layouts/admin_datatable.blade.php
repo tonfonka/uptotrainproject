@@ -123,6 +123,9 @@
                 <li>
                   <a href="#">Trip Manage</a>
                 </li>
+                <li>
+                  <a href="#">Blacklist</a>
+                </li>
               </ul>
               <!-- /.nav-second-level -->
             </li>
@@ -133,10 +136,10 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="flot.html">Blacklist User</a>
+                  <a href="#">User Manage</a>
                 </li>
                 <li>
-                  <a href="morris.html">Delete comment</a>
+                  <a href="#">Blacklist</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

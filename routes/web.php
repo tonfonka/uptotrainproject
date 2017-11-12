@@ -190,3 +190,13 @@ Route::get('/agencymanage', function () {
 Route::get('/viewagency', function () {
 	return view('admin.admin_travelagency_view');
 });
+
+Route::get('/usermanage', function () {
+	return view('admin.admin_user_manage');
+});
+Route::get('/userblacklist', function () {
+	return view('admin.admin_user_blacklist');
+});
+Route::get('/viewuser', function () {
+	return view('admin.admin_user_view');
+});
