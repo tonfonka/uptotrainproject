@@ -26,7 +26,7 @@ Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
 
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
-Route::post('/agency', 'UserController@regisagency');
+Route::post('/waitapprove', 'UserController@regisagency');
 //Route::post('/agency','tripAgencyController@tripstore');
 Route::post('/image','tripAgencyController@tripstore');
 Route::get('/image','imageController@viewimage');
@@ -166,22 +166,21 @@ Route::get('/schedulepdf/{id}','pdfController@schedulepdf');
 });
 Route::post('/contactus','adminController@contactus');
 Route::get('/review/{id}','tripAgencyController@reviewtrip');
+Route::post('/review/{id}','adminController@bancomment');
 
 
-
-
-Route::get('/admin/approve', function () {
-	return view('admin.admin_approve');
-});
-Route::get('/admin/message/new', function () {
-	return view('admin.admin_message_new');
-});
-Route::get('/admin/message/old', function () {
-	return view('admin.admin_message_old');
-});
-Route::get('/admin','adminController@index');
+Route::get('/ad','adminController@index');
+Route::get('/messagenew','adminController@usercontact');
+Route::post('/messagenew','adminController@readcontact');
+Route::get('/messageold','adminController@messageold');
 Route::get('/approveagency','adminController@approveagency');
 Route::post('/approveagency','adminController@approveagencystore');
+Route::get('/denyeagency',function(){
+	return redirect('/approveagency');
+});
+Route::post('/denyeagency','adminController@denyagencystore');
+
+
 
 
 Route::get('/agencymanage', function () {

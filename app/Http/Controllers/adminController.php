@@ -26,6 +26,7 @@ use PDF;
 use Yajra\Datatables\Facades\Datatables;
 use App\User;
 use App\contactus;
+use App\review;
 
 class adminController extends Controller
 {
@@ -47,26 +48,35 @@ class adminController extends Controller
             'contact' =>$contact,
         );
 
-        return view('');
+        return view('admin.admin_message_new',$data);
     }
-    function readcontact(Request $request){
-        $contact = User::find($id);
-        $contact->admin_read = '1';
-        $user->save();
+    function messageold(){
+        $contact = DB::table('contactUS')->where('admin_read','1')->get();
         
         $data = array(
             'contact' =>$contact,
         );
 
-        return view('');
+        return view('admin.admin_message_old',$data);
+    }
+    function readcontact(Request $request){
+        $id = $request->input('admin_read');
+        $contact = contactus::find($id);
+        $contact->admin_read = '1';
+        $contact->save();
+        
+        $data = array(
+            'contact' =>$contact,
+        );
+
+        return redirect('/messagenew');
     }
 
 
     function approveagency(){
         $agencys = DB::table('users')
         ->join('travelagency','travelagency.user_id','=','users.id')
-        ->where([['users.role','travel agency'],['users.adminconfirm','=','0']])->get();
-        
+        ->where([['users.role','=','travel agency'],['users.adminconfirm','=','0']])->get();
         $data = array(
             'agencys' =>$agencys,
         );
@@ -74,16 +84,29 @@ class adminController extends Controller
 
     }
     function approveagencystore(Request $request){
-        $id = $request->user_id;
-        //dd($id);
-        $user = User::find($id);
+        $id = $request->input('user_id');
+        $user = User::find($request->user_id);
         $user->adminconfirm = '1';
         $user->save();
         return redirect('/approveagency');
     }
-    function index(){
-        
-        $agency = DB::table('users')->where([['role','travel agency'],['adminconfirm','=','0']])->get();
+    function denyagencystore(Request $request){
+        $id = $request->input('user_id');
+        $user = User::find($request->user_id);
+        $user->adminconfirm = '3';
+        $user->save();
+        return redirect('/approveagency');
+        // public function delete($learner_schedule_id) {
+        //     DB::delete('delete from learner_schedule_time WHERE learner_schedule_id = ?', [$learner_schedule_id]);
+    
+        //     DB::delete('delete from learner_schedule WHERE learner_schedule_id = ?', [$learner_schedule_id]);
+            
+        //     return redirect(url('learnercoursestatus'));
+        }
+    function index(){ 
+        $agency = DB::table('users')
+        ->join('travelagency','travelagency.user_id','=','users.id')
+        ->where([['users.role','=','travel agency'],['users.adminconfirm','=','0']])->get();
         $countagency = $agency->count();
         $countcontact = DB::table('contactUS')->where('admin_read','0')->count();
         $data = array(
@@ -92,6 +115,20 @@ class adminController extends Controller
             'countcontact' => $countcontact,
         );
         return view('admin.admin_index',$data);
+    }
+    function bancomment(Request $request,$id){
+
+        $id = $request->input('status');
+        $tripid = $request->input('trip_id');
+        $review = review::find($id);
+        $review->status = '1';
+        $review->save();
+
+        return redirect()->action(
+
+            'tripAgencyController@reviewtrip', ['tripid' => $tripid]
+        );
+        
     }
 
 }
