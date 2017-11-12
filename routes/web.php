@@ -174,5 +174,10 @@ Route::post('/messagenew','adminController@readcontact');
 Route::get('/messageold','adminController@messageold');
 Route::get('/approveagency','adminController@approveagency');
 Route::post('/approveagency','adminController@approveagencystore');
+Route::get('/denyeagency',function(){
+	return redirect('/approveagency');
+});
+Route::post('/denyeagency','adminController@denyagencystore');
+
 
 

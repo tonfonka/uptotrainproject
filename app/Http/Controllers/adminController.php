@@ -75,7 +75,7 @@ class adminController extends Controller
     function approveagency(){
         $agencys = DB::table('users')
         ->join('travelagency','travelagency.user_id','=','users.id')
-        ->where([['users.role','=','travel%'],['users.adminconfirm','=','0']])->get();
+        ->where([['users.role','=','travel agency'],['users.adminconfirm','=','0']])->get();
         $data = array(
             'agencys' =>$agencys,
         );
@@ -89,11 +89,24 @@ class adminController extends Controller
         $user->save();
         return redirect('/approveagency');
     }
+    function denyagencystore(Request $request){
+        $id = $request->input('user_id');
+        $user = User::find($request->user_id);
+        $user->adminconfirm = '3';
+        $user->save();
+        return redirect('/approveagency');
+        // public function delete($learner_schedule_id) {
+        //     DB::delete('delete from learner_schedule_time WHERE learner_schedule_id = ?', [$learner_schedule_id]);
+    
+        //     DB::delete('delete from learner_schedule WHERE learner_schedule_id = ?', [$learner_schedule_id]);
+            
+        //     return redirect(url('learnercoursestatus'));
+        }
     function index(){
         
         $agency = DB::table('users')
         ->join('travelagency','travelagency.user_id','=','users.id')
-        ->where([['users.role','=','travel%'],['users.adminconfirm','=','0']])->get();
+        ->where([['users.role','=','travel agency'],['users.adminconfirm','=','0']])->get();
         $countagency = $agency->count();
         $countcontact = DB::table('contactUS')->where('admin_read','0')->count();
         $data = array(

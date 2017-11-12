@@ -11,8 +11,6 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                <form role="form" action="/approveagency" method="POST" name="id" enctype="multipart/form-data"> 
-                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                     <tr>
                                         <th>ชื่อบริษัทอังกฤษ</th>
                                         <th>ชื่อบริษัทภาษาไทย</th>
@@ -40,13 +38,19 @@
                                         <td>{{$agency->agency_tel1}}</td>
                                         <td>{{$agency->agency_tel2}}</td>
                                         <td>{{$agency->agency_email}}</td>
-                                        
-                                        <td><input type="hidden" name="user_id" value="{{$agency->user_id}}">
-                                        <button type="submit" class="btn btn-success" name="user_id" value="{{$agency->user_id}}" >
+                                        <form role="form" action="/approveagency" method="POST" name="id" enctype="multipart/form-data"> 
+                                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                            <input type="hidden" name="user_id" value="{{$agency->user_id}}">
+                                        <td><button type="submit" class="btn btn-success" name="user_id" value="{{$agency->user_id}}" >
                                         Approve
                                         </button> </td>
-                                       <td> <button type="button" class="btn btn-danger">Deny</button></td>
+                                        </form>
+                                        <form role="form" action="/denyeagency" method="POST" name="id" enctype="multipart/form-data"> 
+                                             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                            <input type="hidden" name="user_id" value="{{$agency->user_id}}">
+                                       <td><button type="submit" class="btn btn-danger" name="user_id" value="{{$agency->user_id}}">Deny</button></td>
                                     </tr>
+                                    </form>
                                     @endforeach
                                 </thead>
                                 </table>
