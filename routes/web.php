@@ -95,7 +95,13 @@ Route::get('/checkregis', function(){
 		if(Auth::user()->role == "admin"){
 			return redirect('/home');
 		}else if(Auth::user()->role == "travel agency"){
-			return redirect ('/regisagency');
+			if(Auth::user()->adminconfirm == '0'){
+				//ส่งไปหน้าสักหน้นุงแล้วบอกว่ารอการ approve จาก admin 
+				return redirect('/waitapprove');
+			}
+			else {
+				return redirect('/agency');
+			}
 		}else if(Auth::user()->role == "user"){
 			return redirect('/profileuser');
 		}
@@ -179,28 +185,41 @@ Route::get('/denyeagency',function(){
 	return redirect('/approveagency');
 });
 Route::post('/denyeagency','adminController@denyagencystore');
+Route::get('/deny','adminController@deny');
+Route::post('/deny','adminController@approveagencystore');
 
+// Route::get('/agencymanage', function () {
+// 	return view('admin.admin_travelagency_manage');
+// });
+// Route::get('/viewagency', function () {
+// 	return view('admin.admin_travelagency_view');
+// });
 
-
-
-Route::get('/agencymanage', function () {
-	return view('admin.admin_travelagency_manage');
-});
-Route::get('/viewagency', function () {
-	return view('admin.admin_travelagency_view');
-});
-
-Route::get('/usermanage', function () {
-	return view('admin.admin_user_manage');
-});
+// Route::get('/usermanage', function () {
+// 	return view('admin.admin_user_manage');
+// });
 Route::get('/userblacklist', function () {
 	return view('admin.admin_user_blacklist');
 });
-Route::get('/viewuser', function () {
-	return view('admin.admin_user_view');
-});
+// Route::get('/viewuser', function () {
+// 	return view('admin.admin_user_view');
+// });
 Route::get('/agencymanage','adminController@travelagency');
 Route::get('/viewagency/{id}','adminController@viewagency');
+Route::get('/agencymanage','adminController@travelagency');
+Route::get('/viewagency/{id}','adminController@viewagency');
+Route::get('/viewuser/{id}','adminController@viewuser');
+Route::get('/usermanage','adminController@usermanage');
+
+Route::get('/reportcomment','adminController@reportcomment');
+Route::post('/reportcomment','adminController@ignorecomment');
+
+Route::get('/deletecomment',function(){
+		return redirect('/reportcomment');
+});
+
+Route::post('/deletecomment','adminController@deletecomment');
+Route::get('/trashcomment','adminController@trashcomment');
 
 // function () {
 // 	return view('admin.admin_travelagency_manage');

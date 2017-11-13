@@ -66,8 +66,9 @@ function searchPlaceResult(){
         $sumbook = $booking->sum('number_booking');
         $n =DB::table('trips')->select('travelagency_id')->where('id',$id)->pluck('travelagency_id');
         $agen = DB::table('travelagency')->where('id',$n)->get();
-        $review = DB::table('reviewTrip')->where('trip_id',$id)->get();
-        $alluser = $review->count();
+        $reviews = DB::table('reviewTrip')->where('trip_id',$id)->get();
+        $review = DB::table('reviewTrip')->where([['trip_id',$id],['status','=','0']])->get();
+        $alluser = $reviews->count();
         $re = DB::table('reviewTrip')->select('user_id')->where('trip_id',$id)->pluck('user_id');
         $trip = trip::where('id',$id)->first();
         $starone =  DB::table('reviewTrip')->where([['trip_id',$id],['rate','=','1']])->get();
@@ -184,7 +185,7 @@ function searchPlaceResult(){
             "agency_description"=>$request->input("agency_description"),
             "user_id"=>$request->input('user_id')
             ]);
-            return redirect('/agency');
+            return redirect('/waitapprove');
     }
     function profileuser(){
         if(Auth::user()->role != "user"){
@@ -286,9 +287,6 @@ function searchPlaceResult(){
             $imgName = 'review_'.str_random(10).$request->file('image')->getClientOriginalName();
             $request->file('image')->move($path,$imgName);
 
-            $path = public_path('images');
-            $imgName = 'review_'.str_random(10).$request->file('image')->getClientOriginalName();
-            $request->file('image')->move($path,$imgName);
 
                      DB::table('reviewTrip')
                      ->insertGetId([ 
@@ -320,9 +318,7 @@ function searchPlaceResult(){
         
                     if(Auth::user()->adminconfirm == '0'){
                          return redirect('/waitapprove');
-                    }else 
-                        return redirect('/agency');
-                   
+                    }
                 }
 
                 $userId = Auth::user()->id;

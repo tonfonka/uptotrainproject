@@ -124,7 +124,7 @@
                   <a href="#">Trip Manage</a>
                 </li>
                 <li>
-                  <a href="#">Blacklist</a>
+                  <a href="/deny">Blacklist</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->
@@ -136,10 +136,25 @@
               </a>
               <ul class="nav nav-second-level">
                 <li>
-                  <a href="#">User Manage</a>
+                  <a href="/usermanage">User Manage</a>
                 </li>
                 <li>
                   <a href="#">Blacklist</a>
+                </li>
+              </ul>
+              <!-- /.nav-second-level -->
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa  fa-child fa-fw"></i> Report
+                <span class="fa arrow"></span>
+              </a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <a href="/reportcomment">Comment</a>
+                </li>
+                <li>
+                  <a href="/trashcomment">Trash</a>
                 </li>
               </ul>
               <!-- /.nav-second-level -->

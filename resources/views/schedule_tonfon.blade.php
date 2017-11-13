@@ -42,14 +42,14 @@
             <h1>{{ $trip->trips_name }}</h1>
             <!--<p class="item-intro text-muted">จังหวัด<br>โดย "$บริษัททัวร์"</p>-->
             @if($trip->trip_nnight > 0)
-                                                            ระยะเวลา {{$trip->trip_nday}} วัน {{$trip->trip_nnight}} คืน
+                                                            <p class="item-intro text-muted">ระยะเวลา {{$trip->trip_nday}} วัน {{$trip->trip_nnight}} คืน</p>
                                                             @else
-                                                            ระยะเวลา {{$trip->trip_nday}} วัน
+                                                            <p class="item-intro text-muted">ระยะเวลา {{$trip->trip_nday}} วัน</p>
                                                             @endif
             
             <a href="/profileagency/{{$trip->travelagency_id}}"><p>บริษัท {{ $agen[0]->agency_name_en}}</p></a>
-            <img class="img-responsive img-centered" src="/images/{{$trip->image}}" alt="">
-            <p style="padding-top:20px;">{{$trip->trip_description}}</p>
+            <img class="img-responsive img-centered" style="height:400px;width:750px;" src="/images/{{$trip->image}}" alt="">
+            <p class="text-muted" style="padding-top:20px;">{{$trip->trip_description}}</p>
             <br><br>
             <div class="container">
                 <div class="row">
@@ -72,20 +72,31 @@
                                 <li>
                                     @endif
                                     <div class="timeline-image">
-                                        <img class="img-circle img-responsive" src="/img/about/1.jpg" alt="">
+                                        
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{ $schedule->schedule_time }}</h4>
+  @if($schedule->schedule_day == 1)
+<h4>เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
+                                    @else
+                                    <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
+                                    @endif
+
+                                           
                                             <h4 class="subheading">{{ $schedule->schedule_place }}</h4>
                                         </div>
                                         <div class="timeline-body">
                                             <p class="text-muted">{{ $schedule->schedule_description }}</p>
                                         </div>
                                     </div>
-                                </li>
+                                 </li>
                                 @endforeach
-                                
+                               <li class="timeline-inverted">
+                                <div class="timeline-image2">
+                                    <img class="img-circle img-responsive" src="/img/about/1.jpg" alt="">
+                                   
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>

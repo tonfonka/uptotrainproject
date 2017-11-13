@@ -23,7 +23,7 @@
                                         <th>E-mail</th>
                                         <th>Phone</th>
                                         <th>Message</th>
-                                        
+                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,7 +34,7 @@
                                     <td>{{$contacts->email}}</td>
                                     <td class="center">{{$contacts->phone}}</td>
                                     <td class="center">{{$contacts->description}}</td>
-                                    <td><button class="btn btn-success" id="{{$contacts->id}}" value="{{$contacts->id}}">read</button></td>
+                                    <td><button class="btn btn-success" >alraedy read </button></td>
                                 </tr>
                                 @endforeach
                                     
