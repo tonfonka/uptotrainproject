@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
         @if(session('status'))
-<div class="alert alert-info">
-    <strong>{{session('status')}}</strong> 
+<div class="alert alert-info" style="font-size:18px;">
+    {{session('status')}}
   </div>
 
 @endif

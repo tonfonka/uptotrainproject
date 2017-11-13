@@ -11,90 +11,138 @@
 </head>
 
 <body>
-
   <div class="container">
-    <h1 class="well">Registration Form</h1>
-    <div class="col-lg-12 well">
-      <div class="row">
-        <form>
-          <div class="col-sm-12" action="/agency" method="POST">
-            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> {{ csrf_field() }}
-            <div class="row">
-              <div class="col-sm-6 form-group">
-                <label>ชื่อบริษัทภาษาไทย</label>
-                <input type="text" class="form-control" id="agency_name_th" name="agency_name_th">
+    <!-- add -->
+    <form action="/waitapprove" method="POST" role="form" name="id" enctype="multipart/form-data">
+      <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"> {{ csrf_field() }}
+      <div id="page-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header">Register Travel Agency</h1>
+          </div>
+          <!-- ./col lg 12 -->
+          <div class="col-lg-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                Plase fill information this form.
               </div>
-              <div class="col-sm-6 form-group">
-                <label>ชื่อบริษัทภาษาอังกฤษ</label>
-                <input type="text" id="agency_name_en" name="agency_name_en" class="form-control">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Address</label>
-              <textarea id="agency_address" name="agency_address" rows="3" class="form-control"></textarea>
-            </div>
-            <div class="row">
-              <div class="col-sm-4 form-group">
-                <label>province</label>
-                <input type="text" id="agency_province" name="agency_province" class="form-control">
-              </div>
-
-              <div class="col-sm-4 form-group">
-                <label>zipcode</label>
-                <input type="text" id="agency_zipcode" name="agency_zipcode" maxlength="5" class="form-control">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6 form-group">
-                <label>Telephone Number 1</label>
-                <input type="text" id="agency_tel1" name="agency_tel1" class="form-control">
-              </div>
-              <div class="col-sm-6 form-group">
-                <label>Telephone Number 2</label>
-                <input type="text" id="agency_tel2" name="agency_tel2" class="form-control">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6 form-group">
-                <label>Fax</label>
-                <input type="text" id="agency_fax" name="agency_fax" class="form-control">
-              </div>
-              <div class="col-sm-6 form-group">
-                <label>Email</label>
-                <input type="text" id="agency_email" name="agency_email" class="form-control">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6 form-group">
-                <label>Facebook</label>
-                <input type="text" id="agency_fb" name="agency_fb" class="form-control" value="www.facebook.com/">
-              </div>
-              <div class="col-sm-6 form-group">
-                <label>Website</label>
-                <input type="text" id="agency_web" name="agency_web" value="http://" class="form-control">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6 form-group">
-                <input type="checkbox" class="" id="reg_agree" name="reg_agree">
-                <label for="reg_agree">i agree with
-                  <a href="#">terms</a>
-              </div>
-              <div class="col-sm-6 form-group">
-                <div class="etc-login-form">
-                  <p>already have an account?
-                    <a href="/login">login here</a>
-                  </p>
+              <!-- ./div class panel-heading -->
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <form role="form-group">
+                      <form>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label>Name(Thai)</label>
+                              <input type="text" class="form-control" id="agency_name_th" name="agency_name_th" placeholder="Name(Thai)">
+                            </div>
+                            <div class="form-group">
+                              <label>Name(Eng)</label>
+                              <input type="text" id="agency_name_en" name="agency_name_en" class="form-control" placeholder="Name(ENG)">
+                            </div>
+                            <!--<div class="form-group">
+                              <label for="exampleTextarea">Description</label>
+                              <textarea class="form-control" id="agency_description" rows="5"></textarea>
+                            </div>-->
+                            <div class="form-group">
+                              <label>Email </label>
+                              <input type="text" id="agency_email" name="agency_email" class="form-control" placeholder="agency_email">
+                            </div>
+                            <div class="form-group">
+                              <label>License</label>
+                              <input ctype="text" class="form-control" id="agency_license" name="agency_license">
+                            </div>
+                            <div class="form-group">
+                              <label>Tax ID </label>
+                              <input type="text" class="form-control" id="agency_tax_id" name="agency_tax_id" placeholder="agency_tax_id">
+                            </div>
+                            <div class="form-group">
+                              <label>IATA</label>
+                              <input type="text" class="form-control" id="agency_iata_no" name="agency_iata_no" placeholder="IATA No">
+                            </div>
+                            <div class="form-group">
+                              <label>Fax </label>
+                              <input type="text" class="form-control" id="agency_fax" name="agency_fax" placeholder="agency_fax">
+                            </div>
+                            <div class="form-group">
+                              <label>Province</label>
+                              <input type="text" id="agency_province" name="agency_province" class="form-control" placeholder="agency_province">
+                            </div>
+                            <div class="form-group">
+                              <label>Zipcode</label>
+                              <input type="text" id="agency_zipcode" name="agency_zipcode" maxlength="5" class="form-control" placeholder="agency_zipcode">
+                            </div>
+                          </div>
+                          <!-- ./div class col-lg-6 -->
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label>Tel 1 </label>
+                              <input type="text" id="agency_tel1" name="agency_tel1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                              <label>Tel 2 </label>
+                              <input type="text" id="agency_tel2" name="agency_tel2" class="form-control">
+                            </div>
+                            <div class="form-group">
+                              <label>Website </label>
+                              <input type="text" id="agency_web" name="agency_web" value="http://" class="form-control">
+                            </div>
+                            <div class="form-group">
+                              <label>Facebook</label>
+                              <input type="text" id="agency_fb" name="agency_fb" class="form-control" value="www.facebook.com/">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleTextarea">Address</label>
+                              <textarea id="agency_address" name="agency_address" rows="9" class="form-control"></textarea>
+                            </div>
+                            
+                          </div>
+                          <!-- ./div col-lg-6 -->
+                        </div>
+                        <!-- ./div class row -->
+                      </form>
+                      <!-- ./form -->
+                  </div>
+                  <!-- ./div class col-lg-12 -->
+                </div>
+                <!-- ./div class row -->
+                <br>
+                <div class="form-group login-group-checkbox">
+                  <input type="checkbox" class="" id="reg_agree" name="reg_agree">
+                  <label for="reg_agree">i agree with
+                    <a href="#">terms</a>
+                  </label>
                 </div>
               </div>
+              <input type="hidden" name="user_id" value="{{ $userId }}">
+              <button type="submit" class="login-button" name="user_id" value="{{ $userId }}" >Submit</button>
             </div>
+            <div class="etc-login-form">
+              <p>already have an account?
+                <a href="/login">login here</a>
+              </p>
+            </div>
+              
+              </div>
+              <!-- ./div class panel-body -->
+              <div>
+                <!-- ./div class panel-default -->
+              </div>
+              <!-- ./div class col-lg-12 body -->
+            </div>
+            <!-- /.row -->
           </div>
-          <button type="button" class="btn btn-lg btn-info">Submit</button>
-      
+        </div>
+      </div>
+
       </form>
-    </div>
   </div>
-  </div>
+  <!-- /#page-wrapper -->
+
+
+
   <!--<div class="container">
     <!-- LOGIN FORM 
 

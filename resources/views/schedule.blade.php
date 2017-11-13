@@ -27,7 +27,6 @@
             ['4 ดาว',{{$four}}],
             ['5 ดาว',{{$five}}],
         ]);
-
         var options = {
             
           title: 'คะแนนรวม จากผู้ใช้ทั้งหมด' ,
@@ -42,7 +41,6 @@
           
           
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
       }
@@ -226,7 +224,6 @@ autoplay: 2500,
            
         }
     });
-
 //# sourceURL=pen.js
 </script>
 
@@ -299,7 +296,6 @@ autoplay: 2500,
 @foreach($review as $reviews)
 <?php
     $userName = DB::table('users')->where('id',$reviews->user_id)->get();
-
 ?>
 
 @isset($reviews->rate_des)
