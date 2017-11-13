@@ -354,6 +354,7 @@ autoplay: 2500,
 </div><!-- /col-sm-5 -->
 @endisset
 @endforeach
+
 </div><!-- /row -->
 
 </div><!-- /container -->

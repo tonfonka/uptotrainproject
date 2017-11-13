@@ -61,7 +61,10 @@
                                     
                                         
                                     <a  href="/schedules/{{$trip->id}}" name="{{$trip->id}}"><h3 style="color:#E4AF01;">{{$trip->trips_name}}</h3></a>
+
+                                    <div class="pull-right">
                                         <a href="/review/{{$trip->id}}"><h4>ดูความคิดเห็น({{$reviewall}})</h4></a>
+                                        </div>
                                     </div>
                                 <div>
                                 <div class="table-responsive text-center">
@@ -133,9 +136,9 @@
             <!-- Show trip here-->
         </div>
     </div>
-    <!-- Page Content -->
+    <!-- Page Content 
     <div class="container">
-          <!-- Marketing Icons Section -->
+          <!-- Marketing Icons Section 
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
@@ -176,7 +179,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
   
 </div>
 <div class="clearfix"></div>
