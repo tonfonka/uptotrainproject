@@ -96,7 +96,7 @@
                                     <td></td>
                                     <td></td>
                                     <td align="right">
-                                        <img src="/img/logo.png" style="width:75%; max-width:150px;"><br>รายการการสั่งซื้อที่ :
+                                        <img src="{{asset('/img/logo.png')}}" style="width:75%; max-width:150px;"><br>รายการการสั่งซื้อที่ :
                                         {{($book->id)}} <br> สั่งซื้อวันที่ : {{date('d/m/Y', strtotime($book->booking_time))}} เวลา
                                         : {{date('H:i', strtotime($book->booking_time))}} น.
                                     </td>
