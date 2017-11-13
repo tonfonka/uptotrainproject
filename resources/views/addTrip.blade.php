@@ -72,7 +72,7 @@
                                         <div class="col-md-12" style="padding-top:20px;padding-bottom:20px;">
                                             <label for="tripdescription" style="margin-bottom:13px;font-size:1.3em;">Description</label>
                                             <textarea rows="5" cols="10" class="form-control" name="trip_description" id="tripdescription" required data-validation-required-message="Please enter your description"
-                                             maxlength="999" style="resize:none" onChange="myTripdescription()"></textarea>
+                                             maxlength="999" style="resize:none" onChange="myTripdescription()" required></textarea>
                                             </div>
                                     </div>
                                 </div>
@@ -82,12 +82,12 @@
                                             <div class="row">
                                                 <div class="col-md-6" style="padding-top:20px;padding-bottom:20px;">
                                                 <label for="tripDay" style="margin-bottom:13px;font-size:1.3em;">Day(s)</label>
-                                                <input type="text" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>
+                                                <input type="number" min="1" class="form-control" name="trip_nday" id="tripDay" placeholder="Day(s)" onChange="myTripDay()" required>
                                                 </div>
 
                                                 <div class="col-md-6" style="padding-top:20px;padding-bottom:20px;">
                                                 <label for="tripNight" style="margin-bottom:13px;font-size:1.3em;">Night(s)</label>
-                                                <input type="text" class="form-control" name="trip_nnight" id="tripNight" placeholder="Night(s)" onChange="myTripnight()" required>
+                                                <input type="number" min="1" class="form-control" name="trip_nnight" id="tripNight" placeholder="Night(s)" onChange="myTripnight()" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,12 +98,12 @@
                                             <div class ="row">
                                                 <div class="col-md-6">
                                                 <label for="tripMeal" style="margin-bottom:13px;font-size:1.3em;">Meal(s)</label>
-                                                <input type="text" class="form-control" name="trip_meal" id="tripMeal" placeholder="Meal(s)" onChange="myTripmeal()" required>
+                                                <input type="number" class="form-control" name="trip_meal" id="tripMeal" placeholder="Meal(s)" onChange="myTripmeal()" required>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                 <label for="tripName" style="margin-bottom:13px;font-size:1.3em;">Image:</label>
-                                                <input type="file" name="image" id="image" class="form-control">
+                                                <input type="file" name="image" id="image" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="row" style="padding-top:20px;padding-bottom:20px;">
@@ -132,28 +132,28 @@
                             <div class="row" id='controls'>
                                 <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;" for="sday">วันเริ่มเดินทาง</label>
-                                    <input class="form-control start_day" name="start_date[]" id="sday"type="date" oninvalid="this.setCustomValidity('กรุณากรอกวันเริ่มเดินทาง')"
-                                        placeholder="วันเริ่มเดินทาง"  min="2017-08-28" onChange="myStartdate()">
+                                    <input class="form-control start_day" name="start_date[]" id="sday"type="date" min="2017-11-13" oninvalid="this.setCustomValidity('กรุณากรอกวันเริ่มเดินทาง')"
+                                        placeholder="วันเริ่มเดินทาง"  min="2017-08-28" onChange="myStartdate()" required>
                                 </div>
                                 <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;" for="eday">วันสิ้นสุดการเดินทาง</label>
-                                    <input class="form-control Departure_Date" name="departure_date[]" type="date" id="eday" oninvalid="this.setCustomValidity('กรุณากรอกวันสิ้นสุดการเดินทาง')"
-                                        oninput="setCustomValidity('')" placeholder="วันสิ้นสุดการเดินทาง" min="2017-08-28" onChange="myDepardate()">
+                                    <input class="form-control Departure_Date" name="departure_date[]" type="date" id="eday" min="2017-11-13" oninvalid="this.setCustomValidity('กรุณากรอกวันสิ้นสุดการเดินทาง')"
+                                        oninput="setCustomValidity('')" placeholder="วันสิ้นสุดการเดินทาง" min="2017-08-28" onChange="myDepardate()" required>
                                 </div>
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;">ราคาของเด็ก</label>
-                                    <input type="text" class="form-control" name="price_child[]" oninvalid="this.setCustomValidity(ราคาเด็ก)" oninput="setCustomValidity('')"
-                                        placeholder="ราคาของเด็ก" onChange="myPchild()">
+                                    <input type="number" class="form-control" name="price_child[]" min="20" oninvalid="this.setCustomValidity(ราคาเด็ก)" oninput="setCustomValidity('')"
+                                        placeholder="ราคาของเด็ก" onChange="myPchild()" required>
                                 </div>
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;">ราคาของผู้ใหญ่</label>
-                                    <input type="text" class="form-control" name="price_adult[]" oninvalid="this.setCustomValidity('กรุณากรอกราคาของผู้ใหญ่')"
-                                        oninput="setCustomValidity('')" placeholder="ราคาของผู้ใหญ่" onChange="myPadult()">
+                                    <input type="number" class="form-control" name="price_adult[]" oninvalid="this.setCustomValidity('กรุณากรอกราคาของผู้ใหญ่')"
+                                        oninput="setCustomValidity('')" placeholder="ราคาของผู้ใหญ่" min="20" onChange="myPadult()" required>
                                 </div>
                                 <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">
                                     <label style="margin-bottom:13px;font-size:1.3em;">จำนวนที่นั่งทั้งหมด </label>
-                                    <input type="text" class="form-control" name="amount_seats[]" oninvalid="this.setCustomValidity('กรุณากรอกจำนวนที่นั่ง')"
-                                        oninput="setCustomValidity('')" placeholder="จำนวนที่นั่ง" onChange="myAseats()">
+                                    <input type="number" class="form-control" name="amount_seats[]" oninvalid="this.setCustomValidity('กรุณากรอกจำนวนที่นั่ง')"
+                                        oninput="setCustomValidity('')" min="1" placeholder="จำนวนที่นั่ง" onChange="myAseats()" required>
                                 </div>
 
                             </div>
@@ -175,19 +175,19 @@
                                 <div class="row">
                                     <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">วันที่</label>
-                                        <input class="form-control" name='schedule_day[]' type="text"  onChange="mySday()">
+                                        <input class="form-control" name='schedule_day[]' type="number" min="1" onChange="mySday()" required>
                                     </div>
                                     <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">เวลา</label>
-                                        <input class="form-control" name='schedule_time[]' type="time" onChange="myStime()">
+                                        <input class="form-control" name='schedule_time[]' type="time" onChange="myStime()" required>
                                     </div>
                                     <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">สถานที่</label>
-                                        <input class="form-control" name='schedule_place[]' type="text" onChange="mySplace()">
+                                        <input class="form-control" name='schedule_place[]' type="text" onChange="mySplace()" required>
                                     </div>
                                     <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รายละเอียด</label>
-                                        <input class="form-control" name='schedule_description[]' type="text" onChange="mySdes()">
+                                        <input class="form-control" name='schedule_description[]' type="text" onChange="mySdes()" required>
                                     </div>
                                     <!-- <div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">
                                         <label style="margin-bottom:13px;font-size:1.3em;">รูปภาพกิจกรรม</label>
@@ -489,7 +489,7 @@
     $(document).ready(function () {
         $("#btn").click(function () {
             $("#controls").append(
-                '<div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">วันเริ่มเดินทาง</label><input class="form-control start_day" name="start_date[]" type="date" value="" required data-validation-required-message="Please enter your ROUND TRIP" onChange="myStartdate()"></div><div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">                                <label style="margin-bottom:13px;font-size:1.3em;width:150px;">วันเดินทางกลับ</label><input class="form-control Departure_Date" name="departure_date[]" type="date" value="" required data-validation-required-message="Please enter your ROUND TRIP" onChange="myDepardate()"></div><br><div class="col-md-2" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">ราคาเด็ก</label>                                <input type="text" class="form-control" name="price_child[]" onChange="myPchild()">                            </div>                            <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">         <label style="margin-bottom:13px;font-size:1.3em;width:150px;">ราคาผู้ใหญ่</label>                                <input type="text" class="form-control" name="price_adult[]" required data-validation-required-message="Please enter Price_ADUIT " onChange="myPadult()">                            </div>                            <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">                                <label style="margin-bottom:13px;font-size:1.3em;width:150px;">จำนวนที่นั่งทั้งหมด </label>                                <input type="text" class="form-control" name="amount_seats[]" required data-validation-required-message="Please enter Price_ADUIT " onChange="myAseats()" >                            </div>'
+                '<div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">วันเริ่มเดินทาง</label><input class="form-control start_day" name="start_date[]" type="date" min="2017-11-13" required data-validation-required-message="Please enter your ROUND TRIP" onChange="myStartdate()" required></div><div class="col-md-3" style="padding-top:20px;padding-bottom:20px;">                                <label style="margin-bottom:13px;font-size:1.3em;width:150px;">วันเดินทางกลับ</label><input class="form-control Departure_Date" name="departure_date[]" type="date" min="2017-11-13" required data-validation-required-message="Please enter your ROUND TRIP" onChange="myDepardate()" required></div><br><div class="col-md-2" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">ราคาเด็ก</label>                                <input type="number" class="form-control" name="price_child[]" onChange="myPchild()"  min="20" required>                            </div>                            <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">         <label style="margin-bottom:13px;font-size:1.3em;width:150px;">ราคาผู้ใหญ่</label>                                <input type="number" class="form-control" name="price_adult[]" required data-validation-required-message="Please enter Price_ADUIT " onChange="myPadult()"  min="20">                            </div>                            <div class="col-md-2" style="padding-top:20px;padding-bottom:20px;">                                <label style="margin-bottom:13px;font-size:1.3em;width:150px;">จำนวนที่นั่งทั้งหมด </label>                                <input type="number" class="form-control" name="amount_seats[]" required data-validation-required-message="Please enter Price_ADUIT "  min="1" onChange="myAseats()" required>                            </div>'
             );
         })
     })
@@ -498,7 +498,7 @@
     $(document).ready(function () {
         $("#nextday").click(function () {
             $("#days").append(
-                '<div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">วันที่</label><input class="form-control" name="schedule_day[]" type="text"  onChange="mySday()"></div><div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">เวลา</label><input class="form-control" name="schedule_time[]" type="time" onChange="myStime()"></div><div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">สถานที่</label><input class="form-control" name="schedule_place[]" type="text" onChange="mySplace()"></div><div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">รายละเอียด</label><input class="form-control" name="schedule_description[]" type="text" onChange="mySdes()"></div>'
+                '<div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">วันที่</label><input class="form-control" name="schedule_day[]" type="number"  onChange="mySday()" required></div><div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">เวลา</label><input class="form-control" name="schedule_time[]" type="time" onChange="myStime()" required></div><div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">สถานที่</label><input class="form-control" name="schedule_place[]" type="text" onChange="mySplace()" required></div><div class="col-md-3" style="padding-top:20px;padding-bottom:20px;"><label style="margin-bottom:13px;font-size:1.3em;width:150px;">รายละเอียด</label><input class="form-control" name="schedule_description[]" type="text" onChange="mySdes()" required></div>'
             );
         })
     })
