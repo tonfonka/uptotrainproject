@@ -27,7 +27,7 @@
             <label class="star star-3" for="star-3"></label>
             <input class="star star-2" id="star-2" type="radio" name="rate" value="2" />
             <label class="star star-2" for="star-2"></label>
-            <input class="star star-1" id="star-1" type="radio" name="rate" value="1" />
+            <input class="star star-1" id="star-1" type="radio" name="rate" value="1" required/>
             <label class="star star-1" for="star-1"></label>
           </div>
       </div>
