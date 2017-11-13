@@ -86,7 +86,7 @@ class adminController extends Controller
     function deny(){
         $agencys = DB::table('users')
         ->join('travelagency','travelagency.user_id','=','users.id')
-        ->where([['users.role','=','travel agency'],['users.adminconfirm','=','3']])->get();
+        ->where('users.adminconfirm','=','3')->get();
         $data = array(
             'agencys' =>$agencys,
         );

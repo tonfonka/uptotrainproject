@@ -240,7 +240,7 @@ autoplay: 2500,
         @endif
        <br><br>
 
-
+@if(count($triprounds)>0)
 
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -292,7 +292,9 @@ autoplay: 2500,
             </div>
         </div>
     </div>
-
+@else 
+setOnLoadCallback
+@endif
 
 @if($alluser>0)
 <div class="container">
