@@ -46,19 +46,19 @@
 						<div class="form-group">
 							<label class="col-lg-3 control-label">ชื่อจริง</label>
 							<div class="col-lg-6">
-								<input class="form-control" type="text" name="firstname" id="firstname" value="{{Auth::user()->firstname}}">
+								<input class="form-control" type="text" name="firstname" id="firstname" value="{{Auth::user()->firstname}}" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 control-label">นามสกุลจริง</label>
 							<div class="col-lg-6">
-								<input class="form-control" type="text" name="lastname" id="lastname" value="{{Auth::user()->lastname}}">
+								<input class="form-control" type="text" name="lastname" id="lastname" value="{{Auth::user()->lastname}}" required>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-md-3 control-label" for="gender">เพศ</label>
 							<div class="col-md-6">
-								<select name="gender" id="sex" name="	sex" class="form-control">
+								<select name="gender" id="sex" name="	sex" class="form-control" required>
 									<option value="ชาย">ชาย</option>
 									<option value="หญิง" selected="">หญิง</option>
 								</select>
@@ -67,13 +67,13 @@
 						<div class="form-group">
 							<label class="col-lg-3 control-label">อายุ</label>
 							<div class="col-lg-6">
-								<input class="form-control" type="text" name="age" id="age" value="{{Auth::user()->age}}">
+								<input class="form-control" type="text" name="age" id="age" value="{{Auth::user()->age}}" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 control-label">เบอร์โทรศัพท์</label>
 							<div class="col-lg-6">
-								<input class="form-control" type="text" id="phone" name="phone" value="{{Auth::user()->phone}}">
+								<input class="form-control" type="text" id="phone" name="phone" value="{{Auth::user()->phone}}" required>
 							</div>
 						</div>
 						<div class="form-group">

@@ -30,41 +30,39 @@
               <div class="panel-body">
                 <div class="row">
                   <div class="col-lg-12">
-                    <form role="form-group">
-                      <form>
                         <div class="row">
                           <div class="col-lg-6">
                             <div class="form-group">
-                              <label>Name(Thai)</label>
-                              <input type="text" class="form-control" id="agency_name_th" name="agency_name_th" placeholder="Name(Thai)">
+                              <label>ชื่อบริษัทภาษาไทย</label>
+                              <input type="text" class="form-control" id="agency_name_th" name="agency_name_th" placeholder="Name(Thai)" required>
                             </div>
                             <div class="form-group">
-                              <label>Name(Eng)</label>
-                              <input type="text" id="agency_name_en" name="agency_name_en" class="form-control" placeholder="Name(ENG)">
+                              <label>ชื่อบริษัทภาษาอังกฤษ</label>
+                              <input type="text" id="agency_name_en" name="agency_name_en" class="form-control" placeholder="Name(ENG)" required>
                             </div>
                             <!--<div class="form-group">
                               <label for="exampleTextarea">Description</label>
                               <textarea class="form-control" id="agency_description" rows="5"></textarea>
                             </div>-->
                             <div class="form-group">
-                              <label>Email </label>
-                              <input type="text" id="agency_email" name="agency_email" class="form-control" placeholder="agency_email">
+                              <label>Email บริษัท </label>
+                              <input type="text" id="agency_email" name="agency_email" class="form-control" placeholder="agency_email" required>
                             </div>
                             <div class="form-group">
                               <label>License</label>
-                              <input ctype="text" class="form-control" id="agency_license" name="agency_license">
+                              <input type="text" class="form-control" id="agency_license" name="agency_license" required>
                             </div>
                             <div class="form-group">
                               <label>Tax ID </label>
-                              <input type="text" class="form-control" id="agency_tax_id" name="agency_tax_id" placeholder="agency_tax_id">
+                              <input type="text" class="form-control" id="agency_tax_id" name="agency_tax_id" placeholder="agency_tax_id" required>
                             </div>
                             <div class="form-group">
                               <label>IATA</label>
-                              <input type="text" class="form-control" id="agency_iata_no" name="agency_iata_no" placeholder="IATA No">
+                              <input type="text" class="form-control" id="agency_iata_no" name="agency_iata_no" placeholder="IATA No" required>
                             </div>
                             <div class="form-group">
                               <label>Fax </label>
-                              <input type="text" class="form-control" id="agency_fax" name="agency_fax" placeholder="agency_fax">
+                              <input type="text" class="form-control" id="agency_fax" name="agency_fax" placeholder="agency_fax" >
                             </div>
                             <div class="form-group">
                               <label>Province</label>
@@ -137,7 +135,6 @@
         </div>
       </div>
 
-      </form>
   </div>
   <!-- /#page-wrapper -->
 
