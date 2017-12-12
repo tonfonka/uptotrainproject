@@ -106,12 +106,6 @@ class adminController extends Controller
         $user->adminconfirm = '3';
         $user->save();
         return redirect('/approveagency');
-        // public function delete($learner_schedule_id) {
-        //     DB::delete('delete from learner_schedule_time WHERE learner_schedule_id = ?', [$learner_schedule_id]);
-    
-        //     DB::delete('delete from learner_schedule WHERE learner_schedule_id = ?', [$learner_schedule_id]);
-            
-        //     return redirect(url('learnercoursestatus'));
         }
 
     function index(){ 
@@ -225,6 +219,20 @@ function trashcomment(){
       'review' => $review,
   );
   return view('admin.admin_trash_comment',$data);
+}
+function income(){ 
+    $agency = DB::table('users')
+    ->join('travelagency','travelagency.user_id','=','users.id')
+    ->where('users.adminconfirm','=','1')
+    ->get();
+    $countagency = $agency->count();
+  
+   $data = array(
+       'agency' => $agency,
+       'countagency' => $countagency,
+   );
+   
+  return view('admin.admin_statement_income',$data);
 }
 
 }

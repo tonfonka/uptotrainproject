@@ -220,6 +220,7 @@ Route::get('/deletecomment',function(){
 
 Route::post('/deletecomment','adminController@deletecomment');
 Route::get('/trashcomment','adminController@trashcomment');
+Route::get('/statement','adminController@income');
 
 // function () {
 // 	return view('admin.admin_travelagency_manage');
