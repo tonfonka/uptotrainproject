@@ -16,6 +16,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
+Route::get('/addroundtrip/{id}','tripAgencyController@addroundtrip');
+
 
 //Route::post('/addtrip','tripAgencyController@tripstore');
 //Route::post('/imagegallery','tripAgencyController@tripstore');
@@ -23,7 +25,7 @@ Route::get('/addtrip','tripAgencyController@index')->middleware('auth');
 //Route::post('/imagegallery','tripAgencyController@tripstore');
 //Route::post('/imagegallery', 'ImageGalleryController@imageupload');
 //Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
-
+Route::post('/agency','tripAgencyController@addroundtripstore');
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/waitapprove', 'UserController@regisagency');
@@ -220,7 +222,8 @@ Route::get('/deletecomment',function(){
 
 Route::post('/deletecomment','adminController@deletecomment');
 Route::get('/trashcomment','adminController@trashcomment');
-Route::get('/statement','adminController@income');
+Route::get('/sta','adminController@income');
+
 
 // function () {
 // 	return view('admin.admin_travelagency_manage');

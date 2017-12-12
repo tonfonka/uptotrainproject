@@ -168,6 +168,52 @@ class tripAgencyController extends Controller
         return view('image',['tripId'=> $tripId]);
     
     }
+    function addroundtrip($id){
+        
+        $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
+        $id = $id;
+        $data = array(
+            'travelagencies' => $travelagencies,
+            'id' => $id
+           
+        );
+
+
+        
+        return view("addtripround",$data) ;
+    }
+    function addroundtripstore(Request $request){
+        $tripId=$request->input('trip_id');
+        $startDate = $request->input('start_date');
+        $departureDate = $request->input('departure_date');
+        $priceChild = $request->input('price_child');
+        $priceAdult = $request->input('price_adult');
+        $amountSeat = $request->input('amount_seats');
+    
+        $rounds = Array();
+        for($i=0;$i<sizeOf($startDate);$i++){
+            $data = array($startDate[$i], $departureDate[$i], $priceChild[$i], $priceAdult[$i], $amountSeat[$i]);
+            array_push($rounds, $data);
+        }
+    
+        // dd($rounds);
+        foreach($rounds as $rs) {
+            DB::table('triprounds')
+                ->insertGetId([
+                    "start_date" => $rs[0],
+                    "departure_date" => $rs[1],
+                    "price_child" => $rs[2],
+                    "price_adult" => $rs[3],
+                    "amount_seats" => $rs[4],
+                    "triprounds_description" => $request->input('description'),
+                    "trip_id" => $tripId
+                ]);
+        }
+
+        return redirect('/agency');
+
+    }
+
 
    function showdetailtrip($id) {
     if(Auth::user()->role != "travel agency"){
