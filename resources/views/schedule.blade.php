@@ -157,10 +157,17 @@
                 </div>
                 <br><br>
                 <br><br>
+
+
                 <?php
                 $pic = DB::table('imagegallery')->where('trip_id',$trip->id)->get();
             
             ?>
+
+            @if (count($pic) === 0)
+            
+            @else
+        
            
 <section class="bg-light" id="portfolio">
 
@@ -228,9 +235,12 @@ autoplay: 2500,
 </script>
 
         </section>
+
+        
+        @endif
        <br><br>
 
-
+@if(count($triprounds)>0)
 
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -282,7 +292,9 @@ autoplay: 2500,
             </div>
         </div>
     </div>
-
+@else 
+setOnLoadCallback
+@endif
 
 @if($alluser>0)
 <div class="container">

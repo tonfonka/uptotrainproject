@@ -94,7 +94,7 @@
     <div class="blog-page blog-content-1">
         <div class="row">
             <div class="col-md-12" style="padding-top: 50px;">
-                <h2>กิจกรรมของฉัน</h2>
+                <h2>ทริปที่กำลังจะไป</h2>
 
                 <div class="row" style="
     padding-bottom: 50px;
