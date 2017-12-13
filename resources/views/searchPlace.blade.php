@@ -107,19 +107,47 @@
                          <?php
                           $tripname = DB::table('trips')->where('id',$trip[0]->trip_id)->get();
 
+
                          ?>
                          @foreach($tripname as $name)
                          ชื่อทริป {{$name->trips_name}}
-                         <table class="table">
-                         <tr>รอบ
+
+                        <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-9">
+                        <ul class="list-inline">
+                            <table class="table">
+                                <tr>
+                                    <th>กำหนดการเดินทาง</th>
+                                    <th>ราคาผู้ใหญ่</th>
+                                    <th>ราคาเด็ก</th>
+                                    <th>จำนวนที่นั่งว่าง</th>
+                                    <th>จำนวนที่นั่ง</th>
+                                    <th></th>
+                                </tr>
+                                
                          <?php
                           $tripround = DB::table('triprounds')->where('trip_id',$trip[0]->trip_id)->get();
 
                          ?>
                          @foreach($tripround as $round)
-                         
-                         <td>{{$round->start_date}} </td>
+                         <?php
+                                    $amount =  $round->amount_seats;
+                                    $tid=$round->id;
+                                    $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
+                                    $sum = $amount-$seat;
+                                    $today = date('y/m/d'); 
+                                    //dd($today); 
+                                ?>
+                                @if( ($today) < ($round->start_date ))
+                         <tr>
+                         <td>{{$round->start_date }} - {{$round->departure_date}} </td>
+                         <td>{{$round->price_child}}</td>
+                         <td>{{$round->price_adult}}</td>
+                         <td>{{$round->amount_seats}}</td>
+                         <td>{{$sum}}</td>
                          </tr>
+                         @endif
                          @endforeach
                           @endforeach
                          @endforeach
