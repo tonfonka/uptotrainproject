@@ -102,12 +102,11 @@
                                     <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
                                     @endif
                                     <?php
-                                            $ac = DB::table('attraction')->where('attraction_Name','like','%'.$schedule->schedule_place.'%')
-                                            ->get();
+                                           $ac = DB::table('attraction')->where('attraction_Name','like','%'.$schedule->schedule_place.'%')->get();
                                             $count = $ac->count();
                                             ?>
                                     @if($count > 0)
-                                    <h4><a  data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>
+                                    <h4><a data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>
                                     <h4>อันนี้มีสถานที่ท่องเที่ยว</h4>
                                     @else
                                     <h4>{{ $schedule->schedule_place }}</h4>
@@ -115,14 +114,11 @@
                                 </div>
                                 <div class="timeline-body">
                                     <p class="text-muted">{{ $schedule->schedule_description }}</p>
-                                   
                                 </div>
                             </div>
-                            
                             @endforeach
 
                             @foreach($schedules as $schedule)
-                            
                             <!-- Modal -->
                                 <div class="modal fade" id="betaModal{{$schedule->id}}" role="dialog">
                                     <div class="modal-dialog">
@@ -143,7 +139,7 @@
                                                     <div class="span6">
                                                         <hr>
                                                         <p class="help-block">Name {{ $schedule->schedule_place }}</p>
-                                                        
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,6 +150,7 @@
                                     </div>
                                 </div>
                             <!--end Modal-->
+                           
                             @endforeach
                             <li class="timeline-inverted">
                                 <div class="timeline-image2">
