@@ -51,9 +51,7 @@
                     </li>
                 </ul>
             </div>
-            <script>
-            
-            </script>
+         
             <form role="form" action="/image" method="POST" name="id" enctype="multipart/form-data">
             
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">

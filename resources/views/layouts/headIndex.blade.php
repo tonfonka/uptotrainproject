@@ -68,7 +68,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="/search">Tours</a></li>
-                    <li><a href="/searchPlace">สถานที่ท่องเที่ยว</a>
+                    <li><a href="/searchPlace">Attractions</a>
               
                     </li>
                   </ul>
