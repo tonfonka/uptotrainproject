@@ -94,6 +94,37 @@
                         <p class="text-muted2">เวลาเปิดทำการ : {{$p->attraction_Time_Open}}</p>
                         <p class="text-muted2">เวลาปิดทำการ : {{$p->Attraction_Time_Closed}}</p>
                         <p class="text-muted2">เบอร์โทรศัพท์ติดต่อ : {{$p->Attraction_Tel}}</p>
+                        <?php
+                        $trip = DB::table('schedules')
+                                                  ->where('schedules.schedule_place','like',$p->attraction_Name)
+                                                  ->get();
+                        $tripcount = $trip->count();
+ 
+                        ?>
+                        @if($tripcount >0)
+                         @foreach($trip as $tr)
+                         
+                         <?php
+                          $tripname = DB::table('trips')->where('id',$trip[0]->trip_id)->get();
+
+                         ?>
+                         @foreach($tripname as $name)
+                         ชื่อทริป {{$name->trips_name}}
+                         <table class="table">
+                         <tr>รอบ
+                         <?php
+                          $tripround = DB::table('triprounds')->where('trip_id',$trip[0]->trip_id)->get();
+
+                         ?>
+                         @foreach($tripround as $round)
+                         
+                         <td>{{$round->start_date}} </td>
+                         </tr>
+                         @endforeach
+                          @endforeach
+                         @endforeach
+                        @endif
+                        </table>
                         <button class="btn btn-primary" data-dismiss="modal" type="button">
                           <i class="fa fa-times"></i>
                           Close</button>
