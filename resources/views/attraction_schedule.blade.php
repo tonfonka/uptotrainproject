@@ -1,4 +1,4 @@
-@extends('layouts.headIndex') @section('title', 'Search Trip') @section('tripuser')
+@extends('layouts.headIndex') @section('title', 'Attraction') @section('tripuser')
 <div class="portfolio-modal modal fade" id="portfolioModal{{$p->attraction_ID}}" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
