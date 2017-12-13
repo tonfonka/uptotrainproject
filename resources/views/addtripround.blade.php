@@ -21,7 +21,7 @@
         <div class="wizard">
             <div class="wizard-inner">
                 <h3>
-                    <strong>Trip Name : </strong>
+                    <strong>Trip Name :{{$tripname[0]->trips_name}} </strong>
                 </h3>
                 <br>
                 <h3>

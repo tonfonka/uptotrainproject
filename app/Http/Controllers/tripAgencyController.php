@@ -172,9 +172,11 @@ class tripAgencyController extends Controller
         
         $travelagencies = travelagency::where('user_id', Auth::user()->id)->first();
         $id = $id;
+        $tripname = DB::table('trips')->where('id',$id)->get();
         $data = array(
             'travelagencies' => $travelagencies,
-            'id' => $id
+            'id' => $id,
+            'tripname' => $tripname
            
         );
 
