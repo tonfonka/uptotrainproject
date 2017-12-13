@@ -25,7 +25,7 @@ Route::get('/addroundtrip/{id}','tripAgencyController@addroundtrip');
 //Route::post('/imagegallery','tripAgencyController@tripstore');
 //Route::post('/imagegallery', 'ImageGalleryController@imageupload');
 //Route::delete('/imagegallery/{id}', 'tripAgencyController@imagedestroy');
-Route::post('/agency','tripAgencyController@addroundtripstore');
+
 
 Route::get('/agency', 'showtripController@index')->middleware('auth');
 Route::post('/waitapprove', 'UserController@regisagency');
@@ -37,7 +37,7 @@ Route::post('/agency','imageController@upload');
 Route::get('/agreement',function(){
 	return view ('agreement');
 });
-
+Route::post('/agency','tripAgencyController@addroundtripstore');
 Route::get('/search', 'UserController@search');
 Route::post ( '/searcht', 'UserController@searchResult' );
 

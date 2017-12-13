@@ -189,6 +189,7 @@ class tripAgencyController extends Controller
         $priceChild = $request->input('price_child');
         $priceAdult = $request->input('price_adult');
         $amountSeat = $request->input('amount_seats');
+        //dd($tripId);
     
         $rounds = Array();
         for($i=0;$i<sizeOf($startDate);$i++){

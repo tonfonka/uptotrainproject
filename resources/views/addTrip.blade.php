@@ -15,8 +15,8 @@
 @section('content')
  
 <div class="container">
- <link href="css/uptotrain.min.css" rel="stylesheet">
-  <link href="css/login.css" rel="stylesheet">
+ <link href="{{ URL::asset('css/uptotrain.min.css')}}" rel="stylesheet">
+  <link href="{{ URL::asset('css/login.css')}}" rel="stylesheet">
     <div class="row">
         <div class="wizard">
             <div class="wizard-inner">
@@ -484,7 +484,7 @@
 
     }
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{secure_url('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')}}"></script>
 <script>
     $(document).ready(function () {
         $("#btn").click(function () {
