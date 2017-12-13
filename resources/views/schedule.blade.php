@@ -101,8 +101,17 @@
                                     @else
                                     <h4>วันที่ {{ $schedule->schedule_day }} เวลา {{date('H:m', strtotime($schedule->schedule_time))}} น.</h4>
                                     @endif
-                                    <!-- <h4><a  data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>-->
+                                    <?php
+                                            $ac = DB::table('attraction')->where('attraction_Name','like','%'.$schedule->schedule_place.'%')
+                                            ->get();
+                                            $count = $ac->count();
+                                            ?>
+                                    @if($count > 0)
+                                    <h4><a  data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>
+                                    <h4>อันนี้มีสถานที่ท่องเที่ยว</h4>
+                                    @else
                                     <h4>{{ $schedule->schedule_place }}</h4>
+                                    @endif
                                 </div>
                                 <div class="timeline-body">
                                     <p class="text-muted">{{ $schedule->schedule_description }}</p>
@@ -119,8 +128,8 @@
                                     <div class="modal-dialog">
                                     <!-- Modal content-->
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">{{ $schedule->schedule_place }}</h4>
+                                            <div class="modal-header">  
+                                            <h4 class="modal-title">{{ $schedule->schedule_place }}</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row-fluid">
