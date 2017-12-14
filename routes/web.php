@@ -223,6 +223,7 @@ Route::get('/deletecomment',function(){
 Route::post('/deletecomment','adminController@deletecomment');
 Route::get('/trashcomment','adminController@trashcomment');
 Route::get('/sta','adminController@income');
+Route::get('/ac/{id}','UserController@act');
 
 
 // function () {

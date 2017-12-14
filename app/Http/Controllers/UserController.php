@@ -19,9 +19,18 @@ class UserController extends Controller
     function __construct(){
         
     }
-    // function index() {
-    // //     return view('index');
-    // // }
+    function act($id){
+        $attraction = DB::table('attraction')
+        ->where('attraction_ID',$id)->first();
+        $data = array(
+            'attraction' => $attraction,
+            
+           
+            //'diffdate' => $diffdate
+        );
+        return view('attraction_schedule', $data);
+
+    }
 
     function search(){
          $trips = DB::table('trips')->orderBy('id','desc')->paginate(15);

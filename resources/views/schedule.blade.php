@@ -104,10 +104,11 @@
                                     <?php
                                            $ac = DB::table('attraction')->where('attraction_Name','like','%'.$schedule->schedule_place.'%')->get();
                                             $count = $ac->count();
+                                            $id = $ac[0]->attraction_ID
                                             ?>
                                     @if($count > 0)
-                                    <h4><a data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4>
-                                    <h4>อันนี้มีสถานที่ท่องเที่ยว</h4>
+                                    <!-- <h4><a data-toggle="modal" data-target="#betaModal{{$schedule->id}}" href="{{$schedule->id}}">{{ $schedule->schedule_place }}</a></h4> -->
+                                    <a href="/ac/{{$id}}"><h4>{{ $schedule->schedule_place }}</h4></a>
                                     @else
                                     <h4>{{ $schedule->schedule_place }}</h4>
                                     @endif

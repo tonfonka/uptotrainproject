@@ -1,5 +1,5 @@
 @extends('layouts.headIndex') @section('title', 'Attraction') @section('tripuser')
-<div class="portfolio-modal modal fade" id="portfolioModal{{$p->attraction_ID}}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="portfolio-modal modal fade" id="portfolioModal{{$attraction->attraction_ID}}" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="close-modal" data-dismiss="modal">
@@ -12,34 +12,34 @@
           <div class="col-lg-12 mx-auto">
             <div class="modal-body">
               <!-- Project Details Go Here -->
-              <h2>{{$p->attraction_Name}}</h2>
-              <p class="text-muted2">อำเภอ {{$p->Attraction_tambon}} จังหวัด {{$p->Attraction_Province}}</p>
-              <img class="img-fluid d-block mx-auto" width="500" height="350" src="/images/attraction/{{$p->Attraction_pic}}" alt="">
+              <h2>{{$attraction->attraction_Name}}</h2>
+              <p class="text-muted2">อำเภอ {{$attraction->Attraction_tambon}} จังหวัด {{$attraction->Attraction_Province}}</p>
+              <img class="img-fluid d-block mx-auto" width="500" height="350" src="/images/attraction/{{$attraction->Attraction_pic}}" alt="">
               <div class="col-lg-12 mx-auto">
                 <div class="well w3l">
-                  <p class="text-muted2">{{$p->attraction_Description}}</p>
+                  <p class="text-muted2">{{$attraction->attraction_Description}}</p>
                 </div>
-                @if($p->goByCar && $p->goByBus)
+                @if($attraction->goByCar && $attraction->goByBus)
                 <p class="text-muted3">วิธีการเดินทาง</p>
                 <p class="text-muted2">
-                  <strong>เดินทางโดยรถส่วนตัว :</strong> {{$p->goByCar}}</p>
+                  <strong>เดินทางโดยรถส่วนตัว :</strong> {{$attraction->goByCar}}</p>
                 <p class="text-muted2">
-                  <strong>เดินทางโดยรถโดยสาร :</strong> {{$p->goByBus}}</p>
-                @elseif($p->goByCar)
+                  <strong>เดินทางโดยรถโดยสาร :</strong> {{$attraction->goByBus}}</p>
+                @elseif($attraction->goByCar)
                 <p class="text-muted3">วิธีการเดินทาง</p>
                 <p class="text-muted2">
-                  <strong>เดินทางโดยรถส่วนตัว :</strong> {{$p->goByCar}}</p>
-                @elseif($p->goByBus)
+                  <strong>เดินทางโดยรถส่วนตัว :</strong> {{$attraction->goByCar}}</p>
+                @elseif($attraction->goByBus)
                 <p class="text-muted3">วิธีการเดินทาง</p>
                 <p class="text-muted2">
-                  <strong>เดินทางโดยรถโดยสาร :</strong> {{$p->goByBus}}</p>
+                  <strong>เดินทางโดยรถโดยสาร :</strong> {{$attraction->goByBus}}</p>
                 @endif
-                <p class="text-muted2">เวลาเปิดทำการ : {{$p->attraction_Time_Open}}</p>
-                <p class="text-muted2">เวลาปิดทำการ : {{$p->Attraction_Time_Closed}}</p>
-                <p class="text-muted2">เบอร์โทรศัพท์ติดต่อ : {{$p->Attraction_Tel}}</p>
+                <p class="text-muted2">เวลาเปิดทำการ : {{$attraction->attraction_Time_Open}}</p>
+                <p class="text-muted2">เวลาปิดทำการ : {{$attraction->Attraction_Time_Closed}}</p>
+                <p class="text-muted2">เบอร์โทรศัพท์ติดต่อ : {{$attraction->Attraction_Tel}}</p>
                 <?php
                         $trip = DB::table('schedules')
-                                                  ->where('schedules.schedule_place','like',$p->attraction_Name)
+                                                  ->where('schedules.schedule_place','like','%'.$attraction->attraction_Name.'%')
                                                   ->get();
                         $tripcount = $trip->count();
  
