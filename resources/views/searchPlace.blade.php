@@ -1,4 +1,4 @@
-@extends('layouts.headIndex') @section('title', 'Search Trip') @section('content')
+@extends('layouts.headIndex') @section('title', 'Search Place') @section('content')
 <style>
   body {
     padding: 0 !important
@@ -54,7 +54,9 @@
             <p class="text-muted">{{$p->Attraction_Province}}</p>
           </div>
         </div>
-        @endforeach @foreach($place as $p)
+        @endforeach 
+        
+        @foreach($place as $p)
         <!-- Modal 1 -->
         <div class="portfolio-modal modal fade" id="portfolioModal{{$p->attraction_ID}}" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
