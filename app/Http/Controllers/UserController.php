@@ -24,9 +24,6 @@ class UserController extends Controller
         ->where('attraction_ID',$id)->first();
         $data = array(
             'attraction' => $attraction,
-            
-           
-            //'diffdate' => $diffdate
         );
         return view('attraction_schedule', $data);
 
