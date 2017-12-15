@@ -1,4 +1,6 @@
-@extends('layouts.headIndex') @section('title', 'Attraction') @section('tripuser')
+@extends('layouts.headIndex') 
+@section('title', 'Attraction') 
+@section('tripuser')
 <div class="portfolio-modal modal fade" id="portfolioModal{{$attraction->attraction_ID}}" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -14,7 +16,8 @@
               <!-- Project Details Go Here -->
               <h2>{{$attraction->attraction_Name}}</h2>
               <p class="text-muted2">อำเภอ {{$attraction->Attraction_tambon}} จังหวัด {{$attraction->Attraction_Province}}</p>
-              <img class="img-fluid d-block mx-auto" width="500" height="350" src="/images/attraction/{{$attraction->Attraction_pic}}" alt="">
+              <img class="img-fluid d-block mx-auto" width="500" height="350" src="/images/attraction/{{$attraction->Attraction_pic}}"
+                alt="">
               <div class="col-lg-12 mx-auto">
                 <div class="well w3l">
                   <p class="text-muted2">{{$attraction->attraction_Description}}</p>
@@ -37,6 +40,11 @@
                 <p class="text-muted2">เวลาเปิดทำการ : {{$attraction->attraction_Time_Open}}</p>
                 <p class="text-muted2">เวลาปิดทำการ : {{$attraction->Attraction_Time_Closed}}</p>
                 <p class="text-muted2">เบอร์โทรศัพท์ติดต่อ : {{$attraction->Attraction_Tel}}</p>
+<section class="bg-light" id="portfolio">
+
+            <div class="row">
+               <div class="portfolio-caption">
+                        <h2>gallery</h2>
                 <?php
                         $trip = DB::table('schedules')
                                                   ->where('schedules.schedule_place','like','%'.$attraction->attraction_Name.'%')
@@ -51,8 +59,12 @@
 
 
                          ?>
-                    @foreach($tripname as $name) ชื่อทริป {{$name->trips_name}}
-
+                    @foreach($tripname as $name)
+                    <div class="row">
+                      <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">ชื่อทริป {{$name->trips_name}}</h2>
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="col-md-2"></div>
                       <div class="col-md-9">
@@ -66,7 +78,6 @@
                               <th>จำนวนที่นั่ง</th>
                               <th></th>
                             </tr>
-
                             <?php
                           $tripround = DB::table('triprounds')->where('trip_id',$trip[0]->trip_id)->get();
 
@@ -88,10 +99,11 @@
                                     <td>{{$round->price_adult}}</td>
                                     <td>{{$round->amount_seats}}</td>
                                     <td>{{$sum}}</td>
-                                    
+
                                   </tr>
                                   @endif @endforeach @endforeach @endforeach @endif
                           </table>
+                          </section>
                           <button class="btn btn-primary" data-dismiss="modal" type="button">
                             <i class="fa fa-times"></i>
                             Close</button>
