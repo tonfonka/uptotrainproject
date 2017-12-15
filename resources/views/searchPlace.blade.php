@@ -139,6 +139,7 @@
                                     $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
                                     $sum = $amount-$seat;
                                     $today = date('y/m/d'); 
+                                    $tid = $round->id;
                                     //dd($today); 
                                 ?>
                                 @if( ($today) < ($round->start_date ))
@@ -148,6 +149,7 @@
                          <td>{{$round->price_adult}}</td>
                          <td>{{$round->amount_seats}}</td>
                          <td>{{$sum}}</td>
+                         <td><a class="btn btn-primary" href="/booking/{{$round->id}}" name="{{$tid}}">จองเลย</a></td>
                          </tr>
                          @endif
                          @endforeach
