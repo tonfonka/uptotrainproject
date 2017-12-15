@@ -108,9 +108,17 @@
 
 
                          ?>
-                            @foreach($tripname as $name) ชื่อทริป {{$name->trips_name}}
+                            @foreach($tripname as $name) 
+                            
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p class="text-muted3">ชื่อทริป {{$name->trips_name}}</p>
+                        
+                    </div>
+                </div>
+                           
 
-                            <div class="row" style ="font-family:"Prompt";">
+                            <div class="row" style ="font-family:Prompt;">
                               <div class="col-md-2"></div>
                               <div class="col-md-9">
                                 <ul class="list-inline">
