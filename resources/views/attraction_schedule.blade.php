@@ -88,7 +88,7 @@
                                     <td>{{$round->price_adult}}</td>
                                     <td>{{$round->amount_seats}}</td>
                                     <td>{{$sum}}</td>
-                                    <td><a class="btn btn-primary" href="/booking/{{$tripround->id}}" name="{{$tid}}">จองเลย</a></td>
+                                    
                                   </tr>
                                   @endif @endforeach @endforeach @endforeach @endif
                           </table>
