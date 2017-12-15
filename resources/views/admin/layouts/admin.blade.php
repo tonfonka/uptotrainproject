@@ -115,7 +115,7 @@
                   <a href="/agencymanage">Agency Manage</a>
                 </li>
                 <li>
-                  <a href="#">Trip Manage</a>
+                <a href="/sta">Statement</a>
                 </li>
                 <li>
                   <a href="/deny">Blacklist</a>

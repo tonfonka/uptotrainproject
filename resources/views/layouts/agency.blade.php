@@ -30,7 +30,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <link href=" {{ URL::asset('css/font-awesome.css') }}" rel="stylesheet"/>
   <!-- //font-awesome icons -->
   <!-- js -->
-  <script src="js/jquery-2.2.3.min.js"></script>
+  <script src="{{asset('js/jquery-2.2.3.min.js')}}"></script>
   <!-- //js -->
   <!-- web-fonts -->
   
@@ -109,17 +109,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     </div>
     <!-- //footer end here -->
-    <!-- swipe box js -->
-    <script src="{{asset('/js/jquery.swipebox.min.js')}}"></script>
+    <!-- swipe box js 
+    <script src="{{asset('js/jquery.swipebox.min.js')}}"></script>
     <script type="text/javascript">
       jQuery(function ($) {
         $(".swipebox").swipebox();
       });
-    </script>
+    </script>-->
     <!-- //swipe box js -->
     <!-- start-smooth-scrolling -->
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript" src="{{asset('js/move-top.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/easing.js')}}"></script>
     <script type="text/javascript">
       jQuery(document).ready(function ($) {
         $(".scroll").click(function (event) {
@@ -151,7 +151,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.js"></script>
+    <script src="{{asset('js/bootstrap.js')}}"></script>
     
 </body>
 

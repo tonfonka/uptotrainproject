@@ -84,6 +84,9 @@
                                         <th class="text-center">
                                             <input type="text" class="form-control" placeholder="ดูรายละเอียดทริป" disabled>
                                         </th>
+                                        <th class="text-center">
+                                            <input type="text" class="form-control" placeholder="เพิ่มทริป" disabled>
+                                        </th>
 
                                     </tr>
                                 </thead>
@@ -122,6 +125,10 @@
                                         <td>-</td>
                                         @endif
                                         <td><a href="/tripdetail/{{$trips->id}}" name ={{$id}}><center><i  class="fa fa-info-circle" aria-hidden="true" style="font-size:20px;"></i></center></a></td>
+                                        <td><a href="/addroundtrip/{{$trips->id}}" name ={{$id}}>
+                                        <center>
+                                        <i  class="fa fa-info-circle" aria-hidden="true" style="font-size:20px;">
+                                        </i></center></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
