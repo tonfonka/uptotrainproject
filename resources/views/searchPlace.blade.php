@@ -54,9 +54,7 @@
             <p class="text-muted">{{$p->Attraction_Province}}</p>
           </div>
         </div>
-        @endforeach 
-        
-        @foreach($place as $p)
+        @endforeach @foreach($place as $p)
         <!-- Modal 1 -->
         <div class="portfolio-modal modal fade" id="portfolioModal{{$p->attraction_ID}}" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
@@ -103,37 +101,43 @@
                         $tripcount = $trip->count();
  
                         ?>
-                        @if($tripcount >0)
-                         @foreach($trip as $tr)
-                         
-                         <?php
+                          @if($tripcount >0) @foreach($trip as $tr)
+
+                          <?php
                           $tripname = DB::table('trips')->where('id',$trip[0]->trip_id)->get();
 
 
                          ?>
-                         @foreach($tripname as $name)
-                         ชื่อทริป {{$name->trips_name}}
+                            @foreach($tripname as $name) 
+                            
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p class="text-muted3">ชื่อทริป {{$name->trips_name}}</p>
+                        
+                    </div>
+                </div>
+                           
 
-                        <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-9">
-                        <ul class="list-inline">
-                            <table class="table">
-                                <tr>
-                                    <th>กำหนดการเดินทาง</th>
-                                    <th>ราคาผู้ใหญ่</th>
-                                    <th>ราคาเด็ก</th>
-                                    <th>จำนวนที่นั่งว่าง</th>
-                                    <th>จำนวนที่นั่ง</th>
-                                    <th></th>
-                                </tr>
-                                
-                         <?php
+                            <div class="row" style ="font-family:Prompt;">
+                              <div class="col-md-2"></div>
+                              <div class="col-md-9">
+                                <ul class="list-inline">
+                                  <table class="table">
+                                    <tr>
+                                      <th>กำหนดการเดินทาง</th>
+                                      <th>ราคาผู้ใหญ่</th>
+                                      <th>ราคาเด็ก</th>
+                                      <th>จำนวนที่นั่งว่าง</th>
+                                      <th>จำนวนที่นั่ง</th>
+                                      <th></th>
+                                    </tr>
+
+                                    <?php
                           $tripround = DB::table('triprounds')->where('trip_id',$trip[0]->trip_id)->get();
 
                          ?>
-                         @foreach($tripround as $round)
-                         <?php
+                                      @foreach($tripround as $round)
+                                      <?php
                                     $amount =  $round->amount_seats;
                                     $tid=$round->id;
                                     $seat = DB::table('booking')->where([['tripround_id',$tid],['status','=','success']])->sum('number_booking');
@@ -142,40 +146,39 @@
                                     $tid = $round->id;
                                     //dd($today); 
                                 ?>
-                                @if( ($today) < ($round->start_date ))
-                         <tr>
-                         <td>{{$round->start_date }} - {{$round->departure_date}} </td>
-                         <td>{{$round->price_child}}</td>
-                         <td>{{$round->price_adult}}</td>
-                         <td>{{$round->amount_seats}}</td>
-                         <td>{{$sum}}</td>
-                         <td><a class="btn btn-primary" href="/booking/{{$round->id}}" name="{{$tid}}">จองเลย</a></td>
-                         </tr>
-                         @endif
-                         @endforeach
-                          @endforeach
-                         @endforeach
-                        @endif
-                        </table>
-                        <button class="btn btn-primary" data-dismiss="modal" type="button">
-                          <i class="fa fa-times"></i>
-                          Close</button>
+                                        @if( ($today)
+                                        < ($round->start_date ))
+                                          <tr>
+                                            <td>{{$round->start_date }} - {{$round->departure_date}} </td>
+                                            <td>{{$round->price_child}}</td>
+                                            <td>{{$round->price_adult}}</td>
+                                            <td>{{$round->amount_seats}}</td>
+                                            <td>{{$sum}}</td>
+                                            <td>
+                                              <a class="btn btn-primary" href="/booking/{{$round->id}}" name="{{$tid}}">จองเลย</a>
+                                            </td>
+                                          </tr>
+                                          @endif @endforeach @endforeach @endforeach @endif
+                                  </table>
+                                  <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                    <i class="fa fa-times"></i>
+                                    Close</button>
+                              </div>
+                            </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            @endforeach
           </div>
-        </div>
-        @endforeach
-      </div>
     </section>
-  </div>
+    </div>
 
-  <div align="center">
-    {{$place->links()}}
-  </div>
+    <div align="center">
+      {{$place->links()}}
+    </div>
 
 
 </section>
